@@ -386,6 +386,38 @@
         /* Scale Indicator */
         .scale-indicator { position: fixed; top: 50%; left: 1rem; transform: translateY(-50%); font-size: 0.55rem; color: var(--text-muted); letter-spacing: 0.05em; opacity: 0; transition: opacity 0.5s ease; z-index: 50; writing-mode: vertical-rl; text-orientation: mixed; }
         
+        /* Repo Stats Indicator (top-right corner, very subtle) */
+        .repo-stats {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+            z-index: 50;
+        }
+        .repo-stats:hover { opacity: 0.8; }
+        .repo-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .repo-stat svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+        .repo-stat.stars { color: #f4d03f; }
+        .repo-stat.forks { color: #82e0aa; }
+        .repo-stat.stars svg { animation: twinkle 3s ease-in-out infinite; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        
         /* Footer */
         .footer-links { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 1rem; font-size: 0.55rem; letter-spacing: 0.1em; z-index: 100; }
         .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
@@ -586,6 +618,18 @@
         <span>live</span>
     </div>
     
+    <!-- Repo Stats - Meta gamification -->
+    <div class="repo-stats" id="repoStatsDisplay">
+        <a href="https://github.com/fabriziosalmi/enjoy/stargazers" class="repo-stat stars" title="GitHub Stars">
+            <svg viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+            <span id="starCount">0</span>
+        </a>
+        <a href="https://github.com/fabriziosalmi/enjoy/network/members" class="repo-stat forks" title="GitHub Forks">
+            <svg viewBox="0 0 16 16"><path d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"/></svg>
+            <span id="forkCount">0</span>
+        </a>
+    </div>
+    
     <div class="scale-indicator" id="scaleIndicator"></div>
     
     <div class="mystery-popup" id="mysteryPopup">
@@ -753,6 +797,142 @@
         }
         
         // ═══════════════════════════════════════════════════════════
+        // 🌟 REPO STARS SYSTEM - GitHub meta-gamification!
+        // Stars from the repo manifest as twinkling stars in the UI
+        // ═══════════════════════════════════════════════════════════
+        let repoStats = { stars: 0, forks: 0, watchers: 0, recent_stargazers: [] };
+        let repoStars = []; // Visual star objects
+        
+        class RepoStar {
+            constructor(stargazer, index, total) {
+                this.login = stargazer?.login || 'anonymous';
+                this.avatar = stargazer?.avatar || '';
+                
+                // Position in a gentle arc at the top of screen
+                const spread = Math.min(window.innerWidth * 0.6, 600);
+                const startX = (window.innerWidth - spread) / 2;
+                this.baseX = startX + (spread / Math.max(total, 1)) * index + Math.random() * 20;
+                this.baseY = 40 + Math.random() * 30;
+                this.x = this.baseX;
+                this.y = this.baseY;
+                
+                // Twinkle properties
+                this.phase = Math.random() * Math.PI * 2;
+                this.twinkleSpeed = 0.02 + Math.random() * 0.03;
+                this.baseSize = 3 + Math.random() * 2;
+                this.size = this.baseSize;
+                this.brightness = 0.4;
+                this.maxBrightness = 0.7 + Math.random() * 0.3;
+                
+                // Color: golden yellow
+                this.hue = 45 + Math.random() * 15;
+            }
+            
+            update(time) {
+                this.phase += this.twinkleSpeed;
+                
+                // Gentle twinkle - analog, not digital
+                const twinkle = Math.sin(this.phase) * 0.5 + 0.5;
+                this.brightness = 0.3 + twinkle * (this.maxBrightness - 0.3);
+                this.size = this.baseSize + Math.sin(this.phase * 1.3) * 1;
+                
+                // Subtle drift
+                this.x = this.baseX + Math.sin(this.phase * 0.5) * 3;
+                this.y = this.baseY + Math.cos(this.phase * 0.7) * 2;
+            }
+            
+            draw() {
+                // Star glow
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.size * 3
+                );
+                gradient.addColorStop(0, `hsla(${this.hue}, 100%, 90%, ${this.brightness})`);
+                gradient.addColorStop(0.3, `hsla(${this.hue}, 80%, 70%, ${this.brightness * 0.5})`);
+                gradient.addColorStop(1, `hsla(${this.hue}, 60%, 50%, 0)`);
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // Star core
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 95%, ${this.brightness})`;
+                ctx.fill();
+                
+                // 4-point star rays (subtle)
+                if (this.brightness > 0.5) {
+                    ctx.strokeStyle = `hsla(${this.hue}, 100%, 90%, ${(this.brightness - 0.5) * 0.3})`;
+                    ctx.lineWidth = 0.5;
+                    const rayLen = this.size * 2;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x - rayLen, this.y);
+                    ctx.lineTo(this.x + rayLen, this.y);
+                    ctx.moveTo(this.x, this.y - rayLen);
+                    ctx.lineTo(this.x, this.y + rayLen);
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        async function loadRepoStats() {
+            try {
+                const response = await fetch('repo-stats.json?t=' + Date.now());
+                if (response.ok) {
+                    repoStats = await response.json();
+                    console.log('🌟 Repo stats loaded:', repoStats.stars, 'stars,', repoStats.forks, 'forks');
+                    initRepoStars();
+                    updateRepoStatsDisplay();
+                }
+            } catch (e) {
+                console.log('Repo stats not available');
+            }
+        }
+        
+        function updateRepoStatsDisplay() {
+            const starEl = document.getElementById('starCount');
+            const forkEl = document.getElementById('forkCount');
+            if (starEl) starEl.textContent = repoStats.stars || 0;
+            if (forkEl) forkEl.textContent = repoStats.forks || 0;
+        }
+        
+        function initRepoStars() {
+            repoStars = [];
+            
+            // Create star for each real GitHub star
+            const stargazers = repoStats.recent_stargazers || [];
+            const starCount = repoStats.stars || 0;
+            
+            // If we have actual stargazer data, use it
+            if (stargazers.length > 0) {
+                stargazers.forEach((sg, i) => {
+                    repoStars.push(new RepoStar(sg, i, stargazers.length));
+                });
+            } else if (starCount > 0) {
+                // Fallback: create anonymous stars
+                for (let i = 0; i < Math.min(starCount, 20); i++) {
+                    repoStars.push(new RepoStar(null, i, starCount));
+                }
+            }
+            
+            console.log('⭐ Created', repoStars.length, 'star visuals');
+        }
+        
+        function drawRepoStars(time) {
+            repoStars.forEach(star => {
+                star.update(time);
+                star.draw();
+            });
+        }
+        
+        // Load repo stats on init
+        loadRepoStats();
+        // Refresh every 5 minutes
+        setInterval(loadRepoStats, 5 * 60 * 1000);
+        
+        // ═══════════════════════════════════════════════════════════
         // SCALING CONFIGURATION - Adjust for viral growth
         // ═══════════════════════════════════════════════════════════
         const SCALE_CONFIG = {
@@ -832,6 +1012,10 @@
         function animate(time) {
             ctx.fillStyle = 'rgba(3, 3, 5, 0.15)';
             ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+            
+            // Draw repo stars first (background layer)
+            drawRepoStars(time);
+            
             drawConnections();
             particles.forEach(p => { p.update(time); p.draw(); });
             

@@ -1,0 +1,30 @@
+{
+  "updated": "2026-01-18T18:00:00.000Z",
+  "stars": 1,
+  "forks": 1,
+  "watchers": 0,
+  "open_issues": 6,
+  "discussions": 3,
+  "size_kb": 8518,
+  "recent_stargazers": [
+    {
+      "login": "testman42",
+      "avatar": "https://avatars.githubusercontent.com/u/12345",
+      "starred_at": "2026-01-18T15:00:00.000Z"
+    }
+  ],
+  "recent_forks": [],
+  "contributors": [
+    {
+      "login": "fabriziosalmi",
+      "avatar": "https://avatars.githubusercontent.com/u/fabriziosalmi",
+      "contributions": 82
+    }
+  ],
+  "energy": {
+    "twinkle_intensity": 0.01,
+    "growth_rate": 0.02,
+    "activity": 0.45,
+    "community": 1
+  }
+}

@@ -1,0 +1,151 @@
+# 🌟 SYNC REPO STATS
+# Updates repo-stats.json with GitHub metadata for UI visualization
+# Stars become twinkling stars, forks become branches, etc.
+
+name: 🌟 Sync Repo Stats
+
+on:
+  # Run on any star/fork/watch event
+  watch:
+    types: [started]
+  fork:
+  
+  # Run on schedule to catch everything
+  schedule:
+    - cron: '*/15 * * * *'  # Every 15 minutes
+  
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  sync-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Fetch repo stats
+        id: stats
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Get repo stats
+            const { data: repo } = await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            
+            // Get recent stargazers (last 10)
+            const { data: stargazers } = await github.rest.activity.listStargazersForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 10
+            });
+            
+            // Get forks (last 10)
+            const { data: forks } = await github.rest.repos.listForks({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 10,
+              sort: 'newest'
+            });
+            
+            // Get contributors
+            const { data: contributors } = await github.rest.repos.listContributors({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 50
+            });
+            
+            // Filter out bots from contributors
+            const humanContributors = contributors.filter(c => 
+              !c.login.includes('[bot]') && 
+              !c.login.includes('-bot') &&
+              c.login !== 'actions-user'
+            );
+            
+            // Get open discussions count
+            let discussionsCount = 0;
+            try {
+              const discussionsQuery = await github.graphql(`
+                query {
+                  repository(owner: "${context.repo.owner}", name: "${context.repo.repo}") {
+                    discussions(first: 1) {
+                      totalCount
+                    }
+                  }
+                }
+              `);
+              discussionsCount = discussionsQuery.repository.discussions.totalCount;
+            } catch(e) {
+              console.log('Discussions not available');
+            }
+            
+            // Build stats object
+            const stats = {
+              updated: new Date().toISOString(),
+              
+              // Core metrics
+              stars: repo.stargazers_count,
+              forks: repo.forks_count,
+              watchers: repo.subscribers_count,
+              open_issues: repo.open_issues_count,
+              discussions: discussionsCount,
+              
+              // Size & activity
+              size_kb: repo.size,
+              default_branch: repo.default_branch,
+              
+              // Recent stargazers (for twinkling effect timing)
+              recent_stargazers: stargazers.map(s => ({
+                login: s.login,
+                avatar: s.avatar_url,
+                starred_at: s.starred_at || new Date().toISOString()
+              })),
+              
+              // Recent forks
+              recent_forks: forks.map(f => ({
+                login: f.owner.login,
+                avatar: f.owner.avatar_url,
+                forked_at: f.created_at
+              })),
+              
+              // Human contributors only
+              contributors: humanContributors.map(c => ({
+                login: c.login,
+                avatar: c.avatar_url,
+                contributions: c.contributions
+              })),
+              
+              // Derived "energy" metrics for UI
+              energy: {
+                // More stars = more twinkle intensity
+                twinkle_intensity: Math.min(1, repo.stargazers_count / 100),
+                // More forks = more branch growth
+                growth_rate: Math.min(1, repo.forks_count / 50),
+                // Activity score
+                activity: Math.min(1, (repo.open_issues_count + discussionsCount) / 20),
+                // Community size
+                community: humanContributors.length
+              }
+            };
+            
+            core.setOutput('stats', JSON.stringify(stats, null, 2));
+            console.log('Stats:', JSON.stringify(stats, null, 2));
+      
+      - name: Write stats file
+        run: |
+          echo '${{ steps.stats.outputs.stats }}' > repo-stats.json
+          
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add repo-stats.json
+          git diff --staged --quiet || git commit -m "🌟 Update repo stats [skip ci]"
+          git push || echo "Nothing to push"
