@@ -153,8 +153,8 @@ export function voteOnProposal(
   }
   
   // Recalculate totals
-  proposal.total_for = Object.values(proposal.votes_for).reduce((sum, v) => sum + v, 0);
-  proposal.total_against = Object.values(proposal.votes_against).reduce((sum, v) => sum + v, 0);
+  proposal.total_for = Object.values(proposal.votes_for as Record<string, number>).reduce((sum: number, v: number) => sum + v, 0);
+  proposal.total_against = Object.values(proposal.votes_against as Record<string, number>).reduce((sum: number, v: number) => sum + v, 0);
   
   return { success: true };
 }

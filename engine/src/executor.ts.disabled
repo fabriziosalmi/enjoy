@@ -118,6 +118,8 @@ export function applyEffect(pr: PRMetadata, result: ValidationResult): void {
   saveState(state);
   
   console.log(`✅ Effect applied! +${result.points} points`);
-  console.log(`   Element "${element.content}" added at (${element.x}, ${element.y})`);
+  if (newElement) {
+    console.log(`   Element "${newElement.content}" added at (${newElement.x}, ${newElement.y})`);
+  }
   console.log(`   Total score: ${state.score.total}`);
 }

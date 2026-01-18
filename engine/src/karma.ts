@@ -135,11 +135,12 @@ export function applyKarma(state: GameState, pr: PRMetadata, analysis: KarmaAnal
   // Update player karma
   if (!state.players[playerHash]) {
     state.players[playerHash] = {
+      total_prs: 0,
       prs_merged: 0,
-      points_contributed: 0,
-      first_seen: pr.timestamp,
       karma: 0,
-      reputation: 0
+      reputation: 0,
+      contributions: [],
+      last_pr: pr.timestamp
     };
   }
   
@@ -163,7 +164,7 @@ export function applyKarma(state: GameState, pr: PRMetadata, analysis: KarmaAnal
   }
   
   // Track recent quality
-  state.karma.recent_quality = state.karma.recent_quality || [];
+  if (!state.karma.recent_quality) state.karma.recent_quality = [];
   state.karma.recent_quality.push(analysis.quality_score);
   
   // Keep only last 100
@@ -172,7 +173,7 @@ export function applyKarma(state: GameState, pr: PRMetadata, analysis: KarmaAnal
   }
   
   // Update global multiplier
-  const avgQuality = state.karma.recent_quality.reduce((a, b) => a + b, 0) / state.karma.recent_quality.length;
+  const avgQuality = state.karma.recent_quality.reduce((a: number, b: number) => a + b, 0) / state.karma.recent_quality.length;
   state.karma.multiplier_active = avgQuality / 50;  // 0.5x to 2x based on avg quality
   
   // Update top coders list

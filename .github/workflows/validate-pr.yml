@@ -32,8 +32,17 @@ jobs:
           cd engine
           npm run build
       
+      - name: Check scaling metrics
+        id: scaling
+        run: |
+          cd engine
+          npm run check-scaling
+          echo "SHOULD_PROCESS=$(cat scaling-decision.txt)" >> $GITHUB_OUTPUT
+        continue-on-error: true
+      
       - name: Validate PR
         id: validate
+        if: steps.scaling.outputs.SHOULD_PROCESS != 'skip'
         run: |
           cd engine
           npm run validate -- --pr-number=${{ github.event.pull_request.number }}

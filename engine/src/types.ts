@@ -53,6 +53,21 @@ export interface GameState {
     today: number;
     streak_days: number;
   };
+  levels: {
+    current: number;
+    max_level: number;
+    unlocked: number[];
+    next_unlock: {
+      level_id: number;
+      requires_score: number;
+      requires_prs: number;
+      progress: {
+        score: number;
+        prs: number;
+      };
+    } | null;
+    unlocked_at?: Record<number, string>;
+  };
   board: {
     width: number;
     height: number;
@@ -64,15 +79,23 @@ export interface GameState {
     karma: number;
     reputation: number;
     contributions: string[];
+    last_pr?: string;
   }>;
   karma: {
     global: number;
     threshold_good: number;
     multiplier_active: number;
+    recent_quality?: number[];
   };
   reputation: {
     top_coders: string[];
     voting_power: Record<string, number>;
+  };
+  rules: {
+    active: string[];
+    proposed?: any[];
+    voting?: any[];
+    archived?: any[];
   };
   referrals?: {
     chains: Record<string, {
@@ -96,6 +119,8 @@ export interface GameState {
     total_prs: number;
     total_players: number;
     game_started: string;
+    pages_enabled?: boolean;
+    last_build?: string | null;
   };
 }
 

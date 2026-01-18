@@ -4,7 +4,7 @@ import minimist from 'minimist';
 import { loadRules } from './loader.js';
 import { parsePR } from './parser.js';
 import { validatePR } from './validator.js';
-import { applyEffect } from './executor.js';
+// import { applyEffect } from './executor.js'; // Disabled for MVP
 
 const args = minimist(process.argv.slice(2));
 const command = args._[0];
