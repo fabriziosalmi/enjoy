@@ -1,0 +1,111 @@
+name: 🌍 Auto-Translate Content
+
+on:
+  push:
+    paths:
+      - 'README.md'
+      - 'QUICKSTART.md'
+      - 'MANIFESTO.md'
+  workflow_dispatch:
+    inputs:
+      target_language:
+        description: 'Target language code (es, fr, de, it, pt, ja, zh, ko)'
+        required: true
+        default: 'es'
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Generate Translation Stubs
+        run: |
+          # Create i18n directory if not exists
+          mkdir -p i18n
+          
+          # List of target languages
+          LANGUAGES="es fr de it pt ja zh ko ru ar hi"
+          
+          # For each language, create a stub if README doesn't exist
+          for lang in $LANGUAGES; do
+            if [ ! -f "README.$lang.md" ]; then
+              echo "# 🎮 enjoy" > "README.$lang.md"
+              echo "" >> "README.$lang.md"
+              echo "> 🌍 **Translation needed!** Help us translate to your language." >> "README.$lang.md"
+              echo "" >> "README.$lang.md"
+              echo "---" >> "README.$lang.md"
+              echo "" >> "README.$lang.md"
+              echo "## How to Contribute This Translation" >> "README.$lang.md"
+              echo "" >> "README.$lang.md"
+              echo "1. Fork this repository" >> "README.$lang.md"
+              echo "2. Edit this file (\`README.$lang.md\`)" >> "README.$lang.md"
+              echo "3. Translate from [README.md](README.md)" >> "README.$lang.md"
+              echo "4. Open a Pull Request" >> "README.$lang.md"
+              echo "" >> "README.$lang.md"
+              echo "See [TRANSLATIONS.md](TRANSLATIONS.md) for guidelines." >> "README.$lang.md"
+              echo "" >> "README.$lang.md"
+              echo "---" >> "README.$lang.md"
+              echo "" >> "README.$lang.md"
+              echo "🎮 [Play in English](README.md) | [All Languages](TRANSLATIONS.md)" >> "README.$lang.md"
+              echo "Created stub for $lang"
+            fi
+          done
+          
+      - name: Create Language Selector
+        run: |
+          cat > i18n/LANGUAGES.md << 'EOF'
+          # 🌍 Choose Your Language
+          
+          > **enjoy** speaks all languages!
+          
+          | Language | Status | Link |
+          |----------|--------|------|
+          | 🇬🇧 English | ✅ Complete | [README.md](../README.md) |
+          | 🇪🇸 Español | 🔜 Needed | [README.es.md](../README.es.md) |
+          | 🇫🇷 Français | 🔜 Needed | [README.fr.md](../README.fr.md) |
+          | 🇩🇪 Deutsch | 🔜 Needed | [README.de.md](../README.de.md) |
+          | 🇮🇹 Italiano | 🔜 Needed | [README.it.md](../README.it.md) |
+          | 🇵🇹 Português | 🔜 Needed | [README.pt.md](../README.pt.md) |
+          | 🇯🇵 日本語 | 🔜 Needed | [README.ja.md](../README.ja.md) |
+          | 🇨🇳 中文 | 🔜 Needed | [README.zh.md](../README.zh.md) |
+          | 🇰🇷 한국어 | 🔜 Needed | [README.ko.md](../README.ko.md) |
+          | 🇷🇺 Русский | 🔜 Needed | [README.ru.md](../README.ru.md) |
+          | 🇸🇦 العربية | 🔜 Needed | [README.ar.md](../README.ar.md) |
+          | 🇮🇳 हिन्दी | 🔜 Needed | [README.hi.md](../README.hi.md) |
+          
+          ---
+          
+          ## Want to help translate?
+          
+          1. Pick a language marked 🔜
+          2. Fork the repo
+          3. Translate the file
+          4. Open a PR
+          
+          **You will receive:**
+          - 🎖️ Translator badge
+          - ⭐ +50 Karma bonus
+          - 💜 Eternal gratitude
+          
+          [Translation Guide](../TRANSLATIONS.md)
+          EOF
+          
+      - name: Commit translations
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --staged --quiet || git commit -m "🌍 auto: update translation stubs"
+          git push || echo "No changes to push"

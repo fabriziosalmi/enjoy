@@ -1,6 +1,19 @@
 # enjoy 🎮
 
-<!-- 🌅 DYNAMIC HEADER - Changes with time of day (CET) -->
+<!-- � LANGUAGE SELECTOR -->
+<p align="center">
+  <a href="README.md">🇬🇧</a> •
+  <a href="README.it.md">🇮🇹</a> •
+  <a href="README.es.md">🇪🇸</a> •
+  <a href="README.fr.md">🇫🇷</a> •
+  <a href="README.de.md">🇩🇪</a> •
+  <a href="README.pt.md">🇵🇹</a> •
+  <a href="README.ja.md">🇯🇵</a> •
+  <a href="README.zh.md">🇨🇳</a> •
+  <a href="TRANSLATIONS.md">➕ Help translate!</a>
+</p>
+
+<!-- �🌅 DYNAMIC HEADER - Changes with time of day (CET) -->
 <p align="center">
   <img src="assets/svg/hero-banner.svg" alt="enjoy - the repository that plays back" width="100%">
 </p>

@@ -1,116 +1,113 @@
 # 🤝 Code of Conduct
 
-## Il Nostro Patto
+## Our Pledge
 
-**enjoy** è un esperimento di collaborazione globale.  
-Qui vige una sola regola:
+**enjoy** is an experiment in global collaboration.
+Here, one rule prevails:
 
-> **Tutti aiutano tutti. Nessuno escluso. Nessuno perde.**
-
----
-
-## 🌈 I Nostri Valori
-
-### 1. INCLUSIVITÀ RADICALE
-- Ogni essere umano è benvenuto
-- Ogni livello di esperienza è rispettato
-- Ogni lingua è accettata
-- Ogni timezone è considerato
-
-### 2. PAZIENZA INFINITA
-- Non esistono domande stupide
-- I bot spiegano con calma
-- La community supporta sempre
-- Se ti perdi, ti veniamo a cercare
-
-### 3. ZERO COMPETIZIONE TOSSICA
-- Non è una gara contro altri
-- È un gioco contro l'entropia
-- Vincere insieme > vincere da soli
-- Il tuo successo aiuta tutti
-
-### 4. RISPETTO ASSOLUTO
-- Niente insulti
-- Niente discriminazione
-- Niente sarcasmo cattivo
-- Niente gatekeeping
-
-### 5. GIOCO COME FILOSOFIA
-- Sbagliare fa parte del gioco
-- Sperimentare è incoraggiato
-- Rompere cose (entro limiti) è permesso
-- Imparare è l'unico obiettivo
+> **Everyone helps everyone. No one excluded. Nobody loses.**
 
 ---
 
-## 🚫 Comportamenti Non Accettati
+## 🌈 Our Values
 
-- Linguaggio offensivo o discriminatorio
-- Attacchi personali
-- Harassment di qualsiasi tipo
-- Spam non creativo
-- Sabotaggio intenzionale del gioco
-- Sfruttamento commerciale senza consenso
+### 1. RADICAL INCLUSIVITY
+- Every human being is welcome
+- Every skill level is respected
+- Every language is accepted
+- Every timezone is considered
+
+### 2. INFINITE PATIENCE
+- There are no stupid questions
+- Bots explain calmly
+- Community always supports
+- If you get lost, we come find you
+
+### 3. ZERO TOXIC COMPETITION
+- It is not a race against others
+- It is a game against entropy
+- Winning together beats winning alone
+- Your success helps everyone
+
+### 4. ABSOLUTE RESPECT
+- No insults
+- No discrimination
+- No mean sarcasm
+- No gatekeeping
+
+### 5. PLAY AS PHILOSOPHY
+- Making mistakes is part of the game
+- Experimenting is encouraged
+- Breaking things (within limits) is allowed
+- Learning is the only goal
 
 ---
 
-## 🛡️ Come Segnalare
+## 🚫 Unacceptable Behaviors
 
-Se vedi qualcosa che non va:
-
-1. **Apri una Issue** con label `help wanted`
-2. **Contatta** @fabriziosalmi direttamente
-3. **Usa le Discussions** per casi non urgenti
-
-Ogni segnalazione viene presa seriamente.
-La privacy del segnalante è sempre protetta.
+- Offensive or discriminatory language
+- Personal attacks
+- Harassment of any kind
+- Uncreative spam
+- Intentional game sabotage
+- Commercial exploitation without consent
 
 ---
 
-## 💜 Il Nostro Impegno
+## 🛡️ How to Report
 
-Noi, i maintainer di **enjoy**, ci impegniamo a:
+If you see something wrong:
 
-- Rispondere con gentilezza
-- Mantenere il gioco accessibile
-- Non monetizzare mai i dati dei player
-- Dare credit a tutti i contributor
-- Celebrare ogni contributo, grande o piccolo
+1. **Open an Issue** with label `help wanted`
+2. **Contact** @fabriziosalmi directly
+3. **Use Discussions** for non-urgent cases
+
+Every report is taken seriously.
+Reporter privacy is always protected.
+
+---
+
+## 💜 Our Commitment
+
+We, the maintainers of **enjoy**, commit to:
+
+- Responding with kindness
+- Keeping the game accessible
+- Never monetizing player data
+- Giving credit to all contributors
+- Celebrating every contribution, big or small
 
 ---
 
 ## 🌍 Scope
 
-Questo Code of Conduct si applica a:
+This Code of Conduct applies to:
 
-- Repository GitHub (issues, PRs, discussions)
-- Comunicazioni relative al progetto
-- Eventi o iniziative collegate
+- GitHub repository (issues, PRs, discussions)
+- Project-related communications
+- Connected events or initiatives
 
 ---
 
-## 📜 Attribuzione
+## 📜 Attribution
 
-Ispirato da:
+Inspired by:
 - [Contributor Covenant](https://www.contributor-covenant.org/)
-- La filosofia hacker originale
-- Il buon senso umano
+- The original hacker philosophy
+- Common human sense
 
 ---
 
 ```
-╔═══════════════════════════════════════════════════════╗
-║                                                       ║
-║   "In a world where you can be anything, be kind."   ║
-║                                                       ║
-║   "In un mondo dove puoi essere qualsiasi cosa,      ║
-║    sii gentile."                                     ║
-║                                                       ║
-╚═══════════════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   "In a world where you can be anything, be kind."        ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
 ```
 
 ---
 
-**Adottando questo Code of Conduct, accetti di essere parte di qualcosa di più grande di te.**
+**By adopting this Code of Conduct, you agree to be part of something bigger than yourself.**
 
-*Benvenuto nella famiglia.* 🎮💜
+*Welcome to the family.* 🎮💜
