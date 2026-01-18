@@ -10,28 +10,28 @@
 |----------|--------|------------|------|-----------------|
 | 🇬🇧 English | ✅ Complete | @fabriziosalmi | [README.md](README.md) | - |
 | 🇮🇹 Italiano | ✅ Complete | @fabriziosalmi | [README.it.md](README.it.md) | - |
-| 🇪🇸 Español | ✅ Complete | @fabriziosalmi | [README.es.md](README.es.md) | +35 update |
-| 🇫🇷 Français | 🔜 Needed | - | [README.fr.md](README.fr.md) | **+75** 🆕 |
-| 🇩🇪 Deutsch | 🔜 Needed | - | [README.de.md](README.de.md) | **+75** 🆕 |
-| 🇵🇹 Português | ✅ Complete | - | [README.pt.md](README.pt.md) | +35 update |
-| 🇯🇵 日本語 | 🔜 Needed | - | [README.ja.md](README.ja.md) | **+75** 🆕 |
-| 🇨🇳 中文 | 🔜 Needed | - | [README.zh.md](README.zh.md) | **+75** 🆕 |
-| 🇰🇷 한국어 | ✅ Complete | - | [README.ko.md](README.ko.md) | +35 update |
-| 🇷🇺 Русский | ✅ Complete | - | [README.ru.md](README.ru.md) | +35 update |
-| 🇸🇦 العربية | 🔜 Needed | - | - | **+75** 🆕 |
-| 🇮🇳 हिन्दी | 🔜 Needed | - | - | **+75** 🆕 |
-| 🇵🇱 Polski | ✅ Complete | - | [README.pl.md](README.pl.md) | +35 update |
-| 🇻🇳 Tiếng Việt | ✅ Complete | - | [README.vi.md](README.vi.md) | +35 update |
-| 🇮🇩 Bahasa | ✅ Complete | - | [README.id.md](README.id.md) | +35 update |
-| 🇹🇭 ไทย | ✅ Complete | - | [README.th.md](README.th.md) | +35 update |
-| 🇹🇷 Türkçe | 🔜 Needed | - | - | **+75** 🆕 |
-| 🇳🇱 Nederlands | 🔜 Needed | - | - | **+75** 🆕 |
-| 🇸🇪 Svenska | 🔜 Needed | - | - | **+75** 🆕 |
-| 🇬🇷 Ελληνικά | 🔜 Needed | - | - | **+75** 🆕 |
-| 🇺🇦 Українська | 🔜 Needed | - | - | **+75** 🆕 |
-| 🇮🇱 עברית | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇪🇸 Español | ✅ Complete | @fabriziosalmi | [README.es.md](README.es.md) | +50 update |
+| 🇫🇷 Français | 🔜 Needed | - | [README.fr.md](README.fr.md) | **+100** 🆕 |
+| 🇩🇪 Deutsch | 🔜 Needed | - | [README.de.md](README.de.md) | **+100** 🆕 |
+| 🇵🇹 Português | ✅ Complete | - | [README.pt.md](README.pt.md) | +50 update |
+| 🇯🇵 日本語 | 🔜 Needed | - | [README.ja.md](README.ja.md) | **+100** 🆕 |
+| 🇨🇳 中文 | 🔜 Needed | - | [README.zh.md](README.zh.md) | **+100** 🆕 |
+| 🇰🇷 한국어 | ✅ Complete | - | [README.ko.md](README.ko.md) | +50 update |
+| 🇷🇺 Русский | ✅ Complete | - | [README.ru.md](README.ru.md) | +50 update |
+| 🇸🇦 العربية | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇮🇳 हिन्दी | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇵🇱 Polski | ✅ Complete | - | [README.pl.md](README.pl.md) | +50 update |
+| 🇻🇳 Tiếng Việt | ✅ Complete | - | [README.vi.md](README.vi.md) | +50 update |
+| 🇮🇩 Bahasa | ✅ Complete | - | [README.id.md](README.id.md) | +50 update |
+| 🇹🇭 ไทย | ✅ Complete | - | [README.th.md](README.th.md) | +50 update |
+| 🇹🇷 Türkçe | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇳🇱 Nederlands | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇸🇪 Svenska | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇬🇷 Ελληνικά | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇺🇦 Українська | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇮🇱 עברית | 🔜 Needed | - | - | **+100** 🆕 |
 
-> 💡 **Pro tip**: New languages earn **+75 karma** vs +35 for updates. Pioneer a new language!
+> 💡 **Pro tip**: New languages earn **+100 karma** (Translator bounty!) vs +50 for updates. Pioneer a new language!
 
 ---
 
@@ -102,19 +102,18 @@ Every translator receives **automatic karma** when their PR is merged!
 
 | Action | Karma | Notes |
 |--------|-------|-------|
-| **Base translation** | +25 | Any translation file |
-| **🆕 New language** | +50 | First translation for a language |
-| **Update existing** | +10 | Improvements to existing translations |
-| **Additional files** | +10 each | QUICKSTART, CONTRIBUTING, MANIFESTO, PLAY |
+| **🆕 New language** | **+100** | First translation (matches Translator bounty) |
+| **Update existing** | +50 | Improvements to existing translations |
+| **Additional files** | +15 each | QUICKSTART, CONTRIBUTING, MANIFESTO, PLAY |
 
 ### 📊 Example Rewards
 
 | Contribution | Total Karma |
 |-------------|-------------|
-| New README.es.md | 25 + 50 = **+75** |
-| Update README.fr.md | 25 + 10 = **+35** |
-| New README + QUICKSTART | 25 + 50 + 10 = **+85** |
-| Complete translation (4 files) | 25 + 50 + 30 = **+105** |
+| New README.es.md | **+100** 🆕 |
+| Update README.fr.md | **+50** |
+| New README + QUICKSTART | 100 + 15 = **+115** |
+| Complete translation (4 files) | 100 + 45 = **+145** |
 
 ### 🎖️ Achievements
 

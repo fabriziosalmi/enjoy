@@ -82,23 +82,28 @@ jobs:
           echo "new_language=$NEW_LANGUAGE" >> $GITHUB_OUTPUT
           echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
           
-          # Calculate karma
-          BASE_KARMA=25
+          # Calculate karma (aligned with bounties.md)
+          # New language = +100 (as per Translator bounty)
+          # Update = +50
+          # Additional files = +15 each
           
-          # Bonus for new language (first translation)
           if [ "$NEW_LANGUAGE" = "true" ]; then
-            BONUS=50
+            BASE_KARMA=100
           else
-            BONUS=10
+            BASE_KARMA=50
           fi
           
-          # Additional files bonus
-          FILE_BONUS=$((TRANSLATION_COUNT * 10))
+          # Additional files bonus (QUICKSTART, CONTRIBUTING, etc.)
+          EXTRA_FILES=$((TRANSLATION_COUNT - 1))
+          if [ $EXTRA_FILES -gt 0 ]; then
+            FILE_BONUS=$((EXTRA_FILES * 15))
+          else
+            FILE_BONUS=0
+          fi
           
-          TOTAL_KARMA=$((BASE_KARMA + BONUS + FILE_BONUS))
+          TOTAL_KARMA=$((BASE_KARMA + FILE_BONUS))
           
           echo "base_karma=$BASE_KARMA" >> $GITHUB_OUTPUT
-          echo "bonus=$BONUS" >> $GITHUB_OUTPUT
           echo "file_bonus=$FILE_BONUS" >> $GITHUB_OUTPUT
           echo "total_karma=$TOTAL_KARMA" >> $GITHUB_OUTPUT
         env:
@@ -151,7 +156,6 @@ jobs:
             const author = '${{ steps.analyze.outputs.author }}';
             const totalKarma = '${{ steps.analyze.outputs.total_karma }}';
             const baseKarma = '${{ steps.analyze.outputs.base_karma }}';
-            const bonus = '${{ steps.analyze.outputs.bonus }}';
             const fileBonus = '${{ steps.analyze.outputs.file_bonus }}';
             const languages = '${{ steps.analyze.outputs.languages }}'.trim();
             const isNew = '${{ steps.analyze.outputs.new_language }}' === 'true';
@@ -174,16 +178,15 @@ jobs:
             message += `### 💫 Karma Breakdown\n\n`;
             message += `| Type | Amount |\n`;
             message += `|------|--------|\n`;
-            message += `| Base translation | +${baseKarma} |\n`;
             
             if (isNew) {
-              message += `| 🆕 **New language bonus** | +${bonus} |\n`;
+              message += `| 🆕 **New language** (Translator bounty!) | +${baseKarma} |\n`;
             } else {
-              message += `| Update bonus | +${bonus} |\n`;
+              message += `| Translation update | +${baseKarma} |\n`;
             }
             
-            if (parseInt(count) > 1) {
-              message += `| Multiple files (${count}) | +${fileBonus} |\n`;
+            if (parseInt(fileBonus) > 0) {
+              message += `| Additional files | +${fileBonus} |\n`;
             }
             
             message += `| **Total** | **+${totalKarma}** |\n\n`;
