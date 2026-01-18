@@ -280,6 +280,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-01-18T18:47:05.245Z"
+      },
+      {
+        "actor": "tentoumushii",
+        "event": "watch.started",
+        "karma": 1,
+        "timestamp": "2026-01-18T21:16:03.007Z"
       }
     ],
     "by_user": {
@@ -375,6 +381,16 @@
             "event": "fork",
             "karma": 3,
             "timestamp": "2026-01-18T17:11:18.607Z"
+          }
+        ]
+      },
+      "tentoumushii": {
+        "total": 1,
+        "history": [
+          {
+            "event": "watch.started",
+            "karma": 1,
+            "timestamp": "2026-01-18T21:16:03.007Z"
           }
         ]
       }
