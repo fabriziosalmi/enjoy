@@ -6,20 +6,32 @@
 
 ## 🗣️ Available Languages
 
-| Language | Status | Maintainer | File |
-|----------|--------|------------|------|
-| 🇬🇧 English | ✅ Complete | @fabriziosalmi | [README.md](README.md) |
-| 🇮🇹 Italiano | ✅ Complete | @fabriziosalmi | [README.it.md](README.it.md) |
-| 🇪🇸 Español | 🔜 Needed | - | [README.es.md](README.es.md) |
-| 🇫🇷 Français | 🔜 Needed | - | [README.fr.md](README.fr.md) |
-| 🇩🇪 Deutsch | 🔜 Needed | - | [README.de.md](README.de.md) |
-| 🇵🇹 Português | 🔜 Needed | - | [README.pt.md](README.pt.md) |
-| 🇯🇵 日本語 | 🔜 Needed | - | [README.ja.md](README.ja.md) |
-| 🇨🇳 中文 | 🔜 Needed | - | [README.zh.md](README.zh.md) |
-| 🇰🇷 한국어 | 🔜 Needed | - | - |
-| 🇷🇺 Русский | 🔜 Needed | - | - |
-| 🇸🇦 العربية | 🔜 Needed | - | - |
-| 🇮🇳 हिन्दी | 🔜 Needed | - | - |
+| Language | Status | Maintainer | File | Potential Karma |
+|----------|--------|------------|------|-----------------|
+| 🇬🇧 English | ✅ Complete | @fabriziosalmi | [README.md](README.md) | - |
+| 🇮🇹 Italiano | ✅ Complete | @fabriziosalmi | [README.it.md](README.it.md) | - |
+| 🇪🇸 Español | 🔜 Needed | - | [README.es.md](README.es.md) | **+75** 🆕 |
+| 🇫🇷 Français | 🔜 Needed | - | [README.fr.md](README.fr.md) | **+75** 🆕 |
+| 🇩🇪 Deutsch | 🔜 Needed | - | [README.de.md](README.de.md) | **+75** 🆕 |
+| 🇵🇹 Português | ✅ Complete | - | [README.pt.md](README.pt.md) | +35 update |
+| 🇯🇵 日本語 | 🔜 Needed | - | [README.ja.md](README.ja.md) | **+75** 🆕 |
+| 🇨🇳 中文 | 🔜 Needed | - | [README.zh.md](README.zh.md) | **+75** 🆕 |
+| 🇰🇷 한국어 | ✅ Complete | - | [README.ko.md](README.ko.md) | +35 update |
+| 🇷🇺 Русский | ✅ Complete | - | [README.ru.md](README.ru.md) | +35 update |
+| 🇸🇦 العربية | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇮🇳 हिन्दी | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇵🇱 Polski | ✅ Complete | - | [README.pl.md](README.pl.md) | +35 update |
+| 🇻🇳 Tiếng Việt | ✅ Complete | - | [README.vi.md](README.vi.md) | +35 update |
+| 🇮🇩 Bahasa | ✅ Complete | - | [README.id.md](README.id.md) | +35 update |
+| 🇹🇭 ไทย | ✅ Complete | - | [README.th.md](README.th.md) | +35 update |
+| 🇹🇷 Türkçe | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇳🇱 Nederlands | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇸🇪 Svenska | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇬🇷 Ελληνικά | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇺🇦 Українська | 🔜 Needed | - | - | **+75** 🆕 |
+| 🇮🇱 עברית | 🔜 Needed | - | - | **+75** 🆕 |
+
+> 💡 **Pro tip**: New languages earn **+75 karma** vs +35 for updates. Pioneer a new language!
 
 ---
 
@@ -82,13 +94,43 @@ Use ISO 639-1 codes:
 
 ---
 
-## 🏆 Recognition
+## 🏆 Recognition & Karma
 
-Every translator receives:
-- 🎖️ Mention in the language's README
-- ⭐ "Translator" badge in the game
+Every translator receives **automatic karma** when their PR is merged!
+
+### 💫 Karma Breakdown
+
+| Action | Karma | Notes |
+|--------|-------|-------|
+| **Base translation** | +25 | Any translation file |
+| **🆕 New language** | +50 | First translation for a language |
+| **Update existing** | +10 | Improvements to existing translations |
+| **Additional files** | +10 each | QUICKSTART, CONTRIBUTING, MANIFESTO, PLAY |
+
+### 📊 Example Rewards
+
+| Contribution | Total Karma |
+|-------------|-------------|
+| New README.es.md | 25 + 50 = **+75** |
+| Update README.fr.md | 25 + 10 = **+35** |
+| New README + QUICKSTART | 25 + 50 + 10 = **+85** |
+| Complete translation (4 files) | 25 + 50 + 30 = **+105** |
+
+### 🎖️ Achievements
+
+| Achievement | Requirement |
+|-------------|-------------|
+| 🌍 **Language Pioneer** | First translation for any new language |
+| 🗣️ **Polyglot** | Contribute to 3+ languages |
+| 📚 **Full Translator** | Translate all 4 core files for a language |
+| 🌐 **World Builder** | Maintain translations for 6+ months |
+
+### 🏅 Recognition
+
+- 🎖️ Mention in the language's README as maintainer
+- ⭐ "Translator" badge visible in the game
+- 📋 Listed on the [Contributors](CONTRIBUTORS.md) page
 - 💜 Eternal gratitude from the community
-- ➕ +50 Karma bonus
 
 ---
 

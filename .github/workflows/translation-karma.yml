@@ -1,0 +1,220 @@
+# ════════════════════════════════════════════════════════════════════════════════
+# 🌍 TRANSLATION KARMA - Reward contributors for translations
+# ════════════════════════════════════════════════════════════════════════════════
+# Translations break language barriers and spread the game worldwide.
+# Every translation is a gift to humanity - reward it generously!
+# ════════════════════════════════════════════════════════════════════════════════
+
+name: 🌍 Translation Karma
+
+on:
+  pull_request:
+    types: [closed]
+    paths:
+      - 'README.*.md'
+      - 'QUICKSTART.*.md'
+      - 'CONTRIBUTING.*.md'
+      - 'MANIFESTO.*.md'
+      - 'PLAY.*.md'
+      - 'i18n/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  award-translation-karma:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🔍 Analyze Translation
+        id: analyze
+        run: |
+          # Get PR info
+          AUTHOR="${{ github.event.pull_request.user.login }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          
+          echo "author=$AUTHOR" >> $GITHUB_OUTPUT
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          
+          # Get changed files
+          CHANGED_FILES=$(gh pr view $PR_NUMBER --json files --jq '.files[].path')
+          echo "Changed files: $CHANGED_FILES"
+          
+          # Count translation files
+          TRANSLATION_COUNT=0
+          NEW_LANGUAGE=false
+          LANGUAGES=""
+          
+          for file in $CHANGED_FILES; do
+            # Match README.xx.md pattern
+            if [[ $file =~ ^README\.([a-z]{2})\.md$ ]]; then
+              LANG="${BASH_REMATCH[1]}"
+              LANGUAGES="$LANGUAGES $LANG"
+              TRANSLATION_COUNT=$((TRANSLATION_COUNT + 1))
+              
+              # Check if this is a new translation
+              if git show HEAD~1:$file 2>/dev/null | head -1 > /dev/null 2>&1; then
+                echo "Update to existing: $file"
+              else
+                echo "NEW translation: $file"
+                NEW_LANGUAGE=true
+              fi
+            fi
+            
+            # Match other translatable files
+            if [[ $file =~ \.(es|fr|de|pt|ja|zh|ko|ru|ar|hi|it|pl|vi|id|th|tr|nl|sv|da|no|fi|cs|el|he|uk|ro|hu|bg|hr|sk|sl|et|lv|lt|ms|tl|bn|ta|te|mr|gu|kn|ml|pa|ne|si|my|km|lo)\.md$ ]]; then
+              LANG="${BASH_REMATCH[1]}"
+              TRANSLATION_COUNT=$((TRANSLATION_COUNT + 1))
+            fi
+          done
+          
+          echo "translation_count=$TRANSLATION_COUNT" >> $GITHUB_OUTPUT
+          echo "new_language=$NEW_LANGUAGE" >> $GITHUB_OUTPUT
+          echo "languages=$LANGUAGES" >> $GITHUB_OUTPUT
+          
+          # Calculate karma
+          BASE_KARMA=25
+          
+          # Bonus for new language (first translation)
+          if [ "$NEW_LANGUAGE" = "true" ]; then
+            BONUS=50
+          else
+            BONUS=10
+          fi
+          
+          # Additional files bonus
+          FILE_BONUS=$((TRANSLATION_COUNT * 10))
+          
+          TOTAL_KARMA=$((BASE_KARMA + BONUS + FILE_BONUS))
+          
+          echo "base_karma=$BASE_KARMA" >> $GITHUB_OUTPUT
+          echo "bonus=$BONUS" >> $GITHUB_OUTPUT
+          echo "file_bonus=$FILE_BONUS" >> $GITHUB_OUTPUT
+          echo "total_karma=$TOTAL_KARMA" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 💫 Award Translation Karma
+        if: steps.analyze.outputs.translation_count > 0
+        run: |
+          AUTHOR="${{ steps.analyze.outputs.author }}"
+          KARMA="${{ steps.analyze.outputs.total_karma }}"
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          
+          # Load or create karma file
+          if [ -f "karma.json" ]; then
+            KARMA_DATA=$(cat karma.json)
+          else
+            KARMA_DATA='{}'
+          fi
+          
+          # Get current karma
+          CURRENT=$(echo "$KARMA_DATA" | jq -r ".\"$AUTHOR\".karma // 0")
+          NEW_KARMA=$((CURRENT + KARMA))
+          
+          # Get current translation count
+          TRANS_COUNT=$(echo "$KARMA_DATA" | jq -r ".\"$AUTHOR\".translations // 0")
+          NEW_TRANS=$((TRANS_COUNT + ${{ steps.analyze.outputs.translation_count }}))
+          
+          # Update karma
+          KARMA_DATA=$(echo "$KARMA_DATA" | jq \
+            --arg author "$AUTHOR" \
+            --argjson karma "$NEW_KARMA" \
+            --argjson trans "$NEW_TRANS" \
+            --arg time "$TIMESTAMP" \
+            '.[$author] = ((.[$author] // {}) + {karma: $karma, translations: $trans, last_translation: $time})')
+          
+          echo "$KARMA_DATA" | jq '.' > karma.json
+          
+          # Commit
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add karma.json
+          git commit -m "🌍 +$KARMA karma to @$AUTHOR for translation" || echo "No changes"
+          git push || echo "Push failed, will retry"
+      
+      - name: 🎉 Celebration Comment
+        if: steps.analyze.outputs.translation_count > 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = '${{ steps.analyze.outputs.author }}';
+            const totalKarma = '${{ steps.analyze.outputs.total_karma }}';
+            const baseKarma = '${{ steps.analyze.outputs.base_karma }}';
+            const bonus = '${{ steps.analyze.outputs.bonus }}';
+            const fileBonus = '${{ steps.analyze.outputs.file_bonus }}';
+            const languages = '${{ steps.analyze.outputs.languages }}'.trim();
+            const isNew = '${{ steps.analyze.outputs.new_language }}' === 'true';
+            const count = '${{ steps.analyze.outputs.translation_count }}';
+            
+            const langFlags = {
+              'es': '🇪🇸', 'fr': '🇫🇷', 'de': '🇩🇪', 'pt': '🇵🇹', 'ja': '🇯🇵',
+              'zh': '🇨🇳', 'ko': '🇰🇷', 'ru': '🇷🇺', 'ar': '🇸🇦', 'hi': '🇮🇳',
+              'it': '🇮🇹', 'pl': '🇵🇱', 'vi': '🇻🇳', 'id': '🇮🇩', 'th': '🇹🇭',
+              'tr': '🇹🇷', 'nl': '🇳🇱', 'sv': '🇸🇪', 'da': '🇩🇰', 'no': '🇳🇴',
+              'fi': '🇫🇮', 'cs': '🇨🇿', 'el': '🇬🇷', 'he': '🇮🇱', 'uk': '🇺🇦',
+              'ro': '🇷🇴', 'hu': '🇭🇺', 'bg': '🇧🇬', 'hr': '🇭🇷', 'sk': '🇸🇰'
+            };
+            
+            const flags = languages.split(' ').map(l => langFlags[l] || '🌍').join(' ');
+            
+            let message = `## 🌍 Translation Merged! ${flags}\n\n`;
+            message += `Thank you @${author} for bringing enjoy to new audiences!\n\n`;
+            
+            message += `### 💫 Karma Breakdown\n\n`;
+            message += `| Type | Amount |\n`;
+            message += `|------|--------|\n`;
+            message += `| Base translation | +${baseKarma} |\n`;
+            
+            if (isNew) {
+              message += `| 🆕 **New language bonus** | +${bonus} |\n`;
+            } else {
+              message += `| Update bonus | +${bonus} |\n`;
+            }
+            
+            if (parseInt(count) > 1) {
+              message += `| Multiple files (${count}) | +${fileBonus} |\n`;
+            }
+            
+            message += `| **Total** | **+${totalKarma}** |\n\n`;
+            
+            if (isNew) {
+              message += `### 🎖️ Achievement Unlocked!\n\n`;
+              message += `**🌍 Language Pioneer** - First translation for a new language!\n\n`;
+            }
+            
+            message += `---\n\n`;
+            message += `*"One language sets you in a corridor for life. Two languages open every door along the way."*\n\n`;
+            message += `You've opened doors for millions. Thank you! 💜\n`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: message
+            });
+      
+      - name: 🏷️ Add Translator Label
+        if: steps.analyze.outputs.new_language == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = '${{ steps.analyze.outputs.author }}';
+            
+            // Add label to PR
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              labels: ['🌍 translation', '🆕 new-language']
+            });
