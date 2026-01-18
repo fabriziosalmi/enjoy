@@ -132,6 +132,26 @@
             letter-spacing: -0.03em;
             color: var(--text);
             line-height: 1;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(
+                90deg,
+                var(--text) 0%,
+                var(--text) 40%,
+                rgba(255,255,255,1) 50%,
+                var(--text) 60%,
+                var(--text) 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 8s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 90%, 100% { background-position: 200% center; }
+            45%, 55% { background-position: -200% center; }
         }
         
         .tagline {
