@@ -1,0 +1,62 @@
+name: "🐛 Bug Report"
+description: "Found a bug? Report it and earn karma!"
+title: "[BUG] "
+labels: ["bug", "needs-validation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔍 Bug Bounty!
+        Valid bug reports earn karma. Help us improve!
+
+  - type: input
+    id: guardian
+    attributes:
+      label: "🔐 Proof of Humanity"
+      description: "What is the name of the First Guardian? (Read LORE.md)"
+      placeholder: "The guardian's name..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "🐛 Bug Description"
+      description: "What went wrong?"
+      placeholder: "When I click X, Y happens instead of Z..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "📝 Steps to Reproduce"
+      description: "How can we reproduce this?"
+      placeholder: |
+        1. Go to...
+        2. Click on...
+        3. See error...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "⚠️ Severity"
+      options:
+        - Minor (visual glitch)
+        - Medium (feature broken)
+        - Major (game unplayable)
+        - Critical (security issue)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "✅ Confirmation"
+      options:
+        - label: "I searched existing issues first"
+          required: true
+        - label: "I am human"
+          required: true

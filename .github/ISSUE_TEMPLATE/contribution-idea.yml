@@ -1,0 +1,64 @@
+name: "💡 Contribution Idea"
+description: "Suggest a word or creative contribution"
+title: "[IDEA] "
+labels: ["idea", "needs-validation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🎮 Contribute via Issue!
+        Can't do a PR? Submit your idea here and earn karma!
+
+  - type: input
+    id: guardian
+    attributes:
+      label: "🔐 Proof of Humanity"
+      description: "What is the name of the First Guardian? (Read LORE.md)"
+      placeholder: "The guardian's name..."
+    validations:
+      required: true
+
+  - type: input
+    id: word
+    attributes:
+      label: "✨ Your Word"
+      description: "A creative word (5-20 characters)"
+      placeholder: "ephemeral"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: "💭 Why this word?"
+      description: "Brief explanation (optional but earns bonus karma)"
+      placeholder: "I chose this word because..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: mood
+    attributes:
+      label: "🎨 Mood"
+      description: "What vibe does your word bring?"
+      options:
+        - Mysterious
+        - Joyful
+        - Melancholic
+        - Cosmic
+        - Chaotic
+        - Serene
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "✅ Confirmation"
+      options:
+        - label: "I read LORE.md"
+          required: true
+        - label: "This is an original contribution"
+          required: true
+        - label: "I am human"
+          required: true

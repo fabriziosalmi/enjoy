@@ -1,0 +1,259 @@
+name: Validate Issue
+
+on:
+  issues:
+    types: [opened]
+
+concurrency:
+  group: enjoy-game-state
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Validate Issue
+        id: validate
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || '';
+            const author = issue.user.login;
+            const labels = issue.labels.map(l => l.name);
+            
+            console.log('📋 Validating issue from:', author);
+            console.log('Labels:', labels);
+            
+            // Skip bots
+            if (author.includes('bot') || author.includes('[bot]')) {
+              console.log('🤖 Bot detected, skipping');
+              core.setOutput('valid', 'false');
+              core.setOutput('reason', 'bot');
+              return;
+            }
+            
+            // ═══════════════════════════════════════════════════════════
+            // ANTI-BOT: Proof of Humanity
+            // ═══════════════════════════════════════════════════════════
+            const SACRED_ANSWERS = ['karmiel', 'KARMIEL', 'Karmiel'];
+            
+            // Look for guardian answer in issue body
+            const guardianMatch = body.match(/Proof of Humanity[^\n]*\n+([^\n]+)/i) ||
+                                  body.match(/guardian[^\n]*\n+([^\n]+)/i);
+            
+            let guardianAnswer = '';
+            if (guardianMatch && guardianMatch[1]) {
+              guardianAnswer = guardianMatch[1].trim();
+            }
+            
+            const isHuman = SACRED_ANSWERS.some(s => guardianAnswer.toLowerCase().includes(s.toLowerCase()));
+            
+            if (!isHuman) {
+              console.log('❌ Failed Proof of Humanity');
+              console.log('Answer found:', guardianAnswer);
+              core.setOutput('valid', 'false');
+              core.setOutput('reason', 'not_human');
+              return;
+            }
+            
+            console.log('✅ Proof of Humanity passed');
+            
+            // ═══════════════════════════════════════════════════════════
+            // KARMA CALCULATION
+            // ═══════════════════════════════════════════════════════════
+            let karma = 5; // Base karma for valid issue
+            let karmaReason = ['Base: +5'];
+            
+            // Issue type bonuses
+            if (labels.includes('bug')) {
+              karma += 10;
+              karmaReason.push('Bug report: +10');
+            }
+            
+            if (labels.includes('idea')) {
+              karma += 5;
+              karmaReason.push('Idea: +5');
+            }
+            
+            // Quality bonuses
+            const wordMatch = body.match(/Your Word[^\n]*\n+([^\n]+)/i);
+            if (wordMatch && wordMatch[1]) {
+              const word = wordMatch[1].trim();
+              if (word.length >= 5 && word.length <= 15) {
+                karma += 5;
+                karmaReason.push('Good word length: +5');
+              }
+            }
+            
+            // Explanation bonus
+            const whyMatch = body.match(/Why this word[^\n]*\n+([\s\S]*?)(?=\n##|\n-\s*\[|$)/i);
+            if (whyMatch && whyMatch[1] && whyMatch[1].trim().length > 20) {
+              karma += 10;
+              karmaReason.push('Good explanation: +10');
+            }
+            
+            // Severity bonus for bugs
+            if (body.includes('Critical')) {
+              karma += 15;
+              karmaReason.push('Critical bug: +15');
+            } else if (body.includes('Major')) {
+              karma += 10;
+              karmaReason.push('Major bug: +10');
+            }
+            
+            // Steps to reproduce bonus
+            if (body.includes('Steps to Reproduce') && body.match(/\d\.\s/g)?.length >= 2) {
+              karma += 5;
+              karmaReason.push('Good repro steps: +5');
+            }
+            
+            console.log('💎 Karma earned:', karma);
+            console.log('Breakdown:', karmaReason.join(', '));
+            
+            core.setOutput('valid', 'true');
+            core.setOutput('karma', karma.toString());
+            core.setOutput('karma_reason', karmaReason.join(', '));
+            core.setOutput('author', author);
+
+      - name: Update State (if valid)
+        if: steps.validate.outputs.valid == 'true'
+        run: |
+          node --input-type=module -e "
+            import { readFileSync, writeFileSync } from 'fs';
+            
+            const state = JSON.parse(readFileSync('./state.json', 'utf8'));
+            const author = '${{ steps.validate.outputs.author }}';
+            const karma = parseInt('${{ steps.validate.outputs.karma }}') || 5;
+            
+            // Initialize player if new
+            if (!state.players[author]) {
+              state.players[author] = {
+                karma: 0,
+                prs: 0,
+                issues: 0,
+                joined: new Date().toISOString()
+              };
+              state.meta.total_players++;
+            }
+            
+            // Add karma from issue
+            state.players[author].karma += karma;
+            state.players[author].issues = (state.players[author].issues || 0) + 1;
+            
+            // Update global score (issues count less than PRs)
+            state.score.total += Math.floor(karma / 2);
+            state.last_updated = new Date().toISOString();
+            
+            writeFileSync('./state.json', JSON.stringify(state, null, 2));
+            console.log('✅ State updated: +' + karma + ' karma for ' + author);
+          "
+
+      - name: Commit State
+        if: steps.validate.outputs.valid == 'true'
+        run: |
+          git config user.name "enjoy-bot"
+          git config user.email "bot@enjoy.game"
+          git add state.json
+          git diff --staged --quiet || git commit -m "🎮 Issue karma: +${{ steps.validate.outputs.karma }} for @${{ steps.validate.outputs.author }}"
+          git push || echo "Nothing to push"
+
+      - name: Comment on Issue (Valid)
+        if: steps.validate.outputs.valid == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const karma = '${{ steps.validate.outputs.karma }}';
+            const reason = '${{ steps.validate.outputs.karma_reason }}';
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## ✅ Welcome to the game, @${context.payload.issue.user.login}!
+
+🔐 **Proof of Humanity:** Passed  
+💎 **Karma Earned:** +${karma}
+
+**Breakdown:**
+${reason.split(', ').map(r => '- ' + r).join('\n')}
+
+---
+
+Your contribution matters! You can also:
+- 🔀 [Open a PR](https://github.com/fabriziosalmi/enjoy) for more karma
+- 🌐 [See the leaderboard](https://fabriziosalmi.github.io/enjoy/)
+
+*"Every voice shapes the organism."* — Karmiel`
+            });
+            
+            // Add validated label
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['validated', 'karma-awarded']
+            });
+            
+            // Remove needs-validation
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: 'needs-validation'
+              });
+            } catch (e) {}
+
+      - name: Comment on Issue (Invalid)
+        if: steps.validate.outputs.valid == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const reason = '${{ steps.validate.outputs.reason }}';
+            
+            let message = '';
+            if (reason === 'not_human') {
+              message = `## ❌ Proof of Humanity Failed
+
+@${context.payload.issue.user.login}, your issue couldn't be validated.
+
+**What went wrong:**
+- The Guardian's name is incorrect or missing
+
+**How to fix:**
+1. Read [LORE.md](https://github.com/fabriziosalmi/enjoy/blob/main/LORE.md) carefully
+2. Look for a quote at the bottom...
+3. Edit this issue with the correct answer
+
+*"Only those who seek shall find."* — ???`;
+            } else {
+              message = `## 🤖 Bot Detected
+
+This issue appears to be from a bot. No karma awarded.`;
+            }
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: message
+            });
+            
+            // Add invalid label
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['invalid', 'needs-human']
+            });

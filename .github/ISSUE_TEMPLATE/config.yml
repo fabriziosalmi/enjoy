@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🎮 Play the Game
+    url: https://fabriziosalmi.github.io/enjoy/
+    about: Jump in and contribute directly!
+  - name: 📜 Read the Lore
+    url: https://github.com/fabriziosalmi/enjoy/blob/main/LORE.md
+    about: Understand the game before playing
