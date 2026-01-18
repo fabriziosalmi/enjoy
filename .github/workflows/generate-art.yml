@@ -1,0 +1,375 @@
+# 🎨 GENERATIVE ART ENGINE
+# Genera arte procedurale basata sullo stato del gioco
+# Ogni run crea qualcosa di UNICO e IRRIPETIBILE
+
+name: 🎨 Generate Art
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'  # Ogni 4 ore = 6 opere al giorno
+  push:
+    branches: [main]
+    paths: [state.json]
+  workflow_dispatch:
+    inputs:
+      art_type:
+        description: 'Type of art to generate'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - mandala
+          - constellation
+          - wave
+          - tree
+          - spiral
+
+jobs:
+  generate-art:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        
+      - name: 🎲 Generate Seed from State
+        id: seed
+        run: |
+          STATE=$(cat state.json)
+          
+          # Create unique seed from game state
+          KARMA=$(echo "$STATE" | jq '.score.total')
+          PLAYERS=$(echo "$STATE" | jq '.meta.total_players')
+          LEVEL=$(echo "$STATE" | jq '.levels.current')
+          TIMESTAMP=$(date +%s)
+          
+          # Combine into seed
+          SEED=$(( (KARMA * 7 + PLAYERS * 13 + LEVEL * 17 + TIMESTAMP) % 10000 ))
+          
+          # Determine art type based on time/state if auto
+          HOUR=$(date +%H)
+          if [ "${{ github.event.inputs.art_type }}" = "auto" ] || [ -z "${{ github.event.inputs.art_type }}" ]; then
+            case $((HOUR % 5)) in
+              0) ART_TYPE="mandala" ;;
+              1) ART_TYPE="constellation" ;;
+              2) ART_TYPE="wave" ;;
+              3) ART_TYPE="tree" ;;
+              4) ART_TYPE="spiral" ;;
+            esac
+          else
+            ART_TYPE="${{ github.event.inputs.art_type }}"
+          fi
+          
+          echo "seed=$SEED" >> $GITHUB_OUTPUT
+          echo "art_type=$ART_TYPE" >> $GITHUB_OUTPUT
+          echo "karma=$KARMA" >> $GITHUB_OUTPUT
+          echo "players=$PLAYERS" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+          
+      - name: 🌸 Generate Mandala
+        if: steps.seed.outputs.art_type == 'mandala'
+        run: |
+          SEED=${{ steps.seed.outputs.seed }}
+          KARMA=${{ steps.seed.outputs.karma }}
+          PLAYERS=${{ steps.seed.outputs.players }}
+          
+          # Calculate mandala parameters from seed
+          PETALS=$(( (SEED % 8) + 6 ))  # 6-13 petals
+          LAYERS=$(( (SEED % 4) + 3 ))   # 3-6 layers
+          HUE1=$(( SEED % 360 ))
+          HUE2=$(( (SEED * 7) % 360 ))
+          
+          mkdir -p art/generated
+          
+          cat > art/generated/mandala-${SEED}.svg << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -150 300 300" width="300" height="300">
+            <defs>
+              <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:hsl(${HUE1},70%,60%)"/>
+                <stop offset="100%" style="stop-color:hsl(${HUE2},70%,50%)"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            
+            <!-- Background -->
+            <circle cx="0" cy="0" r="145" fill="#0d1117"/>
+            
+            <!-- Mandala layers -->
+            $(for layer in $(seq 1 $LAYERS); do
+              RADIUS=$((120 - layer * 20))
+              OPACITY=$(echo "scale=2; 1 - $layer * 0.15" | bc)
+              echo "<g opacity=\"$OPACITY\" filter=\"url(#glow)\">"
+              for petal in $(seq 1 $PETALS); do
+                ANGLE=$(echo "scale=4; $petal * 360 / $PETALS" | bc)
+                echo "<ellipse cx=\"0\" cy=\"-$RADIUS\" rx=\"$((15 + layer * 3))\" ry=\"$((30 + layer * 5))\" fill=\"url(#mandalaGrad)\" transform=\"rotate($ANGLE)\"/>"
+              done
+              echo "</g>"
+            done)
+            
+            <!-- Center -->
+            <circle cx="0" cy="0" r="20" fill="url(#mandalaGrad)" filter="url(#glow)">
+              <animate attributeName="r" values="18;22;18" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            
+            <!-- Karma inscription -->
+            <text x="0" y="140" text-anchor="middle" font-family="monospace" font-size="8" fill="hsl(${HUE1},70%,70%)">
+              karma:${KARMA} | seed:${SEED}
+            </text>
+          </svg>
+          SVGEOF
+          
+          echo "Generated mandala with $PETALS petals and $LAYERS layers"
+          
+      - name: ⭐ Generate Constellation
+        if: steps.seed.outputs.art_type == 'constellation'
+        run: |
+          SEED=${{ steps.seed.outputs.seed }}
+          KARMA=${{ steps.seed.outputs.karma }}
+          PLAYERS=${{ steps.seed.outputs.players }}
+          
+          # Number of stars based on karma
+          STARS=$(( (KARMA % 30) + 10 ))
+          
+          mkdir -p art/generated
+          
+          # Generate random star positions
+          STAR_ELEMENTS=""
+          CONNECTIONS=""
+          
+          for i in $(seq 1 $STARS); do
+            X=$(( (SEED * i * 7) % 280 + 10 ))
+            Y=$(( (SEED * i * 13) % 180 + 10 ))
+            SIZE=$(( (SEED * i) % 3 + 1 ))
+            BRIGHTNESS=$(( 50 + (SEED * i) % 50 ))
+            
+            STAR_ELEMENTS="$STAR_ELEMENTS<circle cx=\"$X\" cy=\"$Y\" r=\"$SIZE\" fill=\"hsl(60,100%,$BRIGHTNESS%)\"><animate attributeName=\"opacity\" values=\"0.5;1;0.5\" dur=\"$((i % 3 + 1))s\" repeatCount=\"indefinite\"/></circle>"
+            
+            # Connect some stars
+            if [ $((i % 3)) -eq 0 ] && [ $i -gt 1 ]; then
+              PREV_X=$(( (SEED * (i-1) * 7) % 280 + 10 ))
+              PREV_Y=$(( (SEED * (i-1) * 13) % 180 + 10 ))
+              CONNECTIONS="$CONNECTIONS<line x1=\"$PREV_X\" y1=\"$PREV_Y\" x2=\"$X\" y2=\"$Y\" stroke=\"rgba(255,255,255,0.2)\" stroke-width=\"0.5\"/>"
+            fi
+          done
+          
+          cat > art/generated/constellation-${SEED}.svg << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+            <rect width="300" height="200" fill="#0a0a1a"/>
+            $CONNECTIONS
+            $STAR_ELEMENTS
+            <text x="150" y="195" text-anchor="middle" font-family="monospace" font-size="6" fill="#4a5568">
+              ✨ ${STARS} stars | karma:${KARMA} | seed:${SEED}
+            </text>
+          </svg>
+          SVGEOF
+          
+          echo "Generated constellation with $STARS stars"
+          
+      - name: 🌊 Generate Wave
+        if: steps.seed.outputs.art_type == 'wave'
+        run: |
+          SEED=${{ steps.seed.outputs.seed }}
+          KARMA=${{ steps.seed.outputs.karma }}
+          
+          AMPLITUDE=$(( 20 + SEED % 30 ))
+          FREQUENCY=$(( 2 + SEED % 4 ))
+          HUE=$(( SEED % 360 ))
+          
+          mkdir -p art/generated
+          
+          # Generate wave path
+          WAVE_PATH="M0,100"
+          for x in $(seq 0 5 300); do
+            Y=$(echo "scale=2; 100 + $AMPLITUDE * s($x * $FREQUENCY * 3.14159 / 300)" | bc -l 2>/dev/null || echo "100")
+            WAVE_PATH="$WAVE_PATH L$x,$Y"
+          done
+          WAVE_PATH="$WAVE_PATH L300,200 L0,200 Z"
+          
+          cat > art/generated/wave-${SEED}.svg << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+            <defs>
+              <linearGradient id="waveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:hsl(${HUE},70%,60%);stop-opacity:0.8"/>
+                <stop offset="100%" style="stop-color:hsl(${HUE},70%,30%);stop-opacity:0.9"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="200" fill="#0d1117"/>
+            <path d="M0,120 Q75,80 150,120 T300,120 L300,200 L0,200 Z" fill="url(#waveGrad)" opacity="0.5">
+              <animate attributeName="d" dur="4s" repeatCount="indefinite"
+                values="M0,120 Q75,80 150,120 T300,120 L300,200 L0,200 Z;
+                        M0,100 Q75,140 150,100 T300,100 L300,200 L0,200 Z;
+                        M0,120 Q75,80 150,120 T300,120 L300,200 L0,200 Z"/>
+            </path>
+            <path d="M0,140 Q75,100 150,140 T300,140 L300,200 L0,200 Z" fill="url(#waveGrad)" opacity="0.7">
+              <animate attributeName="d" dur="3s" repeatCount="indefinite"
+                values="M0,140 Q75,100 150,140 T300,140 L300,200 L0,200 Z;
+                        M0,120 Q75,160 150,120 T300,120 L300,200 L0,200 Z;
+                        M0,140 Q75,100 150,140 T300,140 L300,200 L0,200 Z"/>
+            </path>
+            <text x="150" y="195" text-anchor="middle" font-family="monospace" font-size="6" fill="hsl(${HUE},50%,70%)">
+              🌊 amplitude:${AMPLITUDE} | karma:${KARMA}
+            </text>
+          </svg>
+          SVGEOF
+          
+          echo "Generated wave with amplitude $AMPLITUDE"
+          
+      - name: 🌳 Generate Tree
+        if: steps.seed.outputs.art_type == 'tree'
+        run: |
+          SEED=${{ steps.seed.outputs.seed }}
+          KARMA=${{ steps.seed.outputs.karma }}
+          PLAYERS=${{ steps.seed.outputs.players }}
+          
+          # Tree grows with karma!
+          BRANCHES=$(( 3 + KARMA / 20 ))
+          [ $BRANCHES -gt 12 ] && BRANCHES=12
+          
+          LEAVES=$(( PLAYERS * 3 ))
+          [ $LEAVES -gt 50 ] && LEAVES=50
+          
+          HUE_TRUNK=30
+          HUE_LEAVES=$(( 80 + SEED % 40 ))
+          
+          mkdir -p art/generated
+          
+          # Generate leaf elements
+          LEAF_ELEMENTS=""
+          for i in $(seq 1 $LEAVES); do
+            LX=$(( 100 + (SEED * i * 7) % 100 - 50 ))
+            LY=$(( 30 + (SEED * i * 11) % 80 ))
+            LS=$(( 3 + (SEED * i) % 5 ))
+            LH=$(( HUE_LEAVES + (i * 3) % 30 - 15 ))
+            LEAF_ELEMENTS="$LEAF_ELEMENTS<circle cx=\"$LX\" cy=\"$LY\" r=\"$LS\" fill=\"hsl($LH,60%,50%)\" opacity=\"0.8\"/>"
+          done
+          
+          cat > art/generated/tree-${SEED}.svg << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+            <rect width="200" height="200" fill="#0d1117"/>
+            
+            <!-- Ground -->
+            <ellipse cx="100" cy="190" rx="80" ry="10" fill="#1a472a" opacity="0.5"/>
+            
+            <!-- Trunk -->
+            <path d="M95,190 Q90,150 85,120 Q100,100 115,120 Q110,150 105,190 Z" fill="hsl(${HUE_TRUNK},40%,25%)"/>
+            
+            <!-- Branches -->
+            <g stroke="hsl(${HUE_TRUNK},40%,30%)" stroke-width="3" fill="none">
+              <path d="M100,120 Q80,100 60,90"/>
+              <path d="M100,120 Q120,100 140,85"/>
+              <path d="M100,100 Q85,80 70,60"/>
+              <path d="M100,100 Q115,80 130,55"/>
+              <path d="M100,80 Q90,60 95,40"/>
+            </g>
+            
+            <!-- Leaves canopy -->
+            $LEAF_ELEMENTS
+            
+            <!-- Info -->
+            <text x="100" y="198" text-anchor="middle" font-family="monospace" font-size="5" fill="#4a5568">
+              🌳 ${LEAVES} leaves | ${BRANCHES} branches | karma:${KARMA}
+            </text>
+          </svg>
+          SVGEOF
+          
+          echo "Generated tree with $LEAVES leaves"
+          
+      - name: 🌀 Generate Spiral
+        if: steps.seed.outputs.art_type == 'spiral'
+        run: |
+          SEED=${{ steps.seed.outputs.seed }}
+          KARMA=${{ steps.seed.outputs.karma }}
+          
+          TURNS=$(( 3 + SEED % 5 ))
+          HUE=$(( SEED % 360 ))
+          
+          mkdir -p art/generated
+          
+          cat > art/generated/spiral-${SEED}.svg << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -150 300 300" width="300" height="300">
+            <defs>
+              <linearGradient id="spiralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:hsl(${HUE},80%,60%)"/>
+                <stop offset="100%" style="stop-color:hsl($((HUE + 60)),80%,40%)"/>
+              </linearGradient>
+            </defs>
+            <rect x="-150" y="-150" width="300" height="300" fill="#0d1117"/>
+            
+            <!-- Animated spiral -->
+            <g>
+              <circle cx="0" cy="0" r="5" fill="url(#spiralGrad)"/>
+              $(for i in $(seq 1 60); do
+                R=$((i * 2))
+                ANGLE=$((i * 30))
+                SIZE=$((2 + i / 10))
+                echo "<circle cx=\"0\" cy=\"-$R\" r=\"$SIZE\" fill=\"url(#spiralGrad)\" opacity=\"0.8\" transform=\"rotate($ANGLE)\"/>"
+              done)
+              <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
+            </g>
+            
+            <text x="0" y="145" text-anchor="middle" font-family="monospace" font-size="6" fill="hsl(${HUE},50%,70%)">
+              🌀 ${TURNS} turns | karma:${KARMA} | seed:${SEED}
+            </text>
+          </svg>
+          SVGEOF
+          
+          echo "Generated spiral with $TURNS turns"
+          
+      - name: 📜 Update Art Gallery
+        run: |
+          mkdir -p art/generated
+          
+          # Count total artworks
+          TOTAL_ART=$(ls -1 art/generated/*.svg 2>/dev/null | wc -l)
+          
+          # Update gallery index
+          cat > art/GALLERY.md << EOF
+          # 🎨 Generative Art Gallery
+          
+          > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
+          
+          ## 📊 Statistics
+          - **Total Artworks:** $TOTAL_ART
+          - **Last Generated:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          - **Art Type:** ${{ steps.seed.outputs.art_type }}
+          - **Seed:** ${{ steps.seed.outputs.seed }}
+          
+          ## 🖼️ Latest Works
+          
+          EOF
+          
+          # List recent artworks
+          ls -1t art/generated/*.svg 2>/dev/null | head -20 | while read file; do
+            NAME=$(basename "$file" .svg)
+            echo "### $NAME" >> art/GALLERY.md
+            echo "![${NAME}](generated/${NAME}.svg)" >> art/GALLERY.md
+            echo "" >> art/GALLERY.md
+          done
+          
+          echo "" >> art/GALLERY.md
+          echo "---" >> art/GALLERY.md
+          echo "*Generated with 💜 by the enjoy art engine*" >> art/GALLERY.md
+          
+      - name: 💾 Commit Art
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add art/
+          git diff --staged --quiet || git commit -m "🎨 Generated ${{ steps.seed.outputs.art_type }} art (seed: ${{ steps.seed.outputs.seed }})"
+          git push || true
+          
+      - name: 📢 Summary
+        run: |
+          echo "## 🎨 Art Generated!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Type:** ${{ steps.seed.outputs.art_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Seed:** ${{ steps.seed.outputs.seed }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Karma Influence:** ${{ steps.seed.outputs.karma }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View in \`art/generated/\`" >> $GITHUB_STEP_SUMMARY

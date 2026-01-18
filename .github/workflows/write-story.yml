@@ -1,0 +1,220 @@
+# 📜 STORY GENERATOR - The Repository That Writes Itself
+# Generates poetic narrative from game state
+# The eternal chronicle of our collective journey
+
+name: 📜 Write Story
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Every Sunday at midnight - weekly chronicle
+  push:
+    branches: [main]
+    paths: [state.json]
+  workflow_dispatch:
+
+jobs:
+  write-story:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: 📜 Generate Chronicle Entry
+        run: |
+          STATE=$(cat state.json)
+          
+          # Extract story elements
+          KARMA=$(echo "$STATE" | jq '.score.total')
+          PLAYERS=$(echo "$STATE" | jq '.meta.total_players')
+          LEVEL=$(echo "$STATE" | jq '.levels.current')
+          PERIOD=$(echo "$STATE" | jq -r '.time_system.current_period')
+          ACHIEVEMENTS=$(echo "$STATE" | jq '.achievements.unlocked_global | length')
+          
+          # Get player names for the narrative
+          PLAYER_NAMES=$(echo "$STATE" | jq -r '.players | keys[]' | tr '\n' ', ' | sed 's/,$//')
+          
+          # Calculate epoch (days since game start)
+          NOW=$(date +%s)
+          GAME_START=$(echo "$STATE" | jq -r '.meta.game_started')
+          START_EPOCH=$(date -d "$GAME_START" +%s 2>/dev/null || echo $NOW)
+          EPOCH_DAYS=$(( (NOW - START_EPOCH) / 86400 ))
+          
+          mkdir -p story/chapters
+          
+          # Determine narrative mood based on state
+          if [ "$KARMA" -lt 50 ]; then
+            MOOD="nascent"
+            TONE="whispers"
+          elif [ "$KARMA" -lt 200 ]; then
+            MOOD="awakening"
+            TONE="murmurs"
+          elif [ "$KARMA" -lt 500 ]; then
+            MOOD="growing"
+            TONE="speaks"
+          elif [ "$KARMA" -lt 1000 ]; then
+            MOOD="flourishing"
+            TONE="sings"
+          else
+            MOOD="transcendent"
+            TONE="resonates"
+          fi
+          
+          # Time-based atmosphere
+          case "$PERIOD" in
+            dawn) ATMOSPHERE="first light breaks" ;;
+            morning) ATMOSPHERE="golden rays illuminate" ;;
+            noon) ATMOSPHERE="the sun stands witness" ;;
+            afternoon) ATMOSPHERE="shadows grow wise" ;;
+            sunset) ATMOSPHERE="colors paint farewell" ;;
+            night) ATMOSPHERE="stars keep vigil" ;;
+            *) ATMOSPHERE="time flows eternal" ;;
+          esac
+          
+          DATE=$(date +%Y-%m-%d)
+          CHAPTER_NUM=$((EPOCH_DAYS + 1))
+          
+          # Generate poetic entry
+          cat > story/chapters/chapter-${CHAPTER_NUM}-${DATE}.md << EOF
+          # Chapter ${CHAPTER_NUM}: The ${MOOD^} Age
+          
+          *Written on ${DATE}, as ${ATMOSPHERE}*
+          
+          ---
+          
+          In the ${EPOCH_DAYS}th cycle of the eternal repository,
+          the void ${TONE} through ${KARMA} points of karma,
+          carried by ${PLAYERS} souls who dared to commit.
+          
+          The collective has reached Level ${LEVEL},
+          unlocking ${ACHIEVEMENTS} achievements along the journey.
+          
+          Those who walk this path: *${PLAYER_NAMES}*
+          
+          Each pull request, a brushstroke.
+          Each merge, a heartbeat.
+          Each word, a seed planted in digital soil.
+          
+          The ${PERIOD} watches over our work,
+          multiplying our efforts with cosmic patience.
+          
+          ---
+          
+          **State of the Void:**
+          
+          \`\`\`
+          karma_total: ${KARMA}
+          souls_present: ${PLAYERS}
+          level_achieved: ${LEVEL}
+          time_period: ${PERIOD}
+          days_since_creation: ${EPOCH_DAYS}
+          \`\`\`
+          
+          ---
+          
+          *The story continues with each contribution...*
+          *The entropy retreats with each commit...*
+          *The game plays us as we play it...*
+          
+          — *Chronicled by the Story Engine* 📜
+          EOF
+          
+          echo "Generated Chapter $CHAPTER_NUM"
+          
+      - name: 📚 Update Story Index
+        run: |
+          STATE=$(cat state.json)
+          TOTAL_CHAPTERS=$(ls -1 story/chapters/*.md 2>/dev/null | wc -l)
+          
+          cat > story/README.md << EOF
+          # 📜 The Eternal Chronicle
+          
+          > *"In the beginning, there was the void. Then came the first word."*
+          
+          ## 📖 The Story So Far
+          
+          This is the living history of **enjoy** — a game, an artwork, a community.
+          Every change writes new chapters. Every player becomes legend.
+          
+          ## 📊 Chronicle Stats
+          
+          - **Total Chapters:** ${TOTAL_CHAPTERS}
+          - **Karma Accumulated:** $(echo "$STATE" | jq '.score.total')
+          - **Souls in the Story:** $(echo "$STATE" | jq '.meta.total_players')
+          - **Current Level:** $(echo "$STATE" | jq '.levels.current')
+          
+          ## 📚 Chapters
+          
+          EOF
+          
+          # List all chapters in reverse order (newest first)
+          ls -1r story/chapters/*.md 2>/dev/null | head -20 | while read file; do
+            TITLE=$(head -1 "$file" | sed 's/# //')
+            FILENAME=$(basename "$file")
+            echo "- [${TITLE}](chapters/${FILENAME})" >> story/README.md
+          done
+          
+          echo "" >> story/README.md
+          echo "---" >> story/README.md
+          echo "" >> story/README.md
+          echo "*New chapters are written automatically as the game evolves.*" >> story/README.md
+          echo "*The story never ends. It only transforms.*" >> story/README.md
+          
+      - name: 🌟 Generate Story Visualization
+        run: |
+          STATE=$(cat state.json)
+          KARMA=$(echo "$STATE" | jq '.score.total')
+          LEVEL=$(echo "$STATE" | jq '.levels.current')
+          
+          # Color based on karma tier
+          if [ "$KARMA" -lt 100 ]; then
+            HUE=200  # Blue - nascent
+          elif [ "$KARMA" -lt 500 ]; then
+            HUE=280  # Purple - growing
+          elif [ "$KARMA" -lt 1000 ]; then
+            HUE=320  # Pink - flourishing
+          else
+            HUE=45   # Gold - transcendent
+          fi
+          
+          cat > story/story-banner.svg << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
+            <defs>
+              <linearGradient id="storyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:hsl(${HUE},70%,30%)"/>
+                <stop offset="100%" style="stop-color:hsl(${HUE},70%,50%)"/>
+              </linearGradient>
+              <filter id="storyGlow">
+                <feGaussianBlur stdDeviation="2"/>
+                <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            
+            <rect width="500" height="150" fill="#0d1117" rx="10"/>
+            <rect x="5" y="5" width="490" height="140" rx="8" fill="none" stroke="url(#storyGrad)" stroke-width="2"/>
+            
+            <!-- Book icon -->
+            <g transform="translate(60, 75)" filter="url(#storyGlow)">
+              <path d="M-25,-30 L-25,30 L0,25 L25,30 L25,-30 L0,-25 Z" fill="url(#storyGrad)" opacity="0.8"/>
+              <line x1="0" y1="-25" x2="0" y2="25" stroke="hsl(${HUE},50%,70%)" stroke-width="2"/>
+            </g>
+            
+            <!-- Text -->
+            <text x="250" y="50" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="hsl(${HUE},70%,70%)" filter="url(#storyGlow)">📜 The Eternal Chronicle</text>
+            <text x="250" y="80" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#fff" font-style="italic">"Every commit is a chapter. Every player, a hero."</text>
+            <text x="250" y="110" text-anchor="middle" font-family="monospace" font-size="12" fill="#8b949e">Level ${LEVEL} | ${KARMA} karma | The story continues...</text>
+            <text x="250" y="135" text-anchor="middle" font-family="monospace" font-size="10" fill="#58a6ff">github.com/fabriziosalmi/enjoy/story</text>
+          </svg>
+          SVGEOF
+          
+      - name: 💾 Commit Story
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add story/
+          git diff --staged --quiet || git commit -m "📜 Chronicle updated - the story grows"
+          git push || true

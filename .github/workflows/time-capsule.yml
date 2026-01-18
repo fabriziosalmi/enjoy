@@ -1,0 +1,195 @@
+# 🎹 TIME CAPSULE SYSTEM
+# Messages from the past to the future
+# The repository remembers and shares wisdom across time
+
+name: ⏰ Time Capsule
+
+on:
+  schedule:
+    - cron: '0 12 1 * *'  # First day of each month at noon - open time capsules
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'check'
+        type: choice
+        options:
+          - check
+          - create
+          - open-all
+
+jobs:
+  time-capsule:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        
+      - name: ⏰ Process Time Capsules
+        run: |
+          STATE=$(cat state.json)
+          NOW=$(date +%s)
+          TODAY=$(date +%Y-%m-%d)
+          
+          mkdir -p capsules/sealed
+          mkdir -p capsules/opened
+          
+          # Check for capsules that should be opened
+          echo "## ⏰ Time Capsule Report - $TODAY" > capsules/report.md
+          echo "" >> capsules/report.md
+          
+          OPENED_COUNT=0
+          
+          for capsule in capsules/sealed/*.json; do
+            [ -f "$capsule" ] || continue
+            
+            OPEN_DATE=$(cat "$capsule" | jq -r '.open_date')
+            OPEN_EPOCH=$(date -d "$OPEN_DATE" +%s 2>/dev/null || echo $((NOW + 86400)))
+            
+            if [ "$NOW" -ge "$OPEN_EPOCH" ]; then
+              # Time to open!
+              CAPSULE_NAME=$(basename "$capsule" .json)
+              CREATOR=$(cat "$capsule" | jq -r '.creator')
+              MESSAGE=$(cat "$capsule" | jq -r '.message')
+              CREATED=$(cat "$capsule" | jq -r '.created_date')
+              KARMA_THEN=$(cat "$capsule" | jq '.state_snapshot.karma')
+              PLAYERS_THEN=$(cat "$capsule" | jq '.state_snapshot.players')
+              LEVEL_THEN=$(cat "$capsule" | jq '.state_snapshot.level')
+              
+              # Current state for comparison
+              KARMA_NOW=$(echo "$STATE" | jq '.score.total')
+              PLAYERS_NOW=$(echo "$STATE" | jq '.meta.total_players')
+              LEVEL_NOW=$(echo "$STATE" | jq '.levels.current')
+              
+              echo "### 📬 Capsule Opened: $CAPSULE_NAME" >> capsules/report.md
+              echo "" >> capsules/report.md
+              echo "**From:** $CREATOR" >> capsules/report.md
+              echo "**Created:** $CREATED" >> capsules/report.md
+              echo "**Scheduled to open:** $OPEN_DATE" >> capsules/report.md
+              echo "" >> capsules/report.md
+              echo "> $MESSAGE" >> capsules/report.md
+              echo "" >> capsules/report.md
+              echo "**Then vs Now:**" >> capsules/report.md
+              echo "- Karma: $KARMA_THEN → $KARMA_NOW" >> capsules/report.md
+              echo "- Players: $PLAYERS_THEN → $PLAYERS_NOW" >> capsules/report.md
+              echo "- Level: $LEVEL_THEN → $LEVEL_NOW" >> capsules/report.md
+              echo "" >> capsules/report.md
+              
+              # Move to opened folder with timestamp
+              mv "$capsule" "capsules/opened/${CAPSULE_NAME}-opened-${TODAY}.json"
+              
+              # Generate opened capsule visualization
+              cat > "capsules/opened/${CAPSULE_NAME}-opened.svg" << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
+            <defs>
+              <linearGradient id="capsuleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#ffd700"/>
+                <stop offset="100%" style="stop-color:#ff9500"/>
+              </linearGradient>
+            </defs>
+            
+            <rect width="400" height="250" fill="#0d1117" rx="15"/>
+            <rect x="5" y="5" width="390" height="240" rx="12" fill="none" stroke="url(#capsuleGrad)" stroke-width="2"/>
+            
+            <!-- Opened capsule icon -->
+            <g transform="translate(50, 60)">
+              <ellipse cx="0" cy="0" rx="25" ry="15" fill="url(#capsuleGrad)" opacity="0.8"/>
+              <ellipse cx="0" cy="-20" rx="20" ry="10" fill="url(#capsuleGrad)" opacity="0.6" transform="rotate(-15)"/>
+              <text x="0" y="5" text-anchor="middle" font-size="16">📬</text>
+            </g>
+            
+            <!-- Title -->
+            <text x="200" y="40" text-anchor="middle" font-family="Arial Black" font-size="18" fill="url(#capsuleGrad)">⏰ TIME CAPSULE OPENED!</text>
+            
+            <!-- Message -->
+            <text x="200" y="80" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#fff" font-style="italic">
+              "$MESSAGE"
+            </text>
+            
+            <!-- From -->
+            <text x="200" y="110" text-anchor="middle" font-family="Arial" font-size="10" fill="#8b949e">
+              From: $CREATOR | Created: $CREATED
+            </text>
+            
+            <!-- Comparison -->
+            <text x="200" y="145" text-anchor="middle" font-family="Arial Black" font-size="12" fill="#58a6ff">THEN → NOW</text>
+            <text x="200" y="170" text-anchor="middle" font-family="monospace" font-size="11" fill="#22c55e">
+              Karma: $KARMA_THEN → $KARMA_NOW (+$((KARMA_NOW - KARMA_THEN)))
+            </text>
+            <text x="200" y="190" text-anchor="middle" font-family="monospace" font-size="11" fill="#22c55e">
+              Players: $PLAYERS_THEN → $PLAYERS_NOW (+$((PLAYERS_NOW - PLAYERS_THEN)))
+            </text>
+            <text x="200" y="210" text-anchor="middle" font-family="monospace" font-size="11" fill="#22c55e">
+              Level: $LEVEL_THEN → $LEVEL_NOW (+$((LEVEL_NOW - LEVEL_THEN)))
+            </text>
+            
+            <text x="200" y="240" text-anchor="middle" font-family="Arial" font-size="8" fill="#4a5568">
+              Time travel complete. The past meets the present.
+            </text>
+          </svg>
+          SVGEOF
+              
+              OPENED_COUNT=$((OPENED_COUNT + 1))
+            fi
+          done
+          
+          if [ $OPENED_COUNT -eq 0 ]; then
+            echo "No capsules ready to open today." >> capsules/report.md
+          else
+            echo "" >> capsules/report.md
+            echo "**Total capsules opened:** $OPENED_COUNT" >> capsules/report.md
+          fi
+          
+          echo "" >> capsules/report.md
+          echo "---" >> capsules/report.md
+          
+          # List sealed capsules
+          SEALED_COUNT=$(ls -1 capsules/sealed/*.json 2>/dev/null | wc -l)
+          echo "" >> capsules/report.md
+          echo "### 📦 Sealed Capsules Waiting: $SEALED_COUNT" >> capsules/report.md
+          
+          for capsule in capsules/sealed/*.json; do
+            [ -f "$capsule" ] || continue
+            OPEN_DATE=$(cat "$capsule" | jq -r '.open_date')
+            CREATOR=$(cat "$capsule" | jq -r '.creator')
+            echo "- Opens $OPEN_DATE (from $CREATOR)" >> capsules/report.md
+          done
+          
+      - name: 🔮 Create Sample Time Capsule (if none exist)
+        run: |
+          STATE=$(cat state.json)
+          
+          if [ ! -f capsules/sealed/*.json ] 2>/dev/null; then
+            # Create the first time capsule as an example
+            FUTURE_DATE=$(date -d "+30 days" +%Y-%m-%d 2>/dev/null || date -v+30d +%Y-%m-%d)
+            
+            cat > capsules/sealed/genesis-capsule.json << EOF
+          {
+            "id": "genesis-capsule",
+            "creator": "The Void",
+            "created_date": "$(date +%Y-%m-%d)",
+            "open_date": "${FUTURE_DATE}",
+            "message": "In the beginning, there was only potential. By the time you read this, that potential has transformed into reality. How far have we come? The journey of a thousand commits begins with a single word.",
+            "state_snapshot": {
+              "karma": $(echo "$STATE" | jq '.score.total'),
+              "players": $(echo "$STATE" | jq '.meta.total_players'),
+              "level": $(echo "$STATE" | jq '.levels.current'),
+              "achievements": $(echo "$STATE" | jq '.achievements.unlocked_global | length')
+            }
+          }
+          EOF
+            
+            echo "Created genesis time capsule (opens: $FUTURE_DATE)"
+          fi
+          
+      - name: 💾 Commit Time Capsule Updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add capsules/
+          git diff --staged --quiet || git commit -m "⏰ Time capsule check - $(date +%Y-%m-%d)"
+          git push || true

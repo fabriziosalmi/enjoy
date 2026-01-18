@@ -1,0 +1,217 @@
+# 🧬 ENTROPY TRACKER
+# Misura e combatte l'entropia del sistema
+# L'ordine emerge dal caos attraverso la collaborazione
+
+name: 🧬 Track Entropy
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'  # Every 12 hours
+  push:
+    branches: [main]
+    paths: [state.json]
+  workflow_dispatch:
+
+jobs:
+  measure-entropy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 100  # Get history for entropy calculation
+          
+      - name: 🧬 Calculate Entropy Metrics
+        run: |
+          STATE=$(cat state.json)
+          
+          # === ENTROPY FACTORS (higher = more entropy = bad) ===
+          
+          # 1. Activity entropy: How spread out is activity?
+          TOTAL_PERIODS=$(echo "$STATE" | jq '[.time_system.stats | to_entries[] | .value.total_prs] | add // 0')
+          if [ "$TOTAL_PERIODS" -gt 0 ]; then
+            # Calculate Shannon entropy of time distribution
+            MAX_PERIOD=$(echo "$STATE" | jq '[.time_system.stats | to_entries[] | .value.total_prs] | max // 1')
+            ACTIVITY_SPREAD=$(echo "scale=2; $MAX_PERIOD * 100 / ($TOTAL_PERIODS + 1)" | bc)
+          else
+            ACTIVITY_SPREAD=0
+          fi
+          
+          # 2. Player entropy: Karma distribution inequality  
+          TOTAL_KARMA=$(echo "$STATE" | jq '.score.total')
+          TOTAL_PLAYERS=$(echo "$STATE" | jq '.meta.total_players')
+          if [ "$TOTAL_PLAYERS" -gt 0 ] && [ "$TOTAL_KARMA" -gt 0 ]; then
+            MAX_PLAYER_KARMA=$(echo "$STATE" | jq '[.players[].karma] | max // 0')
+            # Gini-like coefficient (0 = equal, 100 = one person has all)
+            KARMA_INEQUALITY=$(echo "scale=0; $MAX_PLAYER_KARMA * 100 / $TOTAL_KARMA" | bc)
+          else
+            KARMA_INEQUALITY=0
+          fi
+          
+          # 3. Bounty entropy: Unclaimed opportunities
+          BOUNTIES_ACTIVE=$(echo "$STATE" | jq '.bounties.active | length')
+          BOUNTIES_COMPLETED=$(echo "$STATE" | jq '.bounties.completed | length')
+          BOUNTY_RATIO=$((BOUNTIES_ACTIVE * 100 / (BOUNTIES_ACTIVE + BOUNTIES_COMPLETED + 1)))
+          
+          # 4. Level entropy: Progress vs potential
+          CURRENT_LEVEL=$(echo "$STATE" | jq '.levels.current')
+          MAX_LEVEL=$(echo "$STATE" | jq '.levels.max_level')
+          LEVEL_ENTROPY=$((100 - CURRENT_LEVEL * 100 / MAX_LEVEL))
+          
+          # 5. Streak entropy: Continuity of engagement
+          MAX_STREAK=$(echo "$STATE" | jq '[.players[].streak] | max // 0')
+          STREAK_ENTROPY=$((100 - MAX_STREAK * 10))  # Lower streak = higher entropy
+          [ "$STREAK_ENTROPY" -lt 0 ] && STREAK_ENTROPY=0
+          
+          # === ANTI-ENTROPY FACTORS (higher = more order = good) ===
+          
+          # 1. Achievements unlocked (order from accomplishment)
+          ACHIEVEMENTS=$(echo "$STATE" | jq '.achievements.unlocked_global | length')
+          ACHIEVEMENT_ORDER=$((ACHIEVEMENTS * 5))
+          [ "$ACHIEVEMENT_ORDER" -gt 100 ] && ACHIEVEMENT_ORDER=100
+          
+          # 2. Total PRs (order from contribution)
+          TOTAL_PRS=$(echo "$STATE" | jq '.meta.total_prs')
+          PR_ORDER=$((TOTAL_PRS * 2))
+          [ "$PR_ORDER" -gt 100 ] && PR_ORDER=100
+          
+          # 3. Community size (order from collective)
+          COMMUNITY_ORDER=$((TOTAL_PLAYERS * 10))
+          [ "$COMMUNITY_ORDER" -gt 100 ] && COMMUNITY_ORDER=100
+          
+          # === CALCULATE NET ENTROPY ===
+          ENTROPY_RAW=$((ACTIVITY_SPREAD + KARMA_INEQUALITY + BOUNTY_RATIO + LEVEL_ENTROPY + STREAK_ENTROPY))
+          ANTI_ENTROPY=$((ACHIEVEMENT_ORDER + PR_ORDER + COMMUNITY_ORDER))
+          
+          # Net entropy score (0 = perfect order, 100 = chaos)
+          NET_ENTROPY=$((ENTROPY_RAW - ANTI_ENTROPY))
+          [ "$NET_ENTROPY" -lt 0 ] && NET_ENTROPY=0
+          [ "$NET_ENTROPY" -gt 100 ] && NET_ENTROPY=100
+          
+          # Invert for "order score" (100 = perfect order)
+          ORDER_SCORE=$((100 - NET_ENTROPY))
+          
+          mkdir -p entropy
+          
+          # Generate entropy report
+          cat > entropy/report.json << EOF
+          {
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "order_score": $ORDER_SCORE,
+            "entropy_factors": {
+              "activity_spread": $ACTIVITY_SPREAD,
+              "karma_inequality": $KARMA_INEQUALITY,
+              "bounty_ratio": $BOUNTY_RATIO,
+              "level_entropy": $LEVEL_ENTROPY,
+              "streak_entropy": $STREAK_ENTROPY
+            },
+            "anti_entropy_factors": {
+              "achievement_order": $ACHIEVEMENT_ORDER,
+              "pr_order": $PR_ORDER,
+              "community_order": $COMMUNITY_ORDER
+            },
+            "raw_entropy": $ENTROPY_RAW,
+            "anti_entropy": $ANTI_ENTROPY,
+            "net_entropy": $NET_ENTROPY
+          }
+          EOF
+          
+          echo "order_score=$ORDER_SCORE" >> $GITHUB_OUTPUT
+          echo "net_entropy=$NET_ENTROPY" >> $GITHUB_OUTPUT
+          
+      - name: 🎨 Generate Entropy Visualization
+        run: |
+          REPORT=$(cat entropy/report.json)
+          ORDER=$(echo "$REPORT" | jq '.order_score')
+          ENTROPY=$(echo "$REPORT" | jq '.net_entropy')
+          
+          # Color based on order score
+          if [ "$ORDER" -ge 80 ]; then
+            HUE=120  # Green - high order
+            STATUS="🌟 Harmonious"
+          elif [ "$ORDER" -ge 60 ]; then
+            HUE=180  # Cyan - good order
+            STATUS="💚 Balanced"
+          elif [ "$ORDER" -ge 40 ]; then
+            HUE=60   # Yellow - moderate
+            STATUS="💛 Evolving"
+          elif [ "$ORDER" -ge 20 ]; then
+            HUE=30   # Orange - needs attention
+            STATUS="🟠 Seeking Order"
+          else
+            HUE=0    # Red - high entropy
+            STATUS="❤️ Embracing Chaos"
+          fi
+          
+          # Calculate bar widths
+          ORDER_WIDTH=$((ORDER * 3))  # Max 300px
+          ENTROPY_WIDTH=$((ENTROPY * 3))
+          
+          cat > entropy/entropy-gauge.svg << SVGEOF
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+            <defs>
+              <linearGradient id="orderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:hsl(${HUE},70%,40%)"/>
+                <stop offset="100%" style="stop-color:hsl(${HUE},70%,60%)"/>
+              </linearGradient>
+              <linearGradient id="entropyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ff6b6b"/>
+                <stop offset="100%" style="stop-color:#ff8787"/>
+              </linearGradient>
+            </defs>
+            
+            <rect width="400" height="200" fill="#0d1117" rx="10"/>
+            
+            <!-- Title -->
+            <text x="200" y="30" text-anchor="middle" font-family="Arial Black" font-size="16" fill="hsl(${HUE},70%,70%)">🧬 ENTROPY TRACKER 🧬</text>
+            <text x="200" y="50" text-anchor="middle" font-family="Arial" font-size="12" fill="#8b949e">${STATUS}</text>
+            
+            <!-- Order bar -->
+            <text x="50" y="80" font-family="Arial" font-size="10" fill="#8b949e">ORDER</text>
+            <rect x="50" y="85" width="300" height="20" rx="5" fill="#1a1a2e"/>
+            <rect x="50" y="85" width="${ORDER_WIDTH}" height="20" rx="5" fill="url(#orderGrad)">
+              <animate attributeName="width" from="0" to="${ORDER_WIDTH}" dur="1s" fill="freeze"/>
+            </rect>
+            <text x="360" y="100" font-family="Arial Black" font-size="12" fill="hsl(${HUE},70%,70%)">${ORDER}%</text>
+            
+            <!-- Entropy bar -->
+            <text x="50" y="130" font-family="Arial" font-size="10" fill="#8b949e">ENTROPY</text>
+            <rect x="50" y="135" width="300" height="20" rx="5" fill="#1a1a2e"/>
+            <rect x="50" y="135" width="${ENTROPY_WIDTH}" height="20" rx="5" fill="url(#entropyGrad)">
+              <animate attributeName="width" from="0" to="${ENTROPY_WIDTH}" dur="1s" fill="freeze"/>
+            </rect>
+            <text x="360" y="150" font-family="Arial Black" font-size="12" fill="#ff6b6b">${ENTROPY}%</text>
+            
+            <!-- Philosophy -->
+            <text x="200" y="180" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#58a6ff" font-style="italic">
+              "Order emerges from collaboration. Entropy retreats from love."
+            </text>
+          </svg>
+          SVGEOF
+          
+          # Also generate badge
+          cat > badges/entropy.json << EOF
+          {"schemaVersion":1,"label":"order","message":"${ORDER}%","color":"hsl(${HUE},70%,50%)"}
+          EOF
+          
+      - name: 📜 Append to Entropy Log
+        run: |
+          REPORT=$(cat entropy/report.json)
+          TIMESTAMP=$(echo "$REPORT" | jq -r '.timestamp')
+          ORDER=$(echo "$REPORT" | jq '.order_score')
+          
+          echo "${TIMESTAMP} | order: ${ORDER}%" >> entropy/history.log
+          
+          # Keep only last 1000 entries
+          tail -1000 entropy/history.log > entropy/history.tmp && mv entropy/history.tmp entropy/history.log
+          
+      - name: 💾 Commit Entropy Data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add entropy/ badges/entropy.json
+          git diff --staged --quiet || git commit -m "🧬 Entropy measured: $(cat entropy/report.json | jq '.order_score')% order"
+          git push || true
