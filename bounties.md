@@ -1,97 +1,97 @@
 # 🎯 Bounties
 
-*Missioni speciali con ricompense extra*
+*Special missions with extra rewards*
 
-Le bounties sono task specifici che aiutano il progetto e ti danno karma bonus.
+Bounties are specific tasks that help the project and give you bonus karma.
 
 ---
 
-## 🟢 Attive
+## 🟢 Active
 
 ### 🐛 Bug Hunter · +50 karma
-**Difficoltà:** Facile
+**Difficulty:** Easy
 
-Trova e segnala qualsiasi bug nel gioco. Apri una [Issue](https://github.com/fabriziosalmi/enjoy/issues/new?template=bug.yml) con:
-- Descrizione chiara del problema
-- Steps per riprodurlo
-- Screenshot se possibile
+Find and report any bug in the game. Open an [Issue](https://github.com/fabriziosalmi/enjoy/issues/new?template=bug.yml) with:
+- Clear description of the problem
+- Steps to reproduce
+- Screenshots if possible
 
 ---
 
 ### 📚 Documentation Hero · +30 karma
-**Difficoltà:** Facile
+**Difficulty:** Easy
 
-Migliora la documentazione:
-- Correggi typos
-- Chiarisci sezioni confuse
-- Aggiungi esempi
+Improve the documentation:
+- Fix typos
+- Clarify confusing sections
+- Add examples
 
 ---
 
 ### 🔍 Code Reviewer · +75 karma
-**Difficoltà:** Media
+**Difficulty:** Medium
 
-Lascia review costruttive su 5 PR aperte:
-- Suggerimenti utili
-- Feedback sulla qualità
-- Aiuta i nuovi contributor
+Leave constructive reviews on 5 open PRs:
+- Helpful suggestions
+- Quality feedback
+- Help new contributors
 
 ---
 
 ### 🌐 Translator · +100 karma
-**Difficoltà:** Media
+**Difficulty:** Medium
 
-Traduci il README in una nuova lingua:
-- Traduzione completa e accurata
-- Mantieni il tono originale
+Translate the README into a new language:
+- Complete and accurate translation
+- Maintain the original tone
 - File: `README.{lang}.md`
 
 ---
 
 ### 🔒 Security Auditor · +200 karma
-**Difficoltà:** Difficile
+**Difficulty:** Hard
 
-Trova vulnerabilità di sicurezza:
-- Review dei workflow
+Find security vulnerabilities:
+- Review workflows
 - Injection attacks
 - Privilege escalation
 
-⚠️ Segnala responsabilmente via [Security Advisory](https://github.com/fabriziosalmi/enjoy/security/advisories/new)
+⚠️ Report responsibly via [Security Advisory](https://github.com/fabriziosalmi/enjoy/security/advisories/new)
 
 ---
 
 ### 🎨 Theme Creator · +150 karma
-**Difficoltà:** Media
+**Difficulty:** Medium
 
-Crea un tema alternativo per la landing page:
-- Fork il progetto
-- Crea `themes/[nome].css`
-- Mantieni la compatibilità con gli elementi esistenti
+Create an alternative theme for the landing page:
+- Fork the project
+- Create `themes/[name].css`
+- Maintain compatibility with existing elements
 
 ---
 
 ### 🧪 Test Writer · +100 karma
-**Difficoltà:** Media
+**Difficulty:** Medium
 
-Aggiungi test automatici:
-- Unit test per il validator
-- Integration test per i workflow
+Add automated tests:
+- Unit tests for the validator
+- Integration tests for workflows
 - Edge cases
 
 ---
 
-## ⚡ Come Funziona
+## ⚡ How It Works
 
-1. **Scegli** una bounty attiva
-2. **Completa** il task richiesto
-3. **Cita** la bounty nella PR/Issue: `Bounty: [nome]`
-4. **Ricevi** il karma bonus al merge/close
+1. **Choose** an active bounty
+2. **Complete** the required task
+3. **Cite** the bounty in the PR/Issue: `Bounty: [name]`
+4. **Receive** the karma bonus at merge/close
 
 ---
 
 ## 🏆 Hall of Fame
 
-*I bounty hunter più prolifici*
+*The most prolific bounty hunters*
 
 | Rank | Player | Bounties | Karma |
 |------|--------|----------|-------|
@@ -101,15 +101,15 @@ Aggiungi test automatici:
 
 ---
 
-## 💡 Proponi una Bounty
+## 💡 Propose a Bounty
 
-Hai un'idea per una bounty utile al progetto?
+Have an idea for a bounty useful to the project?
 
-[Apri una Issue](https://github.com/fabriziosalmi/enjoy/issues/new?labels=bounty-proposal&title=Bounty%20Proposal:%20) con:
-- Descrizione del task
-- Karma suggerito
-- Perché è utile al progetto
+[Open an Issue](https://github.com/fabriziosalmi/enjoy/issues/new?labels=bounty-proposal&title=Bounty%20Proposal:%20) with:
+- Task description
+- Suggested karma
+- Why it's useful to the project
 
 ---
 
-*Le bounties vengono aggiornate settimanalmente.*
+*Bounties are updated weekly.*
