@@ -59,6 +59,47 @@
 
 ---
 
+## 🤖 Automation (24 Workflows)
+
+> All automation runs via GitHub Actions. Bot commits use `[skip ci]` to prevent loops.
+
+### Core Game Flow
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `validate-pr.yml` | PR opened | Validates contributions |
+| `auto-merge.yml` | Label `auto-merge` | Merges valid PRs |
+| `on-merge.yml` | PR merged | Updates game state |
+
+### Stats & Monitoring
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `update-readme-stats.yml` | workflow_run | Syncs live dashboard |
+| `health-check.yml` | workflow_run + schedule | Integrity checks |
+| `generate-metrics.yml` | state change | Community metrics |
+
+### Karma Tracking
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `track-karma.yml` | Various events | Multi-source karma |
+| `translation-karma.yml` | Translation PR | +100/+50 karma |
+| `validate-issue.yml` | Issue opened | Issue karma |
+
+### Maintenance
+| Workflow | Schedule | Purpose |
+|----------|----------|---------|
+| `daily-maintenance.yml` | Daily | Backups, cleanup |
+| `weekly-report.yml` | Weekly | Karma reports |
+| `stale-issues.yml` | Daily | Auto-close inactive (44 days) |
+
+### Content Generation
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `generate-art.yml` | state change | ASCII art |
+| `write-story.yml` | state change | Chronicle entries |
+| `dynamic-header.yml` | Schedule | Time-based themes |
+
+---
+
 ## 📋 Templates
 
 ### Issue Templates

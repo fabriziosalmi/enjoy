@@ -469,13 +469,31 @@ on-merge.yml
     ├── Requires: PR merged == true
     ├── Reads: state.json, PR metadata
     ├── Writes: state.json (karma, achievements, etc.)
-    └── Triggers: deploy-pages.yml (via push)
+    └── Triggers: update-readme-stats.yml, health-check.yml (via workflow_run)
+
+update-readme-stats.yml (+ health-check.yml)
+    ├── Requires: workflow_run completion
+    ├── Reads: state.json
+    ├── Writes: README.md stats, badges/*.json, health-report.json
+    └── Commits with: [skip ci] (prevents loops)
 
 deploy-pages.yml
     ├── Requires: Push to main
     ├── Reads: All files
     └── Writes: GitHub Pages deployment
 ```
+
+> **Loop Prevention**: All bot commits use `[skip ci]` in their commit message.
+> Only `on-merge.yml` commits without it to trigger the stats sync chain.
+
+### 📫 Issue & Translation Policies
+
+| Policy | Details |
+|--------|---------|
+| **Stale Issues** | Inactive 30 days → "stale" label → 14 days grace → auto-close |
+| **Exempt Labels** | 📌 pinned, 🔒 security, 🎯 help wanted, 💰 bounty, 🔥 hot |
+| **Translation Karma** | New language: +100 · Update: +50 · Extra file: +15 |
+| **Translation PR** | Title with "translation" or flag emoji → separate karma tracking |
 
 ### Blockers
 

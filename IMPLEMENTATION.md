@@ -63,12 +63,52 @@ enjoy/
 │   └── README.md
 │
 └── .github/
-    └── workflows/
+    └── workflows/              # 24 automated workflows
+        │
+        │ # Core Game Flow
         ├── validate-pr.yml       # Karma analysis + validation
         ├── auto-merge.yml        # Smart merge with amplification
-        ├── screenshot.yml        # Board updates (every 5 min)
-        └── deploy-docs.yml       # VitePress deployment
+        ├── on-merge.yml          # State updates (triggers chain)
+        │
+        │ # Stats & Health (workflow_run chain)
+        ├── update-readme-stats.yml  # Live dashboard [skip ci]
+        ├── health-check.yml      # Integrity checks [skip ci]
+        │
+        │ # Karma Tracking
+        ├── track-karma.yml       # Multi-source karma [skip ci]
+        ├── translation-karma.yml # Translation rewards [skip ci]
+        │
+        │ # Engagement & Community
+        ├── welcome-bot.yml       # New player welcome
+        ├── validate-issue.yml    # Issue karma [skip ci]
+        ├── celebrate-milestones.yml # Level ups [skip ci]
+        │
+        │ # Scheduled Maintenance
+        ├── daily-maintenance.yml # Backups, cleanup [skip ci]
+        ├── weekly-report.yml     # Karma reports [skip ci]
+        ├── stale-issues.yml      # Auto-close inactive
+        │
+        │ # Content Generation
+        ├── generate-art.yml      # ASCII art [skip ci]
+        ├── generate-metrics.yml  # Community stats [skip ci]
+        ├── write-story.yml       # Chronicle [skip ci]
+        ├── dynamic-header.yml    # Time-based header [skip ci]
+        │
+        │ # Special Features
+        ├── guardian-angel.yml    # Community health [skip ci]
+        ├── track-entropy.yml     # Randomness metrics [skip ci]
+        ├── time-capsule.yml      # Future messages [skip ci]
+        ├── translate.yml         # Translation stubs [skip ci]
+        │
+        │ # Infrastructure
+        ├── deploy-pages.yml      # GitHub Pages
+        ├── sync-repo-stats.yml   # Badge updates [skip ci]
+        └── update-leaderboard.yml # Rankings
 ```
+
+> **Note**: Workflows marked `[skip ci]` use this commit flag to prevent
+> infinite loops. Only `on-merge.yml` commits without it to trigger the
+> `workflow_run` chain for stats synchronization.
 
 ## ✨ Key Features Implemented
 

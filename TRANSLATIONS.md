@@ -9,29 +9,32 @@
 | Language | Status | Maintainer | File | Potential Karma |
 |----------|--------|------------|------|-----------------|
 | 🇬🇧 English | ✅ Complete | @fabriziosalmi | [README.md](README.md) | - |
-| 🇮🇹 Italiano | ✅ Complete | @fabriziosalmi | [README.it.md](README.it.md) | - |
+| 🇮🇹 Italiano | ✅ Complete | @fabriziosalmi | [README.it.md](README.it.md) | +50 update |
 | 🇪🇸 Español | ✅ Complete | @fabriziosalmi | [README.es.md](README.es.md) | +50 update |
-| 🇫🇷 Français | 🔜 Needed | - | [README.fr.md](README.fr.md) | **+100** 🆕 |
-| 🇩🇪 Deutsch | 🔜 Needed | - | [README.de.md](README.de.md) | **+100** 🆕 |
-| 🇵🇹 Português | ✅ Complete | - | [README.pt.md](README.pt.md) | +50 update |
-| 🇯🇵 日本語 | 🔜 Needed | - | [README.ja.md](README.ja.md) | **+100** 🆕 |
-| 🇨🇳 中文 | 🔜 Needed | - | [README.zh.md](README.zh.md) | **+100** 🆕 |
-| 🇰🇷 한국어 | ✅ Complete | - | [README.ko.md](README.ko.md) | +50 update |
-| 🇷🇺 Русский | ✅ Complete | - | [README.ru.md](README.ru.md) | +50 update |
-| 🇸🇦 العربية | 🔜 Needed | - | - | **+100** 🆕 |
-| 🇮🇳 हिन्दी | 🔜 Needed | - | - | **+100** 🆕 |
-| 🇵🇱 Polski | ✅ Complete | - | [README.pl.md](README.pl.md) | +50 update |
-| 🇻🇳 Tiếng Việt | ✅ Complete | - | [README.vi.md](README.vi.md) | +50 update |
-| 🇮🇩 Bahasa | ✅ Complete | - | [README.id.md](README.id.md) | +50 update |
-| 🇹🇭 ไทย | ✅ Complete | - | [README.th.md](README.th.md) | +50 update |
-| 🇹🇷 Türkçe | 🔜 Needed | - | - | **+100** 🆕 |
-| 🇳🇱 Nederlands | 🔜 Needed | - | - | **+100** 🆕 |
+| 🇫🇷 Français | 📝 Stub | - | [README.fr.md](README.fr.md) | **+100** 🆕 |
+| 🇩🇪 Deutsch | 📝 Stub | - | [README.de.md](README.de.md) | **+100** 🆕 |
+| 🇵🇹 Português | 📝 Stub | - | [README.pt.md](README.pt.md) | **+100** 🆕 |
+| 🇯🇵 日本語 | 📝 Stub | - | [README.ja.md](README.ja.md) | **+100** 🆕 |
+| 🇨🇳 中文 | 📝 Stub | - | [README.zh.md](README.zh.md) | **+100** 🆕 |
+| 🇰🇷 한국어 | 📝 Stub | - | [README.ko.md](README.ko.md) | **+100** 🆕 |
+| 🇷🇺 Русский | 📝 Stub | - | [README.ru.md](README.ru.md) | **+100** 🆕 |
+| 🇸🇦 العربية | 📝 Stub | - | [README.ar.md](README.ar.md) | **+100** 🆕 |
+| 🇮🇳 हिन्दी | 📝 Stub | - | [README.hi.md](README.hi.md) | **+100** 🆕 |
+| 🇧🇩 বাংলা | 📝 Stub | - | [README.bn.md](README.bn.md) | **+100** 🆕 |
+| 🇵🇱 Polski | 📝 Stub | - | [README.pl.md](README.pl.md) | **+100** 🆕 |
+| 🇻🇳 Tiếng Việt | 📝 Stub | - | [README.vi.md](README.vi.md) | **+100** 🆕 |
+| 🇮🇩 Bahasa | 📝 Stub | - | [README.id.md](README.id.md) | **+100** 🆕 |
+| 🇹🇭 ไทย | 📝 Stub | - | [README.th.md](README.th.md) | **+100** 🆕 |
+| 🇹🇷 Türkçe | 📝 Stub | - | [README.tr.md](README.tr.md) | **+100** 🆕 |
+| 🇳🇱 Nederlands | 📝 Stub | - | [README.nl.md](README.nl.md) | **+100** 🆕 |
+| 🇺🇦 Українська | 📝 Stub | - | [README.uk.md](README.uk.md) | **+100** 🆕 |
 | 🇸🇪 Svenska | 🔜 Needed | - | - | **+100** 🆕 |
 | 🇬🇷 Ελληνικά | 🔜 Needed | - | - | **+100** 🆕 |
-| 🇺🇦 Українська | 🔜 Needed | - | - | **+100** 🆕 |
 | 🇮🇱 עברית | 🔜 Needed | - | - | **+100** 🆕 |
 
-> 💡 **Pro tip**: New languages earn **+100 karma** (Translator bounty!) vs +50 for updates. Pioneer a new language!
+> 💡 **Legend**: ✅ Complete (300+ lines) · 📝 Stub (auto-generated, needs full translation) · 🔜 Not started
+>
+> **Pro tip**: Completing a stub earns **+100 karma** (same as new language!)
 
 ---
 
