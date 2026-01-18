@@ -1,8 +1,8 @@
 # Enjoy and contribute! 🎮
 
-[![Level](https://img.shields.io/badge/Level-1-blue?style=for-the-badge)](https://github.com/fabriziosalmi/enjoy)
-[![Score](https://img.shields.io/badge/Score-0-green?style=for-the-badge)](https://github.com/fabriziosalmi/enjoy)
-[![Contributors](https://img.shields.io/github/contributors/fabriziosalmi/enjoy?style=for-the-badge)](https://github.com/fabriziosalmi/enjoy/graphs/contributors)
+[![Play](https://img.shields.io/badge/▶_PLAY_NOW-6366f1?style=for-the-badge)](https://fabriziosalmi.github.io/enjoy/)
+[![Contributors](https://img.shields.io/github/contributors/fabriziosalmi/enjoy?style=for-the-badge&color=22c55e)](https://github.com/fabriziosalmi/enjoy/graphs/contributors)
+[![PRs](https://img.shields.io/github/issues-pr/fabriziosalmi/enjoy?style=for-the-badge&label=Open%20PRs)](https://github.com/fabriziosalmi/enjoy/pulls)
 
 **This repo is a game. Play it with Pull Requests.**
 

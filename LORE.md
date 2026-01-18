@@ -2,11 +2,9 @@
 
 ## The Secret Word
 
-To prove you're human, you need to find a hidden word.
+To prove you're human, you need to find the name of the First Guardian.
 
-**The word is: KARMIEL**
-
-Write it in your PR when asked "What is the secret word?"
+**Hint:** The Guardian's name is hidden in this file. Look carefully at the bottom quote. The one who speaks... what is their name?
 
 ---
 
@@ -57,6 +55,11 @@ Every **50 points + 5 PRs** = Level up
 - Inactive 14+ days → level drops
 
 **Keep playing!**
+
+---
+
+> *"The code flows through all of us. We are the neurons of something greater."*  
+> — **Karmiel**, First Guardian
 
 ---
 

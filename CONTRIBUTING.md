@@ -17,7 +17,7 @@ Thank you for your interest in contributing to **enjoy**! This document explains
 
 Your PR will be automatically validated. If it passes, it will be auto-merged! 🎉
 
-### Current Level: 0 (The Void)
+### Current Level: 1 (Genesis)
 
 **What you can contribute:** Single words in `.txt` files
 

@@ -940,11 +940,20 @@
                 const res = await fetch('https://raw.githubusercontent.com/fabriziosalmi/enjoy/main/state.json?' + Date.now());
                 const state = await res.json();
                 
-                // Detect changes
+                // Detect changes and play sounds
                 if (lastState) {
-                    if (state.score?.total !== lastState.score?.total) notify('score changed');
-                    if (state.levels?.current !== lastState.levels?.current) notify('level up');
-                    if (Object.keys(state.players || {}).length !== Object.keys(lastState.players || {}).length) notify('new soul joined');
+                    if (state.score?.total !== lastState.score?.total) {
+                        notify('score changed');
+                        AudioSystem.playScoreUp();
+                    }
+                    if (state.levels?.current !== lastState.levels?.current) {
+                        notify('level up!');
+                        AudioSystem.playLevelUp();
+                    }
+                    if (Object.keys(state.players || {}).length > Object.keys(lastState.players || {}).length) {
+                        notify('new soul joined');
+                        AudioSystem.playNewSoul();
+                    }
                 }
                 lastState = state;
                 
@@ -1282,6 +1291,88 @@
                 noise.stop(now + 0.3);
                 osc.stop(now + 0.5);
                 impact.stop(now + 0.2);
+            },
+            
+            // Score up sound - gentle ping
+            playScoreUp() {
+                if (!this.ctx || !this.isPlaying) return;
+                
+                const ctx = this.ctx;
+                const now = ctx.currentTime;
+                
+                // Ascending arpeggio
+                [0, 0.1, 0.2].forEach((delay, i) => {
+                    const osc = ctx.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.value = 400 + i * 100;
+                    
+                    const gain = ctx.createGain();
+                    gain.gain.setValueAtTime(0, now + delay);
+                    gain.gain.linearRampToValueAtTime(0.1, now + delay + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + delay + 0.3);
+                    
+                    osc.connect(gain);
+                    gain.connect(this.masterGain);
+                    osc.start(now + delay);
+                    osc.stop(now + delay + 0.3);
+                });
+            },
+            
+            // New player sound - ethereal chime
+            playNewSoul() {
+                if (!this.ctx || !this.isPlaying) return;
+                
+                const ctx = this.ctx;
+                const now = ctx.currentTime;
+                
+                // Soft bell-like tone
+                const osc = ctx.createOscillator();
+                osc.type = 'sine';
+                osc.frequency.value = 523; // C5
+                
+                const osc2 = ctx.createOscillator();
+                osc2.type = 'sine';
+                osc2.frequency.value = 659; // E5
+                
+                const gain = ctx.createGain();
+                gain.gain.setValueAtTime(0, now);
+                gain.gain.linearRampToValueAtTime(0.12, now + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+                
+                osc.connect(gain);
+                osc2.connect(gain);
+                gain.connect(this.masterGain);
+                
+                osc.start(now);
+                osc2.start(now + 0.05);
+                osc.stop(now + 1.5);
+                osc2.stop(now + 1.5);
+            },
+            
+            // Level up sound - triumphant fanfare
+            playLevelUp() {
+                if (!this.ctx || !this.isPlaying) return;
+                
+                const ctx = this.ctx;
+                const now = ctx.currentTime;
+                
+                // Ascending fanfare
+                const notes = [261, 329, 392, 523]; // C4, E4, G4, C5
+                notes.forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    osc.type = 'triangle';
+                    osc.frequency.value = freq;
+                    
+                    const gain = ctx.createGain();
+                    gain.gain.setValueAtTime(0, now + i * 0.15);
+                    gain.gain.linearRampToValueAtTime(0.15, now + i * 0.15 + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.15 + 0.5);
+                    
+                    osc.connect(gain);
+                    gain.connect(this.masterGain);
+                    osc.start(now + i * 0.15);
+                    osc.stop(now + i * 0.15 + 0.5);
+                });
             }
         };
         
