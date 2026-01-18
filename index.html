@@ -124,21 +124,6 @@
         
         .cursor.active { transform: scale(2); border-color: var(--accent); }
         
-        /* Mode Toggle */
-        .mode-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 200;
-            background: rgba(0,0,0,0.6);
-            padding: 0.3rem;
-            border-radius: 100px;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-        
         /* Time Indicator */
         .time-indicator {
             position: fixed;
@@ -156,28 +141,13 @@
             font-size: 0.7rem;
             letter-spacing: 0.05em;
             transition: all 0.5s ease;
+            text-decoration: none;
         }
         
         .time-indicator:hover { border-color: var(--accent); }
         .time-emoji { font-size: 1rem; }
         .time-period { color: var(--text); text-transform: uppercase; }
         .time-multiplier { color: var(--accent); font-family: 'JetBrains Mono', monospace; }
-        
-        .mode-btn {
-            padding: 0.4rem 0.8rem;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 100px;
-            transition: all 0.3s ease;
-        }
-        
-        .mode-btn.active { background: var(--accent); color: white; }
-        .mode-btn:hover:not(.active) { color: var(--text); }
         
         /* Organic Layers */
         .grain {
@@ -222,18 +192,6 @@
             66% { transform: translate(-50%, -50%) rotate(-5deg) scale(0.95); filter: hue-rotate(-30deg); }
         }
         
-        .scanlines {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 998;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        body.hardcore .scanlines { opacity: 1; }
-        
         .vignette {
             position: fixed;
             inset: 0;
@@ -241,18 +199,6 @@
             background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0,0,0,0.7) 100%);
             z-index: 997;
         }
-        
-        /* Glitch Effects */
-        @keyframes glitch-1 {
-            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, 2px); }
-            40% { clip-path: inset(60% 0 10% 0); transform: translate(3px, -2px); }
-            60% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
-            80% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 1px); }
-        }
-        
-        body.hardcore .glitchable { animation: glitch-1 0.3s steps(1) infinite; animation-play-state: paused; }
-        body.hardcore .glitchable.glitching { animation-play-state: running; }
         
         /* Fullscreen Canvas */
         #canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; }
@@ -274,10 +220,6 @@
         }
         
         .title.visible { opacity: 0.15; }
-        
-        body.hardcore .title {
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.1em;
             text-transform: uppercase;
             font-size: clamp(2rem, 8vw, 6rem);
         }
@@ -298,9 +240,6 @@
         .stat-tl { top: 2rem; left: 2rem; }
         .stat-bl { bottom: 2rem; left: 2rem; }
         .stat-br { bottom: 6rem; right: 2rem; text-align: right; }
-        
-        body.hardcore .stat { opacity: 1; font-size: 0.6rem; }
-        body.hardcore .stat-value { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
         
         /* CTA */
         .cta { position: fixed; bottom: 15%; left: 50%; transform: translateX(-50%); z-index: 50; }
@@ -325,35 +264,6 @@
         .cta-icon { width: 16px; height: 16px; transition: transform 0.4s ease; }
         .cta a:hover .cta-icon { transform: rotate(90deg) scale(1.2); }
         
-        body.hardcore .cta a { border-color: var(--accent); animation: cta-pulse 2s ease-in-out infinite; }
-        
-        @keyframes cta-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6), 0 0 60px rgba(168, 85, 247, 0.3); }
-        }
-        
-        /* Challenge Banner */
-        .challenge-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.1) 20%, rgba(168, 85, 247, 0.15) 50%, rgba(99, 102, 241, 0.1) 80%, transparent 100%);
-            padding: 0.5rem;
-            text-align: center;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            z-index: 150;
-            opacity: 0;
-            transform: translateY(-100%);
-            transition: all 0.5s ease;
-        }
-        
-        .challenge-banner.visible { opacity: 1; transform: translateY(0); }
-        .challenge-name { color: var(--accent2); font-weight: 500; }
-        .challenge-mult { background: rgba(168, 85, 247, 0.3); padding: 0.1rem 0.4rem; border-radius: 100px; margin-left: 0.5rem; }
-        
         /* Event Log */
         .event-log {
             position: fixed;
@@ -369,8 +279,6 @@
             transition: opacity 0.5s ease;
             z-index: 50;
         }
-        
-        body.hardcore .event-log { opacity: 0.7; }
         
         .event-log-item {
             padding: 0.2rem 0;
@@ -398,8 +306,6 @@
             transition: opacity 0.5s ease;
             z-index: 50;
         }
-        
-        body.hardcore .achievements-hud { opacity: 1; }
         
         .ach-icon {
             width: 28px;
@@ -543,14 +449,6 @@
                 left: 0.5rem; 
             }
             
-            /* Mode toggle - top right on mobile */
-            .mode-toggle { 
-                top: 0.5rem; 
-                right: 0.5rem;
-                bottom: auto;
-                transform: none;
-            }
-            
             /* Bottom left - stats */
             .stat-bl { 
                 bottom: 1rem; 
@@ -579,12 +477,6 @@
                 font-size: 0.7rem; 
             }
             
-            /* Challenge banner */
-            .challenge-banner { 
-                font-size: 0.55rem; 
-                padding: 0.4rem; 
-            }
-            
             /* Title smaller */
             .title { 
                 font-size: clamp(2.5rem, 12vw, 6rem); 
@@ -605,20 +497,13 @@
                 padding: 0.3rem 0.5rem; 
                 font-size: 0.5rem; 
             }
-            .mode-toggle { 
-                padding: 0.2rem; 
-            }
-            .mode-btn { 
-                padding: 0.3rem 0.5rem; 
-                font-size: 0.55rem; 
-            }
             .cta a { 
                 padding: 0.6rem 1rem; 
             }
         }
     </style>
 </head>
-<body class="basic">
+<body>
     <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
     
@@ -628,25 +513,13 @@
         <span class="time-multiplier" id="timeMult">x1.4</span>
     </a>
     
-    <div class="mode-toggle">
-        <button class="mode-btn active" data-mode="basic">Basic</button>
-        <button class="mode-btn" data-mode="hardcore">Hardcore</button>
-    </div>
-    
     <div class="grain"></div>
     <div class="aura"></div>
-    <div class="scanlines"></div>
     <div class="vignette"></div>
     
     <canvas id="canvas"></canvas>
     
     <div class="title glitchable" id="title">enjoy</div>
-    
-    <div class="challenge-banner" id="challengeBanner">
-        🎯 <span class="challenge-name" id="challengeName">Lucky Seven</span> 
-        <span class="challenge-mult" id="challengeMult">x2</span>
-        <span style="margin-left: 1rem; opacity: 0.5" id="challengeTimer">23:59:59</span>
-    </div>
     
     <div class="stat stat-tl">
         <span class="stat-value" id="statLevel">1</span>
@@ -752,7 +625,6 @@
         // State
         let state = null;
         let lastState = null;
-        let mode = localStorage.getItem('mode') || 'basic';
         let audioEnabled = localStorage.getItem('audioEnabled') !== 'false';
         let particles = [];
         let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -815,11 +687,6 @@
             }
             
             update(time) {
-                if (mode === 'hardcore' && this.isPlayer) {
-                    this.trail.push({ x: this.x, y: this.y });
-                    if (this.trail.length > this.maxTrail) this.trail.shift();
-                }
-                
                 this.wobble += this.wobbleSpeed;
                 this.angle += Math.sin(this.wobble) * 0.02;
                 this.x += Math.cos(this.angle) * this.speed;
@@ -844,15 +711,6 @@
             }
             
             draw() {
-                if (mode === 'hardcore' && this.trail.length > 1) {
-                    ctx.beginPath();
-                    ctx.moveTo(this.trail[0].x, this.trail[0].y);
-                    this.trail.forEach(p => ctx.lineTo(p.x, p.y));
-                    ctx.strokeStyle = `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, 0.1)`;
-                    ctx.lineWidth = this.radius * 0.5;
-                    ctx.stroke();
-                }
-                
                 const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
                 gradient.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${this.alpha * 0.5})`);
                 gradient.addColorStop(1, 'transparent');
@@ -872,7 +730,7 @@
         function initParticles() {
             particles = [];
             // Only a few subtle ambient particles - not fake players!
-            const count = mode === 'hardcore' ? 15 : 8;
+            const count = 8;
             for (let i = 0; i < count; i++) {
                 particles.push(new Particle('ambient', 0, false));
             }
@@ -908,7 +766,7 @@
         }
         
         function animate(time) {
-            ctx.fillStyle = mode === 'hardcore' ? 'rgba(3, 3, 5, 0.1)' : 'rgba(3, 3, 5, 0.15)';
+            ctx.fillStyle = 'rgba(3, 3, 5, 0.15)';
             ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
             drawConnections();
             particles.forEach(p => { p.update(time); p.draw(); });
@@ -922,28 +780,6 @@
         
         initParticles();
         animate(0);
-        
-        // Mode Toggle (must be after Particle class and initParticles)
-        const modeButtons = document.querySelectorAll('.mode-btn');
-        
-        function setMode(newMode) {
-            mode = newMode;
-            localStorage.setItem('mode', mode);
-            document.body.className = mode;
-            modeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
-            initParticles();
-            
-            if (mode === 'hardcore') {
-                document.getElementById('challengeBanner').classList.add('visible');
-                triggerGlitch();
-            } else {
-                document.getElementById('challengeBanner').classList.remove('visible');
-            }
-            logEvent('system', `Mode: ${mode.toUpperCase()}`);
-        }
-        
-        modeButtons.forEach(btn => btn.addEventListener('click', () => setMode(btn.dataset.mode)));
-        setMode(mode);
         
         // Audio System
         const AudioSystem = {
@@ -1104,7 +940,8 @@
         
         // Event Log
         function logEvent(type, message) {
-            if (mode !== 'hardcore') return;
+            // Event log disabled for cleaner UI
+            return;
             const log = document.getElementById('eventLog');
             const item = document.createElement('div');
             item.className = `event-log-item ${type}`;
@@ -1112,15 +949,6 @@
             log.insertBefore(item, log.firstChild);
             while (log.children.length > 10) log.removeChild(log.lastChild);
         }
-        
-        // Glitch
-        function triggerGlitch() {
-            if (mode !== 'hardcore') return;
-            const title = document.getElementById('title');
-            title.classList.add('glitching');
-            setTimeout(() => title.classList.remove('glitching'), 300);
-        }
-        setInterval(() => { if (mode === 'hardcore' && Math.random() < 0.1) triggerGlitch(); }, 5000);
         
         // Achievements HUD
         function updateAchievementsHUD(unlockedIds = []) {
@@ -1239,7 +1067,7 @@
                 
                 if (lastState) {
                     if (data.score?.total !== lastState.score?.total) { logEvent('karma', `Score: ${lastState.score?.total || 0} → ${data.score?.total}`); AudioSystem.playKarma(); }
-                    if (data.levels?.current !== lastState.levels?.current) { logEvent('level', `LEVEL UP! Now level ${data.levels?.current}`); AudioSystem.playLevelUp(); triggerGlitch(); }
+                    if (data.levels?.current !== lastState.levels?.current) { logEvent('level', `LEVEL UP! Now level ${data.levels?.current}`); AudioSystem.playLevelUp(); }
                     if (Object.keys(data.players || {}).length > Object.keys(lastState.players || {}).length) logEvent('karma', 'New soul joined the collective');
                 }
                 
@@ -1288,7 +1116,7 @@
             } else konamiIndex = 0;
         });
         
-        document.getElementById('title').addEventListener('click', () => { triggerGlitch(); logEvent('system', 'The void stares back...'); });
+        document.getElementById('title').addEventListener('click', () => { logEvent('system', 'The void stares back...'); });
         
         document.addEventListener('dblclick', (e) => {
             for (let i = 0; i < 10; i++) {
@@ -1300,16 +1128,9 @@
             }
         });
         
-        setTimeout(() => {
-            if (mode === 'basic') {
-                document.getElementById('challengeBanner').classList.add('visible');
-                setTimeout(() => { if (mode === 'basic') document.getElementById('challengeBanner').classList.remove('visible'); }, 5000);
-            }
-        }, 5000);
-        
         console.log('%c🎮 ENJOY', 'font-size: 3rem; color: #6366f1; font-weight: bold');
         console.log('%cThe void welcomes you. Type "secrets" for hints.', 'color: #888');
-        window.secrets = () => console.log('Try: Konami code, double-click, click the title, hardcore mode');
+        window.secrets = () => console.log('Try: Konami code, double-click, click the title');
     </script>
 </body>
 </html>
