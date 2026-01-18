@@ -1,0 +1,13 @@
+{
+  "level": 2,
+  "title": "The First Branch",
+  "description": "You learned to branch. Now you branch again.",
+  "challenge": "Create a file that exists only in your branch.",
+  "validator": {
+    "type": "file_exists",
+    "path": "contributions/*/unique.txt"
+  },
+  "points": 15,
+  "hint": "Your unique file proves you walked a path no one else walked.",
+  "unlocked_at": "2025-01-01T00:00:00Z"
+}
