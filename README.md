@@ -1,10 +1,10 @@
-# enjoy
+# Enjoy and contribute!
 
 ## *The repo is the game. The game is 100 levels.*
 
-[![Level](https://img.shields.io/badge/Level-1-blue?style=for-the-badge)](https://github.com/[USERNAME]/enjoy)
-[![Score](https://img.shields.io/badge/Score-0-green?style=for-the-badge)](https://github.com/[USERNAME]/enjoy)
-[![Karma](https://img.shields.io/badge/Karma-0-purple?style=for-the-badge)](https://github.com/[USERNAME]/enjoy)
+[![Level](https://img.shields.io/badge/Level-1-blue?style=for-the-badge)](https://github.com/fabriziosalmi/enjoy)
+[![Score](https://img.shields.io/badge/Score-0-green?style=for-the-badge)](https://github.com/fabriziosalmi/enjoy)
+[![Karma](https://img.shields.io/badge/Karma-0-purple?style=for-the-badge)](https://github.com/fabriziosalmi/enjoy)
 
 ---
 
