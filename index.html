@@ -835,27 +835,38 @@
             createDrone() {
                 const ctx = this.ctx;
                 
-                // Layer 1: Deep sub bass (60Hz)
+                // Layer 1: Low tone (120Hz) - audible on most speakers
                 const osc1 = ctx.createOscillator();
                 osc1.type = 'sine';
-                osc1.frequency.value = 60;
+                osc1.frequency.value = 120;
                 const gain1 = ctx.createGain();
-                gain1.gain.value = 0.15;
+                gain1.gain.value = 0.25;
                 osc1.connect(gain1);
                 gain1.connect(this.masterGain);
-                this.nodes.push({ osc: osc1, gain: gain1, baseFreq: 60 });
+                this.nodes.push({ osc: osc1, gain: gain1, baseFreq: 120 });
                 
-                // Layer 2: Low harmonic (90Hz)
+                // Layer 2: Mid harmonic (180Hz)
                 const osc2 = ctx.createOscillator();
                 osc2.type = 'sine';
-                osc2.frequency.value = 90;
+                osc2.frequency.value = 180;
                 const gain2 = ctx.createGain();
-                gain2.gain.value = 0.08;
+                gain2.gain.value = 0.15;
                 osc2.connect(gain2);
                 gain2.connect(this.masterGain);
-                this.nodes.push({ osc: osc2, gain: gain2, baseFreq: 90 });
+                this.nodes.push({ osc: osc2, gain: gain2, baseFreq: 180 });
                 
-                // Layer 3: Ethereal pad (filtered noise)
+                // Layer 3: High shimmer (300Hz with slight detune)
+                const osc3 = ctx.createOscillator();
+                osc3.type = 'sine';
+                osc3.frequency.value = 300;
+                osc3.detune.value = 5;
+                const gain3 = ctx.createGain();
+                gain3.gain.value = 0.08;
+                osc3.connect(gain3);
+                gain3.connect(this.masterGain);
+                this.nodes.push({ osc: osc3, gain: gain3, baseFreq: 300 });
+                
+                // Layer 4: Ethereal pad (filtered noise) - more audible
                 const bufferSize = 2 * ctx.sampleRate;
                 const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
                 const output = noiseBuffer.getChannelData(0);
@@ -868,12 +879,12 @@
                 noise.loop = true;
                 
                 const noiseFilter = ctx.createBiquadFilter();
-                noiseFilter.type = 'lowpass';
-                noiseFilter.frequency.value = 200;
-                noiseFilter.Q.value = 1;
+                noiseFilter.type = 'bandpass';
+                noiseFilter.frequency.value = 400;
+                noiseFilter.Q.value = 0.5;
                 
                 const noiseGain = ctx.createGain();
-                noiseGain.gain.value = 0.02;
+                noiseGain.gain.value = 0.06;
                 
                 noise.connect(noiseFilter);
                 noiseFilter.connect(noiseGain);
@@ -885,6 +896,7 @@
                 // Start all oscillators
                 osc1.start();
                 osc2.start();
+                osc3.start();
                 noise.start();
                 
                 // Breathing modulation - synced with visual breath (8s)
@@ -908,7 +920,7 @@
                 
                 // Modulate noise filter
                 if (this.noiseFilter) {
-                    const filterMod = 150 + Math.sin(time * 0.08) * 50;
+                    const filterMod = 350 + Math.sin(time * 0.08) * 100;
                     this.noiseFilter.frequency.setValueAtTime(filterMod, time);
                 }
                 
@@ -925,7 +937,7 @@
                 this.isPlaying = true;
                 this.masterGain.gain.cancelScheduledValues(this.ctx.currentTime);
                 this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, this.ctx.currentTime);
-                this.masterGain.gain.linearRampToValueAtTime(0.5, this.ctx.currentTime + duration);
+                this.masterGain.gain.linearRampToValueAtTime(0.7, this.ctx.currentTime + duration);
                 
                 this.breathe();
             },
