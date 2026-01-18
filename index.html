@@ -361,6 +361,352 @@
         }
         
         /* ═══════════════════════════════════════════════════════════════
+           DAILY CHALLENGE BANNER
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .daily-challenge {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, 
+                rgba(99, 102, 241, 0.15) 0%,
+                rgba(139, 92, 246, 0.2) 50%,
+                rgba(99, 102, 241, 0.15) 100%
+            );
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.6rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .daily-challenge-emoji {
+            font-size: 1.2rem;
+            animation: daily-bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes daily-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        .daily-challenge-text {
+            color: var(--text);
+        }
+        
+        .daily-challenge-name {
+            color: #a78bfa;
+            font-weight: 500;
+        }
+        
+        .daily-challenge-multiplier {
+            background: rgba(139, 92, 246, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+            color: #c4b5fd;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .daily-challenge-timer {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           ACHIEVEMENTS PANEL
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .achievements-toggle {
+            position: fixed;
+            top: 4rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 101;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .achievements-toggle:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: scale(1.1);
+        }
+        
+        .achievements-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 90vw;
+            height: 100%;
+            background: rgba(5, 5, 8, 0.95);
+            border-left: 1px solid var(--border);
+            z-index: 200;
+            overflow-y: auto;
+            transition: right 0.4s ease;
+            backdrop-filter: blur(20px);
+        }
+        
+        .achievements-panel.open {
+            right: 0;
+        }
+        
+        .achievements-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .achievements-header h3 {
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .achievements-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .achievements-close:hover {
+            color: var(--text);
+        }
+        
+        .achievements-section {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .achievements-section h4 {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+        
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+        }
+        
+        .leaderboard-rank {
+            width: 24px;
+            height: 24px;
+            background: var(--surface);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .leaderboard-rank.gold { background: linear-gradient(135deg, #ffd700, #ffb300); color: #000; }
+        .leaderboard-rank.silver { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #000; }
+        .leaderboard-rank.bronze { background: linear-gradient(135deg, #cd7f32, #a0522d); color: #fff; }
+        
+        .leaderboard-info {
+            flex: 1;
+        }
+        
+        .leaderboard-name {
+            font-size: 0.8rem;
+        }
+        
+        .leaderboard-badges {
+            font-size: 0.65rem;
+            margin-top: 0.2rem;
+        }
+        
+        .leaderboard-karma {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #a78bfa;
+        }
+        
+        .leaderboard-streak {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.65rem;
+            color: #f97316;
+        }
+        
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .achievement-badge {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-badge.locked {
+            opacity: 0.3;
+            filter: grayscale(1);
+        }
+        
+        .achievement-badge:not(.locked):hover {
+            transform: scale(1.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--glow);
+        }
+        
+        .achievement-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            white-space: nowrap;
+            font-size: 0.65rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        
+        .achievement-badge:hover .achievement-tooltip {
+            opacity: 1;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           STREAK DISPLAY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .streak-display {
+            position: fixed;
+            top: 4rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.5s ease;
+        }
+        
+        .streak-display.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .streak-fire {
+            animation: flame-dance 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flame-dance {
+            0% { transform: scale(1) rotate(-5deg); }
+            100% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .streak-count {
+            font-family: 'JetBrains Mono', monospace;
+            color: #f97316;
+        }
+        
+        .streak-multiplier {
+            color: var(--text-muted);
+            font-size: 0.6rem;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           MYSTERY BOX NOTIFICATION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .mystery-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(5, 5, 8, 0.98);
+            border: 2px solid #a78bfa;
+            border-radius: 1rem;
+            padding: 2rem 3rem;
+            text-align: center;
+            z-index: 1002;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .mystery-box.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .mystery-box-emoji {
+            font-size: 4rem;
+            animation: box-shake 0.5s ease-in-out;
+        }
+        
+        @keyframes box-shake {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        
+        .mystery-box-title {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+            color: #a78bfa;
+        }
+        
+        .mystery-box-reward {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
            LIVE INDICATOR
            ═══════════════════════════════════════════════════════════════ */
         
@@ -690,6 +1036,51 @@
     </style>
 </head>
 <body>
+    <!-- Daily Challenge Banner -->
+    <div class="daily-challenge" id="dailyChallenge">
+        <span class="daily-challenge-emoji">🎯</span>
+        <span class="daily-challenge-text">
+            Today's Challenge: <span class="daily-challenge-name" id="challengeName">Loading...</span>
+        </span>
+        <span class="daily-challenge-multiplier" id="challengeMultiplier">x2</span>
+        <span class="daily-challenge-timer" id="challengeTimer">--:--:--</span>
+    </div>
+    
+    <!-- Achievements Toggle -->
+    <button class="achievements-toggle" id="achievementsToggle" title="Achievements & Leaderboard">🏆</button>
+    
+    <!-- Achievements Panel -->
+    <div class="achievements-panel" id="achievementsPanel">
+        <div class="achievements-header">
+            <h3>🏆 Hall of Fame</h3>
+            <button class="achievements-close" id="achievementsClose">×</button>
+        </div>
+        
+        <div class="achievements-section">
+            <h4>🔥 Top Souls</h4>
+            <div id="leaderboard"></div>
+        </div>
+        
+        <div class="achievements-section">
+            <h4>🎖️ Achievements</h4>
+            <div class="achievement-grid" id="achievementGrid"></div>
+        </div>
+    </div>
+    
+    <!-- Streak Display -->
+    <div class="streak-display" id="streakDisplay">
+        <span class="streak-fire">🔥</span>
+        <span class="streak-count" id="streakCount">0</span>
+        <span class="streak-multiplier" id="streakMultiplier">x1</span>
+    </div>
+    
+    <!-- Mystery Box -->
+    <div class="mystery-box" id="mysteryBox">
+        <div class="mystery-box-emoji" id="mysteryEmoji">🎁</div>
+        <div class="mystery-box-title" id="mysteryTitle">Mystery Box!</div>
+        <div class="mystery-box-reward" id="mysteryReward">+25 karma</div>
+    </div>
+    
     <!-- Organic layers -->
     <div class="grain"></div>
     <div class="breath"></div>
@@ -779,6 +1170,8 @@
             <a href="https://github.com/fabriziosalmi/enjoy/blob/main/LORE.md">lore</a>
             &nbsp;·&nbsp;
             <a href="voice.html">voice</a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/fabriziosalmi/enjoy/blob/main/bounties.md">bounties</a>
         </footer>
     </div>
 
@@ -1423,6 +1816,190 @@
         
         // Poll every 5 seconds
         setInterval(loadData, 5000);
+        
+        // ═══════════════════════════════════════════════════════════════
+        // GAMIFICATION SYSTEM
+        // ═══════════════════════════════════════════════════════════════
+        
+        // Daily Challenges Definition
+        const DAILY_CHALLENGES = [
+            { id: 'seven_letters', name: 'Lucky Seven', description: 'Word with exactly 7 letters', multiplier: 2 },
+            { id: 'starts_with_vowel', name: 'Vowel Start', description: 'Word starting with a vowel', multiplier: 1.5 },
+            { id: 'nature_word', name: "Nature's Call", description: 'Word related to nature', multiplier: 2 },
+            { id: 'double_letter', name: 'Double Trouble', description: 'Word with double letters', multiplier: 1.5 },
+            { id: 'palindrome', name: 'Mirror Mirror', description: 'Palindrome word', multiplier: 3 },
+            { id: 'no_e', name: 'E-Free', description: 'Word without the letter E', multiplier: 1.5 },
+            { id: 'ten_plus', name: 'Big Words', description: 'Word with 10+ letters', multiplier: 2 }
+        ];
+        
+        // Achievements Definition
+        const ACHIEVEMENTS = [
+            { id: 'first_blood', emoji: '🩸', name: 'First Blood', desc: 'First merged PR' },
+            { id: 'getting_started', emoji: '🌱', name: 'Getting Started', desc: '5 merged PRs' },
+            { id: 'dedicated', emoji: '💪', name: 'Dedicated', desc: '25 merged PRs' },
+            { id: 'legend', emoji: '👑', name: 'Legend', desc: '100 merged PRs' },
+            { id: 'karma_hunter', emoji: '💎', name: 'Karma Hunter', desc: 'Earn 100 karma' },
+            { id: 'karma_master', emoji: '💠', name: 'Karma Master', desc: 'Earn 500 karma' },
+            { id: 'karma_god', emoji: '🌟', name: 'Karma God', desc: 'Earn 1000 karma' },
+            { id: 'streak_3', emoji: '🔥', name: 'On Fire', desc: '3-day streak' },
+            { id: 'streak_7', emoji: '⚡', name: 'Week Warrior', desc: '7-day streak' },
+            { id: 'streak_30', emoji: '🌪️', name: 'Unstoppable', desc: '30-day streak' },
+            { id: 'recruiter', emoji: '🔗', name: 'Recruiter', desc: 'Invite 1 person' },
+            { id: 'influencer', emoji: '📣', name: 'Influencer', desc: 'Invite 5 people' },
+            { id: 'viral', emoji: '🦠', name: 'Viral', desc: 'Invite 20 people' },
+            { id: 'wordsmith', emoji: '✍️', name: 'Wordsmith', desc: '80+ karma PR' },
+            { id: 'perfectionist', emoji: '💯', name: 'Perfectionist', desc: '5x 70+ karma' },
+            { id: 'bug_finder', emoji: '🐛', name: 'Bug Finder', desc: 'Report 1 bug' },
+            { id: 'exterminator', emoji: '🔫', name: 'Exterminator', desc: 'Report 10 bugs' },
+            { id: 'night_owl', emoji: '🦉', name: 'Night Owl', desc: 'Contribute 2-5 AM', secret: true },
+            { id: 'early_bird', emoji: '🐦', name: 'Early Bird', desc: 'Contribute 5-7 AM', secret: true },
+            { id: 'speed_demon', emoji: '💨', name: 'Speed Demon', desc: 'PR <60s merge', secret: true },
+            { id: 'og', emoji: '🏛️', name: 'OG', desc: 'First 10 contributors' },
+            { id: 'centurion', emoji: '🎖️', name: 'Centurion', desc: '100th contributor', secret: true }
+        ];
+        
+        function getTodayChallenge() {
+            const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+            return DAILY_CHALLENGES[dayOfYear % DAILY_CHALLENGES.length];
+        }
+        
+        function updateChallengeTimer() {
+            const now = new Date();
+            const endOfDay = new Date(now);
+            endOfDay.setHours(23, 59, 59, 999);
+            const remaining = endOfDay - now;
+            
+            const hours = Math.floor(remaining / 3600000);
+            const minutes = Math.floor((remaining % 3600000) / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+            
+            document.getElementById('challengeTimer').textContent = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+        
+        function initDailyChallenge() {
+            const challenge = getTodayChallenge();
+            document.getElementById('challengeName').textContent = challenge.name;
+            document.getElementById('challengeMultiplier').textContent = `x${challenge.multiplier}`;
+            
+            updateChallengeTimer();
+            setInterval(updateChallengeTimer, 1000);
+        }
+        
+        function getStreakMultiplier(days) {
+            if (days >= 30) return 3.0;
+            if (days >= 14) return 2.5;
+            if (days >= 7) return 2.0;
+            if (days >= 3) return 1.5;
+            return 1.0;
+        }
+        
+        function updateLeaderboard(players) {
+            const leaderboard = document.getElementById('leaderboard');
+            const sorted = Object.entries(players)
+                .map(([name, data]) => ({ name, ...data }))
+                .sort((a, b) => (b.karma || 0) - (a.karma || 0))
+                .slice(0, 10);
+            
+            leaderboard.innerHTML = sorted.map((p, i) => {
+                const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+                const badges = (p.achievements || []).slice(0, 3).map(id => {
+                    const ach = ACHIEVEMENTS.find(a => a.id === id);
+                    return ach ? ach.emoji : '';
+                }).join('');
+                const streak = p.streak || 0;
+                
+                return `
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank ${rankClass}">${i + 1}</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">${p.name}</div>
+                            <div class="leaderboard-badges">${badges || '—'}</div>
+                        </div>
+                        ${streak >= 3 ? `<div class="leaderboard-streak">🔥 ${streak}</div>` : ''}
+                        <div class="leaderboard-karma">${p.karma || 0}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function updateAchievementGrid(allAchievements) {
+            const grid = document.getElementById('achievementGrid');
+            
+            // Collect all earned achievements from all players
+            const earnedSet = new Set();
+            Object.values(lastState?.players || {}).forEach(p => {
+                (p.achievements || []).forEach(a => earnedSet.add(a));
+            });
+            
+            grid.innerHTML = ACHIEVEMENTS.filter(a => !a.secret).map(ach => {
+                const isUnlocked = earnedSet.has(ach.id);
+                return `
+                    <div class="achievement-badge ${isUnlocked ? '' : 'locked'}">
+                        ${ach.emoji}
+                        <div class="achievement-tooltip">${ach.name}<br><small>${ach.desc}</small></div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function updateStreakDisplay(state) {
+            const streakDisplay = document.getElementById('streakDisplay');
+            const maxStreak = Math.max(0, ...Object.values(state.players || {}).map(p => p.streak || 0));
+            
+            if (maxStreak >= 3) {
+                streakDisplay.classList.add('visible');
+                document.getElementById('streakCount').textContent = maxStreak;
+                document.getElementById('streakMultiplier').textContent = `x${getStreakMultiplier(maxStreak)}`;
+            } else {
+                streakDisplay.classList.remove('visible');
+            }
+        }
+        
+        // Panel toggle
+        const achievementsToggle = document.getElementById('achievementsToggle');
+        const achievementsPanel = document.getElementById('achievementsPanel');
+        const achievementsClose = document.getElementById('achievementsClose');
+        
+        achievementsToggle.addEventListener('click', () => {
+            achievementsPanel.classList.add('open');
+        });
+        
+        achievementsClose.addEventListener('click', () => {
+            achievementsPanel.classList.remove('open');
+        });
+        
+        // Close on outside click
+        achievementsPanel.addEventListener('click', (e) => {
+            if (e.target === achievementsPanel) {
+                achievementsPanel.classList.remove('open');
+            }
+        });
+        
+        // Mystery box display
+        function showMysteryBox(reward) {
+            const box = document.getElementById('mysteryBox');
+            document.getElementById('mysteryEmoji').textContent = reward.emoji || '🎁';
+            document.getElementById('mysteryTitle').textContent = reward.name || 'Mystery Box!';
+            document.getElementById('mysteryReward').textContent = reward.value ? `+${reward.value} karma` : 'Bonus unlocked!';
+            
+            box.classList.add('show');
+            setTimeout(() => box.classList.remove('show'), 3000);
+        }
+        
+        // Init gamification
+        initDailyChallenge();
+        
+        // Update gamification when state changes
+        const originalLoadData = loadData;
+        loadData = async function() {
+            await originalLoadData();
+            if (lastState) {
+                updateLeaderboard(lastState.players || {});
+                updateAchievementGrid();
+                updateStreakDisplay(lastState);
+            }
+        };
         
         // ═══════════════════════════════════════════════════════════════
         // SUBTLE LIGHT FX ON DATA CARDS

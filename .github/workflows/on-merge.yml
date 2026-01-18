@@ -38,38 +38,205 @@ jobs:
           PR_BODY: ${{ github.event.pull_request.body }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_CREATED: ${{ github.event.pull_request.created_at }}
+          PR_MERGED: ${{ github.event.pull_request.merged_at }}
         run: |
           node --input-type=module -e "
             import { readFileSync, writeFileSync } from 'fs';
             
-            // Load state from root
+            // ═══════════════════════════════════════════════════════════
+            // DAILY CHALLENGES
+            // ═══════════════════════════════════════════════════════════
+            const DAILY_CHALLENGES = [
+              { id: 'seven_letters', check: (w) => w.length === 7, mult: 2 },
+              { id: 'starts_with_vowel', check: (w) => /^[aeiou]/i.test(w), mult: 1.5 },
+              { id: 'nature_word', check: (w) => ['sun','moon','star','tree','river','ocean','mountain','forest','wind','rain','flower','earth','sky','cloud','leaf'].some(n => w.toLowerCase().includes(n)), mult: 2 },
+              { id: 'double_letter', check: (w) => /(.)\1/.test(w), mult: 1.5 },
+              { id: 'palindrome', check: (w) => { const c = w.toLowerCase(); return c === c.split('').reverse().join('') && c.length >= 3; }, mult: 3 },
+              { id: 'no_e', check: (w) => !/e/i.test(w) && w.length >= 5, mult: 1.5 },
+              { id: 'ten_plus', check: (w) => w.length >= 10, mult: 2 }
+            ];
+            
+            function getTodayChallenge() {
+              const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+              return DAILY_CHALLENGES[dayOfYear % DAILY_CHALLENGES.length];
+            }
+            
+            // ═══════════════════════════════════════════════════════════
+            // STREAK SYSTEM  
+            // ═══════════════════════════════════════════════════════════
+            function getStreakMultiplier(days) {
+              if (days >= 30) return 3.0;
+              if (days >= 14) return 2.5;
+              if (days >= 7) return 2.0;
+              if (days >= 3) return 1.5;
+              return 1.0;
+            }
+            
+            function updateStreak(player) {
+              const now = new Date();
+              const last = player.last_contribution ? new Date(player.last_contribution) : null;
+              
+              if (!last) return 1;
+              
+              const diffDays = Math.floor((now - last) / 86400000);
+              if (diffDays === 0) return player.streak || 1;
+              if (diffDays === 1) return (player.streak || 0) + 1;
+              return 1; // Streak broken
+            }
+            
+            // ═══════════════════════════════════════════════════════════
+            // MYSTERY BOX
+            // ═══════════════════════════════════════════════════════════
+            const MYSTERY_REWARDS = [
+              { type: 'karma', value: 10, name: 'Small Boost', emoji: '💫' },
+              { type: 'karma', value: 25, name: 'Medium Boost', emoji: '✨' },
+              { type: 'karma', value: 50, name: 'Large Boost', emoji: '🌟' },
+              { type: 'karma', value: 100, name: 'JACKPOT!', emoji: '🎰' }
+            ];
+            
+            function rollMysteryBox() {
+              const weights = [40, 35, 20, 5];
+              const total = weights.reduce((a,b) => a+b, 0);
+              let r = Math.random() * total;
+              for (let i = 0; i < weights.length; i++) {
+                r -= weights[i];
+                if (r <= 0) return MYSTERY_REWARDS[i];
+              }
+              return MYSTERY_REWARDS[0];
+            }
+            
+            // ═══════════════════════════════════════════════════════════
+            // ACHIEVEMENTS
+            // ═══════════════════════════════════════════════════════════
+            function checkAchievements(player, state, context) {
+              const earned = player.achievements || [];
+              const newAch = [];
+              
+              const checks = [
+                { id: 'first_blood', karma: 10, check: () => player.prs >= 1 },
+                { id: 'getting_started', karma: 25, check: () => player.prs >= 5 },
+                { id: 'dedicated', karma: 100, check: () => player.prs >= 25 },
+                { id: 'legend', karma: 500, check: () => player.prs >= 100 },
+                { id: 'karma_hunter', karma: 20, check: () => player.karma >= 100 },
+                { id: 'karma_master', karma: 75, check: () => player.karma >= 500 },
+                { id: 'karma_god', karma: 200, check: () => player.karma >= 1000 },
+                { id: 'streak_3', karma: 15, check: () => (player.streak || 0) >= 3 },
+                { id: 'streak_7', karma: 50, check: () => (player.streak || 0) >= 7 },
+                { id: 'streak_30', karma: 300, check: () => (player.streak || 0) >= 30 },
+                { id: 'recruiter', karma: 25, check: () => (player.referrals || 0) >= 1 },
+                { id: 'influencer', karma: 100, check: () => (player.referrals || 0) >= 5 },
+                { id: 'viral', karma: 500, check: () => (player.referrals || 0) >= 20 },
+                { id: 'wordsmith', karma: 30, check: () => context.baseKarma >= 80 },
+                { id: 'og', karma: 100, check: () => Object.keys(state.players).indexOf(player.name) < 10 },
+                { id: 'night_owl', karma: 15, check: () => { const h = new Date().getUTCHours(); return h >= 2 && h < 5; }},
+                { id: 'early_bird', karma: 15, check: () => { const h = new Date().getUTCHours(); return h >= 5 && h < 7; }},
+                { id: 'speed_demon', karma: 25, check: () => context.mergeTimeSeconds < 60 },
+                { id: 'centurion', karma: 200, check: () => Object.keys(state.players).length === 100 }
+              ];
+              
+              for (const ach of checks) {
+                if (!earned.includes(ach.id) && ach.check()) {
+                  newAch.push(ach);
+                }
+              }
+              
+              return newAch;
+            }
+            
+            // ═══════════════════════════════════════════════════════════
+            // MAIN LOGIC
+            // ═══════════════════════════════════════════════════════════
             const state = JSON.parse(readFileSync('./state.json', 'utf8'));
             
             const author = process.env.PR_AUTHOR || 'unknown';
             const prNumber = parseInt(process.env.PR_NUMBER) || 0;
             const prTitle = process.env.PR_TITLE || '';
+            const prBody = process.env.PR_BODY || '';
+            const prCreated = new Date(process.env.PR_CREATED);
+            const prMerged = new Date(process.env.PR_MERGED);
+            const mergeTimeSeconds = Math.floor((prMerged - prCreated) / 1000);
             
-            // Simple karma: 10 base points per PR
-            const karma = 10;
+            // Extract word from PR title (format: 'Add word: xyz')
+            const wordMatch = prTitle.match(/add\\s+word[:\\s]+([a-zA-Z]+)/i);
+            const word = wordMatch ? wordMatch[1] : '';
             
-            // Update counters
-            state.meta.total_prs++;
-            if (!state.players[author]) {
+            // Base karma
+            let baseKarma = 10;
+            
+            // Initialize player if new
+            const isNewPlayer = !state.players[author];
+            if (isNewPlayer) {
               state.players[author] = {
                 karma: 0,
                 prs: 0,
+                streak: 0,
+                achievements: [],
                 joined: new Date().toISOString()
               };
               state.meta.total_players++;
+              console.log('🆕 New player:', author);
             }
-            state.players[author].prs++;
-            state.players[author].karma += karma;
             
+            const player = state.players[author];
+            player.name = author; // For achievement checks
+            
+            // Update streak
+            const newStreak = updateStreak(player);
+            const streakMultiplier = getStreakMultiplier(newStreak);
+            player.streak = newStreak;
+            player.last_contribution = new Date().toISOString();
+            
+            // Check daily challenge
+            let challengeMultiplier = 1;
+            let challengeCompleted = false;
+            if (word) {
+              const challenge = getTodayChallenge();
+              if (challenge.check(word)) {
+                challengeMultiplier = challenge.mult;
+                challengeCompleted = true;
+                console.log('🎯 Daily challenge completed! x' + challengeMultiplier);
+              }
+            }
+            
+            // Calculate karma with multipliers
+            let totalKarma = Math.round(baseKarma * streakMultiplier * challengeMultiplier);
+            
+            // Mystery Box check (every 5 contributions)
+            const totalContribs = (player.prs || 0) + 1;
+            let mysteryReward = null;
+            if (totalContribs % 5 === 0) {
+              mysteryReward = rollMysteryBox();
+              totalKarma += mysteryReward.value;
+              console.log('🎁 Mystery Box: ' + mysteryReward.emoji + ' ' + mysteryReward.name + ' (+' + mysteryReward.value + ' karma)');
+            }
+            
+            // Update player stats before achievement check
+            player.prs++;
+            player.karma += totalKarma;
+            state.meta.total_prs++;
+            
+            // Check achievements
+            const context = { baseKarma, mergeTimeSeconds };
+            const newAchievements = checkAchievements(player, state, context);
+            for (const ach of newAchievements) {
+              player.achievements = player.achievements || [];
+              player.achievements.push(ach.id);
+              player.karma += ach.karma;
+              totalKarma += ach.karma;
+              console.log('🏆 Achievement unlocked: ' + ach.id + ' (+' + ach.karma + ' karma)');
+            }
+            
+            // Update global state
             state.last_updated = new Date().toISOString();
             state.last_pr = '#' + prNumber;
+            state.score.total += totalKarma;
+            state.score.today += totalKarma;
             
-            // Update score
-            state.score.total += karma;
+            // Track streak in global score
+            if (newStreak > (state.score.streak_days || 0)) {
+              state.score.streak_days = newStreak;
+            }
             
             // Check level progress
             if (state.levels.next_unlock) {
@@ -99,8 +266,26 @@ jobs:
               }
             }
             
+            // Summary
+            console.log('');
+            console.log('═══════════════════════════════════════════════════════');
+            console.log('📊 CONTRIBUTION SUMMARY');
+            console.log('═══════════════════════════════════════════════════════');
+            console.log('Player:', author);
+            console.log('Word:', word || '(not detected)');
+            console.log('Base karma:', baseKarma);
+            console.log('Streak:', newStreak, 'days (x' + streakMultiplier + ')');
+            console.log('Challenge:', challengeCompleted ? '✅ Complete (x' + challengeMultiplier + ')' : '—');
+            console.log('Mystery Box:', mysteryReward ? mysteryReward.emoji + ' +' + mysteryReward.value : '—');
+            console.log('New Achievements:', newAchievements.length || '—');
+            console.log('───────────────────────────────────────────────────────');
+            console.log('TOTAL KARMA:', totalKarma);
+            console.log('Player karma:', player.karma);
+            console.log('Player streak:', player.streak);
+            console.log('Game score:', state.score.total, '| Level:', state.levels.current);
+            console.log('═══════════════════════════════════════════════════════');
+            
             writeFileSync('./state.json', JSON.stringify(state, null, 2));
-            console.log('✅ State updated: Score=' + state.score.total + ', Level=' + state.levels.current + ', PRs=' + state.meta.total_prs);
           "
       
       - name: Commit and push

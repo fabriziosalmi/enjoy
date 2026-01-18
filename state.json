@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "4.0.0",
   "last_updated": "2026-01-18T03:02:51.477Z",
   "last_pr": "#5",
   "score": {
@@ -7,6 +7,16 @@
     "today": 0,
     "streak_days": 0,
     "all_time_high": 0
+  },
+  "gamification": {
+    "daily_challenge": {
+      "current_id": null,
+      "completions_today": 0,
+      "last_reset": null
+    },
+    "mystery_boxes_opened": 0,
+    "total_achievements_unlocked": 0,
+    "bounties_completed": 0
   },
   "levels": {
     "current": 1,
@@ -55,6 +65,14 @@
     "fabriziosalmi": {
       "karma": 20,
       "prs": 2,
+      "streak": 1,
+      "achievements": ["first_blood"],
+      "high_quality_count": 0,
+      "referrals": 0,
+      "bugs_reported": 0,
+      "bounties_completed": 0,
+      "mystery_boxes": 0,
+      "last_contribution": "2026-01-18T03:02:51.477Z",
       "joined": "2026-01-18T02:43:18.817Z"
     }
   },
@@ -71,7 +89,39 @@
     }
   },
   "achievements": {
-    "players": {}
+    "unlocked_global": ["first_blood"],
+    "players": {
+      "fabriziosalmi": ["first_blood"]
+    }
+  },
+  "bounties": {
+    "active": [
+      {
+        "id": "bug_hunter",
+        "title": "Bug Hunter",
+        "karma": 50,
+        "claimed_by": null
+      },
+      {
+        "id": "docs_hero",
+        "title": "Documentation Hero",
+        "karma": 30,
+        "claimed_by": null
+      },
+      {
+        "id": "code_reviewer",
+        "title": "Code Reviewer",
+        "karma": 75,
+        "claimed_by": null
+      },
+      {
+        "id": "security_auditor",
+        "title": "Security Auditor",
+        "karma": 200,
+        "claimed_by": null
+      }
+    ],
+    "completed": []
   },
   "rules": {
     "active": [
