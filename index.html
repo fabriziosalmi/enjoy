@@ -803,10 +803,30 @@
         let repoStats = { stars: 0, forks: 0, watchers: 0, recent_stargazers: [] };
         let repoStars = []; // Visual star objects
         
+        // Simple hash function for deterministic pseudo-random from string
+        function hashCode(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return Math.abs(hash);
+        }
+        
+        // Seeded random from hash - returns 0-1
+        function seededRandom(seed, offset = 0) {
+            const x = Math.sin(seed + offset) * 10000;
+            return x - Math.floor(x);
+        }
+        
         class RepoStar {
             constructor(stargazer, index, total) {
-                this.login = stargazer?.login || 'anonymous';
+                this.login = stargazer?.login || `anon_${index}`;
                 this.avatar = stargazer?.avatar || '';
+                
+                // Deterministic seed from login - each user always gets same position!
+                this.seed = hashCode(this.login);
                 
                 // Graceful scaling: more stars = smaller, spread across screen
                 // 1-10 stars: top arc, 11-100: wider spread, 100+: constellation mode
@@ -814,49 +834,74 @@
                 this.index = index;
                 this.recalculatePosition(total, index);
                 
-                // Twinkle properties - scale down with more stars
-                this.phase = Math.random() * Math.PI * 2;
-                this.twinkleSpeed = 0.02 + Math.random() * 0.03;
-                const sizeScale = total > 100 ? 0.5 : total > 50 ? 0.7 : total > 20 ? 0.85 : 1;
-                this.baseSize = (2 + Math.random() * 2) * sizeScale;
+                // Twinkle properties - deterministic but varied per star
+                this.phase = seededRandom(this.seed, 1) * Math.PI * 2;
+                this.twinkleSpeed = 0.02 + seededRandom(this.seed, 2) * 0.03;
+                const sizeScale = total > 1000 ? 0.3 : total > 500 ? 0.4 : total > 200 ? 0.5 : total > 100 ? 0.6 : total > 50 ? 0.7 : total > 20 ? 0.85 : 1;
+                this.baseSize = (2 + seededRandom(this.seed, 3) * 2) * sizeScale;
                 this.size = this.baseSize;
                 this.brightness = 0.4;
-                this.maxBrightness = 0.6 + Math.random() * 0.3;
+                this.maxBrightness = 0.6 + seededRandom(this.seed, 4) * 0.3;
                 
-                // Color: golden yellow
-                this.hue = 45 + Math.random() * 15;
+                // Color: golden yellow with slight variation
+                this.hue = 45 + seededRandom(this.seed, 5) * 15;
                 
-                // Clickable hitbox
-                this.hitRadius = Math.max(this.baseSize * 3, 15);
+                // Clickable hitbox - scales down with more stars
+                this.hitRadius = Math.max(this.baseSize * 3, total > 500 ? 8 : total > 100 ? 12 : 15);
             }
             
             recalculatePosition(total, index) {
-                // GRACEFUL SCALING LAYOUT
+                // GRACEFUL DECAY LAYOUT - scales from 1 to 10,000+ stars
+                const r1 = seededRandom(this.seed, 10);
+                const r2 = seededRandom(this.seed, 11);
+                const r3 = seededRandom(this.seed, 12);
+                
                 if (total <= 10) {
-                    // Arc at top
+                    // Arc at top - intimate gathering
                     const spread = Math.min(window.innerWidth * 0.5, 400);
                     const startX = (window.innerWidth - spread) / 2;
-                    this.baseX = startX + (spread / Math.max(total, 1)) * index + Math.random() * 15;
-                    this.baseY = 35 + Math.random() * 20;
+                    this.baseX = startX + (spread / Math.max(total, 1)) * index + r1 * 15;
+                    this.baseY = 35 + r2 * 20;
                 } else if (total <= 50) {
-                    // Two rows
+                    // Two rows - small community
                     const row = index < total / 2 ? 0 : 1;
                     const indexInRow = index < total / 2 ? index : index - Math.floor(total / 2);
                     const countInRow = row === 0 ? Math.floor(total / 2) : Math.ceil(total / 2);
                     const spread = Math.min(window.innerWidth * 0.7, 700);
                     const startX = (window.innerWidth - spread) / 2;
-                    this.baseX = startX + (spread / countInRow) * indexInRow + Math.random() * 10;
-                    this.baseY = 30 + row * 35 + Math.random() * 15;
+                    this.baseX = startX + (spread / countInRow) * indexInRow + r1 * 10;
+                    this.baseY = 30 + row * 35 + r2 * 15;
                 } else if (total <= 200) {
-                    // Constellation scatter - top third of screen
-                    this.baseX = 50 + Math.random() * (window.innerWidth - 100);
-                    this.baseY = 20 + Math.random() * (window.innerHeight * 0.25);
-                } else {
-                    // Galaxy mode - full sky scatter with density gradient
-                    const angle = (index / total) * Math.PI * 2 + Math.random() * 0.5;
-                    const distance = 50 + Math.random() * Math.min(window.innerWidth, window.innerHeight) * 0.4;
+                    // Constellation scatter - growing community
+                    this.baseX = 50 + r1 * (window.innerWidth - 100);
+                    this.baseY = 20 + r2 * (window.innerHeight * 0.25);
+                } else if (total <= 1000) {
+                    // Galaxy mode - full sky scatter
+                    const angle = r1 * Math.PI * 2;
+                    const distance = 50 + r2 * Math.min(window.innerWidth, window.innerHeight) * 0.4;
                     this.baseX = window.innerWidth / 2 + Math.cos(angle) * distance;
-                    this.baseY = window.innerHeight * 0.3 + Math.sin(angle) * distance * 0.5;
+                    this.baseY = window.innerHeight * 0.35 + Math.sin(angle) * distance * 0.5;
+                } else if (total <= 5000) {
+                    // Nebula mode - dense cluster with outer halo
+                    const isCore = r3 < 0.7; // 70% in dense core
+                    if (isCore) {
+                        const angle = r1 * Math.PI * 2;
+                        const distance = r2 * Math.min(window.innerWidth, window.innerHeight) * 0.25;
+                        this.baseX = window.innerWidth / 2 + Math.cos(angle) * distance;
+                        this.baseY = window.innerHeight * 0.3 + Math.sin(angle) * distance * 0.6;
+                    } else {
+                        // Halo stars
+                        this.baseX = r1 * window.innerWidth;
+                        this.baseY = r2 * window.innerHeight * 0.5;
+                    }
+                } else {
+                    // Supernova mode (10,000+) - the repo has EXPLODED 💥
+                    // Stars fill entire sky, density gradient from center
+                    const angle = r1 * Math.PI * 2;
+                    const distanceNorm = Math.pow(r2, 0.5); // Square root for uniform disk distribution
+                    const maxDist = Math.max(window.innerWidth, window.innerHeight) * 0.6;
+                    this.baseX = window.innerWidth / 2 + Math.cos(angle) * distanceNorm * maxDist;
+                    this.baseY = window.innerHeight / 2 + Math.sin(angle) * distanceNorm * maxDist * 0.7;
                 }
                 this.x = this.baseX;
                 this.y = this.baseY;
