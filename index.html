@@ -422,6 +422,124 @@
         }
         
         /* ═══════════════════════════════════════════════════════════════
+           FLASH OVERLAY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .flash-overlay {
+            position: fixed;
+            inset: 0;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.1s ease;
+        }
+        
+        .flash-overlay.flash {
+            animation: flash-bang 0.6s ease-out;
+        }
+        
+        @keyframes flash-bang {
+            0% { opacity: 1; }
+            20% { opacity: 0.9; }
+            100% { opacity: 0; }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           PR TELECRONACA OVERLAY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .telecronaca {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .telecronaca.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .telecronaca-title {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-weight: 300;
+            color: var(--text);
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            animation: pulse-text 1s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-text {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .telecronaca-message {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            color: var(--accent);
+            text-align: center;
+            max-width: 80%;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .telecronaca-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        
+        .telecronaca-status .dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-dot 1s ease-in-out infinite;
+        }
+        
+        .telecronaca-countdown {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 300;
+            color: var(--text);
+            margin: 2rem 0;
+            letter-spacing: 0.05em;
+        }
+        
+        .telecronaca-cta {
+            margin-top: 2rem;
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            border-radius: 100px;
+            color: var(--text);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .telecronaca-cta:hover {
+            background: var(--accent);
+            box-shadow: 0 0 40px var(--glow);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
            NOTIFICATION
            ═══════════════════════════════════════════════════════════════ */
         
@@ -548,6 +666,23 @@
     <div class="grain"></div>
     <div class="breath"></div>
     <div class="vignette"></div>
+    
+    <!-- Flash overlay for CTA click -->
+    <div class="flash-overlay" id="flashOverlay"></div>
+    
+    <!-- PR Telecronaca overlay -->
+    <div class="telecronaca" id="telecronaca">
+        <div class="telecronaca-title">⚡ INCOMING PR ⚡</div>
+        <div class="telecronaca-message" id="telecronacaMessage">
+            preparing transmission...
+        </div>
+        <div class="telecronaca-status">
+            <div class="dot"></div>
+            <span>redirecting to github</span>
+        </div>
+        <div class="telecronaca-countdown" id="telecronacaCountdown">3</div>
+        <button class="telecronaca-cta" id="telecronacaSkip">skip · go now</button>
+    </div>
     
     <!-- Live indicator -->
     <div class="live">
@@ -1005,6 +1140,105 @@
                 osc2.start(now);
                 osc.stop(now + 2);
                 osc2.stop(now + 2);
+            },
+            
+            // Proximity tone - pitch increases as you get closer
+            proximityOsc: null,
+            proximityGain: null,
+            
+            updateProximity(distance, maxDistance) {
+                if (!this.ctx || !this.isPlaying) return;
+                
+                // Create proximity oscillator if needed
+                if (!this.proximityOsc) {
+                    this.proximityOsc = this.ctx.createOscillator();
+                    this.proximityOsc.type = 'sine';
+                    this.proximityGain = this.ctx.createGain();
+                    this.proximityGain.gain.value = 0;
+                    
+                    const filter = this.ctx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 1200;
+                    
+                    this.proximityOsc.connect(filter);
+                    filter.connect(this.proximityGain);
+                    this.proximityGain.connect(this.masterGain);
+                    this.proximityOsc.start();
+                }
+                
+                // Calculate intensity (0 = far, 1 = on button)
+                const intensity = Math.max(0, 1 - (distance / maxDistance));
+                
+                // Frequency: 200Hz (far) → 600Hz (close)
+                const freq = 200 + intensity * 400;
+                this.proximityOsc.frequency.setTargetAtTime(freq, this.ctx.currentTime, 0.1);
+                
+                // Volume: 0 (far) → 0.15 (close)
+                const vol = intensity * intensity * 0.15; // Exponential for dramatic effect
+                this.proximityGain.gain.setTargetAtTime(vol, this.ctx.currentTime, 0.1);
+            },
+            
+            // Flash/thunder sound
+            playFlash() {
+                if (!this.ctx) this.init();
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+                
+                const ctx = this.ctx;
+                const now = ctx.currentTime;
+                
+                // White noise burst
+                const bufferSize = ctx.sampleRate * 0.3;
+                const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    // Decay envelope baked into noise
+                    const decay = Math.exp(-i / (ctx.sampleRate * 0.05));
+                    data[i] = (Math.random() * 2 - 1) * decay;
+                }
+                
+                const noise = ctx.createBufferSource();
+                noise.buffer = buffer;
+                
+                // Low rumble
+                const osc = ctx.createOscillator();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(80, now);
+                osc.frequency.exponentialRampToValueAtTime(30, now + 0.5);
+                
+                // Impact tone
+                const impact = ctx.createOscillator();
+                impact.type = 'sine';
+                impact.frequency.setValueAtTime(400, now);
+                impact.frequency.exponentialRampToValueAtTime(100, now + 0.2);
+                
+                // Gains
+                const noiseGain = ctx.createGain();
+                noiseGain.gain.setValueAtTime(0.8, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                
+                const oscGain = ctx.createGain();
+                oscGain.gain.setValueAtTime(0.4, now);
+                oscGain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                
+                const impactGain = ctx.createGain();
+                impactGain.gain.setValueAtTime(0.5, now);
+                impactGain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                
+                // Connect
+                noise.connect(noiseGain);
+                osc.connect(oscGain);
+                impact.connect(impactGain);
+                noiseGain.connect(ctx.destination); // Direct to output, bypass master
+                oscGain.connect(ctx.destination);
+                impactGain.connect(ctx.destination);
+                
+                // Play
+                noise.start(now);
+                osc.start(now);
+                impact.start(now);
+                noise.stop(now + 0.3);
+                osc.stop(now + 0.5);
+                impact.stop(now + 0.2);
             }
         };
         
@@ -1113,6 +1347,10 @@
             };
         }
         
+        function getCTARect() {
+            return ctaLink.getBoundingClientRect();
+        }
+        
         function triggerBeckon() {
             if (isBeckoning) return;
             isBeckoning = true;
@@ -1163,6 +1401,107 @@
         setTimeout(() => {
             scheduleNextBeckon();
         }, 8000);
+        
+        // ═══════════════════════════════════════════════════════════════
+        // PROXIMITY AUDIO - Sound gets higher as you approach CTA
+        // ═══════════════════════════════════════════════════════════════
+        
+        const maxProximityDistance = 300; // pixels
+        
+        document.addEventListener('mousemove', (e) => {
+            const rect = getCTARect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const dx = e.clientX - centerX;
+            const dy = e.clientY - centerY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            AudioSystem.updateProximity(distance, maxProximityDistance);
+        });
+        
+        // Reset proximity when mouse leaves window
+        document.addEventListener('mouseleave', () => {
+            AudioSystem.updateProximity(maxProximityDistance * 2, maxProximityDistance);
+        });
+        
+        // ═══════════════════════════════════════════════════════════════
+        // CTA CLICK - FLASH + TELECRONACA
+        // ═══════════════════════════════════════════════════════════════
+        
+        const flashOverlay = document.getElementById('flashOverlay');
+        const telecronaca = document.getElementById('telecronaca');
+        const telecronacaMessage = document.getElementById('telecronacaMessage');
+        const telecronacaCountdown = document.getElementById('telecronacaCountdown');
+        const telecronacaSkip = document.getElementById('telecronacaSkip');
+        
+        const prMessages = [
+            "A brave soul steps into the arena...",
+            "The organism awaits your contribution...",
+            "Will your code survive the merge?",
+            "The collective holds its breath...",
+            "Another challenger approaches...",
+            "May the validators be in your favor...",
+            "The repository hungers for new blood...",
+            "Your PR will be judged by the masses...",
+        ];
+        
+        let countdownInterval = null;
+        
+        function triggerFlashAndTelecronaca(e) {
+            e.preventDefault();
+            
+            // Kill proximity sound
+            AudioSystem.updateProximity(9999, maxProximityDistance);
+            
+            // FLASH!
+            AudioSystem.playFlash();
+            flashOverlay.classList.add('flash');
+            
+            setTimeout(() => {
+                flashOverlay.classList.remove('flash');
+                
+                // Show telecronaca
+                const randomMsg = prMessages[Math.floor(Math.random() * prMessages.length)];
+                telecronacaMessage.textContent = randomMsg;
+                telecronaca.classList.add('active');
+                
+                // Countdown
+                let count = 3;
+                telecronacaCountdown.textContent = count;
+                
+                countdownInterval = setInterval(() => {
+                    count--;
+                    if (count > 0) {
+                        telecronacaCountdown.textContent = count;
+                    } else {
+                        clearInterval(countdownInterval);
+                        goToGitHub();
+                    }
+                }, 1000);
+                
+            }, 200);
+        }
+        
+        function goToGitHub() {
+            telecronaca.classList.remove('active');
+            window.open('https://github.com/fabriziosalmi/enjoy', '_blank');
+        }
+        
+        ctaLink.addEventListener('click', triggerFlashAndTelecronaca);
+        
+        telecronacaSkip.addEventListener('click', () => {
+            clearInterval(countdownInterval);
+            goToGitHub();
+        });
+        
+        // Click outside to cancel
+        telecronaca.addEventListener('click', (e) => {
+            if (e.target === telecronaca) {
+                clearInterval(countdownInterval);
+                telecronaca.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
