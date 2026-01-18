@@ -32,12 +32,6 @@ jobs:
           git config user.name "enjoy-bot"
           git config user.email "bot@enjoy.game"
       
-      - name: Install engine
-        run: |
-          cd engine
-          npm ci
-          npm run build
-      
       - name: Update state
         env:
           PR_AUTHOR: ${{ github.event.pull_request.user.login }}
@@ -45,43 +39,18 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          cd engine
-          node -e "
-            import { loadState, saveState } from './dist/loader.js';
-            import { analyzeContributionQuality, applyKarma, trackReferral, applyReferralKarma } from './dist/karma.js';
-            import { extractReferral } from './dist/validator.js';
-            import { applyDecaySystem } from './dist/decay.js';
-            import fs from 'fs';
+          node --input-type=module -e "
+            import { readFileSync, writeFileSync } from 'fs';
             
-            const state = loadState();
-            
-            // Apply decay first
-            applyDecaySystem(state);
+            // Load state from root
+            const state = JSON.parse(readFileSync('./state.json', 'utf8'));
             
             const author = process.env.PR_AUTHOR || 'unknown';
-            const prBody = process.env.PR_BODY || '';
             const prNumber = parseInt(process.env.PR_NUMBER) || 0;
             const prTitle = process.env.PR_TITLE || '';
             
-            // Create PR object
-            const pr = {
-              number: prNumber,
-              author: author,
-              commit_message: prTitle,
-              files_added: [],
-              timestamp: new Date().toISOString()
-            };
-            
-            // Analyze and apply karma
-            const karma = analyzeContributionQuality(pr, prTitle, state);
-            applyKarma(state, pr, karma);
-            
-            // Track referral if present
-            const referral = extractReferral(prBody);
-            if (referral) {
-              trackReferral(state, referral, author);
-              applyReferralKarma(state, author, karma.quality_score, karma.amplification_factor);
-            }
+            // Simple karma: 10 base points per PR
+            const karma = 10;
             
             // Update counters
             state.meta.total_prs++;
@@ -94,14 +63,13 @@ jobs:
               state.meta.total_players++;
             }
             state.players[author].prs++;
-            state.players[author].karma += karma.quality_score;
+            state.players[author].karma += karma;
             
             state.last_updated = new Date().toISOString();
             state.last_pr = '#' + prNumber;
             
             // Update score
-            state.score.total += karma.quality_score;
-            state.score.today += karma.quality_score;
+            state.score.total += karma;
             
             // Check level progress
             if (state.levels.next_unlock) {
@@ -117,7 +85,6 @@ jobs:
                 state.levels.current = next.level_id;
                 state.levels.unlocked.push(next.level_id);
                 
-                // Set next level requirements
                 if (next.level_id < 100) {
                   state.levels.next_unlock = {
                     level_id: next.level_id + 1,
@@ -132,7 +99,7 @@ jobs:
               }
             }
             
-            saveState(state);
+            writeFileSync('./state.json', JSON.stringify(state, null, 2));
             console.log('✅ State updated: Score=' + state.score.total + ', Level=' + state.levels.current + ', PRs=' + state.meta.total_prs);
           "
       
