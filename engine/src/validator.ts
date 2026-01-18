@@ -33,20 +33,27 @@ export function extractReferral(prBody: string): string | null {
 function matchesTrigger(rule: Rule, pr: PRMetadata): boolean {
   if (rule.trigger.type === 'file_added') {
     // Check if PR has any files added
-    if (pr.files_added.length === 0) return false;
-    
+    if (pr.files_added.length === 0) {
+      return false;
+    }
+
     // Check all conditions
     for (const condition of rule.trigger.conditions) {
       if (condition.extension) {
-        const hasExt = pr.files_added.some(f => f.endsWith(condition.extension));
-        if (!hasExt) return false;
+        const ext = condition.extension;
+        const hasExt = pr.files_added.some(f => f.endsWith(ext));
+        if (!hasExt) {
+          return false;
+        }
       }
-      
+
       if (condition.max_files !== undefined) {
-        if (pr.files_added.length > condition.max_files) return false;
+        if (pr.files_added.length > condition.max_files) {
+          return false;
+        }
       }
     }
-    
+
     return true;
   }
   
@@ -97,7 +104,7 @@ function validateContent(rule: Rule, pr: PRMetadata): { valid: boolean; reason?:
     }
     
     if (validation.not_duplicate) {
-      const exists = state.board.elements.some((el: any) => 
+      const exists = state.board.elements.some((el) =>
         el.content?.toLowerCase() === content.toLowerCase()
       );
       if (exists) {

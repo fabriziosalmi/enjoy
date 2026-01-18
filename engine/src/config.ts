@@ -114,7 +114,7 @@ export function loadConfig(configPath?: string): GameConfig {
         console.log(`✅ Loaded config from ${path}`);
         return cachedConfig;
       }
-    } catch (e) {
+    } catch {
       // Try next path
     }
   }

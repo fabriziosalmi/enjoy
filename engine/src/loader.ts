@@ -36,23 +36,39 @@ function validateState(state: unknown): state is GameState {
   const s = state as Record<string, unknown>;
 
   // Check required top-level properties
-  if (!s.board || typeof s.board !== 'object') return false;
-  if (!s.players || typeof s.players !== 'object') return false;
-  if (!s.karma || typeof s.karma !== 'object') return false;
-  if (!s.levels || typeof s.levels !== 'object') return false;
-  if (!s.rules || typeof s.rules !== 'object') return false;
+  if (!s.board || typeof s.board !== 'object') {
+    return false;
+  }
+  if (!s.players || typeof s.players !== 'object') {
+    return false;
+  }
+  if (!s.karma || typeof s.karma !== 'object') {
+    return false;
+  }
+  if (!s.levels || typeof s.levels !== 'object') {
+    return false;
+  }
+  if (!s.rules || typeof s.rules !== 'object') {
+    return false;
+  }
 
   // Check karma structure
   const karma = s.karma as Record<string, unknown>;
-  if (typeof karma.global !== 'number') return false;
+  if (typeof karma.global !== 'number') {
+    return false;
+  }
 
   // Check levels structure
   const levels = s.levels as Record<string, unknown>;
-  if (typeof levels.current !== 'number') return false;
+  if (typeof levels.current !== 'number') {
+    return false;
+  }
 
   // Check rules structure
   const rules = s.rules as Record<string, unknown>;
-  if (!Array.isArray(rules.active)) return false;
+  if (!Array.isArray(rules.active)) {
+    return false;
+  }
 
   return true;
 }

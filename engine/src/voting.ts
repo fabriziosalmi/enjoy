@@ -1,49 +1,19 @@
-import { GameState } from './types.js';
-import { loadState, saveState } from './loader.js';
+import { GameState, RuleProposalState, RuleProposalContent } from './types.js';
 import { sanitizePath, logError } from './utils.js';
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
 
 /**
  * VOTING SYSTEM FOR RULES
- * 
+ *
  * Top coders can propose new rules
  * Community votes on rule proposals
  * Approved rules get added to the game
  */
 
-export interface RuleContent {
-  id: string;
-  name: string;
-  description: string;
-  version?: number;
-  enabled?: boolean;
-  priority?: number;
-  trigger?: {
-    type: string;
-    conditions: Array<Record<string, unknown>>;
-  };
-  validate?: Array<Record<string, unknown>>;
-  effect?: Record<string, unknown>;
-  points?: {
-    base: number;
-    bonuses?: Array<{ condition: string; points: number }>;
-  };
-}
-
-export interface RuleProposal {
-  id: string;
-  proposed_by: string;  // player hash
-  proposed_at: string;
-  rule_file: string;
-  rule_content: RuleContent;
-  votes_for: Record<string, number>;  // playerHash -> voting power
-  votes_against: Record<string, number>;
-  total_for: number;
-  total_against: number;
-  status: 'voting' | 'approved' | 'rejected' | 'implemented';
-  voting_ends: string;
-}
+// Re-export types for backward compatibility
+export type RuleContent = RuleProposalContent;
+export type RuleProposal = RuleProposalState;
 
 /**
  * Propose a new rule
@@ -51,7 +21,7 @@ export interface RuleProposal {
 export function proposeRule(
   state: GameState,
   playerHash: string,
-  ruleContent: RuleContent
+  ruleContent: RuleProposalContent
 ): { success: boolean; reason?: string; proposalId?: string } {
   
   // Check if player can propose
@@ -76,10 +46,20 @@ export function proposeRule(
   if (!ruleContent.id || !ruleContent.name || !ruleContent.description) {
     return { success: false, reason: 'Invalid rule structure' };
   }
+
+  // Validate rule ID format (alphanumeric, underscore, hyphen only)
+  if (!/^[a-zA-Z0-9_-]+$/.test(ruleContent.id)) {
+    return { success: false, reason: 'Invalid rule ID format. Use only alphanumeric characters, underscores, and hyphens.' };
+  }
+
+  // Validate rule name for path safety
+  if (!/^[a-zA-Z0-9_\s-]+$/.test(ruleContent.name)) {
+    return { success: false, reason: 'Invalid rule name format. Use only alphanumeric characters, spaces, underscores, and hyphens.' };
+  }
   
   // Check if rule ID already exists
   const existsActive = state.rules.active.includes(ruleContent.id);
-  const existsProposed = state.rules.proposed?.some((p: RuleProposal) => p.id === ruleContent.id);
+  const existsProposed = state.rules.proposed?.some((p) => p.id === ruleContent.id);
   
   if (existsActive || existsProposed) {
     return { success: false, reason: 'Rule ID already exists' };
@@ -90,7 +70,7 @@ export function proposeRule(
   const votingEnds = new Date();
   votingEnds.setDate(votingEnds.getDate() + 7);  // 7 days voting period
   
-  const proposal: RuleProposal = {
+  const proposal: RuleProposalState = {
     id: proposalId,
     proposed_by: playerHash,
     proposed_at: new Date().toISOString(),
@@ -131,7 +111,7 @@ export function voteOnProposal(
   voteFor: boolean
 ): { success: boolean; reason?: string } {
   
-  const proposal = state.rules.proposed?.find((p: RuleProposal) => p.id === proposalId);
+  const proposal = state.rules.proposed?.find((p) => p.id === proposalId);
   
   if (!proposal) {
     return { success: false, reason: 'Proposal not found' };
@@ -188,12 +168,16 @@ export function voteOnProposal(
  * Process voting results (called periodically)
  */
 export function processVotingResults(state: GameState): void {
-  if (!state.rules.proposed) return;
+  if (!state.rules.proposed) {
+    return;
+  }
   
   const now = new Date();
   
   for (const proposal of state.rules.proposed) {
-    if (proposal.status !== 'voting') continue;
+    if (proposal.status !== 'voting') {
+      continue;
+    }
     
     // Check if voting period ended
     if (now > new Date(proposal.voting_ends)) {
@@ -240,10 +224,12 @@ export function processVotingResults(state: GameState): void {
 /**
  * Get active proposals for a player to vote on
  */
-export function getActiveProposals(state: GameState): RuleProposal[] {
-  if (!state.rules.proposed) return [];
-  
-  return state.rules.proposed.filter((p: RuleProposal) => {
+export function getActiveProposals(state: GameState): RuleProposalState[] {
+  if (!state.rules.proposed) {
+    return [];
+  }
+
+  return state.rules.proposed.filter((p) => {
     return p.status === 'voting' && new Date() < new Date(p.voting_ends);
   });
 }
@@ -251,16 +237,20 @@ export function getActiveProposals(state: GameState): RuleProposal[] {
 /**
  * Get player's vote on a proposal
  */
-export function getPlayerVote(proposal: RuleProposal, playerHash: string): 'for' | 'against' | null {
-  if (proposal.votes_for[playerHash]) return 'for';
-  if (proposal.votes_against[playerHash]) return 'against';
+export function getPlayerVote(proposal: RuleProposalState, playerHash: string): 'for' | 'against' | null {
+  if (proposal.votes_for[playerHash]) {
+    return 'for';
+  }
+  if (proposal.votes_against[playerHash]) {
+    return 'against';
+  }
   return null;
 }
 
 /**
  * Create example rule proposal (for testing)
  */
-export function createExampleProposal(): RuleContent {
+export function createExampleProposal(): RuleProposalContent {
   return {
     id: "042",
     name: "Emoji Explosion",

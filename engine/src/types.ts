@@ -24,6 +24,67 @@ export interface Player {
   name?: string;
 }
 
+export interface TriggerCondition {
+  extension?: string;
+  max_files?: number;
+  max_lines?: number;
+  max_chars?: number;
+  pattern?: string;
+}
+
+export interface ValidationCondition {
+  not_profanity?: boolean;
+  not_duplicate?: boolean;
+  max_emoji?: number;
+}
+
+export interface RuleEffect {
+  rule_id: string;
+  effect: {
+    action: string;
+    element: {
+      type: string;
+      content: string;
+      position: string;
+      color: string;
+      size: number;
+    };
+  };
+}
+
+export interface RuleProposalContent {
+  id: string;
+  name: string;
+  description: string;
+  version?: number;
+  enabled?: boolean;
+  priority?: number;
+  trigger?: {
+    type: string;
+    conditions: Array<Record<string, unknown>>;
+  };
+  validate?: Array<Record<string, unknown>>;
+  effect?: Record<string, unknown>;
+  points?: {
+    base: number;
+    bonuses?: Array<{ condition: string; points: number }>;
+  };
+}
+
+export interface RuleProposalState {
+  id: string;
+  proposed_by: string;
+  proposed_at: string;
+  rule_file: string;
+  rule_content: RuleProposalContent;
+  votes_for: Record<string, number>;
+  votes_against: Record<string, number>;
+  total_for: number;
+  total_against: number;
+  status: 'voting' | 'approved' | 'rejected' | 'implemented';
+  voting_ends: string;
+}
+
 export interface Rule {
   id: string;
   name: string;
@@ -33,9 +94,9 @@ export interface Rule {
   priority: number;
   trigger: {
     type: string;
-    conditions: Array<Record<string, any>>;
+    conditions: TriggerCondition[];
   };
-  validate: Array<Record<string, boolean>>;
+  validate: ValidationCondition[];
   effect: {
     action: string;
     element: {
@@ -110,9 +171,9 @@ export interface GameState {
   };
   rules: {
     active: string[];
-    proposed?: any[];
-    voting?: any[];
-    archived?: any[];
+    proposed?: RuleProposalState[];
+    voting?: RuleProposalState[];
+    archived?: RuleProposalState[];
   };
   referrals?: {
     chains: Record<string, {
@@ -157,5 +218,5 @@ export interface ValidationResult {
   matched_rules: string[];
   points: number;
   reason?: string;
-  effects?: any[];
+  effects?: RuleEffect[];
 }

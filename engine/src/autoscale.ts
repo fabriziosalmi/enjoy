@@ -1,4 +1,4 @@
-import { GameState } from './types.js';
+import { GameState, ValidationResult } from './types.js';
 
 /**
  * AUTO-SCALING SYSTEM
@@ -32,10 +32,7 @@ export function calculateTrafficMetrics(state: GameState): TrafficMetrics {
   const oneHour = 60 * 60 * 1000;
   const oneDay = 24 * oneHour;
   
-  // Count recent PRs
-  const recentPRs = Object.values(state.players).reduce((sum, player) => {
-    return sum + (player.total_prs || 0);
-  }, 0);
+  // Total PRs from all players (used for internal metrics calculation)
   
   // Estimate velocity from player growth
   const playersCount = Object.keys(state.players).length;
@@ -45,10 +42,15 @@ export function calculateTrafficMetrics(state: GameState): TrafficMetrics {
   
   // Velocity trend
   let velocity: 'slow' | 'normal' | 'viral' | 'explosive' = 'slow';
-  if (prsPerDay < 10) velocity = 'slow';
-  else if (prsPerDay < 50) velocity = 'normal';
-  else if (prsPerDay < 200) velocity = 'viral';
-  else velocity = 'explosive';
+  if (prsPerDay < 10) {
+    velocity = 'slow';
+  } else if (prsPerDay < 50) {
+    velocity = 'normal';
+  } else if (prsPerDay < 200) {
+    velocity = 'viral';
+  } else {
+    velocity = 'explosive';
+  }
   
   // Load factor (0-1, based on PRs per player per day)
   const prsPerPlayerPerDay = prsPerDay / Math.max(1, playersCount);
@@ -107,13 +109,15 @@ export function determineScalingConfig(metrics: TrafficMetrics): ScalingConfig {
  * Decide se processare questo PR (subsampling)
  */
 export function shouldProcessPR(prNumber: number, samplingRate: number): boolean {
-  if (samplingRate >= 1.0) return true;
-  
+  if (samplingRate >= 1.0) {
+    return true;
+  }
+
   // Deterministic sampling basato su PR number
   // Garantisce che lo stesso PR viene sempre processato o skippato
   const hash = prNumber % 100;
   const threshold = samplingRate * 100;
-  
+
   return hash < threshold;
 }
 
@@ -122,18 +126,25 @@ export function shouldProcessPR(prNumber: number, samplingRate: number): boolean
  */
 export function checkAutoUnlock(state: GameState, metrics: TrafficMetrics): boolean {
   const config = determineScalingConfig(metrics);
-  
-  if (!config.fast_track_levels) return false;
-  
-  const currentLevel = state.levels.current;
+
+  if (!config.fast_track_levels) {
+    return false;
+  }
+
   const nextRequires = state.levels.next_unlock;
-  
-  if (!nextRequires) return false;
-  
+
+  if (!nextRequires) {
+    return false;
+  }
+
   // Fast track: scala requirements in base a velocity
   let scaleFactor = 1.0;
-  if (metrics.velocity_trend === 'viral') scaleFactor = 0.6;
-  if (metrics.velocity_trend === 'explosive') scaleFactor = 0.3;
+  if (metrics.velocity_trend === 'viral') {
+    scaleFactor = 0.6;
+  }
+  if (metrics.velocity_trend === 'explosive') {
+    scaleFactor = 0.3;
+  }
   
   const adjustedScoreReq = nextRequires.requires_score * scaleFactor;
   const adjustedPRsReq = nextRequires.requires_prs * scaleFactor;
@@ -155,8 +166,11 @@ export function degradeKarmaAnalysis(quality: number, config: ScalingConfig): {
   if (!config.disable_amplification) {
     // Normal mode
     let amp = 1;
-    if (quality >= 80) amp = 3;
-    else if (quality >= 60) amp = 2;
+    if (quality >= 80) {
+      amp = 3;
+    } else if (quality >= 60) {
+      amp = 2;
+    }
     return { quality, amplification: amp, degraded: false };
   }
   
@@ -180,13 +194,13 @@ export function getCacheKey(files: string[], content: string): string {
 /**
  * Validation cache (in-memory, reset su deploy)
  */
-const validationCache = new Map<string, any>();
+const validationCache = new Map<string, ValidationResult>();
 
-export function getCachedValidation(key: string): any | null {
+export function getCachedValidation(key: string): ValidationResult | null {
   return validationCache.get(key) || null;
 }
 
-export function setCachedValidation(key: string, result: any): void {
+export function setCachedValidation(key: string, result: ValidationResult): void {
   // Max 1000 entries
   if (validationCache.size > 1000) {
     const firstKey = Array.from(validationCache.keys())[0];
@@ -200,7 +214,7 @@ export function setCachedValidation(key: string, result: any): void {
 /**
  * Status message per utente
  */
-export function getScalingStatusMessage(metrics: TrafficMetrics, config: ScalingConfig): string {
+export function getScalingStatusMessage(metrics: TrafficMetrics, _config: ScalingConfig): string {
   if (metrics.velocity_trend === 'slow' || metrics.velocity_trend === 'normal') {
     return '🟢 Normal operations';
   }

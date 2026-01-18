@@ -1,6 +1,6 @@
 import { GameState } from './types.js';
+import { logError } from './utils.js';
 import * as fs from 'fs';
-import * as path from 'path';
 
 /**
  * LEADERBOARD & COMMUNITY BOARD GENERATOR
@@ -54,7 +54,9 @@ export function generateContributorsLeaderboard(state: GameState, limit: number 
  * Generate top recruiters leaderboard
  */
 export function generateRecruitersLeaderboard(state: GameState, limit: number = 10): RecruiterEntry[] {
-  if (!state.referrals?.chains) return [];
+  if (!state.referrals?.chains) {
+    return [];
+  }
   
   const recruiters = Object.entries(state.referrals.chains)
     .map(([username, chain]) => ({
@@ -81,10 +83,18 @@ export function generateRecruitersLeaderboard(state: GameState, limit: number = 
  * Get badge emoji based on rank
  */
 function getBadge(rank: number): string {
-  if (rank === 1) return '🥇';
-  if (rank === 2) return '🥈';
-  if (rank === 3) return '🥉';
-  if (rank <= 10) return '⭐';
+  if (rank === 1) {
+    return '🥇';
+  }
+  if (rank === 2) {
+    return '🥈';
+  }
+  if (rank === 3) {
+    return '🥉';
+  }
+  if (rank <= 10) {
+    return '⭐';
+  }
   return '✨';
 }
 
@@ -92,10 +102,18 @@ function getBadge(rank: number): string {
  * Get recruiter badge based on performance
  */
 function getRecruiterBadge(invites: number, depth: number): string {
-  if (invites >= 10) return '🌲'; // Viral Master
-  if (depth >= 3) return '🌳'; // Network Effect
-  if (invites >= 5) return '🌿'; // Community Builder
-  if (invites >= 1) return '🌱'; // First Recruit
+  if (invites >= 10) {
+    return '🌲'; // Viral Master
+  }
+  if (depth >= 3) {
+    return '🌳'; // Network Effect
+  }
+  if (invites >= 5) {
+    return '🌿'; // Community Builder
+  }
+  if (invites >= 1) {
+    return '🌱'; // First Recruit
+  }
   return '✨';
 }
 
@@ -282,33 +300,44 @@ export function generateCommunityBoardHTML(state: GameState): string {
  * Update leaderboard in README.md
  */
 export function updateLeaderboardInReadme(state: GameState, readmePath: string): void {
-  const leaderboardMd = generateLeaderboardMarkdown(state);
-  let readme = fs.readFileSync(readmePath, 'utf-8');
-  
-  // Replace leaderboard section or append
-  const leaderboardStart = '## 🏆 Leaderboards';
-  const nextSection = /\n## /g;
-  
-  if (readme.includes(leaderboardStart)) {
-    // Find start and end
-    const startIdx = readme.indexOf(leaderboardStart);
-    const afterStart = readme.substring(startIdx + leaderboardStart.length);
-    const match = nextSection.exec(afterStart);
-    const endIdx = match ? startIdx + leaderboardStart.length + match.index : readme.length;
-    
-    readme = readme.substring(0, startIdx) + leaderboardMd + readme.substring(endIdx);
-  } else {
-    // Append at end
-    readme += '\n\n' + leaderboardMd;
+  try {
+    const leaderboardMd = generateLeaderboardMarkdown(state);
+    let readme = fs.readFileSync(readmePath, 'utf-8');
+
+    // Replace leaderboard section or append
+    const leaderboardStart = '## 🏆 Leaderboards';
+    // Use match() instead of exec() with /g flag to avoid state issues
+    const nextSectionPattern = /\n## /;
+
+    if (readme.includes(leaderboardStart)) {
+      // Find start and end
+      const startIdx = readme.indexOf(leaderboardStart);
+      const afterStart = readme.substring(startIdx + leaderboardStart.length);
+      const match = afterStart.match(nextSectionPattern);
+      const endIdx = match ? startIdx + leaderboardStart.length + match.index! : readme.length;
+
+      readme = readme.substring(0, startIdx) + leaderboardMd + readme.substring(endIdx);
+    } else {
+      // Append at end
+      readme += '\n\n' + leaderboardMd;
+    }
+
+    fs.writeFileSync(readmePath, readme, 'utf-8');
+  } catch (e) {
+    logError(`updateLeaderboardInReadme(${readmePath})`, e);
+    throw e;
   }
-  
-  fs.writeFileSync(readmePath, readme, 'utf-8');
 }
 
 /**
  * Generate community board file
  */
 export function generateCommunityBoardFile(state: GameState, outputPath: string): void {
-  const html = generateCommunityBoardHTML(state);
-  fs.writeFileSync(outputPath, html, 'utf-8');
+  try {
+    const html = generateCommunityBoardHTML(state);
+    fs.writeFileSync(outputPath, html, 'utf-8');
+  } catch (e) {
+    logError(`generateCommunityBoardFile(${outputPath})`, e);
+    throw e;
+  }
 }

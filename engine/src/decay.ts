@@ -29,7 +29,9 @@ const DEFAULT_DECAY_CONFIG: DecayConfig = {
  * Check if decay should be applied
  */
 export function shouldApplyDecay(state: GameState, config: DecayConfig = DEFAULT_DECAY_CONFIG): boolean {
-  if (!config.enabled) return false;
+  if (!config.enabled) {
+    return false;
+  }
   
   const lastUpdate = new Date(state.last_updated).getTime();
   const now = Date.now();

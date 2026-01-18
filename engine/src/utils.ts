@@ -84,7 +84,7 @@ export function isSafeRegex(pattern: string): boolean {
  * @param maxLength Maximum input length to test against
  * @returns RegExp object or null if pattern is unsafe
  */
-export function safeRegex(pattern: string, flags?: string, maxLength: number = 1000): RegExp | null {
+export function safeRegex(pattern: string, flags?: string, _maxLength: number = 1000): RegExp | null {
   if (!isSafeRegex(pattern)) {
     console.warn(`Potentially unsafe regex pattern rejected: ${pattern}`);
     return null;

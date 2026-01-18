@@ -1,5 +1,4 @@
 import { GameState, PRMetadata } from './types.js';
-import { loadState, saveState } from './loader.js';
 import { hashAuthor } from './utils.js';
 
 /**
@@ -169,7 +168,9 @@ export function applyKarma(state: GameState, pr: PRMetadata, analysis: KarmaAnal
   }
   
   // Track recent quality
-  if (!state.karma.recent_quality) state.karma.recent_quality = [];
+  if (!state.karma.recent_quality) {
+    state.karma.recent_quality = [];
+  }
   state.karma.recent_quality.push(analysis.quality_score);
   
   // Keep only last 100
@@ -251,7 +252,9 @@ function updateTopCoders(state: GameState): void {
  */
 export function canProposeRules(state: GameState, playerHash: string): boolean {
   const player = state.players[playerHash];
-  if (!player) return false;
+  if (!player) {
+    return false;
+  }
   
   // Requirements:
   // - Top 10 coder OR
@@ -276,7 +279,9 @@ export function getVotingPower(state: GameState, playerHash: string): number {
   
   // Others have power based on reputation
   const player = state.players[playerHash];
-  if (!player) return 0;
+  if (!player) {
+    return 0;
+  }
   
   const reputation = player.reputation || 0;
   return Math.min(5, Math.floor(reputation / 20));  // Max 5 for non-top-coders
@@ -335,7 +340,9 @@ export function applyReferralKarma(
 ): string[] {
   const achievements: string[] = [];
   
-  if (!state.referrals?.chains) return achievements;
+  if (!state.referrals?.chains) {
+    return achievements;
+  }
   
   // Find who invited this player
   for (const [inviter, chain] of Object.entries(state.referrals.chains)) {
@@ -343,9 +350,15 @@ export function applyReferralKarma(
       let referralBonus = 0;
       
       // Base referral karma based on contribution amplification
-      if (amplification === 1) referralBonus = 2;
-      if (amplification === 2) referralBonus = 5;
-      if (amplification === 3) referralBonus = 15;
+      if (amplification === 1) {
+        referralBonus = 2;
+      }
+      if (amplification === 2) {
+        referralBonus = 5;
+      }
+      if (amplification === 3) {
+        referralBonus = 15;
+      }
       
       // Chain bonus: +1 karma per chain level
       const chainBonus = (chain.chain_depth - 1) * 1;
@@ -386,7 +399,9 @@ export function applyReferralKarma(
 }
 
 function propagateChainKarma(state: GameState, player: string, karma: number): void {
-  if (karma <= 0 || !state.referrals?.chains) return;
+  if (karma <= 0 || !state.referrals?.chains) {
+    return;
+  }
   
   // Find who invited this player
   for (const [inviter, chain] of Object.entries(state.referrals.chains)) {

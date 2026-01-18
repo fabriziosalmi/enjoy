@@ -14,6 +14,26 @@
 import { GameState, Player } from './types';
 
 // ═══════════════════════════════════════════════════════════════════════════
+// CONTEXT TYPES
+// ═══════════════════════════════════════════════════════════════════════════
+
+export interface AchievementContext {
+  karma?: number;
+  timestamp?: string | number;
+  merge_time_seconds?: number;
+}
+
+export interface ChallengeContext {
+  timestamp?: string | number;
+}
+
+export interface ContributionContext {
+  karma?: number;
+  timestamp?: string | number;
+  merge_time_seconds?: number;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // ACHIEVEMENTS DEFINITION
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -24,7 +44,7 @@ export interface Achievement {
   description: string;
   karma_reward: number;
   secret?: boolean;
-  check: (player: Player, state: GameState, context?: any) => boolean;
+  check: (player: Player, state: GameState, context?: AchievementContext) => boolean;
 }
 
 export const ACHIEVEMENTS: Achievement[] = [
@@ -147,7 +167,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     emoji: '✍️',
     description: 'Get 80+ karma on a single contribution',
     karma_reward: 30,
-    check: (p, s, ctx) => ctx?.karma >= 80
+    check: (_p, _s, ctx) => (ctx?.karma ?? 0) >= 80
   },
   {
     id: 'perfectionist',
@@ -243,7 +263,7 @@ export interface DailyChallenge {
   name: string;
   description: string;
   multiplier: number;
-  check: (word: string, context?: any) => boolean;
+  check: (word: string, context?: ChallengeContext) => boolean;
 }
 
 export const DAILY_CHALLENGES: DailyChallenge[] = [
@@ -318,10 +338,18 @@ export function getTodayChallenge(): DailyChallenge {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export function getStreakMultiplier(streakDays: number): number {
-  if (streakDays >= 30) return 3.0;
-  if (streakDays >= 14) return 2.5;
-  if (streakDays >= 7) return 2.0;
-  if (streakDays >= 3) return 1.5;
+  if (streakDays >= 30) {
+    return 3.0;
+  }
+  if (streakDays >= 14) {
+    return 2.5;
+  }
+  if (streakDays >= 7) {
+    return 2.0;
+  }
+  if (streakDays >= 3) {
+    return 1.5;
+  }
   return 1.0;
 }
 
@@ -460,7 +488,7 @@ export function processContribution(
   state: GameState,
   baseKarma: number,
   word: string,
-  context: any = {}
+  context: ContributionContext = {}
 ): GamificationResult {
   const result: GamificationResult = {
     base_karma: baseKarma,

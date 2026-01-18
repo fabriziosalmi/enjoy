@@ -24,8 +24,8 @@ export function parsePR(prNumber: number, prFiles?: string[]): PRMetadata {
     try {
       const txtFiles = fs.readdirSync('.').filter(f => f.endsWith('.txt') && !f.startsWith('.'));
       filesAdded = txtFiles;
-    } catch (e) {
-      // Ignore
+    } catch {
+      // Ignore - fallback to empty files
     }
   }
   
