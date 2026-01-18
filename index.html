@@ -1188,7 +1188,7 @@
             proximityGain: null,
             
             updateProximity(distance, maxDistance) {
-                if (!this.ctx || !this.isPlaying) return;
+                if (!this.ctx || !this.isPlaying) return 0;
                 
                 // Create proximity oscillator if needed
                 if (!this.proximityOsc) {
@@ -1199,7 +1199,7 @@
                     
                     const filter = this.ctx.createBiquadFilter();
                     filter.type = 'lowpass';
-                    filter.frequency.value = 1200;
+                    filter.frequency.value = 800;
                     
                     this.proximityOsc.connect(filter);
                     filter.connect(this.proximityGain);
@@ -1210,13 +1210,15 @@
                 // Calculate intensity (0 = far, 1 = on button)
                 const intensity = Math.max(0, 1 - (distance / maxDistance));
                 
-                // Frequency: 200Hz (far) → 600Hz (close)
-                const freq = 200 + intensity * 400;
+                // Frequency: 150Hz (far) → 400Hz (close) - lower range
+                const freq = 150 + intensity * 250;
                 this.proximityOsc.frequency.setTargetAtTime(freq, this.ctx.currentTime, 0.1);
                 
-                // Volume: 0 (far) → 0.15 (close)
-                const vol = intensity * intensity * 0.15; // Exponential for dramatic effect
+                // Volume: much lower - 0 (far) → 0.05 (close)
+                const vol = intensity * intensity * 0.05;
                 this.proximityGain.gain.setTargetAtTime(vol, this.ctx.currentTime, 0.1);
+                
+                return intensity;
             },
             
             // Flash/thunder sound
@@ -1444,7 +1446,7 @@
         }, 8000);
         
         // ═══════════════════════════════════════════════════════════════
-        // PROXIMITY AUDIO - Sound gets higher as you approach CTA
+        // PROXIMITY AUDIO + VISUAL - Sound and glow as you approach CTA
         // ═══════════════════════════════════════════════════════════════
         
         const maxProximityDistance = 300; // pixels
@@ -1458,12 +1460,31 @@
             const dy = e.clientY - centerY;
             const distance = Math.sqrt(dx * dx + dy * dy);
             
-            AudioSystem.updateProximity(distance, maxProximityDistance);
+            // Get intensity from audio (also updates sound)
+            const intensity = AudioSystem.updateProximity(distance, maxProximityDistance) || 
+                              Math.max(0, 1 - (distance / maxProximityDistance));
+            
+            // Sync radial glow with proximity
+            if (intensity > 0) {
+                const glowSize = 40 + intensity * 60; // 40px to 100px
+                const glowOpacity = intensity * 0.4; // 0 to 0.4
+                const hue = 240 + intensity * 40; // blue to purple
+                ctaLink.style.boxShadow = `
+                    0 0 ${glowSize}px rgba(${Math.round(99 + intensity * 40)}, ${Math.round(102 - intensity * 20)}, 241, ${glowOpacity}),
+                    0 0 ${glowSize * 0.5}px rgba(139, 92, 246, ${glowOpacity * 0.5}) inset
+                `;
+                ctaLink.style.borderColor = `hsla(${hue}, 70%, 60%, ${0.3 + intensity * 0.5})`;
+            } else {
+                ctaLink.style.boxShadow = '';
+                ctaLink.style.borderColor = '';
+            }
         });
         
         // Reset proximity when mouse leaves window
         document.addEventListener('mouseleave', () => {
             AudioSystem.updateProximity(maxProximityDistance * 2, maxProximityDistance);
+            ctaLink.style.boxShadow = '';
+            ctaLink.style.borderColor = '';
         });
         
         // ═══════════════════════════════════════════════════════════════
