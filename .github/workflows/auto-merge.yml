@@ -210,11 +210,22 @@ jobs:
             const fs = require('fs');
             let levelUnlocked = false;
             let karmaInfo = { score: 0, amplification: 1 };
+            let state = {};
             
             try {
               levelUnlocked = fs.existsSync('level-unlocked.txt');
               karmaInfo = JSON.parse(fs.readFileSync('engine/karma-applied.json', 'utf8'));
+              state = JSON.parse(fs.readFileSync('state.json', 'utf8'));
             } catch(e) {}
+            
+            const author = context.payload.pull_request.user.login;
+            const player = state.players?.[author] || { karma: 0, prs: 0 };
+            const currentLevel = state.levels?.current || 1;
+            const nextUnlock = state.levels?.next_unlock;
+            const totalPlayers = state.meta?.total_players || 1;
+            const rank = Object.entries(state.players || {})
+              .sort((a, b) => b[1].karma - a[1].karma)
+              .findIndex(([name]) => name === author) + 1;
             
             await github.rest.pulls.update({
               owner: context.repo.owner,
@@ -223,19 +234,49 @@ jobs:
               state: 'closed'
             });
             
-            let comment = `## 🎉 Merged!\n\n`;
-            comment += `**Karma:** +${karmaInfo.score}\n`;
+            let comment = `## 🎉 Contribution Merged!\n\n`;
             
+            comment += `### 💎 Karma Earned\n`;
+            comment += `| This PR | Your Total |\n`;
+            comment += `|---------|------------|\n`;
+            comment += `| **+${karmaInfo.score}** `;
             if (karmaInfo.amplification > 1) {
-              comment += `**Amplification:** x${karmaInfo.amplification} 🌟\n`;
+              comment += `(×${karmaInfo.amplification} 🌟)`;
             }
+            comment += ` | **${player.karma}** karma |\n\n`;
+            
+            comment += `### 📊 Your Stats\n`;
+            comment += `| Stat | Value |\n`;
+            comment += `|------|-------|\n`;
+            comment += `| 🏆 Rank | #${rank} of ${totalPlayers} players |\n`;
+            comment += `| 📝 Total PRs | ${player.prs} |\n`;
+            comment += `| 🔥 Streak | ${player.streak || 0} days |\n\n`;
             
             if (levelUnlocked) {
-              comment += `\n## 🚀 **LEVEL UP!**\n`;
-              comment += `A new level has been unlocked!\n`;
+              comment += `## 🚀 LEVEL UP! Level ${currentLevel} unlocked!\n\n`;
             }
             
-            comment += `\n---\n_Enjoy and contribute!_`;
+            if (nextUnlock) {
+              const karmaProgress = Math.min(100, Math.round((nextUnlock.progress.score / nextUnlock.requires_score) * 100));
+              const prsProgress = Math.min(100, Math.round((nextUnlock.progress.prs / nextUnlock.requires_prs) * 100));
+              const bar = (pct) => '█'.repeat(Math.round(pct/5)) + '░'.repeat(20 - Math.round(pct/5));
+              
+              comment += `### ⏫ Progress to Level ${nextUnlock.level_id}\n`;
+              comment += `\`\`\`\n`;
+              comment += `Karma: [${bar(karmaProgress)}] ${nextUnlock.progress.score}/${nextUnlock.requires_score}\n`;
+              comment += `PRs:   [${bar(prsProgress)}] ${nextUnlock.progress.prs}/${nextUnlock.requires_prs}\n`;
+              comment += `\`\`\`\n\n`;
+            }
+            
+            if (totalPlayers <= 50) {
+              comment += `🏅 **FOUNDER #${rank}** - This badge is permanent!\n\n`;
+            }
+            
+            comment += `### 🎯 Next Steps\n`;
+            comment += `- ⭐ [Star the repo](https://github.com/${context.repo.owner}/${context.repo.repo})\n`;
+            comment += `- 👥 Invite friends: add \`Referred by @${author}\` in their PR\n`;
+            comment += `- 🔄 Contribute again for streak bonus!\n\n`;
+            comment += `---\n*Thank you for playing!* ✨`;
             
             await github.rest.issues.createComment({
               owner: context.repo.owner,

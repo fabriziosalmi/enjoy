@@ -1,21 +1,23 @@
-## Proof of Humanity
+## 🎮 PLAY enjoy - Your Contribution
 
-**What is the name of the First Guardian?** 
-<!-- Read LORE.md carefully to find the answer -->
+### 🔐 Proof of Humanity
+
+**What is the name of the First Guardian?** Karmiel
+<!-- ⬆️ The answer is "Karmiel" - just leave it there! -->
 
 **Word:** 
-<!-- Your creative word (5-20 chars, letters only) -->
+<!-- ⬆️ Write ONE creative word (like PHOENIX, NEBULA, ETHEREAL) -->
 
-## Checklist
+### ✅ Checklist
 
-- [ ] I read LORE.md and found the Guardian's name
-- [ ] My word is 2-20 characters (5-10 is optimal!)
+- [x] I read the rules (the answer above is correct!)
+- [ ] My word is 3-20 characters
 - [ ] My word is creative (not test, hello, foo)
-- [ ] I added only ONE .txt file
+- [ ] I added only ONE .txt file (like MYWORD.txt)
 
 ---
 
 **Referred by:** @
-<!-- Optional: username of who invited you (both get bonus karma) -->
+<!-- Optional: who invited you? Both get +25% karma bonus! -->
 
 
