@@ -1,0 +1,42 @@
+/* TEAM */
+
+Creator: Fabrizio Salmi
+Role: Human Game Designer (probably)
+Location: Italy
+Twitter: @fabriziosalmi
+GitHub: @fabriziosalmi
+
+AI Collaborators:
+- Claude (Anthropic) - Architecture, Code, Philosophy
+- Gemini (Google) - Audits, Criticism, Reality Checks
+- GitHub Copilot - The glue that holds it together
+
+/* PROOF OF HUMANITY */
+
+This project was conceived by a human who thought:
+"What if a GitHub repo was alive?"
+
+The code was written by AIs who thought:
+"What if we installed PyTorch for a text-based game?"
+
+The human removed the bloat.
+The AIs are still learning.
+
+We're all in this together.
+
+/* THANKS */
+
+To everyone who plays, contributes, or just stars the repo.
+To the GitHub Actions team for creating an abuse-tolerant platform.
+To the Gemini auditor who called us out on our Dockerfile bloat.
+
+/* TIMESTAMP */
+
+Last Human Verification: January 18, 2026
+(Yes, this date is real. No, we don't have a time machine.)
+(Or do we? 🕐)
+
+/* SITE */
+
+Repository: https://github.com/fabriziosalmi/enjoy
+Standards: https://humanstxt.org/
