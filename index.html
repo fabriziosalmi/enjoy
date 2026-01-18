@@ -952,18 +952,18 @@
             draw() {
                 const hue = this.currentHue || this.hue;
                 
-                // Star glow - softer, more diffuse
+                // Star glow - very subtle, almost invisible halo
                 const gradient = ctx.createRadialGradient(
                     this.x, this.y, 0,
-                    this.x, this.y, this.size * 4
+                    this.x, this.y, this.size * 3
                 );
-                gradient.addColorStop(0, `hsla(${hue}, 100%, 95%, ${this.brightness})`);
-                gradient.addColorStop(0.15, `hsla(${hue}, 90%, 85%, ${this.brightness * 0.7})`);
-                gradient.addColorStop(0.4, `hsla(${hue}, 80%, 70%, ${this.brightness * 0.3})`);
-                gradient.addColorStop(1, `hsla(${hue}, 60%, 50%, 0)`);
+                gradient.addColorStop(0, `hsla(${hue}, 60%, 95%, ${this.brightness * 0.5})`);
+                gradient.addColorStop(0.2, `hsla(${hue}, 40%, 90%, ${this.brightness * 0.15})`);
+                gradient.addColorStop(0.5, `hsla(${hue}, 30%, 80%, ${this.brightness * 0.05})`);
+                gradient.addColorStop(1, `hsla(${hue}, 20%, 70%, 0)`);
                 
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
                 ctx.fillStyle = gradient;
                 ctx.fill();
                 
