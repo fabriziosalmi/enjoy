@@ -236,12 +236,13 @@
         }
         
         /* ═══════════════════════════════════════════════════════════════
-           CTA - Big, no hover movement
+           CTA - Organic beckoning button
            ═══════════════════════════════════════════════════════════════ */
         
         .cta {
             flex-shrink: 0;
             margin: 1rem 0;
+            position: relative;
         }
         
         .cta a {
@@ -254,12 +255,58 @@
             text-transform: uppercase;
             border: 1px solid var(--border);
             border-radius: 100px;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            filter: blur(var(--cta-blur, 0px));
+            transform: scale(var(--cta-scale, 1));
         }
         
         .cta a:hover {
             border-color: var(--accent);
             box-shadow: 0 0 40px var(--glow);
+        }
+        
+        /* Beckoning state */
+        .cta.beckoning a {
+            animation: beckon 2s ease-in-out;
+        }
+        
+        @keyframes beckon {
+            0% {
+                filter: blur(0px);
+                transform: scale(1);
+                border-color: var(--border);
+                box-shadow: 0 0 0 rgba(99, 102, 241, 0);
+            }
+            15% {
+                filter: blur(1px);
+                transform: scale(1.02);
+            }
+            30% {
+                filter: blur(0px);
+                transform: scale(1.05);
+                border-color: rgba(139, 92, 246, 0.6);
+                box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+            }
+            45% {
+                filter: blur(0.5px);
+                transform: scale(1.03);
+            }
+            60% {
+                filter: blur(0px);
+                transform: scale(1.04);
+                border-color: rgba(167, 139, 250, 0.5);
+                box-shadow: 0 0 60px rgba(139, 92, 246, 0.25);
+            }
+            80% {
+                transform: scale(1.02);
+            }
+            100% {
+                filter: blur(0px);
+                transform: scale(1);
+                border-color: var(--border);
+                box-shadow: 0 0 0 rgba(99, 102, 241, 0);
+            }
         }
         
         /* ═══════════════════════════════════════════════════════════════
@@ -903,6 +950,49 @@
                     this.fadeIn();
                     return true;
                 }
+            },
+            
+            // Beckoning sound - gentle rising tone
+            playBeckon() {
+                if (!this.ctx || !this.isPlaying) return;
+                
+                const ctx = this.ctx;
+                const now = ctx.currentTime;
+                
+                // Soft rising tone
+                const osc = ctx.createOscillator();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(180, now);
+                osc.frequency.exponentialRampToValueAtTime(280, now + 1.5);
+                
+                // Second harmonic
+                const osc2 = ctx.createOscillator();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(270, now);
+                osc2.frequency.exponentialRampToValueAtTime(420, now + 1.5);
+                
+                // Envelope
+                const gain = ctx.createGain();
+                gain.gain.setValueAtTime(0, now);
+                gain.gain.linearRampToValueAtTime(0.08, now + 0.3);
+                gain.gain.linearRampToValueAtTime(0.06, now + 1);
+                gain.gain.linearRampToValueAtTime(0, now + 2);
+                
+                // Filter for warmth
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 800;
+                filter.Q.value = 0.5;
+                
+                osc.connect(filter);
+                osc2.connect(filter);
+                filter.connect(gain);
+                gain.connect(this.masterGain);
+                
+                osc.start(now);
+                osc2.start(now);
+                osc.stop(now + 2);
+                osc2.stop(now + 2);
             }
         };
         
@@ -992,6 +1082,75 @@
         }
         
         scheduleNextPulse();
+        
+        // ═══════════════════════════════════════════════════════════════
+        // CTA BECKONING SYSTEM
+        // ═══════════════════════════════════════════════════════════════
+        
+        const ctaElement = document.querySelector('.cta');
+        const ctaLink = ctaElement.querySelector('a');
+        let isBeckoning = false;
+        let beckonTarget = null;
+        
+        function getCTACenter() {
+            const rect = ctaLink.getBoundingClientRect();
+            const canvasRect = canvas.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2 - canvasRect.left,
+                y: rect.top + rect.height / 2 - canvasRect.top
+            };
+        }
+        
+        function triggerBeckon() {
+            if (isBeckoning) return;
+            isBeckoning = true;
+            
+            // Visual: CSS animation
+            ctaElement.classList.add('beckoning');
+            
+            // Audio: gentle rising tone
+            AudioSystem.playBeckon();
+            
+            // Particles: attract toward CTA for 2 seconds
+            beckonTarget = getCTACenter();
+            
+            // Reset after animation
+            setTimeout(() => {
+                ctaElement.classList.remove('beckoning');
+                isBeckoning = false;
+                beckonTarget = null;
+            }, 2000);
+        }
+        
+        // Enhanced particle update with beckoning attraction
+        const originalParticleUpdate = Particle.prototype.update;
+        Particle.prototype.update = function(time) {
+            originalParticleUpdate.call(this, time);
+            
+            // Subtle pull toward CTA during beckon
+            if (beckonTarget) {
+                const dx = beckonTarget.x - this.x;
+                const dy = beckonTarget.y - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const strength = 0.003 * (1 - Math.min(dist / 400, 1));
+                this.x += dx * strength;
+                this.y += dy * strength;
+            }
+        };
+        
+        // Beckon every 12-20 seconds
+        function scheduleNextBeckon() {
+            const delay = 12000 + Math.random() * 8000;
+            setTimeout(() => {
+                triggerBeckon();
+                scheduleNextBeckon();
+            }, delay);
+        }
+        
+        // Start beckoning after 8 seconds
+        setTimeout(() => {
+            scheduleNextBeckon();
+        }, 8000);
     </script>
 </body>
 </html>
