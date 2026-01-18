@@ -13,6 +13,9 @@ concurrency:
 
 jobs:
   validate:
+    # ⚠️ SECURITY: NEVER use self-hosted runner here!
+    # This workflow processes untrusted PR content from forks.
+    # A malicious PR could execute arbitrary code on your runner.
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   weekly-report:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -14,7 +14,7 @@ on:
 
 jobs:
   measure-entropy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       

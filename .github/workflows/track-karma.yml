@@ -22,9 +22,13 @@ permissions:
   discussions: read
   issues: read
 
+concurrency:
+  group: enjoy-game-state
+  cancel-in-progress: false
+
 jobs:
   track-karma:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -135,5 +139,12 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "Karma Bot"
           git add state.json
-          git diff --staged --quiet || git commit -m "🎯 +${{ steps.karma.outputs.karma }} karma to @${{ steps.karma.outputs.actor }} (${{ steps.karma.outputs.event }}) [skip ci]"
-          git push || echo "Nothing to push"
+          if git diff --staged --quiet; then
+            echo "::notice::No changes to commit"
+          else
+            git commit -m "🎯 +${{ steps.karma.outputs.karma }} karma to @${{ steps.karma.outputs.actor }} (${{ steps.karma.outputs.event }}) [skip ci]"
+            if ! git push; then
+              echo "::warning::Push failed - may require manual sync or retry"
+              exit 1
+            fi
+          fi

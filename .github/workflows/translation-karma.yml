@@ -23,6 +23,10 @@ permissions:
   pull-requests: write
   issues: write
 
+concurrency:
+  group: enjoy-game-state
+  cancel-in-progress: false
+
 jobs:
   award-translation-karma:
     if: github.event.pull_request.merged == true
@@ -139,13 +143,17 @@ jobs:
             '.[$author] = ((.[$author] // {}) + {karma: $karma, translations: $trans, last_translation: $time})')
           
           echo "$KARMA_DATA" | jq '.' > karma.json
-          
+
           # Commit
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add karma.json
-          git commit -m "🌍 +$KARMA karma to @$AUTHOR for translation [skip ci]" || echo "No changes"
-          git push || echo "Push failed, will retry"
+          if ! git commit -m "🌍 +$KARMA karma to @$AUTHOR for translation [skip ci]"; then
+            echo "::notice::No changes to commit"
+          elif ! git push; then
+            echo "::warning::Push failed - may require manual sync or retry"
+            exit 1
+          fi
       
       - name: 🎉 Celebration Comment
         if: steps.analyze.outputs.translation_count > 0

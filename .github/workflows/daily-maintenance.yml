@@ -5,9 +5,13 @@ on:
     - cron: '0 0 * * *'  # Every day at midnight UTC
   workflow_dispatch:  # Manual trigger
 
+concurrency:
+  group: enjoy-game-state
+  cancel-in-progress: false
+
 jobs:
   maintenance:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       
@@ -29,7 +33,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+          cache: 'npm'
+          cache-dependency-path: engine/package-lock.json
+
       - name: Install dependencies
         run: |
           cd engine
@@ -169,5 +175,9 @@ jobs:
       - name: Commit changes
         run: |
           git add state.json README.md archives/ backups/ 2>/dev/null || true
-          git commit -m "🔧 Daily maintenance - $(date +%Y-%m-%d) [skip ci]" || echo "No changes"
-          git push || echo "Nothing to push"
+          if ! git commit -m "🔧 Daily maintenance - $(date +%Y-%m-%d) [skip ci]"; then
+            echo "::notice::No changes to commit"
+          elif ! git push; then
+            echo "::warning::Push failed - may require manual sync or retry"
+            exit 1
+          fi

@@ -2,6 +2,7 @@ import Filter from 'bad-words';
 import { Rule, PRMetadata, ValidationResult } from './types.js';
 import { loadState } from './loader.js';
 import { getFileContent } from './parser.js';
+import { hashAuthor, safeRegex, safeRegexTest } from './utils.js';
 
 const filter = new Filter();
 
@@ -75,8 +76,11 @@ function validateContent(rule: Rule, pr: PRMetadata): { valid: boolean; reason?:
     }
     
     if (condition.pattern) {
-      const regex = new RegExp(condition.pattern);
-      if (!regex.test(content)) {
+      const regex = safeRegex(condition.pattern);
+      if (!regex) {
+        return { valid: false, reason: `Invalid or unsafe pattern: ${condition.pattern}` };
+      }
+      if (!safeRegexTest(regex, content)) {
         return { valid: false, reason: `Content must match pattern: ${condition.pattern}` };
       }
     }
@@ -134,18 +138,6 @@ function calculatePoints(rule: Rule, pr: PRMetadata): number {
   return points;
 }
 
-/**
- * Hash author name for privacy
- */
-function hashAuthor(author: string): string {
-  // Simple hash - in production use crypto
-  let hash = 0;
-  for (let i = 0; i < author.length; i++) {
-    hash = ((hash << 5) - hash) + author.charCodeAt(i);
-    hash = hash & hash;
-  }
-  return Math.abs(hash).toString(16);
-}
 
 /**
  * Main validation function

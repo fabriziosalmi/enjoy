@@ -1,5 +1,6 @@
 import { GameState } from './types.js';
 import { loadState, saveState } from './loader.js';
+import { sanitizePath, logError } from './utils.js';
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
 
@@ -11,12 +12,31 @@ import * as fs from 'fs';
  * Approved rules get added to the game
  */
 
+export interface RuleContent {
+  id: string;
+  name: string;
+  description: string;
+  version?: number;
+  enabled?: boolean;
+  priority?: number;
+  trigger?: {
+    type: string;
+    conditions: Array<Record<string, unknown>>;
+  };
+  validate?: Array<Record<string, unknown>>;
+  effect?: Record<string, unknown>;
+  points?: {
+    base: number;
+    bonuses?: Array<{ condition: string; points: number }>;
+  };
+}
+
 export interface RuleProposal {
   id: string;
   proposed_by: string;  // player hash
   proposed_at: string;
   rule_file: string;
-  rule_content: any;
+  rule_content: RuleContent;
   votes_for: Record<string, number>;  // playerHash -> voting power
   votes_against: Record<string, number>;
   total_for: number;
@@ -29,9 +49,9 @@ export interface RuleProposal {
  * Propose a new rule
  */
 export function proposeRule(
-  state: GameState, 
-  playerHash: string, 
-  ruleContent: any
+  state: GameState,
+  playerHash: string,
+  ruleContent: RuleContent
 ): { success: boolean; reason?: string; proposalId?: string } {
   
   // Check if player can propose
@@ -89,9 +109,14 @@ export function proposeRule(
   state.rules.proposed.push(proposal);
   
   // Save proposal as YAML in proposals/ directory
-  const proposalPath = `proposals/${proposalId}.yaml`;
-  fs.mkdirSync('proposals', { recursive: true });
-  fs.writeFileSync(proposalPath, yaml.dump(proposal));
+  try {
+    const proposalPath = sanitizePath(`proposals/${proposalId}.yaml`, 'proposals');
+    fs.mkdirSync('proposals', { recursive: true });
+    fs.writeFileSync(proposalPath, yaml.dump(proposal));
+  } catch (e) {
+    logError('proposeRule: Failed to save proposal file', e);
+    return { success: false, reason: 'Failed to save proposal file' };
+  }
   
   return { success: true, proposalId };
 }
@@ -179,12 +204,16 @@ export function processVotingResults(state: GameState): void {
       // Approval threshold: 66% for, minimum 20 total voting power
       if (approval_percentage >= 66 && totalVotes >= 20) {
         proposal.status = 'approved';
-        
-        // Write rule file
-        fs.writeFileSync(
-          proposal.rule_file,
-          yaml.dump(proposal.rule_content)
-        );
+
+        // Write rule file with path sanitization
+        try {
+          const safeRulePath = sanitizePath(proposal.rule_file, 'rules');
+          fs.mkdirSync('rules', { recursive: true });
+          fs.writeFileSync(safeRulePath, yaml.dump(proposal.rule_content));
+        } catch (e) {
+          logError(`processVotingResults: Failed to write rule file ${proposal.rule_file}`, e);
+          continue;
+        }
         
         // Add to active rules
         state.rules.active.push(proposal.rule_content.id);
@@ -231,7 +260,7 @@ export function getPlayerVote(proposal: RuleProposal, playerHash: string): 'for'
 /**
  * Create example rule proposal (for testing)
  */
-export function createExampleProposal(): any {
+export function createExampleProposal(): RuleContent {
   return {
     id: "042",
     name: "Emoji Explosion",

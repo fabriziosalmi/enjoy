@@ -27,7 +27,7 @@ on:
 
 jobs:
   generate-art:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       
@@ -361,8 +361,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add art/
-          git diff --staged --quiet || git commit -m "🎨 Generated ${{ steps.seed.outputs.art_type }} art (seed: ${{ steps.seed.outputs.seed }}) [skip ci]"
-          git push || true
+          if git diff --staged --quiet; then
+            echo "::notice::No changes to commit"
+          else
+            git commit -m "🎨 Generated ${{ steps.seed.outputs.art_type }} art (seed: ${{ steps.seed.outputs.seed }}) [skip ci]"
+            if ! git push; then
+              echo "::warning::Push failed - may require manual sync or retry"
+              exit 1
+            fi
+          fi
           
       - name: 📢 Summary
         run: |

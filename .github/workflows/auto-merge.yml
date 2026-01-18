@@ -15,6 +15,9 @@ concurrency:
 jobs:
   merge:
     if: contains(github.event.pull_request.labels.*.name, 'auto-merge')
+    # ⚠️ SECURITY: NEVER use self-hosted runner here!
+    # This workflow processes untrusted PR content from forks.
+    # A malicious PR could execute arbitrary code on your runner.
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -123,7 +126,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+          cache: 'npm'
+          cache-dependency-path: engine/package-lock.json
+
       - name: Configure git
         run: |
           git config user.name "enjoy-bot"

@@ -12,7 +12,7 @@ on:
 
 jobs:
   check-milestones:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       
@@ -88,7 +88,7 @@ jobs:
   celebrate-level-up:
     needs: check-milestones
     if: needs.check-milestones.outputs.level_up == 'true'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       
@@ -138,13 +138,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add celebrations/
-          git commit -m "🎮 LEVEL UP! We reached Level $(cat state.json | jq '.levels.current')! 🎉 [skip ci]" || true
-          git push || true
+          if ! git commit -m "🎮 LEVEL UP! We reached Level $(cat state.json | jq '.levels.current')! 🎉 [skip ci]"; then
+            echo "::notice::No changes to commit"
+          elif ! git push; then
+            echo "::warning::Push failed - may require manual sync or retry"
+            exit 1
+          fi
           
   celebrate-achievement:
     needs: check-milestones
     if: needs.check-milestones.outputs.new_achievement == 'true'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       
@@ -187,13 +191,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add celebrations/
-          git commit -m "🏆 Achievement Unlocked: $(cat state.json | jq -r '.achievements.unlocked_global[-1]')! 🎉 [skip ci]" || true
-          git push || true
+          if ! git commit -m "🏆 Achievement Unlocked: $(cat state.json | jq -r '.achievements.unlocked_global[-1]')! 🎉 [skip ci]"; then
+            echo "::notice::No changes to commit"
+          elif ! git push; then
+            echo "::warning::Push failed - may require manual sync or retry"
+            exit 1
+          fi
 
   celebrate-players:
     needs: check-milestones
     if: needs.check-milestones.outputs.player_milestone != 'false'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       
@@ -234,12 +242,16 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add celebrations/
           MILESTONE="${{ needs.check-milestones.outputs.player_milestone }}"
-          git commit -m "👥 MILESTONE! We hit ${MILESTONE} players! 🎉 [skip ci]" || true
-          git push || true
+          if ! git commit -m "👥 MILESTONE! We hit ${MILESTONE} players! 🎉 [skip ci]"; then
+            echo "::notice::No changes to commit"
+          elif ! git push; then
+            echo "::warning::Push failed - may require manual sync or retry"
+            exit 1
+          fi
 
   generate-hearts:
     needs: check-milestones
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       
@@ -274,5 +286,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add celebrations/hearts/
-          git commit -m "💜 Update karma hearts [skip ci]" || true
-          git push || true
+          if ! git commit -m "💜 Update karma hearts [skip ci]"; then
+            echo "::notice::No changes to commit"
+          elif ! git push; then
+            echo "::warning::Push failed - may require manual sync or retry"
+            exit 1
+          fi

@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import { PRMetadata } from './types.js';
+import { sanitizePath, logError } from './utils.js';
 
 /**
  * Parse PR metadata from GitHub Actions environment
@@ -53,8 +54,11 @@ export function parsePR(prNumber: number, prFiles?: string[]): PRMetadata {
  */
 export function getFileContent(filepath: string): string {
   try {
-    return fs.readFileSync(filepath, 'utf8').trim();
+    // Sanitize path to prevent traversal attacks
+    const safePath = sanitizePath(filepath);
+    return fs.readFileSync(safePath, 'utf8').trim();
   } catch (e) {
+    logError(`getFileContent(${filepath})`, e);
     return '';
   }
 }

@@ -7,7 +7,9 @@
     "build": "tsc",
     "validate": "node dist/index.js validate",
     "apply-effect": "node dist/index.js apply",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
   },
   "dependencies": {
     "bad-words": "^3.0.4",
@@ -18,7 +20,10 @@
     "@types/bad-words": "^3.0.3",
     "@types/js-yaml": "^4.0.9",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^20.10.0",
+    "@types/node": "^22.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
     "typescript": "^5.3.3",
     "vitest": "^4.0.17"
   }

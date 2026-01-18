@@ -1,5 +1,6 @@
 import { GameState, PRMetadata } from './types.js';
 import { loadState, saveState } from './loader.js';
+import { hashAuthor } from './utils.js';
 
 /**
  * KARMA SYSTEM
@@ -244,17 +245,6 @@ function updateTopCoders(state: GameState): void {
   });
 }
 
-/**
- * Hash author name
- */
-function hashAuthor(author: string): string {
-  let hash = 0;
-  for (let i = 0; i < author.length; i++) {
-    hash = ((hash << 5) - hash) + author.charCodeAt(i);
-    hash = hash & hash;
-  }
-  return Math.abs(hash).toString(16);
-}
 
 /**
  * Check if player can propose rules

@@ -14,7 +14,7 @@ on:
 
 jobs:
   generate-metrics:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     permissions:
       contents: write
       

@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   update-bounty-board:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, enjoy-trusted]
     steps:
       - uses: actions/checkout@v4
       
