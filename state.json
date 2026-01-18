@@ -66,7 +66,9 @@
       "karma": 20,
       "prs": 2,
       "streak": 1,
-      "achievements": ["first_blood"],
+      "achievements": [
+        "first_blood"
+      ],
       "high_quality_count": 0,
       "referrals": 0,
       "bugs_reported": 0,
@@ -89,9 +91,13 @@
     }
   },
   "achievements": {
-    "unlocked_global": ["first_blood"],
+    "unlocked_global": [
+      "first_blood"
+    ],
     "players": {
-      "fabriziosalmi": ["first_blood"]
+      "fabriziosalmi": [
+        "first_blood"
+      ]
     }
   },
   "bounties": {
@@ -143,35 +149,101 @@
     "current_period": "night",
     "last_update": null,
     "stats": {
-      "dawn": { "total_prs": 0, "total_karma": 0 },
-      "morning": { "total_prs": 0, "total_karma": 0 },
-      "noon": { "total_prs": 0, "total_karma": 0 },
-      "afternoon": { "total_prs": 0, "total_karma": 0 },
-      "sunset": { "total_prs": 0, "total_karma": 0 },
-      "night": { "total_prs": 0, "total_karma": 0 }
+      "dawn": {
+        "total_prs": 0,
+        "total_karma": 0
+      },
+      "morning": {
+        "total_prs": 0,
+        "total_karma": 0
+      },
+      "noon": {
+        "total_prs": 0,
+        "total_karma": 0
+      },
+      "afternoon": {
+        "total_prs": 0,
+        "total_karma": 0
+      },
+      "sunset": {
+        "total_prs": 0,
+        "total_karma": 0
+      },
+      "night": {
+        "total_prs": 0,
+        "total_karma": 0
+      }
     },
     "rare_events_triggered": [],
     "most_active_period": null
   },
   "engagement": {
-    "karma_log": [],
-    "by_user": {},
+    "karma_log": [
+      {
+        "actor": "fabriziosalmi",
+        "event": "issues.opened",
+        "karma": 5,
+        "timestamp": "2026-01-18T14:09:58.392Z"
+      }
+    ],
+    "by_user": {
+      "fabriziosalmi": {
+        "total": 5,
+        "history": [
+          {
+            "event": "issues.opened",
+            "karma": 5,
+            "timestamp": "2026-01-18T14:09:58.392Z"
+          }
+        ]
+      }
+    },
     "milestones": {
       "stars": {
-        "10": { "reached": false, "bonus": 5 },
-        "25": { "reached": false, "bonus": 10 },
-        "50": { "reached": false, "bonus": 20 },
-        "100": { "reached": false, "bonus": 50 }
+        "10": {
+          "reached": false,
+          "bonus": 5
+        },
+        "25": {
+          "reached": false,
+          "bonus": 10
+        },
+        "50": {
+          "reached": false,
+          "bonus": 20
+        },
+        "100": {
+          "reached": false,
+          "bonus": 50
+        }
       },
       "forks": {
-        "5": { "reached": false, "bonus": 10 },
-        "10": { "reached": false, "bonus": 20 },
-        "25": { "reached": false, "bonus": 50 }
+        "5": {
+          "reached": false,
+          "bonus": 10
+        },
+        "10": {
+          "reached": false,
+          "bonus": 20
+        },
+        "25": {
+          "reached": false,
+          "bonus": 50
+        }
       },
       "contributors": {
-        "10": { "reached": false, "bonus": 25 },
-        "25": { "reached": false, "bonus": 50 },
-        "50": { "reached": false, "bonus": 100 }
+        "10": {
+          "reached": false,
+          "bonus": 25
+        },
+        "25": {
+          "reached": false,
+          "bonus": 50
+        },
+        "50": {
+          "reached": false,
+          "bonus": 100
+        }
       }
     },
     "weekly_stats": {
