@@ -6,6 +6,23 @@
 const REPO_OWNER = 'fabriziosalmi';
 const REPO_NAME = 'enjoy';
 const STATE_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/state.json`;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PROJECT INFO
+// ═══════════════════════════════════════════════════════════════════════════
+export const PROJECT_INFO = {
+  owner: {
+    username: 'fabriziosalmi',
+    role: 'Founder & Owner',
+    github: 'https://github.com/fabriziosalmi'
+  },
+  repo: {
+    name: REPO_NAME,
+    full_name: `${REPO_OWNER}/${REPO_NAME}`,
+    url: `https://github.com/${REPO_OWNER}/${REPO_NAME}`,
+    description: 'A gamified GitHub repository where contributions earn karma and unlock levels'
+  }
+};
 const KARMA_BADGE_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/badges/karma.json`;
 
 // Cache TTL: 30 seconds

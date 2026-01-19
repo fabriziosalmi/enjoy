@@ -2,12 +2,16 @@
  * Project status tool - comprehensive health check
  */
 
-import { getState, getKarmaBadge } from '../state.js';
+import { getState, getKarmaBadge, PROJECT_INFO } from '../state.js';
 import { getRepoStats, listWorkflowRuns, listPRs } from '../github.js';
 
 export interface ProjectStatus {
   health: 'healthy' | 'warning' | 'error';
   summary: string;
+  project: {
+    owner: { username: string; role: string; github: string };
+    repo: { name: string; full_name: string; url: string; description: string };
+  };
   game: {
     karma: number;
     level: number;
@@ -72,6 +76,7 @@ export async function getProjectStatus(): Promise<ProjectStatus> {
   return {
     health,
     summary,
+    project: PROJECT_INFO,
     game: {
       karma: state.score.total,
       level: state.levels.current,

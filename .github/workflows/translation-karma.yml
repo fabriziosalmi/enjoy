@@ -34,7 +34,7 @@ jobs:
     # SECURITY NOTE: Using self-hosted + PAT because we need to push to main
     # This is safe because it only runs AFTER merge, not on untrusted PR code
     # ═══════════════════════════════════════════════════════════════════════════════
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout

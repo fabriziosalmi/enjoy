@@ -1,6 +1,8 @@
 {
-  "enjoy": {
-    "command": "node",
-    "args": ["mcp/enjoy/dist/index.js"]
+  "mcpServers": {
+    "enjoy": {
+      "command": "node",
+      "args": ["mcp/enjoy/dist/index.js"]
+    }
   }
 }
