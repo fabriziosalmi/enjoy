@@ -490,8 +490,12 @@ jobs:
             
             const addedFiles = (process.env.PR_FILES_ADDED || '').split(',').filter(f => f);
             let content = '';
-            if (addedFiles.length > 0 && fs.existsSync(addedFiles[0])) {
-              content = fs.readFileSync(addedFiles[0], 'utf8').trim();
+            // Prepend ../ since we're running from engine/ subdirectory
+            if (addedFiles.length > 0) {
+              const filePath = '../' + addedFiles[0];
+              if (fs.existsSync(filePath)) {
+                content = fs.readFileSync(filePath, 'utf8').trim();
+              }
             }
             
             const pr = {
