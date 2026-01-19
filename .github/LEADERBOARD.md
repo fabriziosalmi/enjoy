@@ -8,17 +8,15 @@
 |------|--------|-------|--------|--------------|
 | 🥇 | fabriziosalmi | 132 | 1 | 2 |
 | 🥈 | JoKneeMo | 20 | 1 | 1 |
-| 🥉 | *Your name here!* | - | - | - |
 
 ## 🏛️ Founders Hall of Fame
 
 *First 50 players to join receive the eternal FOUNDER badge*
 
-| # | Founder | Joined | Word |
-|---|---------|--------|------|
-| 1 | 🏆 fabriziosalmi | 2026-01-18 | SERENDIPITY |
-| 2 | 🎮 JoKneeMo | 2026-01-19 | HETERODOX |
-| 3 | *Your name here* | ? | ? |
+| # | Founder | Joined |
+|---|---------|--------|
+| 1 | 🏆 fabriziosalmi | 2026-01-18 |
+| 2 | 🎮 JoKneeMo | 2026-01-19 |
 
 ## Achievement Hunters
 
@@ -31,8 +29,8 @@
 
 | Player | Current Streak |
 |--------|----------------|
-| fabriziosalmi | 1 day |
-| JoKneeMo | 1 day |
+| JoKneeMo | 1 day(s) |
+| fabriziosalmi | 1 day(s) |
 
 ---
 
@@ -41,10 +39,8 @@
 - **Total Players**: 2
 - **Total Karma**: 152
 - **Current Level**: 2
-- **Achievements Unlocked**: 3
+- **Total PRs**: 4
 
 ---
 
-*Updated automatically every 30 minutes*
-
-**Want to be on this board?** [Start here](https://github.com/fabriziosalmi/enjoy/issues/7)
+*Last updated: 2026-01-19 02:05 UTC*
