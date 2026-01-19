@@ -4,3 +4,6 @@ dist/
 .DS_Store
 .env
 validation-result.json
+engine/proposals/prop_*
+engine/karma-result.json
+*.tmp
