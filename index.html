@@ -229,11 +229,21 @@
         
         .stars-layer {
             position: fixed;
-            inset: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 60%;
             pointer-events: none;
             z-index: 2;
             opacity: var(--star-opacity);
-            transition: opacity 6s ease;
+            transition: opacity 8s ease, height 8s ease, top 8s ease, bottom 8s ease;
+        }
+
+        /* Sea sparkles mode - stars become reflections on water */
+        .stars-layer.sea-sparkles {
+            top: auto;
+            bottom: 0;
+            height: 30%;
         }
         
         /* ═══════════════════════════════════════════════════════════
@@ -242,11 +252,12 @@
         
         .celestial {
             position: fixed;
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             pointer-events: none;
-            z-index: 3;
-            transition: all 8s ease;
+            z-index: 5;
+            transition: left 60s linear, top 60s linear;
+            transform: translate(-50%, -50%);
         }
         .celestial-body {
             width: 100%;
@@ -256,21 +267,32 @@
             box-shadow:
                 0 0 40px var(--celestial-glow),
                 0 0 80px var(--celestial-glow);
-            transition: all 3s ease;
+            transition: transform 60s linear, box-shadow 3s ease, background 3s ease;
         }
-        
+
         /* Moon texture */
-        body.time-night .celestial-body {
-            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e0e0e0 20%, #c0c0c0 100%);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-            transform: scale(0.9);
+        body.time-night .celestial-body,
+        body.time-dawn .celestial-body {
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e8e8e8 30%, #c9c9c9 100%);
+            box-shadow:
+                0 0 40px rgba(255, 255, 255, 0.4),
+                0 0 80px rgba(200, 200, 255, 0.2);
         }
-        
+
         /* Sun Glow */
-        body.time-noon .celestial-body,
         body.time-morning .celestial-body,
-        body.time-afternoon .celestial-body {
-            box-shadow: 0 0 60px var(--celestial-glow), 0 0 100px var(--celestial-glow);
+        body.time-noon .celestial-body,
+        body.time-afternoon .celestial-body,
+        body.time-sunset .celestial-body {
+            box-shadow:
+                0 0 60px var(--celestial-glow),
+                0 0 120px var(--celestial-glow),
+                0 0 200px var(--celestial-glow);
+        }
+
+        /* Celestial behind mountains when low */
+        .celestial.behind-landscape {
+            z-index: 2;
         }
         
         /* ═══════════════════════════════════════════════════════════
@@ -1046,6 +1068,16 @@
             <span class="hud-value" id="levelNumber">1</span>
         </div>
 
+        <a href="https://github.com/fabriziosalmi/enjoy/stargazers" class="hud-item" title="GitHub Stars">
+            <span class="hud-emoji">⭐</span>
+            <span class="hud-value" id="starCount">0</span>
+        </a>
+
+        <a href="https://github.com/fabriziosalmi/enjoy/forks" class="hud-item" title="GitHub Forks">
+            <span class="hud-emoji">🍴</span>
+            <span class="hud-value" id="forkCount">0</span>
+        </a>
+
         <button class="hud-item" id="audioToggle" title="Toggle audio">
             <span class="hud-emoji" id="audioEmoji">🔇</span>
         </button>
@@ -1114,57 +1146,164 @@
         // ═══════════════════════════════════════════════════════════════
         
         const TIME_PERIODS = {
-            // Sun Cycle: Rises Left -> Sets Right
-            dawn:      { start: 5,  end: 8,  emoji: '🌅', name: 'Dawn',       mult: 1.2,  pos: { x: 10, y: 65 } },
-            morning:   { start: 8,  end: 12, emoji: '☀️', name: 'Morning',    mult: 1.3,  pos: { x: 30, y: 30 } },
-            noon:      { start: 12, end: 15, emoji: '🌞', name: 'Solar Peak', mult: 1.5,  pos: { x: 50, y: 15 } },
-            afternoon: { start: 15, end: 18, emoji: '🌤️', name: 'Afternoon',  mult: 1.25, pos: { x: 70, y: 30 } },
-            sunset:    { start: 18, end: 20, emoji: '🌆', name: 'Sunset',     mult: 1.15, pos: { x: 90, y: 65 } },
-            
-            // Moon Cycle: High in sky
-            night:     { start: 20, end: 5,  emoji: '🌙', name: 'Night',      mult: 1.4,  pos: { x: 85, y: 20 } }
+            // Sun Cycle: 5:00 - 20:00
+            dawn:      { start: 5,  end: 8,  emoji: '🌅', name: 'Dawn',       mult: 1.2  },
+            morning:   { start: 8,  end: 12, emoji: '☀️', name: 'Morning',    mult: 1.3  },
+            noon:      { start: 12, end: 15, emoji: '🌞', name: 'Solar Peak', mult: 1.5  },
+            afternoon: { start: 15, end: 18, emoji: '🌤️', name: 'Afternoon',  mult: 1.25 },
+            sunset:    { start: 18, end: 20, emoji: '🌆', name: 'Sunset',     mult: 1.15 },
+            // Moon Cycle: 20:00 - 5:00
+            night:     { start: 20, end: 5,  emoji: '🌙', name: 'Night',      mult: 1.4  }
         };
-        
+
         function getCETTime() {
             return new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Rome" }));
         }
-        
+
+        // Calculate smooth celestial position based on exact time
+        function getCelestialPosition() {
+            const now = getCETTime();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const timeDecimal = hour + minute / 60;
+
+            // Determine if sun (5:00-20:00) or moon (20:00-5:00)
+            const isSun = timeDecimal >= 5 && timeDecimal < 20;
+
+            let progress; // 0 = rising (left), 0.5 = zenith (center), 1 = setting (right)
+
+            if (isSun) {
+                // Sun: 5:00 to 20:00 (15 hours)
+                progress = (timeDecimal - 5) / 15;
+            } else {
+                // Moon: 20:00 to 5:00 (9 hours, wraps around midnight)
+                if (timeDecimal >= 20) {
+                    progress = (timeDecimal - 20) / 9;
+                } else {
+                    progress = (timeDecimal + 4) / 9; // 4 = 24 - 20
+                }
+            }
+
+            // Clamp progress
+            progress = Math.max(0, Math.min(1, progress));
+
+            // X position: 5% (left) → 50% (center) → 95% (right)
+            const x = 5 + progress * 90;
+
+            // Y position: parabolic arc
+            // At edges (progress 0 or 1): y = 75% (low, behind mountains)
+            // At center (progress 0.5): y = 8% (high in sky)
+            const yLow = 75;
+            const yHigh = 8;
+            const y = yLow - Math.sin(progress * Math.PI) * (yLow - yHigh);
+
+            // Scale: bigger near horizon, smaller at zenith
+            // progress 0 or 1 → scale 1.8 (big)
+            // progress 0.5 → scale 0.85 (small)
+            // Using: 1 - sin gives us 1 at edges, 0 at center
+            const horizonProximity = 1 - Math.sin(progress * Math.PI);
+            const scale = 0.85 + horizonProximity * 0.95;
+
+            // Is the celestial body low enough to be behind the landscape?
+            const behindLandscape = y > 55;
+
+            return { x, y, scale, isSun, progress, behindLandscape };
+        }
+
+        // Calculate stars/sparkles opacity based on time
+        function getStarsOpacity() {
+            const now = getCETTime();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const time = hour + minute / 60;
+
+            // Night (21:00 - 4:00): full stars
+            if (time >= 21 || time < 4) return { opacity: 1, isStars: true };
+
+            // Early dawn (4:00 - 6:00): stars fading out
+            if (time >= 4 && time < 6) {
+                const fade = (time - 4) / 2; // 0 to 1
+                return { opacity: 1 - fade * 0.7, isStars: true };
+            }
+
+            // Day (6:00 - 18:00): sea sparkles
+            if (time >= 6 && time < 18) {
+                // Sparkles intensity peaks at noon
+                const distFromNoon = Math.abs(time - 12);
+                const intensity = Math.max(0.15, 0.5 - distFromNoon * 0.05);
+                return { opacity: intensity, isStars: false };
+            }
+
+            // Sunset (18:00 - 21:00): stars fading in
+            if (time >= 18 && time < 21) {
+                const fade = (time - 18) / 3; // 0 to 1
+                return { opacity: 0.2 + fade * 0.8, isStars: true };
+            }
+
+            return { opacity: 0.3, isStars: true };
+        }
+
         function getCurrentTimePeriod() {
             const hour = getCETTime().getHours();
             for (const [key, period] of Object.entries(TIME_PERIODS)) {
                 if (key === 'night') {
-                    if (hour >= 21 || hour < 5) return { key, ...period };
+                    if (hour >= 20 || hour < 5) return { key, ...period };
                 } else if (hour >= period.start && hour < period.end) {
                     return { key, ...period };
                 }
             }
             return { key: 'night', ...TIME_PERIODS.night };
         }
-        
+
         function updateTimePeriod() {
             const period = getCurrentTimePeriod();
-            
+
             // Update theme
             document.body.classList.remove('time-night', 'time-dawn', 'time-morning', 'time-noon', 'time-afternoon', 'time-sunset');
             document.body.classList.add(`time-${period.key}`);
             currentPeriod = period.key;
-            
+
             // Update UI
             document.getElementById('timeEmoji').textContent = period.emoji;
             document.getElementById('timeMult').textContent = `×${period.mult}`;
-            
-            // Update celestial position
+
+            // Update celestial position (smooth arc)
+            const celestialPos = getCelestialPosition();
             const celestial = document.getElementById('celestial');
-            celestial.style.left = period.pos.x + '%';
-            celestial.style.top = period.pos.y + '%';
-            
+            const celestialBody = document.getElementById('celestialBody');
+
+            celestial.style.left = celestialPos.x + '%';
+            celestial.style.top = celestialPos.y + '%';
+            celestialBody.style.transform = `scale(${celestialPos.scale})`;
+
+            // Toggle behind-landscape class
+            if (celestialPos.behindLandscape) {
+                celestial.classList.add('behind-landscape');
+            } else {
+                celestial.classList.remove('behind-landscape');
+            }
+
+            // Update stars/sparkles opacity and position
+            const starsInfo = getStarsOpacity();
+            const starsLayer = document.querySelector('.stars-layer');
+            if (starsLayer) {
+                starsLayer.style.opacity = starsInfo.opacity;
+                // Toggle sea sparkles mode (stars become water reflections during day)
+                if (starsInfo.isStars) {
+                    starsLayer.classList.remove('sea-sparkles');
+                } else {
+                    starsLayer.classList.add('sea-sparkles');
+                }
+            }
+
             // Update audio tone
             if (AudioSystem.isPlaying) {
                 AudioSystem.updateTone(period.key);
             }
         }
-        
-        setInterval(updateTimePeriod, 60000);
+
+        // Update more frequently for smooth movement (every 30 seconds)
+        setInterval(updateTimePeriod, 30000);
         // updateTimePeriod(); moved to end of script
 
         
@@ -1599,25 +1738,10 @@
                     }
                 }
                 
-                // Level progress
-                const next = data.levels?.next_unlock;
-                if (next) {
-                    const pct = Math.min(100, Math.round(
-                        ((next.progress?.score || 0) / (next.requires_score || 1) * 50) +
-                        ((next.progress?.prs || 0) / (next.requires_prs || 1) * 50)
-                    ));
-                    document.getElementById('levelFill').style.strokeDashoffset = 145 - (145 * pct / 100);
-                }
-                
                 // Update visuals
                 updateAurora(karma);
                 createSoulLights(players);
-                
-                // Celestial size based on level
-                const celestialBody = document.getElementById('celestialBody');
-                const scale = 1 + Math.log10(Math.max(1, level)) * 0.2;
-                celestialBody.style.transform = `scale(${Math.min(scale, 1.6)})`;
-                
+
                 console.log('🎮 State loaded: Level', level, '| Karma', karma, '| Players', playerCount);
                 
             } catch (e) {
@@ -1631,12 +1755,12 @@
                 const res = await fetch('https://raw.githubusercontent.com/fabriziosalmi/enjoy/main/repo-stats.json?' + Date.now());
                 if (res.ok) {
                     repoStats = await res.json();
-                    document.getElementById('starCount').textContent = repoStats.stars || 0;
-                    document.getElementById('forkCount').textContent = repoStats.forks || 0;
-                    
-                    // Stars in sky scale with repo stars
-                    const starCount = Math.min(150, 30 + (repoStats.stars || 0) * 2);
-                    createStars(starCount, repoStats.recent_stargazers || []);
+                    // Update HUD counters
+                    document.getElementById('starCount').textContent = (repoStats.stars || 0).toLocaleString();
+                    document.getElementById('forkCount').textContent = (repoStats.forks || 0).toLocaleString();
+                    // Stars/sparkles in sky scale with repo stars
+                    const skyStarCount = Math.min(150, 30 + (repoStats.stars || 0) * 3);
+                    createStars(skyStarCount, repoStats.recent_stargazers || []);
                     console.log('⭐ Loaded repo stats:', repoStats.stars, 'stars,', repoStats.forks, 'forks');
                 }
             } catch (e) {

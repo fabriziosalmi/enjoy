@@ -24,7 +24,7 @@ describe('Game State', () => {
     expect(state.levels.current).toBeGreaterThanOrEqual(1);
     expect(state.levels.max_level).toBe(100);
   });
-
+ guida ;-)
   it('should have karma system', () => {
     expect(state.karma).toBeDefined();
     expect(state.karma.multiplier_active).toBeGreaterThanOrEqual(1);
