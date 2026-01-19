@@ -1,10 +1,10 @@
 {
   "version": "4.0.0",
-  "last_updated": "2026-01-19T02:10:17Z",
-  "last_pr": "#19",
+  "last_updated": "2026-01-19T02:22:15.093Z",
+  "last_pr": "#21",
   "score": {
-    "total": 152,
-    "today": 112,
+    "total": 218,
+    "today": 178,
     "streak_days": 1,
     "all_time_high": 0
   },
@@ -19,19 +19,20 @@
     "bounties_completed": 0
   },
   "levels": {
-    "current": 2,
+    "current": 3,
     "max_level": 100,
     "unlocked": [
       1,
-      2
+      2,
+      3
     ],
     "next_unlock": {
-      "level_id": 3,
-      "requires_score": 75,
-      "requires_prs": 8,
+      "level_id": 4,
+      "requires_score": 112,
+      "requires_prs": 11,
       "progress": {
-        "score": 132,
-        "prs": 3
+        "score": 218,
+        "prs": 5
       }
     },
     "milestones": {
@@ -64,23 +65,26 @@
   },
   "players": {
     "fabriziosalmi": {
-      "karma": 132,
-      "prs": 3,
+      "karma": 198,
+      "prs": 4,
       "streak": 1,
       "achievements": [
         "first_blood",
-        "og"
+        "og",
+        "karma_hunter",
+        "speed_demon"
       ],
       "high_quality_count": 0,
       "referrals": 0,
       "bugs_reported": 0,
       "bounties_completed": 0,
       "mystery_boxes": 0,
-      "last_contribution": "2026-01-18T17:00:11.838Z",
+      "last_contribution": "2026-01-19T02:22:15.093Z",
       "joined": "2026-01-18T02:43:18.817Z",
       "name": "fabriziosalmi",
       "time_stats": {
-        "sunset": 1
+        "sunset": 1,
+        "night": 1
       }
     },
     "JoKneeMo": {
@@ -162,7 +166,7 @@
   },
   "rules_triggered": {},
   "meta": {
-    "total_prs": 4,
+    "total_prs": 5,
     "total_players": 2,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
@@ -170,8 +174,8 @@
     "last_refresh": "2026-01-19T02:13:28Z"
   },
   "time_system": {
-    "current_period": "sunset",
-    "last_update": "2026-01-18T17:00:11.838Z",
+    "current_period": "night",
+    "last_update": "2026-01-19T02:22:15.093Z",
     "stats": {
       "dawn": {
         "total_prs": 0,
@@ -194,8 +198,8 @@
         "total_karma": 112
       },
       "night": {
-        "total_prs": 0,
-        "total_karma": 0
+        "total_prs": 1,
+        "total_karma": 66
       }
     },
     "rare_events_triggered": [],
