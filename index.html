@@ -839,22 +839,23 @@
         /* Achievements HUD - Bottom line */
         .achievements-hud {
             display: flex;
-            gap: 0.5rem;
+            flex-wrap: nowrap;
+            gap: 0.4rem;
             opacity: 0.7;
             transition: opacity 0.5s ease;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
         .achievements-hud:hover { opacity: 1; }
         .ach-icon {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             background: rgba(0,0,0,0.4);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.5;
             filter: grayscale(1);
             transition: all 0.3s ease;
