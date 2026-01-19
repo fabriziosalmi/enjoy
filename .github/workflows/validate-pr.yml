@@ -28,24 +28,19 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Fetch and merge PR files
+      - name: Fetch PR word files only
         run: |
           # Fetch PR branch
           git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
 
-          # Get list of added/modified files in PR
-          echo "📁 Files changed in PR:"
-          git diff --name-status main pr-branch
+          # Only checkout the words/ directory from PR (this is what players contribute)
+          # Do NOT checkout other files - they might override engine fixes on main
+          echo "📁 Checking out words/ from PR..."
+          git checkout pr-branch -- words/ 2>/dev/null || mkdir -p words/
 
-          # Checkout each changed file from PR branch
-          for file in $(git diff --name-only main pr-branch); do
-            echo "  Checking out: $file"
-            git checkout pr-branch -- "$file" 2>/dev/null && echo "    ✅ Success" || echo "    ⚠️ Skipped (deleted or new path)"
-          done
-
-          # Verify word files are present
+          # Show what files we have
           echo "📂 words/ directory:"
-          ls -la words/ || echo "No words directory"
+          ls -la words/ || echo "No word files"
       
       - name: Get changed files
         id: files
