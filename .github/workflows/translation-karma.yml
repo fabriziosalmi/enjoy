@@ -30,14 +30,19 @@ concurrency:
 jobs:
   award-translation-karma:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    
+    # ═══════════════════════════════════════════════════════════════════════════════
+    # SECURITY NOTE: Using self-hosted + PAT because we need to push to main
+    # This is safe because it only runs AFTER merge, not on untrusted PR code
+    # ═══════════════════════════════════════════════════════════════════════════════
+    runs-on: [self-hosted, enjoy-trusted]
+
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
       
       - name: 🔍 Analyze Translation
         id: analyze
@@ -110,7 +115,7 @@ jobs:
           echo "file_bonus=$FILE_BONUS" >> $GITHUB_OUTPUT
           echo "total_karma=$TOTAL_KARMA" >> $GITHUB_OUTPUT
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT }}
       
       - name: 💫 Award Translation Karma
         if: steps.analyze.outputs.translation_count > 0
@@ -118,41 +123,74 @@ jobs:
           AUTHOR="${{ steps.analyze.outputs.author }}"
           KARMA="${{ steps.analyze.outputs.total_karma }}"
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          
-          # Load or create karma file
-          if [ -f "karma.json" ]; then
-            KARMA_DATA=$(cat karma.json)
-          else
-            KARMA_DATA='{}'
+          PR_NUMBER="${{ steps.analyze.outputs.pr_number }}"
+
+          # Update state.json (consistent with rest of game)
+          if [ -f "state.json" ]; then
+            STATE=$(cat state.json)
+
+            # Initialize player if new
+            if [ "$(echo "$STATE" | jq -r ".players.\"$AUTHOR\" // \"null\"")" = "null" ]; then
+              STATE=$(echo "$STATE" | jq \
+                --arg author "$AUTHOR" \
+                --arg time "$TIMESTAMP" \
+                '.players[$author] = {karma: 0, prs: 0, streak: 0, achievements: [], joined: $time}')
+              STATE=$(echo "$STATE" | jq '.meta.total_players += 1')
+              echo "🆕 New player: $AUTHOR"
+            fi
+
+            # Add karma to player
+            STATE=$(echo "$STATE" | jq \
+              --arg author "$AUTHOR" \
+              --argjson karma "$KARMA" \
+              --arg time "$TIMESTAMP" \
+              '.players[$author].karma += $karma |
+               .players[$author].prs += 1 |
+               .players[$author].last_contribution = $time |
+               .players[$author].translations = ((.players[$author].translations // 0) + 1)')
+
+            # Add translation achievement if first translation
+            TRANS_COUNT=$(echo "$STATE" | jq -r ".players.\"$AUTHOR\".translations // 0")
+            if [ "$TRANS_COUNT" = "1" ]; then
+              STATE=$(echo "$STATE" | jq \
+                --arg author "$AUTHOR" \
+                '.players[$author].achievements += ["translator"]')
+              echo "🏆 Achievement unlocked: translator"
+            fi
+
+            # Update global state
+            STATE=$(echo "$STATE" | jq \
+              --argjson karma "$KARMA" \
+              --arg time "$TIMESTAMP" \
+              --arg pr "#$PR_NUMBER" \
+              '.score.total += $karma |
+               .score.today += $karma |
+               .meta.total_prs += 1 |
+               .last_updated = $time |
+               .last_pr = $pr')
+
+            echo "$STATE" | jq '.' > state.json
           fi
-          
-          # Get current karma
-          CURRENT=$(echo "$KARMA_DATA" | jq -r ".\"$AUTHOR\".karma // 0")
-          NEW_KARMA=$((CURRENT + KARMA))
-          
-          # Get current translation count
-          TRANS_COUNT=$(echo "$KARMA_DATA" | jq -r ".\"$AUTHOR\".translations // 0")
-          NEW_TRANS=$((TRANS_COUNT + ${{ steps.analyze.outputs.translation_count }}))
-          
-          # Update karma
-          KARMA_DATA=$(echo "$KARMA_DATA" | jq \
-            --arg author "$AUTHOR" \
-            --argjson karma "$NEW_KARMA" \
-            --argjson trans "$NEW_TRANS" \
-            --arg time "$TIMESTAMP" \
-            '.[$author] = ((.[$author] // {}) + {karma: $karma, translations: $trans, last_translation: $time})')
-          
-          echo "$KARMA_DATA" | jq '.' > karma.json
 
           # Commit
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add karma.json
-          if ! git commit -m "🌍 +$KARMA karma to @$AUTHOR for translation [skip ci]"; then
+          git config user.name "enjoy-bot"
+          git config user.email "bot@enjoy.game"
+          git add state.json
+          if git diff --staged --quiet; then
             echo "::notice::No changes to commit"
-          elif ! git push; then
-            echo "::warning::Push failed - may require manual sync or retry"
-            exit 1
+          else
+            git commit -m "🌍 +$KARMA karma to @$AUTHOR for translation [skip ci]"
+            # Retry push up to 3 times
+            for i in 1 2 3; do
+              if git push; then
+                echo "✅ Push successful"
+                break
+              else
+                echo "⚠️ Push attempt $i failed, retrying..."
+                git pull --rebase origin main
+                sleep 2
+              fi
+            done
           fi
       
       - name: 🎉 Celebration Comment

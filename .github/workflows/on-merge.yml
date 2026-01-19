@@ -11,10 +11,18 @@ concurrency:
 jobs:
   update-state:
     if: github.event.pull_request.merged == true
+    # ═══════════════════════════════════════════════════════════════════════════════
+    # SECURITY NOTE: PAT on ubuntu-latest is SAFE here because:
+    # 1. This only runs AFTER PR is merged (pull_request: closed + merged == true)
+    # 2. We checkout 'main' branch, NOT the PR branch
+    # 3. The workflow YAML comes from main, not from the PR
+    # 4. The PAT is needed to: a) push commits b) trigger downstream workflows
+    # DO NOT change this to checkout the PR branch or run PR code!
+    # ═══════════════════════════════════════════════════════════════════════════════
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
