@@ -247,6 +247,9 @@ Total:  [███████████████░░░░░] 73%
 ### 🌟 Recent Achievements Unlocked
 
 - 🩸 First Blood
+- og
+- karma_hunter
+- speed_demon
 
 <p align="center">
   <sub>📅 Last updated: 2026-01-19 | 🔄 Updates automatically</sub>
