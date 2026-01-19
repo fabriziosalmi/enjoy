@@ -1,9 +1,9 @@
 {
   "version": "4.0.0",
-  "last_updated": "2026-01-18T17:00:11.838Z",
-  "last_pr": "#14",
+  "last_updated": "2026-01-19T01:58:11Z",
+  "last_pr": "#19",
   "score": {
-    "total": 132,
+    "total": 152,
     "today": 112,
     "streak_days": 1,
     "all_time_high": 0
@@ -82,6 +82,23 @@
       "time_stats": {
         "sunset": 1
       }
+    },
+    "JoKneeMo": {
+      "karma": 20,
+      "prs": 1,
+      "streak": 1,
+      "achievements": [
+        "first_word"
+      ],
+      "high_quality_count": 0,
+      "referrals": 0,
+      "bugs_reported": 0,
+      "bounties_completed": 0,
+      "mystery_boxes": 0,
+      "last_contribution": "2026-01-19T01:58:11Z",
+      "joined": "2026-01-19T01:58:11Z",
+      "name": "JoKneeMo",
+      "time_stats": {}
     }
   },
   "reputation": {
@@ -145,8 +162,8 @@
   },
   "rules_triggered": {},
   "meta": {
-    "total_prs": 3,
-    "total_players": 1,
+    "total_prs": 4,
+    "total_players": 2,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null
