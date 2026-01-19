@@ -293,10 +293,35 @@ enjoy/
 ├── 🧠 TypeScript engine (engine/)
 ├── 🎨 Procedural art gallery (art/)
 ├── 📖 Auto-generated chronicles (story/)
-└── 💜 Guardian Angel system (guardian/)
+├── 💜 Guardian Angel system (guardian/)
+└── 🔌 MCP server for Claude (mcp/)
 ```
 
 </details>
+
+---
+
+## 🔌 MCP Server — Manage with Claude
+
+This repo includes an **MCP (Model Context Protocol)** server that lets you manage the game directly from **Claude Code** or **Claude Desktop**.
+
+```bash
+# Clone and build
+git clone https://github.com/fabriziosalmi/enjoy.git
+cd enjoy/mcp/enjoy && npm install && npm run build
+
+# Start Claude Code in the repo
+cd ../.. && claude
+
+# Ask Claude:
+# "What's the project status?"
+# "Show me the leaderboard"
+# "Check PR #23"
+```
+
+**Available tools:** `project_status`, `leaderboard`, `player_stats`, `bounties`, `pr_check`, `recent_activity`, and more.
+
+📖 **Full documentation:** [mcp/README.md](mcp/README.md) — includes a **template to build your own game MCP server!**
 
 ---
 
