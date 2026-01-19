@@ -6,39 +6,42 @@
 
 | Rank | Player | Karma | Streak | Achievements |
 |------|--------|-------|--------|--------------|
-| 🥇 | *TBD* | 0 | 0 | 0 |
-| 🥈 | *TBD* | 0 | 0 | 0 |
-| 🥉 | *TBD* | 0 | 0 | 0 |
+| 🥇 | fabriziosalmi | 132 | 1 | 2 |
+| 🥈 | JoKneeMo | 20 | 1 | 1 |
+| 🥉 | *Your name here!* | - | - | - |
 
-## Founders Hall of Fame
+## 🏛️ Founders Hall of Fame
 
 *First 50 players to join receive the eternal FOUNDER badge*
 
-| # | Founder | Joined |
-|---|---------|--------|
-| 1 | fabriziosalmi | 2024-01-01 |
-| 2 | *Your name here* | ? |
+| # | Founder | Joined | Word |
+|---|---------|--------|------|
+| 1 | 🏆 fabriziosalmi | 2026-01-18 | SERENDIPITY |
+| 2 | 🎮 JoKneeMo | 2026-01-19 | HETERODOX |
+| 3 | *Your name here* | ? | ? |
 
 ## Achievement Hunters
 
 | Player | Achievement Count |
 |--------|-------------------|
-| *TBD* | 0 |
+| fabriziosalmi | 2 |
+| JoKneeMo | 1 |
 
 ## Streak Champions
 
 | Player | Current Streak |
 |--------|----------------|
-| *TBD* | 0 days |
+| fabriziosalmi | 1 day |
+| JoKneeMo | 1 day |
 
 ---
 
 ## Game Stats
 
-- **Total Players**: 1
-- **Total Karma**: 0
-- **Current Level**: 1
-- **Achievements Unlocked**: 0
+- **Total Players**: 2
+- **Total Karma**: 152
+- **Current Level**: 2
+- **Achievements Unlocked**: 3
 
 ---
 
