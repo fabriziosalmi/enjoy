@@ -33,7 +33,7 @@ export function extractReferral(prBody: string): string | null {
 function matchesTrigger(rule: Rule, pr: PRMetadata): boolean {
   if (rule.trigger.type === 'file_added') {
     // Check if PR has any files added
-    if (pr.files_added.length === 0) {
+    if (!pr.files_added || pr.files_added.length === 0) {
       return false;
     }
 

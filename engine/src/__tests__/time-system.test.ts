@@ -65,7 +65,7 @@ describe('Time System', () => {
     });
 
     it('should have valid karma multipliers', () => {
-      for (const [name, period] of Object.entries(TIME_PERIODS)) {
+      for (const period of Object.values(TIME_PERIODS)) {
         expect(period.karmaMultiplier).toBeGreaterThan(0);
         expect(period.karmaMultiplier).toBeLessThanOrEqual(2);
       }

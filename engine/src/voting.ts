@@ -59,8 +59,8 @@ export function proposeRule(
   
   // Check if rule ID already exists
   const existsActive = state.rules.active.includes(ruleContent.id);
-  const existsProposed = state.rules.proposed?.some((p) => p.id === ruleContent.id);
-  
+  const existsProposed = state.rules.proposed?.some((p) => p.rule_content.id === ruleContent.id);
+
   if (existsActive || existsProposed) {
     return { success: false, reason: 'Rule ID already exists' };
   }
