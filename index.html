@@ -449,25 +449,24 @@
             position: fixed;
             top: 1.5rem;
             left: 1.5rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.4rem;
             z-index: 200;
             background: var(--ui-bg, rgba(0,0,0,0.7));
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 100px;
             border: 1px solid var(--ui-border, rgba(255,255,255,0.15));
             backdrop-filter: blur(12px);
-            font-size: 0.75rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            transition: all 0.5s ease;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-        .time-indicator:hover { border-color: var(--accent); background: var(--ui-bg, rgba(0,0,0,0.8)); }
-        .time-emoji { font-size: 1.1rem; }
-        .time-period { color: var(--text); text-transform: uppercase; font-weight: 500; }
+        .time-indicator:hover { border-color: var(--accent); background: var(--ui-bg, rgba(0,0,0,0.85)); }
+        .time-emoji { font-size: 0.85rem; line-height: 1; }
+        .time-period { color: var(--text); text-transform: uppercase; font-weight: 500; font-size: 0.65rem; letter-spacing: 0.05em; }
         .time-multiplier { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
         
         .brand-mark {
@@ -488,9 +487,9 @@
         .game-stats {
             position: fixed;
             top: 1.5rem;
-            left: 14rem;
+            left: 11.5rem;
             display: flex;
-            gap: 0.6rem;
+            gap: 0.5rem;
             z-index: 100;
         }
         .game-stat {
@@ -1433,7 +1432,7 @@
         }
         
         // Initial load
-        const VERSION = 'v2.3.1';
+        const VERSION = 'v2.3.2';
         console.log('🚀 enjoy', VERSION, '- loading data...');
         loadState().then(() => console.log('✅ State loaded')).catch(e => console.error('❌ State error:', e));
         loadRepoStats().then(() => console.log('✅ Repo stats loaded')).catch(e => console.error('❌ Repo error:', e));
