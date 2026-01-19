@@ -555,6 +555,7 @@ jobs:
       
       - name: Add labels
         if: steps.files.outputs.has_blocked_files != 'true' && steps.files.outputs.has_security_violations != 'true'
+        continue-on-error: true  # Fork PRs may not have label permissions
         uses: actions/github-script@v7
         with:
           script: |
