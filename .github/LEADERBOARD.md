@@ -7,7 +7,7 @@
 | Rank | Player | Karma | Streak | Achievements |
 |------|--------|-------|--------|--------------|
 | 🥇 | fabriziosalmi | 198 | 1 | 4 |
-| 🥈 | JoKneeMo | 20 | 1 | 1 |
+| 🥈 | JoKneeMo | 80 | 1 | 1 |
 
 ## 🏛️ Founders Hall of Fame
 
@@ -37,10 +37,10 @@
 ## Game Stats
 
 - **Total Players**: 2
-- **Total Karma**: 218
+- **Total Karma**: 278
 - **Current Level**: 3
-- **Total PRs**: 5
+- **Total PRs**: 6
 
 ---
 
-*Last updated: 2026-01-19 08:45 UTC*
+*Last updated: 2026-01-19 09:13 UTC*
