@@ -15,7 +15,12 @@
     <style>
         :root {
             --bg: #030305;
-            --bg-gradient: radial-gradient(ellipse at 50% 50%, #0a0a12 0%, #030305 100%);
+            --sky-top: #050508;
+            --sky-mid: #0a0a12;
+            --sky-bottom: #12121f;
+            --hill-far: rgba(15, 15, 25, 0.9);
+            --hill-mid: rgba(10, 10, 18, 0.95);
+            --hill-near: rgba(5, 5, 10, 1);
             --surface: rgba(255,255,255,0.02);
             --border: rgba(255,255,255,0.06);
             --text: rgba(255,255,255,0.87);
@@ -24,64 +29,114 @@
             --accent2: #a855f7;
             --accent3: #ec4899;
             --glow: rgba(99, 102, 241, 0.15);
-            --aura-color1: rgba(99, 102, 241, 0.15);
-            --aura-color2: rgba(168, 85, 247, 0.1);
-            --aura-color3: rgba(236, 72, 153, 0.05);
+            --star-opacity: 1;
+            --firefly-opacity: 0.6;
+            --mist-opacity: 0.15;
+            --aurora-opacity: 0;
+            --celestial-color: #c9d1d9;
+            --celestial-glow: rgba(200, 210, 220, 0.08);
         }
         
-        /* Time-based themes - elegant day cycle */
+        /* ═══════════════════════════════════════════════════════════
+           TIME-BASED THEMES - Full day/night cycle
+           ═══════════════════════════════════════════════════════════ */
+        
+        body.time-night {
+            --sky-top: #050508;
+            --sky-mid: #0a0a12;
+            --sky-bottom: #12121f;
+            --hill-far: rgba(15, 15, 25, 0.9);
+            --hill-mid: rgba(10, 10, 18, 0.95);
+            --hill-near: rgba(5, 5, 10, 1);
+            --star-opacity: 1;
+            --firefly-opacity: 0.6;
+            --mist-opacity: 0.15;
+            --celestial-color: #c9d1d9;
+            --celestial-glow: rgba(200, 210, 220, 0.1);
+            --accent: #6366f1;
+        }
+        
         body.time-dawn {
-            --bg: #0d0a14;
-            --bg-gradient: radial-gradient(ellipse at 30% 80%, #1a1025 0%, #0d0a14 50%, #050308 100%);
-            --aura-color1: rgba(255, 140, 100, 0.12);
-            --aura-color2: rgba(180, 100, 180, 0.1);
-            --aura-color3: rgba(100, 120, 200, 0.08);
+            --sky-top: #1a1525;
+            --sky-mid: #3d2a4d;
+            --sky-bottom: #8b5a5a;
+            --hill-far: rgba(60, 40, 50, 0.8);
+            --hill-mid: rgba(40, 25, 35, 0.9);
+            --hill-near: rgba(25, 15, 20, 1);
+            --star-opacity: 0.15;
+            --firefly-opacity: 0.2;
+            --mist-opacity: 0.25;
+            --celestial-color: #ffb07c;
+            --celestial-glow: rgba(255, 150, 100, 0.15);
+            --text: rgba(255, 220, 200, 0.9);
             --accent: #f59e0b;
         }
         
         body.time-morning {
-            --bg: #08080f;
-            --bg-gradient: radial-gradient(ellipse at 60% 30%, #12121f 0%, #08080f 60%, #030305 100%);
-            --aura-color1: rgba(100, 180, 255, 0.12);
-            --aura-color2: rgba(150, 200, 255, 0.08);
-            --aura-color3: rgba(200, 220, 255, 0.05);
+            --sky-top: #b8d4e8;
+            --sky-mid: #d4e5f0;
+            --sky-bottom: #f0f4e8;
+            --hill-far: rgba(120, 140, 110, 0.6);
+            --hill-mid: rgba(90, 115, 80, 0.75);
+            --hill-near: rgba(60, 85, 55, 0.9);
+            --star-opacity: 0;
+            --firefly-opacity: 0;
+            --mist-opacity: 0.08;
+            --celestial-color: #fff5cc;
+            --celestial-glow: rgba(255, 230, 150, 0.2);
+            --text: rgba(40, 60, 50, 0.9);
+            --text-muted: rgba(40, 60, 50, 0.5);
             --accent: #3b82f6;
         }
         
         body.time-noon {
-            --bg: #0a0a10;
-            --bg-gradient: radial-gradient(ellipse at 50% 20%, #151520 0%, #0a0a10 50%, #050508 100%);
-            --aura-color1: rgba(255, 220, 100, 0.15);
-            --aura-color2: rgba(255, 180, 50, 0.1);
-            --aura-color3: rgba(255, 150, 50, 0.05);
+            --sky-top: #7ec8e8;
+            --sky-mid: #a8ddf0;
+            --sky-bottom: #e8f4e8;
+            --hill-far: rgba(130, 155, 115, 0.5);
+            --hill-mid: rgba(100, 130, 85, 0.7);
+            --hill-near: rgba(70, 100, 60, 0.85);
+            --star-opacity: 0;
+            --firefly-opacity: 0;
+            --mist-opacity: 0;
+            --celestial-color: #fffde8;
+            --celestial-glow: rgba(255, 250, 200, 0.3);
+            --text: rgba(30, 50, 40, 0.9);
+            --text-muted: rgba(30, 50, 40, 0.5);
             --accent: #eab308;
         }
         
         body.time-afternoon {
-            --bg: #0a0910;
-            --bg-gradient: radial-gradient(ellipse at 70% 40%, #14121f 0%, #0a0910 50%, #050508 100%);
-            --aura-color1: rgba(200, 150, 255, 0.12);
-            --aura-color2: rgba(150, 120, 220, 0.1);
-            --aura-color3: rgba(100, 100, 200, 0.08);
+            --sky-top: #a5c4d4;
+            --sky-mid: #d4c8b8;
+            --sky-bottom: #e8dcc8;
+            --hill-far: rgba(140, 130, 100, 0.6);
+            --hill-mid: rgba(110, 100, 75, 0.75);
+            --hill-near: rgba(80, 70, 50, 0.9);
+            --star-opacity: 0;
+            --firefly-opacity: 0;
+            --mist-opacity: 0.05;
+            --celestial-color: #ffe4b5;
+            --celestial-glow: rgba(255, 200, 120, 0.18);
+            --text: rgba(60, 50, 40, 0.9);
+            --text-muted: rgba(60, 50, 40, 0.5);
             --accent: #8b5cf6;
         }
         
         body.time-sunset {
-            --bg: #0f0808;
-            --bg-gradient: radial-gradient(ellipse at 80% 60%, #1f1015 0%, #0f0808 50%, #080505 100%);
-            --aura-color1: rgba(255, 100, 80, 0.15);
-            --aura-color2: rgba(255, 80, 120, 0.12);
-            --aura-color3: rgba(200, 50, 100, 0.08);
+            --sky-top: #2d2040;
+            --sky-mid: #6b4060;
+            --sky-bottom: #c87050;
+            --hill-far: rgba(80, 50, 60, 0.7);
+            --hill-mid: rgba(50, 30, 40, 0.85);
+            --hill-near: rgba(30, 15, 25, 1);
+            --star-opacity: 0.3;
+            --firefly-opacity: 0.3;
+            --mist-opacity: 0.1;
+            --celestial-color: #ff8c5a;
+            --celestial-glow: rgba(255, 120, 80, 0.2);
+            --text: rgba(255, 200, 180, 0.9);
             --accent: #f43f5e;
-        }
-        
-        body.time-night {
-            --bg: #030305;
-            --bg-gradient: radial-gradient(ellipse at 50% 50%, #0a0a12 0%, #030305 100%);
-            --aura-color1: rgba(99, 102, 241, 0.15);
-            --aura-color2: rgba(168, 85, 247, 0.1);
-            --aura-color3: rgba(100, 80, 180, 0.08);
-            --accent: #6366f1;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -90,34 +145,30 @@
         body {
             font-family: 'Space Grotesk', -apple-system, sans-serif;
             font-weight: 300;
-            background: var(--bg);
-            background-image: var(--bg-gradient);
+            background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 40%, var(--sky-bottom) 100%);
             color: var(--text);
             letter-spacing: 0.01em;
             cursor: none;
-            transition: background 8s ease, background-image 8s ease;
+            transition: all 8s ease;
         }
         
-        /* Custom Cursor - GPU Accelerated */
+        /* ═══════════════════════════════════════════════════════════
+           CUSTOM CURSOR
+           ═══════════════════════════════════════════════════════════ */
+        
         .cursor {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 20px;
             height: 20px;
             border: 1px solid rgba(255,255,255,0.5);
             border-radius: 50%;
             pointer-events: none;
             z-index: 10000;
-            transition: border-color 0.3s ease;
             mix-blend-mode: difference;
             will-change: transform;
         }
-
         .cursor-dot {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 4px;
             height: 4px;
             background: white;
@@ -127,47 +178,224 @@
             mix-blend-mode: difference;
             will-change: transform;
         }
-
         .cursor.active { transform: scale(2) !important; border-color: var(--accent); }
         
-        /* Time Indicator */
-        .time-indicator {
+        /* ═══════════════════════════════════════════════════════════
+           AURORA - Karma intensity glow
+           ═══════════════════════════════════════════════════════════ */
+        
+        .aurora-layer {
             position: fixed;
-            top: 1rem;
-            left: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            z-index: 200;
-            background: rgba(0,0,0,0.6);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-            font-size: 0.7rem;
-            letter-spacing: 0.05em;
-            transition: all 0.5s ease;
-            text-decoration: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            background: linear-gradient(180deg,
+                rgba(99, 102, 241, 0.12) 0%,
+                rgba(168, 85, 247, 0.08) 30%,
+                rgba(236, 72, 153, 0.04) 60%,
+                transparent 100%);
+            animation: aurora-wave 25s ease-in-out infinite;
+            transition: opacity 5s ease;
+        }
+        .aurora-layer.active { opacity: var(--aurora-opacity, 0.5); }
+        
+        @keyframes aurora-wave {
+            0%, 100% { transform: translateY(0) scaleY(1); filter: hue-rotate(0deg); }
+            33% { transform: translateY(-15px) scaleY(1.1); filter: hue-rotate(30deg); }
+            66% { transform: translateY(10px) scaleY(0.9); filter: hue-rotate(-30deg); }
         }
         
-        .time-indicator:hover { border-color: var(--accent); }
-        .time-emoji { font-size: 1rem; }
-        .time-period { color: var(--text); text-transform: uppercase; }
-        .time-multiplier { color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+        /* ═══════════════════════════════════════════════════════════
+           STARS LAYER - GitHub stars become sky stars
+           ═══════════════════════════════════════════════════════════ */
         
-        /* Organic Layers */
+        .stars-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            opacity: var(--star-opacity);
+            transition: opacity 6s ease;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           CELESTIAL BODY - Sun/Moon based on time
+           ═══════════════════════════════════════════════════════════ */
+        
+        .celestial {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            pointer-events: none;
+            z-index: 3;
+            transition: all 8s ease;
+        }
+        .celestial-body {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--celestial-color);
+            box-shadow:
+                0 0 50px var(--celestial-glow),
+                0 0 100px var(--celestial-glow),
+                0 0 150px var(--celestial-glow);
+            transition: all 8s ease;
+            animation: celestial-pulse 20s ease-in-out infinite;
+        }
+        @keyframes celestial-pulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.08); }
+        }
+        body.time-night .celestial-body {
+            background: radial-gradient(circle at 35% 35%, #e8e8e8 0%, #c9d1d9 50%, #a0a8b0 100%);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           LANDSCAPE - Breathing hills
+           ═══════════════════════════════════════════════════════════ */
+        
+        .landscape {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 35%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .landscape svg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .hill-far {
+            fill: var(--hill-far);
+            transition: fill 8s ease;
+            animation: hill-breathe 25s ease-in-out infinite;
+        }
+        .hill-mid {
+            fill: var(--hill-mid);
+            transition: fill 8s ease;
+            animation: hill-breathe 20s ease-in-out infinite reverse;
+        }
+        .hill-near {
+            fill: var(--hill-near);
+            transition: fill 8s ease;
+            animation: hill-breathe 30s ease-in-out infinite;
+        }
+        @keyframes hill-breathe {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            50% { transform: translateY(-3px) scaleY(1.01); }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           MIST - Atmospheric fog
+           ═══════════════════════════════════════════════════════════ */
+        
+        .mist-layer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 25%;
+            pointer-events: none;
+            z-index: 11;
+            opacity: var(--mist-opacity);
+            transition: opacity 5s ease;
+        }
+        .mist {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(200, 200, 220, 0.25) 50%,
+                rgba(180, 180, 200, 0.4) 100%);
+            animation: mist-flow 60s ease-in-out infinite;
+        }
+        @keyframes mist-flow {
+            0%, 100% { transform: translateX(-5%) scaleY(1); opacity: 0.7; }
+            50% { transform: translateX(5%) scaleY(1.15); opacity: 1; }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           SOUL LIGHTS - Players as fireflies in the hills
+           ═══════════════════════════════════════════════════════════ */
+        
+        .souls-layer {
+            position: fixed;
+            bottom: 5%;
+            left: 0;
+            right: 0;
+            height: 30%;
+            pointer-events: none;
+            z-index: 12;
+            opacity: var(--firefly-opacity);
+            transition: opacity 5s ease;
+        }
+        .soul-light {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ffd93d;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 3px rgba(255, 217, 61, 0.6);
+            animation: soul-glow 4s ease-in-out infinite;
+        }
+        .soul-light.active {
+            background: #4ade80;
+            box-shadow: 0 0 10px 4px rgba(74, 222, 128, 0.7);
+        }
+        @keyframes soul-glow {
+            0%, 100% { opacity: 0.2; transform: scale(1) translateY(0); }
+            50% { opacity: 1; transform: scale(1.5) translateY(-3px); }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           SHOOTING STARS - Rare events
+           ═══════════════════════════════════════════════════════════ */
+        
+        .shooting-star {
+            position: fixed;
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transform-origin: left center;
+        }
+        .shooting-star.active {
+            animation: shoot 1.2s ease-out forwards;
+        }
+        @keyframes shoot {
+            0% { opacity: 0; transform: translateX(0) translateY(0) scaleX(0); }
+            10% { opacity: 1; transform: translateX(30px) translateY(15px) scaleX(0.5); }
+            30% { opacity: 1; transform: translateX(100px) translateY(50px) scaleX(1); }
+            100% { opacity: 0; transform: translateX(400px) translateY(200px) scaleX(1.5); }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           AMBIENT LAYERS
+           ═══════════════════════════════════════════════════════════ */
+        
         .grain {
             position: fixed;
             inset: -50%;
             width: 200%;
             height: 200%;
             pointer-events: none;
-            opacity: 0.04;
+            opacity: 0.03;
             z-index: 1000;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
             animation: grain 0.5s steps(1) infinite;
         }
-        
         @keyframes grain {
             0%, 100% { transform: translate(0, 0); }
             25% { transform: translate(-2%, -2%); }
@@ -175,207 +403,114 @@
             75% { transform: translate(-2%, 2%); }
         }
         
-        .aura {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 150vmax;
-            height: 150vmax;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse at 30% 20%, var(--aura-color1) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, var(--aura-color2) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, var(--aura-color3) 0%, transparent 60%);
-            animation: aura-shift 20s ease-in-out infinite;
-            transition: background 8s ease;
-        }
-        
-        @keyframes aura-shift {
-            0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); filter: hue-rotate(0deg); }
-            33% { transform: translate(-50%, -50%) rotate(5deg) scale(1.05); filter: hue-rotate(30deg); }
-            66% { transform: translate(-50%, -50%) rotate(-5deg) scale(0.95); filter: hue-rotate(-30deg); }
-        }
-
-        /* Sky Layer for Day/Night Transition */
-        .sky-layer {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            transition: opacity 30s ease;
-        }
-
-        /* Star visibility based on time - controlled via CSS variables */
-        :root {
-            --star-opacity: 1;
-        }
-
-        body.time-dawn { --star-opacity: 0.3; }
-        body.time-morning { --star-opacity: 0; }
-        body.time-noon { --star-opacity: 0; }
-        body.time-afternoon { --star-opacity: 0; }
-        body.time-sunset { --star-opacity: 0.5; }
-        body.time-night { --star-opacity: 1; }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            .aura, .grain { animation: none !important; }
-            .cursor, .cursor-dot { transition: none !important; }
-            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
-        }
-        
         .vignette {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0,0,0,0.7) 100%);
-            z-index: 997;
+            background: radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+            z-index: 999;
         }
         
-        /* Fullscreen Canvas */
-        #canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; }
+        /* ═══════════════════════════════════════════════════════════
+           CANVAS - For particles
+           ═══════════════════════════════════════════════════════════ */
         
-        /* Brand Watermark - subtle corner placement */
+        #canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           UI ELEMENTS
+           ═══════════════════════════════════════════════════════════ */
+        
+        .time-indicator {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            z-index: 200;
+            background: rgba(0,0,0,0.5);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            transition: all 0.5s ease;
+            text-decoration: none;
+        }
+        .time-indicator:hover { border-color: var(--accent); background: rgba(0,0,0,0.6); }
+        .time-emoji { font-size: 1.1rem; }
+        .time-period { color: var(--text); text-transform: uppercase; }
+        .time-multiplier { color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+        
         .brand-mark {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: 300;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            opacity: 0.15;
-            transition: opacity 0.5s ease;
+            opacity: 0.2;
             pointer-events: none;
-            user-select: none;
-            z-index: 2;
+            z-index: 100;
             color: var(--text-muted);
         }
-
-        .brand-mark:hover { opacity: 0.25; }
         
-        /* Stats */
         .stat {
             position: fixed;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
             color: var(--text-muted);
             letter-spacing: 0.05em;
-            opacity: 0.6;
+            opacity: 0.7;
             transition: all 0.5s ease;
+            z-index: 100;
         }
-        
         .stat:hover { opacity: 1; color: var(--text); }
-        .stat-value { font-size: 1.5rem; color: var(--text); display: block; margin-bottom: 0.2rem; font-feature-settings: 'tnum'; }
-        .stat-tl { top: 2rem; left: 2rem; }
-        .stat-bl { bottom: 3.5rem; left: 2rem; }
-        .stat-br { bottom: 6rem; right: 2rem; text-align: right; }
+        .stat-value { font-size: 1.8rem; color: var(--text); display: block; margin-bottom: 0.2rem; }
+        .stat-tl { top: 5rem; left: 1.5rem; }
+        .stat-tr { top: 5rem; right: 1.5rem; text-align: right; }
         
-        /* CTA */
-        .cta { position: fixed; bottom: 15%; left: 50%; transform: translateX(-50%); z-index: 50; }
-        
+        .cta {
+            position: fixed;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
         .cta a {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2.5rem;
-            background: transparent;
+            gap: 0.6rem;
+            padding: 1.2rem 3rem;
+            background: rgba(0,0,0,0.4);
             border: 1px solid var(--border);
             border-radius: 100px;
             color: var(--text);
             text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
+            backdrop-filter: blur(15px);
             transition: all 0.4s ease;
         }
-        
-        .cta a:hover { border-color: var(--accent); box-shadow: 0 0 40px var(--glow), inset 0 0 20px rgba(99, 102, 241, 0.1); }
-        .cta-icon { width: 16px; height: 16px; transition: transform 0.4s ease; }
+        .cta a:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 50px var(--glow), inset 0 0 30px rgba(99, 102, 241, 0.1);
+            transform: scale(1.02);
+        }
+        .cta-icon { width: 18px; height: 18px; transition: transform 0.4s ease; }
         .cta a:hover .cta-icon { transform: rotate(90deg) scale(1.2); }
         
-        /* Event Log */
-        .event-log {
-            position: fixed;
-            bottom: 5rem;
-            left: 2rem;
-            width: 300px;
-            max-height: 200px;
-            overflow: hidden;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 50;
-        }
-        
-        .event-log-item {
-            padding: 0.2rem 0;
-            border-left: 2px solid var(--border);
-            padding-left: 0.5rem;
-            margin-bottom: 0.3rem;
-            animation: log-in 0.3s ease;
-        }
-        
-        @keyframes log-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
-        
-        .event-log-item.karma { border-color: var(--accent); }
-        .event-log-item.level { border-color: #22c55e; }
-        .event-log-item.achievement { border-color: #f59e0b; }
-        
-        /* Achievements HUD */
-        .achievements-hud {
-            position: fixed;
-            top: 4rem;
-            right: 2rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.3rem;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 50;
-        }
-        
-        .ach-icon {
-            width: 28px;
-            height: 28px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            opacity: 0.3;
-            filter: grayscale(1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .ach-icon.unlocked { opacity: 1; filter: none; border-color: rgba(245, 158, 11, 0.5); }
-        .ach-icon:hover { transform: scale(1.2); z-index: 10; }
-        
-        /* Combo */
-        .combo {
-            position: fixed;
-            top: 50%;
-            right: 3rem;
-            transform: translateY(-50%);
-            text-align: right;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 50;
-        }
-        
-        .combo.active { opacity: 1; }
-        .combo-count { font-family: 'JetBrains Mono', monospace; font-size: 4rem; font-weight: 300; color: var(--accent); text-shadow: 0 0 30px var(--accent); line-height: 1; }
-        .combo-label { font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; }
-        .combo-mult { font-size: 0.8rem; color: var(--accent2); }
-        
-        /* Level Display - Elegant Arc */
         .level-display {
             position: fixed;
             bottom: 1.5rem;
@@ -383,31 +518,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 50;
+            z-index: 100;
         }
-        .level-ring {
-            width: 48px;
-            height: 48px;
-            position: relative;
-        }
-        .level-ring svg {
-            transform: rotate(-90deg);
-            width: 48px;
-            height: 48px;
-        }
-        .level-ring-bg {
-            fill: none;
-            stroke: rgba(255,255,255,0.06);
-            stroke-width: 2;
-        }
+        .level-ring { width: 56px; height: 56px; position: relative; }
+        .level-ring svg { transform: rotate(-90deg); width: 56px; height: 56px; }
+        .level-ring-bg { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 2; }
         .level-ring-fill {
             fill: none;
-            stroke: rgba(99, 102, 241, 0.4);
+            stroke: var(--accent);
             stroke-width: 2;
             stroke-linecap: round;
-            stroke-dasharray: 126;
-            stroke-dashoffset: 126;
-            transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+            stroke-dasharray: 145;
+            stroke-dashoffset: 145;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 4px var(--accent));
         }
         .level-ring-text {
             position: absolute;
@@ -417,33 +541,15 @@
             align-items: center;
             justify-content: center;
         }
-        .level-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            font-weight: 200;
-            letter-spacing: -0.02em;
-            color: var(--text);
-        }
-        .level-label {
-            font-size: 0.5rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            opacity: 0.4;
-            margin-top: 0.15rem;
-            color: var(--text-muted);
-        }
-        .level-display.level-up .level-ring-fill {
-            stroke: var(--accent);
-            filter: drop-shadow(0 0 8px var(--accent));
-        }
+        .level-number { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 200; }
+        .level-label { font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-top: 0.1rem; }
         
-        /* Audio */
         .audio-toggle {
             position: fixed;
             bottom: 1.5rem;
-            left: 4.5rem;
-            width: 36px;
-            height: 36px;
+            left: 5rem;
+            width: 40px;
+            height: 40px;
             background: rgba(0,0,0,0.4);
             border: 1px solid var(--border);
             border-radius: 50%;
@@ -452,11 +558,10 @@
             align-items: center;
             justify-content: center;
             z-index: 100;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             transition: all 0.3s ease;
         }
-        
-        .audio-toggle:hover { background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.3); }
+        .audio-toggle:hover { background: rgba(99, 102, 241, 0.15); border-color: var(--accent); }
         .audio-toggle svg { width: 16px; height: 16px; fill: var(--text-muted); transition: fill 0.3s ease; }
         .audio-toggle.active svg { fill: var(--accent); }
         .audio-toggle .icon-off { display: block; }
@@ -464,87 +569,74 @@
         .audio-toggle.active .icon-off { display: none; }
         .audio-toggle.active .icon-on { display: block; }
         
-        /* Live */
-        .live { position: fixed; bottom: 1.5rem; right: 5rem; display: flex; align-items: center; gap: 0.3rem; font-size: 0.5rem; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; opacity: 0.5; }
-        .live-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: live-pulse 2s ease-in-out infinite; }
-        @keyframes live-pulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-        
-        /* Scale Indicator */
-        .scale-indicator { position: fixed; top: 50%; left: 1rem; transform: translateY(-50%); font-size: 0.55rem; color: var(--text-muted); letter-spacing: 0.05em; opacity: 0; transition: opacity 0.5s ease; z-index: 50; writing-mode: vertical-rl; text-orientation: mixed; }
-        
-        /* Repo Stats - Minimal Pills Design */
         .repo-stats {
             position: fixed;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             display: flex;
-            gap: 0.5rem;
-            z-index: 50;
-            transition: opacity 0.3s ease;
+            gap: 0.6rem;
+            z-index: 100;
         }
-        .repo-stats:hover { opacity: 1; }
         .repo-stat {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.3rem 0.7rem;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            padding: 0.4rem 0.8rem;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
             border-radius: 100px;
-            backdrop-filter: blur(8px);
-            font-size: 0.65rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            font-feature-settings: 'tnum';
+            backdrop-filter: blur(12px);
+            font-size: 0.7rem;
             color: var(--text-muted);
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        .repo-stat:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: rgba(255,255,255,0.15);
-            color: var(--text);
+        .repo-stat:hover { background: rgba(0,0,0,0.6); border-color: var(--accent); color: var(--text); }
+        .repo-stat svg { width: 12px; height: 12px; fill: currentColor; opacity: 0.7; }
+        .repo-stat.stars { color: rgba(244, 208, 63, 0.85); }
+        .repo-stat.forks { color: rgba(130, 224, 170, 0.85); }
+        .repo-stat-value { font-family: 'JetBrains Mono', monospace; }
+        
+        .live {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            z-index: 100;
         }
-        .repo-stat svg {
-            width: 12px;
-            height: 12px;
-            opacity: 0.6;
-            fill: currentColor;
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: live-pulse 2s ease-in-out infinite;
         }
-        .repo-stat.stars { color: rgba(244, 208, 63, 0.8); }
-        .repo-stat.forks { color: rgba(130, 224, 170, 0.8); }
-        .repo-stat-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 300;
+        @keyframes live-pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
         }
         
-        /* Footer */
-        .footer-links { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 1rem; font-size: 0.55rem; letter-spacing: 0.1em; z-index: 100; }
+        .footer-links {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            z-index: 100;
+        }
         .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
         .footer-links a:hover { color: var(--text); }
         
         /* Popups */
-        .mystery-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: rgba(3, 3, 5, 0.98);
-            border: 2px solid var(--accent2);
-            border-radius: 1rem;
-            padding: 3rem 4rem;
-            text-align: center;
-            z-index: 2000;
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .mystery-popup.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .mystery-emoji { font-size: 5rem; animation: mystery-shake 0.5s ease-in-out; }
-        @keyframes mystery-shake { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-15deg); } 40% { transform: rotate(15deg); } 60% { transform: rotate(-10deg); } 80% { transform: rotate(10deg); } }
-        .mystery-title { font-size: 1.5rem; color: var(--accent2); margin: 1rem 0; }
-        .mystery-reward { font-family: 'JetBrains Mono', monospace; color: var(--text); }
-        
         .achievement-toast {
             position: fixed;
             top: 50%;
@@ -553,151 +645,181 @@
             background: rgba(3, 3, 5, 0.95);
             border: 1px solid rgba(245, 158, 11, 0.5);
             border-radius: 1rem;
-            padding: 2rem 3rem;
+            padding: 2.5rem 4rem;
             text-align: center;
             z-index: 2000;
             opacity: 0;
             pointer-events: none;
             transition: all 0.5s ease;
+            backdrop-filter: blur(20px);
         }
-        
-        .achievement-toast.show { opacity: 1; animation: achievement-in 0.6s ease; }
-        @keyframes achievement-in { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } 50% { transform: translate(-50%, -50%) scale(1.1); } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+        .achievement-toast.show { opacity: 1; animation: ach-in 0.6s ease; }
+        @keyframes ach-in {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
         .achievement-emoji { font-size: 4rem; }
-        .achievement-name { font-size: 1.2rem; color: #f59e0b; margin: 0.5rem 0; }
-        .achievement-desc { font-size: 0.8rem; color: var(--text-muted); }
+        .achievement-name { font-size: 1.3rem; color: #f59e0b; margin: 0.5rem 0; }
+        .achievement-desc { font-size: 0.85rem; color: var(--text-muted); }
+        
+        /* Mystery Popup */
+        .mystery-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(3, 3, 5, 0.95);
+            border: 1px solid var(--accent2);
+            border-radius: 1rem;
+            padding: 2rem 3rem;
+            text-align: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+        }
+        .mystery-popup.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .mystery-emoji { font-size: 5rem; animation: mystery-shake 0.5s ease-in-out; }
+        @keyframes mystery-shake { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-15deg); } 40% { transform: rotate(15deg); } 60% { transform: rotate(-10deg); } 80% { transform: rotate(10deg); } }
+        .mystery-title { font-size: 1.5rem; color: var(--accent2); margin: 1rem 0; }
+        .mystery-reward { font-family: 'JetBrains Mono', monospace; color: var(--text); }
+        
+        /* Achievements HUD */
+        .achievements-hud {
+            position: fixed;
+            top: 5.5rem;
+            right: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.3rem;
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+            z-index: 50;
+        }
+        .achievements-hud:hover { opacity: 1; }
+        .ach-icon {
+            width: 26px;
+            height: 26px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            opacity: 0.3;
+            filter: grayscale(1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .ach-icon.unlocked { opacity: 1; filter: none; border-color: rgba(245, 158, 11, 0.5); }
+        .ach-icon:hover { transform: scale(1.3); z-index: 10; }
         
         /* Responsive */
         @media (max-width: 768px) {
-            /* Hide complex elements on mobile */
-            .event-log, .achievements-hud, .combo, .cursor, .cursor-dot { display: none; }
-            
-            /* Top area - stack vertically */
-            .time-indicator { 
-                top: 0.5rem; 
-                left: 0.5rem; 
-                padding: 0.4rem 0.8rem;
-                font-size: 0.6rem;
-            }
-            .stat-tl { 
-                top: 3rem; 
-                left: 0.5rem; 
-            }
-            
-            /* Bottom left - stats */
-            .stat-bl { 
-                bottom: 1rem; 
-                left: 0.5rem; 
-            }
-            
-            /* Bottom right - hide souls, keep level display */
-            .stat-br {
-                display: none;
-            }
-            .level-display {
-                bottom: 1rem;
-                right: 0.5rem;
-            }
-            .level-ring { width: 40px; height: 40px; }
-            .level-ring svg { width: 40px; height: 40px; }
-            .level-number { font-size: 0.85rem; }
-            .level-label { font-size: 0.4rem; }
-
-            /* CTA button */
-            .cta {
-                bottom: 5rem;
-            }
-            .cta a {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.7rem;
-            }
-
-            /* Brand mark */
-            .brand-mark {
-                bottom: 1rem;
-                left: 0.5rem;
-                font-size: 0.6rem;
-            }
-            
-            /* Stats text smaller */
-            .stat { 
-                font-size: 0.55rem; 
-            }
-            .stat-value { 
-                font-size: 1rem; 
-            }
+            .cursor, .cursor-dot { display: none; }
+            .time-indicator { top: 0.8rem; left: 0.8rem; padding: 0.4rem 0.8rem; font-size: 0.65rem; }
+            .stat { font-size: 0.6rem; }
+            .stat-value { font-size: 1.2rem; }
+            .stat-tl { top: 3.5rem; left: 0.8rem; }
+            .stat-tr { display: none; }
+            .cta { bottom: 8%; }
+            .cta a { padding: 0.8rem 1.5rem; font-size: 0.7rem; }
+            .level-display { bottom: 0.8rem; right: 0.8rem; }
+            .level-ring { width: 44px; height: 44px; }
+            .footer-links { display: none; }
+            .repo-stats { top: 0.8rem; right: 0.8rem; }
+            .repo-stat { padding: 0.3rem 0.6rem; font-size: 0.6rem; }
         }
         
-        /* Very small screens */
-        @media (max-width: 380px) {
-            .time-indicator { 
-                padding: 0.3rem 0.5rem; 
-                font-size: 0.5rem; 
-            }
-            .cta a { 
-                padding: 0.6rem 1rem; 
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
-<body>
+<body class="time-night">
     <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
     
-    <a href="time.html" class="time-indicator" id="timeIndicator" title="Click for time bonuses">
-        <span class="time-emoji" id="timeEmoji">🌙</span>
-        <span class="time-period" id="timePeriod">Night</span>
-        <span class="time-multiplier" id="timeMult">x1.4</span>
-    </a>
+    <!-- Aurora (karma intensity) -->
+    <div class="aurora-layer" id="auroraLayer"></div>
     
-    <div class="grain"></div>
-    <div class="aura"></div>
-    <div class="vignette"></div>
+    <!-- Stars Layer -->
+    <div class="stars-layer" id="starsLayer"></div>
     
-    <canvas id="canvas"></canvas>
-    
-    <div class="brand-mark" id="brandMark">enjoy</div>
-    
-    <div class="stat stat-tl">
-        <span class="stat-value" id="statLevel">1</span>
-        level
+    <!-- Celestial Body -->
+    <div class="celestial" id="celestial">
+        <div class="celestial-body" id="celestialBody"></div>
     </div>
     
-    <div class="stat stat-bl">
-        <span class="stat-value" id="statScore">0</span>
+    <!-- Canvas for particles -->
+    <canvas id="canvas"></canvas>
+    
+    <!-- Landscape -->
+    <div class="landscape">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <path class="hill-far" d="M0,400 L0,280 Q180,220 360,260 Q540,200 720,240 Q900,180 1080,220 Q1260,190 1440,250 L1440,400 Z"/>
+            <path class="hill-mid" d="M0,400 L0,320 Q200,270 400,300 Q600,250 800,290 Q1000,240 1200,280 Q1350,260 1440,300 L1440,400 Z"/>
+            <path class="hill-near" d="M0,400 L0,350 Q240,310 480,340 Q720,300 960,335 Q1200,310 1440,350 L1440,400 Z"/>
+        </svg>
+    </div>
+    
+    <!-- Mist -->
+    <div class="mist-layer">
+        <div class="mist"></div>
+    </div>
+    
+    <!-- Soul Lights -->
+    <div class="souls-layer" id="soulsLayer"></div>
+    
+    <!-- Shooting Star -->
+    <div class="shooting-star" id="shootingStar"></div>
+    
+    <!-- Ambient -->
+    <div class="grain"></div>
+    <div class="vignette"></div>
+    
+    <!-- UI -->
+    <a href="time.html" class="time-indicator" id="timeIndicator" title="Time bonuses">
+        <span class="time-emoji" id="timeEmoji">🌙</span>
+        <span class="time-period" id="timePeriod">Night</span>
+        <span class="time-multiplier" id="timeMult">×1.4</span>
+    </a>
+    
+    <div class="brand-mark">enjoy</div>
+    
+    <div class="stat stat-tl">
+        <span class="stat-value" id="statKarma">0</span>
         karma
     </div>
     
-    <div class="stat stat-br">
+    <div class="stat stat-tr">
         <span class="stat-value" id="statSouls">0</span>
         souls
     </div>
     
-    <div class="level-display" id="levelDisplay" title="Level progress">
+    <div class="level-display" id="levelDisplay">
         <div class="level-ring">
-            <svg viewBox="0 0 48 48">
-                <circle class="level-ring-bg" cx="24" cy="24" r="20"/>
-                <circle class="level-ring-fill" id="levelFill" cx="24" cy="24" r="20"/>
+            <svg viewBox="0 0 56 56">
+                <circle class="level-ring-bg" cx="28" cy="28" r="23"/>
+                <circle class="level-ring-fill" id="levelFill" cx="28" cy="28" r="23"/>
             </svg>
             <div class="level-ring-text">
                 <span class="level-number" id="levelNumber">1</span>
-                <span class="level-label">lvl</span>
+                <span class="level-label">level</span>
             </div>
         </div>
     </div>
     
-    <div class="combo" id="combo">
-        <div class="combo-count" id="comboCount">0</div>
-        <div class="combo-label">streak</div>
-        <div class="combo-mult" id="comboMult">x1.0</div>
-    </div>
-    
-    <div class="achievements-hud" id="achievementsHud"></div>
-    <div class="event-log" id="eventLog"></div>
-    
     <div class="cta">
         <a href="https://github.com/fabriziosalmi/enjoy" id="ctaLink">
-            <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="12" y1="8" x2="12" y2="16"/>
                 <line x1="8" y1="12" x2="16" y2="12"/>
@@ -712,9 +834,9 @@
         <a href="https://github.com/fabriziosalmi/enjoy/blob/main/bounties.md">bounties</a>
     </div>
     
-    <button type="button" class="audio-toggle" id="audioToggle" title="Toggle ambient sound" aria-label="Toggle ambient sound">
-        <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-        <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+    <button type="button" class="audio-toggle" id="audioToggle" title="Toggle ambient sound">
+        <svg class="icon-off" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+        <svg class="icon-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
     </button>
     
     <div class="live">
@@ -722,19 +844,22 @@
         <span>live</span>
     </div>
     
-    <!-- Repo Stats - Minimal Pill Design -->
-    <div class="repo-stats" id="repoStatsDisplay">
-        <a href="https://github.com/fabriziosalmi/enjoy/stargazers" class="repo-stat stars" title="GitHub Stars">
+    <div class="repo-stats">
+        <a href="https://github.com/fabriziosalmi/enjoy/stargazers" class="repo-stat stars" title="Stars">
             <svg viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
             <span class="repo-stat-value" id="starCount">0</span>
         </a>
-        <a href="https://github.com/fabriziosalmi/enjoy/network/members" class="repo-stat forks" title="GitHub Forks">
+        <a href="https://github.com/fabriziosalmi/enjoy/network/members" class="repo-stat forks" title="Forks">
             <svg viewBox="0 0 16 16"><path d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"/></svg>
             <span class="repo-stat-value" id="forkCount">0</span>
         </a>
     </div>
     
-    <div class="scale-indicator" id="scaleIndicator"></div>
+    <div class="achievement-toast" id="achievementToast">
+        <div class="achievement-emoji" id="achEmoji">🏆</div>
+        <div class="achievement-name" id="achName">Achievement</div>
+        <div class="achievement-desc" id="achDesc">Description</div>
+    </div>
     
     <div class="mystery-popup" id="mysteryPopup">
         <div class="mystery-emoji" id="mysteryEmoji">🎁</div>
@@ -742,58 +867,26 @@
         <div class="mystery-reward" id="mysteryReward">+25 karma</div>
     </div>
     
-    <div class="achievement-toast" id="achievementToast">
-        <div class="achievement-emoji" id="achEmoji">🏆</div>
-        <div class="achievement-name" id="achName">Achievement Unlocked!</div>
-        <div class="achievement-desc" id="achDesc">You did something awesome</div>
-    </div>
+    <div class="achievements-hud" id="achievementsHud"></div>
 
     <script>
-        // Config
-        const ACHIEVEMENTS = [
-            { id: 'first_blood', emoji: '🩸', name: 'First Blood' },
-            { id: 'getting_started', emoji: '🌱', name: 'Getting Started' },
-            { id: 'dedicated', emoji: '💪', name: 'Dedicated' },
-            { id: 'legend', emoji: '👑', name: 'Legend' },
-            { id: 'karma_hunter', emoji: '💎', name: 'Karma Hunter' },
-            { id: 'karma_master', emoji: '💠', name: 'Karma Master' },
-            { id: 'karma_god', emoji: '🌟', name: 'Karma God' },
-            { id: 'streak_3', emoji: '🔥', name: 'On Fire' },
-            { id: 'streak_7', emoji: '⚡', name: 'Week Warrior' },
-            { id: 'streak_30', emoji: '🌪️', name: 'Unstoppable' },
-            { id: 'recruiter', emoji: '🔗', name: 'Recruiter' },
-            { id: 'influencer', emoji: '📣', name: 'Influencer' }
-        ];
+        // ═══════════════════════════════════════════════════════════════
+        // STATE
+        // ═══════════════════════════════════════════════════════════════
         
-        // State
         let state = null;
-        let lastState = null;
+        let repoStats = { stars: 0, forks: 0, stargazers: [] };
         let audioEnabled = localStorage.getItem('audioEnabled') !== 'false';
-        let particles = [];
-        let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-        let lastActivity = Date.now();
+        let currentPeriod = 'night';
         
-        // Canvas
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+        // ═══════════════════════════════════════════════════════════════
+        // CURSOR
+        // ═══════════════════════════════════════════════════════════════
         
-        function resize() {
-            canvas.width = window.innerWidth * devicePixelRatio;
-            canvas.height = window.innerHeight * devicePixelRatio;
-            ctx.scale(devicePixelRatio, devicePixelRatio);
-        }
-        window.addEventListener('resize', resize);
-        resize();
-        
-        // Custom Cursor
         const cursor = document.getElementById('cursor');
         const cursorDot = document.getElementById('cursorDot');
         
         document.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            lastActivity = Date.now();
-            // GPU-accelerated cursor positioning
             cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
             cursorDot.style.transform = `translate(${e.clientX - 2}px, ${e.clientY - 2}px)`;
         });
@@ -803,852 +896,21 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
         });
         
-        // Particle System (defined first to avoid hoisting issues)
-        class Particle {
-            constructor(name, karma, isPlayer = false) {
-                this.name = name;
-                this.karma = karma;
-                this.isPlayer = isPlayer;
-                this.x = Math.random() * window.innerWidth;
-                this.y = Math.random() * window.innerHeight;
-                
-                const k = Math.min(karma / 100, 1);
-                this.baseRadius = isPlayer ? 8 + k * 20 : 1 + Math.random() * 1.5;  // ambient much smaller
-                this.radius = this.baseRadius;
-                this.speed = isPlayer ? 0.3 + k * 0.5 : 0.2 + Math.random() * 0.3;  // ambient slower
-                this.hue = isPlayer ? 240 + k * 80 : 200 + Math.random() * 40;
-                this.saturation = isPlayer ? 60 + k * 20 : 10 + Math.random() * 20;  // ambient desaturated
-                this.lightness = isPlayer ? 50 + k * 20 : 70 + Math.random() * 15;
-                this.alpha = isPlayer ? 0.8 : 0.1 + Math.random() * 0.15;  // ambient very faint
-                this.angle = Math.random() * Math.PI * 2;
-                this.wobble = Math.random() * Math.PI * 2;
-                this.wobbleSpeed = 0.01 + Math.random() * 0.02;
-                this.pulseSpeed = 0.002 + Math.random() * 0.003;
-                this.trail = [];
-                this.maxTrail = isPlayer ? 20 : 5;
-            }
-            
-            update(time) {
-                this.wobble += this.wobbleSpeed;
-                this.angle += Math.sin(this.wobble) * 0.02;
-                this.x += Math.cos(this.angle) * this.speed;
-                this.y += Math.sin(this.angle) * this.speed;
-                
-                if (this.x < -50) this.x = window.innerWidth + 50;
-                if (this.x > window.innerWidth + 50) this.x = -50;
-                if (this.y < -50) this.y = window.innerHeight + 50;
-                if (this.y > window.innerHeight + 50) this.y = -50;
-                
-                this.radius = this.baseRadius + Math.sin(time * this.pulseSpeed) * (this.baseRadius * 0.3);
-                
-                if (this.isPlayer && mouse.x !== null) {
-                    const dx = mouse.x - this.x;
-                    const dy = mouse.y - this.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 200) {
-                        this.x += dx * 0.01;
-                        this.y += dy * 0.01;
-                    }
-                }
-            }
-            
-            draw() {
-                // Player glow - much more visible
-                if (this.isPlayer) {
-                    // Outer glow
-                    const outerGlow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 6);
-                    outerGlow.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, 0.4)`);
-                    outerGlow.addColorStop(0.5, `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, 0.1)`);
-                    outerGlow.addColorStop(1, 'transparent');
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius * 6, 0, Math.PI * 2);
-                    ctx.fillStyle = outerGlow;
-                    ctx.fill();
-                }
-                
-                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
-                gradient.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${this.alpha * 0.5})`);
-                gradient.addColorStop(1, 'transparent');
-                
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius * 3, 0, Math.PI * 2);
-                ctx.fillStyle = gradient;
-                ctx.fill();
-                
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${this.alpha})`;
-                ctx.fill();
-                
-                // Player core - bright center
-                if (this.isPlayer) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius * 0.3, 0, Math.PI * 2);
-                    ctx.fillStyle = `hsla(${this.hue}, 100%, 80%, 1)`;
-                    ctx.fill();
-                }
-            }
-        }
-        
-        function initParticles() {
-            particles = [];
-            // Subtle ambient particles - count based on device capability
-            const count = SCALE_CONFIG.ambientParticles;
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle('ambient', 0, false));
-            }
-        }
-        
-        // ═══════════════════════════════════════════════════════════
-        // 🌟 REPO STARS SYSTEM - GitHub meta-gamification!
-        // Stars from the repo manifest as twinkling stars in the UI
-        // ═══════════════════════════════════════════════════════════
-        let repoStats = { stars: 0, forks: 0, watchers: 0, recent_stargazers: [] };
-        let repoStars = []; // Visual star objects
-        
-        // Simple hash function for deterministic pseudo-random from string
-        function hashCode(str) {
-            let hash = 0;
-            for (let i = 0; i < str.length; i++) {
-                const char = str.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash; // Convert to 32bit integer
-            }
-            return Math.abs(hash);
-        }
-        
-        // Seeded random from hash - returns 0-1
-        function seededRandom(seed, offset = 0) {
-            const x = Math.sin(seed + offset) * 10000;
-            return x - Math.floor(x);
-        }
-        
-        class RepoStar {
-            constructor(stargazer, index, total) {
-                this.login = stargazer?.login || `anon_${index}`;
-                this.avatar = stargazer?.avatar || '';
-                
-                // Deterministic seed from login - each user always gets same position!
-                this.seed = hashCode(this.login);
-                
-                // Graceful scaling: more stars = smaller, spread across screen
-                // 1-10 stars: top arc, 11-100: wider spread, 100+: constellation mode
-                this.total = total;
-                this.index = index;
-                this.recalculatePosition(total, index);
-                
-                // Twinkle properties - deterministic but varied per star
-                this.phase = seededRandom(this.seed, 1) * Math.PI * 2;
-                this.twinkleSpeed = 0.02 + seededRandom(this.seed, 2) * 0.03;
-                const sizeScale = total > 1000 ? 0.3 : total > 500 ? 0.4 : total > 200 ? 0.5 : total > 100 ? 0.6 : total > 50 ? 0.7 : total > 20 ? 0.85 : 1;
-                this.baseSize = (2 + seededRandom(this.seed, 3) * 2) * sizeScale;
-                this.size = this.baseSize;
-                this.brightness = 0.4;
-                this.maxBrightness = 0.6 + seededRandom(this.seed, 4) * 0.3;
-                
-                // Color: golden yellow with slight variation
-                this.hue = 45 + seededRandom(this.seed, 5) * 15;
-                
-                // Clickable hitbox - scales down with more stars
-                this.hitRadius = Math.max(this.baseSize * 3, total > 500 ? 8 : total > 100 ? 12 : 15);
-            }
-            
-            recalculatePosition(total, index) {
-                // GRACEFUL DECAY LAYOUT - scales from 1 to 10,000+ stars
-                const r1 = seededRandom(this.seed, 10);
-                const r2 = seededRandom(this.seed, 11);
-                const r3 = seededRandom(this.seed, 12);
-                
-                if (total <= 10) {
-                    // Arc at top - intimate gathering
-                    const spread = Math.min(window.innerWidth * 0.5, 400);
-                    const startX = (window.innerWidth - spread) / 2;
-                    this.baseX = startX + (spread / Math.max(total, 1)) * index + r1 * 15;
-                    this.baseY = 35 + r2 * 20;
-                } else if (total <= 50) {
-                    // Two rows - small community
-                    const row = index < total / 2 ? 0 : 1;
-                    const indexInRow = index < total / 2 ? index : index - Math.floor(total / 2);
-                    const countInRow = row === 0 ? Math.floor(total / 2) : Math.ceil(total / 2);
-                    const spread = Math.min(window.innerWidth * 0.7, 700);
-                    const startX = (window.innerWidth - spread) / 2;
-                    this.baseX = startX + (spread / countInRow) * indexInRow + r1 * 10;
-                    this.baseY = 30 + row * 35 + r2 * 15;
-                } else if (total <= 200) {
-                    // Constellation scatter - growing community
-                    this.baseX = 50 + r1 * (window.innerWidth - 100);
-                    this.baseY = 20 + r2 * (window.innerHeight * 0.25);
-                } else if (total <= 1000) {
-                    // Galaxy mode - full sky scatter
-                    const angle = r1 * Math.PI * 2;
-                    const distance = 50 + r2 * Math.min(window.innerWidth, window.innerHeight) * 0.4;
-                    this.baseX = window.innerWidth / 2 + Math.cos(angle) * distance;
-                    this.baseY = window.innerHeight * 0.35 + Math.sin(angle) * distance * 0.5;
-                } else if (total <= 5000) {
-                    // Nebula mode - dense cluster with outer halo
-                    const isCore = r3 < 0.7; // 70% in dense core
-                    if (isCore) {
-                        const angle = r1 * Math.PI * 2;
-                        const distance = r2 * Math.min(window.innerWidth, window.innerHeight) * 0.25;
-                        this.baseX = window.innerWidth / 2 + Math.cos(angle) * distance;
-                        this.baseY = window.innerHeight * 0.3 + Math.sin(angle) * distance * 0.6;
-                    } else {
-                        // Halo stars
-                        this.baseX = r1 * window.innerWidth;
-                        this.baseY = r2 * window.innerHeight * 0.5;
-                    }
-                } else {
-                    // Supernova mode (10,000+) - the repo has EXPLODED 💥
-                    // Stars fill entire sky, density gradient from center
-                    const angle = r1 * Math.PI * 2;
-                    const distanceNorm = Math.pow(r2, 0.5); // Square root for uniform disk distribution
-                    const maxDist = Math.max(window.innerWidth, window.innerHeight) * 0.6;
-                    this.baseX = window.innerWidth / 2 + Math.cos(angle) * distanceNorm * maxDist;
-                    this.baseY = window.innerHeight / 2 + Math.sin(angle) * distanceNorm * maxDist * 0.7;
-                }
-                this.x = this.baseX;
-                this.y = this.baseY;
-            }
-            
-            update(time) {
-                this.phase += this.twinkleSpeed;
-                
-                // REALISTIC TWINKLING - atmospheric scintillation simulation
-                // Real stars don't twinkle smoothly - they flicker chaotically
-                
-                // Base oscillation (slow breathing)
-                const slowWave = Math.sin(this.phase * 0.3) * 0.15;
-                
-                // Medium frequency shimmer
-                const medWave = Math.sin(this.phase * 1.2 + this.seed) * 0.12;
-                
-                // Fast chaotic flicker (atmospheric turbulence)
-                const fastFlicker = Math.sin(this.phase * 4.7 + this.seed * 0.1) * 0.08;
-                const chaos = Math.sin(this.phase * 7.3 + this.seed * 0.2) * 0.05;
-                
-                // Occasional bright flash (scintillation spike)
-                const flashChance = Math.sin(this.phase * 0.1 + this.seed * 0.3);
-                const flash = flashChance > 0.97 ? 0.3 : flashChance > 0.9 ? 0.15 : 0;
-                
-                // Combine all components
-                const baseBrightness = 0.35 + slowWave + medWave + fastFlicker + chaos + flash;
-                this.brightness = Math.max(0.15, Math.min(this.maxBrightness, baseBrightness));
-                
-                // Size pulses more subtly, mostly stable
-                const sizePulse = Math.sin(this.phase * 0.8) * 0.3 + Math.sin(this.phase * 2.1) * 0.15;
-                this.size = this.baseSize + sizePulse;
-                
-                // Color temperature shift (blue when dim, warmer when bright)
-                // Real stars shift color slightly as they twinkle
-                this.currentHue = this.hue + (this.brightness - 0.4) * 10;
-                
-                // Stars stay fixed - no drift, just twinkle in place
-            }
-            
-            // Check if point is inside this star's hitbox
-            containsPoint(px, py) {
-                const dx = px - this.x;
-                const dy = py - this.y;
-                return Math.sqrt(dx * dx + dy * dy) < this.hitRadius;
-            }
-            
-            draw() {
-                const hue = this.currentHue || this.hue;
-                
-                // Star glow - very subtle, almost invisible halo
-                const gradient = ctx.createRadialGradient(
-                    this.x, this.y, 0,
-                    this.x, this.y, this.size * 3
-                );
-                gradient.addColorStop(0, `hsla(${hue}, 60%, 95%, ${this.brightness * 0.5})`);
-                gradient.addColorStop(0.2, `hsla(${hue}, 40%, 90%, ${this.brightness * 0.15})`);
-                gradient.addColorStop(0.5, `hsla(${hue}, 30%, 80%, ${this.brightness * 0.05})`);
-                gradient.addColorStop(1, `hsla(${hue}, 20%, 70%, 0)`);
-                
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
-                ctx.fillStyle = gradient;
-                ctx.fill();
-                
-                // Star core - bright white/yellow center
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * 0.4, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${hue - 5}, 100%, 98%, ${Math.min(1, this.brightness * 1.3)})`;
-                ctx.fill();
-                
-                // Diffraction spikes (4-point star rays)
-                // Only visible on brighter moments, variable length
-                if (this.brightness > 0.4) {
-                    const spikeIntensity = (this.brightness - 0.4) * 0.5;
-                    const rayLen = this.size * (1.5 + this.brightness * 2);
-                    
-                    ctx.strokeStyle = `hsla(${hue}, 100%, 95%, ${spikeIntensity})`;
-                    ctx.lineWidth = 0.5 + this.brightness * 0.5;
-                    
-                    // Main cross
-                    ctx.beginPath();
-                    ctx.moveTo(this.x - rayLen, this.y);
-                    ctx.lineTo(this.x + rayLen, this.y);
-                    ctx.moveTo(this.x, this.y - rayLen);
-                    ctx.lineTo(this.x, this.y + rayLen);
-                    ctx.stroke();
-                    
-                    // Diagonal spikes (fainter, shorter)
-                    if (this.brightness > 0.55) {
-                        const diagLen = rayLen * 0.5;
-                        ctx.strokeStyle = `hsla(${hue}, 100%, 90%, ${spikeIntensity * 0.4})`;
-                        ctx.lineWidth = 0.3;
-                        ctx.beginPath();
-                        ctx.moveTo(this.x - diagLen, this.y - diagLen);
-                        ctx.lineTo(this.x + diagLen, this.y + diagLen);
-                        ctx.moveTo(this.x + diagLen, this.y - diagLen);
-                        ctx.lineTo(this.x - diagLen, this.y + diagLen);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-        
-        // Click handler for stars - opens GitHub profile
-        canvas.addEventListener('click', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            for (const star of repoStars) {
-                if (star.containsPoint(x, y)) {
-                    // Open stargazer's GitHub profile or star page
-                    const url = star.login && star.login !== 'anonymous' 
-                        ? `https://github.com/${star.login}`
-                        : 'https://github.com/fabriziosalmi/enjoy/stargazers';
-                    window.open(url, '_blank');
-                    console.log('⭐ Clicked star:', star.login);
-                    break;
-                }
-            }
-        });
-        
-        // Hover effect for stars - show tooltip
-        let hoveredStar = null;
-        canvas.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            hoveredStar = null;
-            for (const star of repoStars) {
-                if (star.containsPoint(x, y)) {
-                    hoveredStar = star;
-                    canvas.style.cursor = 'pointer';
-                    break;
-                }
-            }
-            if (!hoveredStar) {
-                canvas.style.cursor = 'none';
-            }
-        });
-        
-        async function loadRepoStats() {
-            try {
-                const response = await fetch('repo-stats.json?t=' + Date.now());
-                if (response.ok) {
-                    repoStats = await response.json();
-                    console.log('🌟 Repo stats loaded:', repoStats.stars, 'stars,', repoStats.forks, 'forks');
-                    initRepoStars();
-                    updateRepoStatsDisplay();
-                }
-            } catch (e) {
-                console.log('Repo stats not available');
-            }
-        }
-        
-        function updateRepoStatsDisplay() {
-            const starEl = document.getElementById('starCount');
-            const forkEl = document.getElementById('forkCount');
-            if (starEl) starEl.textContent = repoStats.stars || 0;
-            if (forkEl) forkEl.textContent = repoStats.forks || 0;
-        }
-        
-        function initRepoStars() {
-            repoStars = [];
-            
-            // Create star for each real GitHub star
-            const stargazers = repoStats.recent_stargazers || [];
-            const starCount = repoStats.stars || 0;
-            
-            // If we have actual stargazer data, use it
-            if (stargazers.length > 0) {
-                stargazers.forEach((sg, i) => {
-                    repoStars.push(new RepoStar(sg, i, stargazers.length));
-                });
-            } else if (starCount > 0) {
-                // Fallback: create anonymous stars
-                for (let i = 0; i < Math.min(starCount, 20); i++) {
-                    repoStars.push(new RepoStar(null, i, starCount));
-                }
-            }
-            
-            console.log('⭐ Created', repoStars.length, 'star visuals');
-        }
-        
-        // ═══════════════════════════════════════════════════════════
-        // 🌅 SKY STATE - Day/Night transition for star visibility
-        // ═══════════════════════════════════════════════════════════
-        function getSkyState() {
-            const hour = getCETTime().getHours();
-            const minute = getCETTime().getMinutes();
-            const timeDecimal = hour + minute / 60;
-
-            // Linear interpolation helper
-            const lerp = (a, b, t) => a + (b - a) * Math.max(0, Math.min(1, t));
-
-            if (hour >= 21 || hour < 5) {
-                // Night: full star visibility
-                return { starOpacity: 1.0, skyType: 'night' };
-            }
-            if (hour >= 5 && hour < 8) {
-                // Dawn: stars fade out gradually
-                const progress = (timeDecimal - 5) / 3;
-                return { starOpacity: lerp(1.0, 0, progress), skyType: 'dawn' };
-            }
-            if (hour >= 8 && hour < 18) {
-                // Day: no stars
-                return { starOpacity: 0, skyType: 'day' };
-            }
-            if (hour >= 18 && hour < 21) {
-                // Sunset: stars fade in gradually
-                const progress = (timeDecimal - 18) / 3;
-                return { starOpacity: lerp(0, 1.0, progress), skyType: 'sunset' };
-            }
-            return { starOpacity: 1.0, skyType: 'night' };
-        }
-
-        let currentStarOpacity = 1.0;
-
-        function drawRepoStars(time) {
-            // Get sky state and apply star opacity
-            const skyState = getSkyState();
-            // Smooth transition for star opacity
-            currentStarOpacity += (skyState.starOpacity - currentStarOpacity) * 0.01;
-
-            ctx.save();
-            ctx.globalAlpha = currentStarOpacity;
-
-            repoStars.forEach(star => {
-                star.update(time);
-                star.draw();
-            });
-
-            ctx.restore();
-            
-            // Draw tooltip for hovered star
-            if (hoveredStar) {
-                const text = `⭐ ${hoveredStar.login}`;
-                ctx.font = 'bold 12px "Inter", system-ui, sans-serif';
-                const metrics = ctx.measureText(text);
-                const padding = 6;
-                const tooltipX = hoveredStar.x - metrics.width / 2 - padding;
-                const tooltipY = hoveredStar.y + 20;
-                
-                // Tooltip background
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
-                ctx.beginPath();
-                ctx.roundRect(tooltipX, tooltipY, metrics.width + padding * 2, 22, 4);
-                ctx.fill();
-                
-                // Tooltip text
-                ctx.fillStyle = '#ffd700';
-                ctx.fillText(text, tooltipX + padding, tooltipY + 15);
-            }
-        }
-        
-        // Load repo stats on init
-        loadRepoStats();
-        // Refresh every 5 minutes
-        setInterval(loadRepoStats, 5 * 60 * 1000);
-        
-        // ═══════════════════════════════════════════════════════════
-        // 📱 DEVICE CAPABILITY DETECTION
-        // ═══════════════════════════════════════════════════════════
-        function detectDeviceTier() {
-            // Check for low-power indicators
-            const isLowPower = navigator.hardwareConcurrency <= 2 ||
-                               window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-                               /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-
-            const isHighPower = navigator.hardwareConcurrency >= 8 &&
-                                window.devicePixelRatio <= 2 &&
-                                !/Mobile/i.test(navigator.userAgent);
-
-            if (isLowPower) return 'low';
-            if (isHighPower) return 'high';
-            return 'medium';
-        }
-
-        const DEVICE_TIER = detectDeviceTier();
-        console.log('📱 Device tier:', DEVICE_TIER);
-
-        // Quality presets based on device capability
-        const QUALITY_PRESETS = {
-            high:   { maxParticles: 200, maxStars: 5000, connections: true,  maxConnections: 150, connectionDistance: 180, ambientParticles: 12 },
-            medium: { maxParticles: 100, maxStars: 1000, connections: true,  maxConnections: 80,  connectionDistance: 150, ambientParticles: 8 },
-            low:    { maxParticles: 30,  maxStars: 200,  connections: false, maxConnections: 0,   connectionDistance: 100, ambientParticles: 4 }
-        };
-
-        const QUALITY = QUALITY_PRESETS[DEVICE_TIER];
-
-        // ═══════════════════════════════════════════════════════════
-        // SCALING CONFIGURATION - Dynamic based on device
-        // ═══════════════════════════════════════════════════════════
-        const SCALE_CONFIG = {
-            maxVisiblePlayers: QUALITY.maxParticles,
-            maxConnections: QUALITY.maxConnections,
-            connectionDistance: QUALITY.connectionDistance,
-            ambientParticles: QUALITY.ambientParticles,
-            topPlayersMode: 'karma',
-            enableConnections: QUALITY.connections
-        };
-
-        // Battery-aware quality adjustment
-        if (navigator.getBattery) {
-            navigator.getBattery().then(battery => {
-                if (battery.level < 0.2 && !battery.charging) {
-                    console.log('🔋 Low battery - reducing quality');
-                    SCALE_CONFIG.maxVisiblePlayers = Math.min(SCALE_CONFIG.maxVisiblePlayers, 30);
-                    SCALE_CONFIG.maxConnections = 0;
-                    SCALE_CONFIG.enableConnections = false;
-                }
-            }).catch(() => {});
-        }
-        
-        function syncPlayersToParticles(players) {
-            if (!players) return;
-            
-            const totalPlayers = Object.keys(players).length;
-            
-            // Sort players by karma (top performers get rendered)
-            const sortedPlayers = Object.entries(players)
-                .sort((a, b) => (b[1].karma || 0) - (a[1].karma || 0))
-                .slice(0, SCALE_CONFIG.maxVisiblePlayers);
-            
-            // Get names of top players
-            const topNames = new Set(sortedPlayers.map(([name]) => name));
-            
-            // Remove only player particles that are no longer in top N (keep ambient!)
-            particles = particles.filter(p => !p.isPlayer || topNames.has(p.name));
-            
-            // Add new players that aren't already particles
-            sortedPlayers.forEach(([name, data]) => {
-                const exists = particles.some(p => p.name === name && p.isPlayer);
-                if (!exists) {
-                    const newPlayer = new Particle(name, data.karma || 0, true);
-                    particles.push(newPlayer);
-                    console.log('🎮 Added player particle:', name, 'karma:', data.karma);
-                }
-            });
-            
-            // Debug log
-            const playerCount = particles.filter(p => p.isPlayer).length;
-            const ambientCount = particles.filter(p => !p.isPlayer).length;
-            console.log(`📊 Particles: ${playerCount} players, ${ambientCount} ambient`);
-            
-            // Update scale indicator if many players
-            const scaleIndicator = document.getElementById('scaleIndicator');
-            if (scaleIndicator) {
-                if (totalPlayers > SCALE_CONFIG.maxVisiblePlayers) {
-                    scaleIndicator.textContent = `Showing top ${SCALE_CONFIG.maxVisiblePlayers} of ${totalPlayers} souls`;
-                    scaleIndicator.style.opacity = '0.6';
-                } else {
-                    scaleIndicator.style.opacity = '0';
-                }
-            }
-        }
-        
-        function drawConnections() {
-            // Skip connections if disabled (low-power mode)
-            if (!SCALE_CONFIG.enableConnections) return;
-
-            const playerParticles = particles.filter(p => p.isPlayer);
-            let connectionCount = 0;
-
-            // Use spatial optimization for large particle counts
-            const maxI = Math.min(playerParticles.length, 50); // Limit iterations
-
-            for (let i = 0; i < maxI && connectionCount < SCALE_CONFIG.maxConnections; i++) {
-                for (let j = i + 1; j < playerParticles.length && connectionCount < SCALE_CONFIG.maxConnections; j++) {
-                    const dx = playerParticles[i].x - playerParticles[j].x;
-                    const dy = playerParticles[i].y - playerParticles[j].y;
-                    // Skip sqrt for performance - compare squared distances
-                    const distSq = dx * dx + dy * dy;
-                    const maxDistSq = SCALE_CONFIG.connectionDistance * SCALE_CONFIG.connectionDistance;
-
-                    if (distSq < maxDistSq) {
-                        const dist = Math.sqrt(distSq);
-                        const alpha = (1 - dist / SCALE_CONFIG.connectionDistance) * 0.15;
-                        ctx.beginPath();
-                        ctx.moveTo(playerParticles[i].x, playerParticles[i].y);
-                        ctx.lineTo(playerParticles[j].x, playerParticles[j].y);
-                        ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                        connectionCount++;
-                    }
-                }
-            }
-        }
-        
-        function animate(time) {
-            ctx.fillStyle = 'rgba(3, 3, 5, 0.15)';
-            ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-            
-            // Draw repo stars first (background layer)
-            drawRepoStars(time);
-            
-            drawConnections();
-            particles.forEach(p => { p.update(time); p.draw(); });
-            
-            // Brand mark visibility removed - always subtle in corner
-            
-            requestAnimationFrame(animate);
-        }
-        
-        initParticles();
-        animate(0);
-        
-        // Audio System
-        const AudioSystem = {
-            ctx: null, masterGain: null, isPlaying: false, nodes: [],
-            
-            init() {
-                if (this.ctx) return;
-                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-                this.masterGain = this.ctx.createGain();
-                this.masterGain.gain.value = 0;
-                this.masterGain.connect(this.ctx.destination);
-                this.createDrone();
-            },
-            
-            createDrone() {
-                const ctx = this.ctx;
-                [55, 82.5, 110, 165, 220].forEach((freq, i) => {
-                    const osc = ctx.createOscillator();
-                    osc.type = i < 2 ? 'sine' : 'triangle';
-                    osc.frequency.value = freq;
-                    osc.detune.value = Math.random() * 10 - 5;
-                    const gain = ctx.createGain();
-                    gain.gain.value = 0.15 / (i + 1);
-                    const filter = ctx.createBiquadFilter();
-                    filter.type = 'lowpass';
-                    filter.frequency.value = 400 + i * 100;
-                    osc.connect(filter);
-                    filter.connect(gain);
-                    gain.connect(this.masterGain);
-                    osc.start();
-                    this.nodes.push({ osc, gain, filter, baseFreq: freq });
-                });
-                
-                const bufferSize = 2 * ctx.sampleRate;
-                const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-                const data = noiseBuffer.getChannelData(0);
-                for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-                
-                const noise = ctx.createBufferSource();
-                noise.buffer = noiseBuffer;
-                noise.loop = true;
-                const noiseFilter = ctx.createBiquadFilter();
-                noiseFilter.type = 'bandpass';
-                noiseFilter.frequency.value = 300;
-                noiseFilter.Q.value = 1;
-                const noiseGain = ctx.createGain();
-                noiseGain.gain.value = 0.03;
-                noise.connect(noiseFilter);
-                noiseFilter.connect(noiseGain);
-                noiseGain.connect(this.masterGain);
-                noise.start();
-                this.noiseNode = noise;
-                this.noiseFilter = noiseFilter;
-                this.modulate();
-            },
-            
-            modulate() {
-                if (!this.isPlaying) return;
-                const time = this.ctx.currentTime;
-                this.nodes.forEach((node, i) => {
-                    const mod = Math.sin(time * 0.1 + i) * 3;
-                    node.osc.frequency.setValueAtTime(node.baseFreq + mod, time);
-                    node.filter.frequency.setValueAtTime(400 + Math.sin(time * 0.05) * 200, time);
-                });
-                if (this.noiseFilter) this.noiseFilter.frequency.setValueAtTime(250 + Math.sin(time * 0.08) * 150, time);
-                requestAnimationFrame(() => this.modulate());
-            },
-            
-            fadeIn(duration = 3) {
-                if (!this.ctx) this.init();
-                if (this.ctx.state === 'suspended') this.ctx.resume();
-                this.isPlaying = true;
-                this.masterGain.gain.cancelScheduledValues(this.ctx.currentTime);
-                this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, this.ctx.currentTime);
-                this.masterGain.gain.linearRampToValueAtTime(0.6, this.ctx.currentTime + duration);
-                this.modulate();
-            },
-            
-            fadeOut(duration = 2) {
-                if (!this.ctx) return;
-                this.masterGain.gain.cancelScheduledValues(this.ctx.currentTime);
-                this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, this.ctx.currentTime);
-                this.masterGain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + duration);
-                setTimeout(() => { this.isPlaying = false; }, duration * 1000);
-            },
-            
-            toggle() { if (this.isPlaying) { this.fadeOut(); return false; } else { this.fadeIn(); return true; } },
-            
-            playKarma() {
-                if (!this.ctx || !this.isPlaying) return;
-                const ctx = this.ctx, now = ctx.currentTime;
-                [400, 500, 600].forEach((freq, i) => {
-                    const osc = ctx.createOscillator(); osc.type = 'sine'; osc.frequency.value = freq;
-                    const gain = ctx.createGain();
-                    gain.gain.setValueAtTime(0, now + i * 0.1);
-                    gain.gain.linearRampToValueAtTime(0.1, now + i * 0.1 + 0.05);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.3);
-                    osc.connect(gain); gain.connect(this.masterGain);
-                    osc.start(now + i * 0.1); osc.stop(now + i * 0.1 + 0.3);
-                });
-            },
-            
-            playLevelUp() {
-                if (!this.ctx || !this.isPlaying) return;
-                const ctx = this.ctx, now = ctx.currentTime;
-                [261, 329, 392, 523, 659].forEach((freq, i) => {
-                    const osc = ctx.createOscillator(); osc.type = 'triangle'; osc.frequency.value = freq;
-                    const gain = ctx.createGain();
-                    gain.gain.setValueAtTime(0, now + i * 0.12);
-                    gain.gain.linearRampToValueAtTime(0.15, now + i * 0.12 + 0.05);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.12 + 0.5);
-                    osc.connect(gain); gain.connect(this.masterGain);
-                    osc.start(now + i * 0.12); osc.stop(now + i * 0.12 + 0.5);
-                });
-            },
-            
-            playMystery() {
-                if (!this.ctx || !this.isPlaying) return;
-                const ctx = this.ctx, now = ctx.currentTime;
-                for (let i = 0; i < 10; i++) {
-                    const osc = ctx.createOscillator(); osc.type = 'sine'; osc.frequency.value = 800 + Math.random() * 1200;
-                    const gain = ctx.createGain(), delay = Math.random() * 0.5;
-                    gain.gain.setValueAtTime(0, now + delay);
-                    gain.gain.linearRampToValueAtTime(0.08, now + delay + 0.02);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + delay + 0.15);
-                    osc.connect(gain); gain.connect(this.masterGain);
-                    osc.start(now + delay); osc.stop(now + delay + 0.15);
-                }
-            },
-            
-            playAchievement() {
-                if (!this.ctx || !this.isPlaying) return;
-                const ctx = this.ctx, now = ctx.currentTime;
-                [523, 659, 784, 1047].forEach((freq, i) => {
-                    const osc = ctx.createOscillator(); osc.type = 'square'; osc.frequency.value = freq;
-                    const gain = ctx.createGain();
-                    gain.gain.setValueAtTime(0, now + i * 0.1);
-                    gain.gain.linearRampToValueAtTime(0.08, now + i * 0.1 + 0.02);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.4);
-                    const filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 2000;
-                    osc.connect(filter); filter.connect(gain); gain.connect(this.masterGain);
-                    osc.start(now + i * 0.1); osc.stop(now + i * 0.1 + 0.4);
-                });
-            }
-        };
-        
-        const audioToggle = document.getElementById('audioToggle');
-        audioToggle.addEventListener('click', () => {
-            const isPlaying = AudioSystem.toggle();
-            audioToggle.classList.toggle('active', isPlaying);
-            localStorage.setItem('audioEnabled', isPlaying);
-        });
-        
-        document.addEventListener('click', function enableAudio() {
-            if (audioEnabled && !AudioSystem.isPlaying) { AudioSystem.fadeIn(); audioToggle.classList.add('active'); }
-            document.removeEventListener('click', enableAudio);
-        }, { once: true });
-        
-        // Event Log
-        function logEvent(type, message) {
-            // Event log disabled for cleaner UI
-            return;
-            const log = document.getElementById('eventLog');
-            const item = document.createElement('div');
-            item.className = `event-log-item ${type}`;
-            item.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-            log.insertBefore(item, log.firstChild);
-            while (log.children.length > 10) log.removeChild(log.lastChild);
-        }
-        
-        // Achievements HUD - Diff-based updates for performance
-        let achievementsInitialized = false;
-        let lastUnlockedIds = [];
-
-        function initAchievementsHUD() {
-            if (achievementsInitialized) return;
-            const hud = document.getElementById('achievementsHud');
-            hud.innerHTML = ACHIEVEMENTS.map(ach =>
-                `<div class="ach-icon" data-ach="${ach.id}" title="${ach.name}">${ach.emoji}</div>`
-            ).join('');
-            achievementsInitialized = true;
-        }
-
-        function updateAchievementsHUD(unlockedIds = []) {
-            initAchievementsHUD();
-            const hud = document.getElementById('achievementsHud');
-
-            // Only update changed achievements (diff-based)
-            unlockedIds.forEach(id => {
-                if (!lastUnlockedIds.includes(id)) {
-                    const el = hud.querySelector(`[data-ach="${id}"]`);
-                    if (el && !el.classList.contains('unlocked')) {
-                        el.classList.add('unlocked');
-                    }
-                }
-            });
-            lastUnlockedIds = [...unlockedIds];
-        }
-        
-        // Popups
-        function showMysteryBox(reward) {
-            const popup = document.getElementById('mysteryPopup');
-            document.getElementById('mysteryEmoji').textContent = reward.emoji || '🎁';
-            document.getElementById('mysteryTitle').textContent = reward.name || 'Mystery Box!';
-            document.getElementById('mysteryReward').textContent = `+${reward.value || 25} karma`;
-            popup.classList.add('show');
-            AudioSystem.playMystery();
-            setTimeout(() => popup.classList.remove('show'), 3000);
-        }
-        
-        function showAchievement(ach) {
-            const toast = document.getElementById('achievementToast');
-            document.getElementById('achEmoji').textContent = ach.emoji;
-            document.getElementById('achName').textContent = ach.name;
-            document.getElementById('achDesc').textContent = ach.desc || 'Achievement unlocked!';
-            toast.classList.add('show');
-            AudioSystem.playAchievement();
-            setTimeout(() => toast.classList.remove('show'), 4000);
-        }
-        
         // ═══════════════════════════════════════════════════════════════
-        // 🕐 TIME-BASED SYSTEM
+        // TIME SYSTEM
         // ═══════════════════════════════════════════════════════════════
+        
         const TIME_PERIODS = {
-            dawn:      { start: 5,  end: 8,  emoji: '🌅', name: 'Dawn',       multiplier: 1.2 },
-            morning:   { start: 8,  end: 12, emoji: '☀️', name: 'Morning',    multiplier: 1.3 },
-            noon:      { start: 12, end: 15, emoji: '🌞', name: 'Solar Peak', multiplier: 1.5 },
-            afternoon: { start: 15, end: 18, emoji: '🌤️', name: 'Afternoon',  multiplier: 1.25 },
-            sunset:    { start: 18, end: 21, emoji: '🌆', name: 'Sunset',     multiplier: 1.15 },
-            night:     { start: 21, end: 5,  emoji: '🌙', name: 'Night',      multiplier: 1.4 }
+            night:     { start: 21, end: 5,  emoji: '🌙', name: 'Night',      mult: 1.4,  pos: { x: 80, y: 18 } },
+            dawn:      { start: 5,  end: 8,  emoji: '🌅', name: 'Dawn',       mult: 1.2,  pos: { x: 15, y: 55 } },
+            morning:   { start: 8,  end: 12, emoji: '☀️', name: 'Morning',    mult: 1.3,  pos: { x: 75, y: 22 } },
+            noon:      { start: 12, end: 15, emoji: '🌞', name: 'Solar Peak', mult: 1.5,  pos: { x: 50, y: 12 } },
+            afternoon: { start: 15, end: 18, emoji: '🌤️', name: 'Afternoon',  mult: 1.25, pos: { x: 25, y: 28 } },
+            sunset:    { start: 18, end: 21, emoji: '🌆', name: 'Sunset',     mult: 1.15, pos: { x: 12, y: 50 } }
         };
         
         function getCETTime() {
-            const now = new Date();
-            return new Date(now.toLocaleString("en-US", { timeZone: "Europe/Rome" }));
+            return new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Rome" }));
         }
         
         function getCurrentTimePeriod() {
@@ -1663,112 +925,601 @@
             return { key: 'night', ...TIME_PERIODS.night };
         }
         
-        function updateTimeIndicator() {
+        function updateTimePeriod() {
             const period = getCurrentTimePeriod();
-            const cetTime = getCETTime();
-            const hours = cetTime.getHours();
-            const minutes = cetTime.getMinutes();
             
+            // Update theme
+            document.body.classList.remove('time-night', 'time-dawn', 'time-morning', 'time-noon', 'time-afternoon', 'time-sunset');
+            document.body.classList.add(`time-${period.key}`);
+            currentPeriod = period.key;
+            
+            // Update UI
             document.getElementById('timeEmoji').textContent = period.emoji;
             document.getElementById('timePeriod').textContent = period.name;
-            document.getElementById('timeMult').textContent = `x${period.multiplier}`;
+            document.getElementById('timeMult').textContent = `×${period.mult}`;
             
-            // Apply time-based theme to body (slow transition)
-            document.body.classList.remove('time-dawn', 'time-morning', 'time-noon', 'time-afternoon', 'time-sunset', 'time-night');
-            document.body.classList.add(`time-${period.key}`);
+            // Update celestial position
+            const celestial = document.getElementById('celestial');
+            celestial.style.left = period.pos.x + '%';
+            celestial.style.top = period.pos.y + '%';
             
-            // Check for rare time events
-            const timeStr = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-            const rareEvents = {
-                '00:00': { name: 'Witching Hour', bonus: '+200' },
-                '12:00': { name: 'Solar Peak', bonus: '+100' },
-                '11:11': { name: 'Triple Time', bonus: '+111' },
-                '22:22': { name: 'Triple Time', bonus: '+111' },
-                '03:33': { name: "Devil's Hour", bonus: '+333' }
-            };
-            
-            if (rareEvents[timeStr]) {
-                const event = rareEvents[timeStr];
-                logEvent('system', `🎯 RARE EVENT: ${event.name} (${event.bonus} karma bonus)`);
+            // Update audio tone
+            if (AudioSystem.isPlaying) {
+                AudioSystem.updateTone(period.key);
             }
         }
         
-        setInterval(updateTimeIndicator, 60000); // Update every minute
-        updateTimeIndicator();
+        setInterval(updateTimePeriod, 60000);
+        updateTimePeriod();
         
-        // Data Loading
+        // ═══════════════════════════════════════════════════════════════
+        // STARS (Sky) - GitHub stargazers become real stars at night
+        // ═══════════════════════════════════════════════════════════════
+        
+        let starTooltip = null;
+        
+        function createStars(count, stargazers = []) {
+            const container = document.getElementById('starsLayer');
+            container.innerHTML = '';
+            
+            // Create tooltip if needed
+            if (!starTooltip) {
+                starTooltip = document.createElement('div');
+                starTooltip.id = 'starTooltip';
+                starTooltip.style.cssText = `
+                    position: fixed;
+                    padding: 6px 12px;
+                    background: rgba(0, 0, 0, 0.85);
+                    border: 1px solid rgba(255, 215, 0, 0.4);
+                    border-radius: 6px;
+                    color: #ffd700;
+                    font-size: 12px;
+                    font-family: 'JetBrains Mono', monospace;
+                    pointer-events: none;
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.2s ease;
+                    backdrop-filter: blur(8px);
+                `;
+                document.body.appendChild(starTooltip);
+            }
+            
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                const seed = i * 6997;
+                const isReal = i < stargazers.length;
+                const login = isReal ? stargazers[i]?.login : null;
+                
+                // Deterministic but varied positions
+                const x = ((seed * 13 + i * 31) % 95) + 2;
+                const y = ((seed * 17 + i * 23) % 45) + 3;
+                
+                // Real stars are bigger and brighter
+                const baseSize = isReal ? 2 + (seed % 8) / 4 : 1 + (seed % 6) / 6;
+                const duration = 3 + (i % 7);
+                const delay = (i * 0.4) % 6;
+                
+                // Color: real stars have golden hue, anonymous are white
+                const hue = isReal ? 45 + (seed % 20) : 0;
+                const sat = isReal ? '60%' : '0%';
+                const light = isReal ? '90%' : '85%';
+                
+                star.className = 'sky-star' + (isReal ? ' real-star' : '');
+                star.dataset.login = login || '';
+                star.style.cssText = `
+                    position: absolute;
+                    left: ${x}%;
+                    top: ${y}%;
+                    width: ${baseSize}px;
+                    height: ${baseSize}px;
+                    background: hsl(${hue}, ${sat}, ${light});
+                    border-radius: 50%;
+                    box-shadow: ${isReal ? `0 0 ${baseSize * 3}px rgba(255, 215, 0, 0.5), 0 0 ${baseSize * 6}px rgba(255, 215, 0, 0.2)` : `0 0 ${baseSize * 2}px rgba(255, 255, 255, 0.3)`};
+                    animation: twinkle ${duration}s ease-in-out infinite;
+                    animation-delay: ${delay}s;
+                    cursor: ${isReal ? 'pointer' : 'default'};
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                `;
+                
+                if (isReal && login) {
+                    // Click -> open GitHub profile
+                    star.addEventListener('click', () => {
+                        window.open(`https://github.com/${login}`, '_blank');
+                        console.log('⭐ Visited stargazer:', login);
+                    });
+                    
+                    // Hover effects
+                    star.addEventListener('mouseenter', (e) => {
+                        star.style.transform = 'scale(2)';
+                        star.style.boxShadow = `0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4)`;
+                        starTooltip.textContent = `⭐ ${login}`;
+                        starTooltip.style.opacity = '1';
+                        starTooltip.style.left = e.clientX + 15 + 'px';
+                        starTooltip.style.top = e.clientY + 10 + 'px';
+                    });
+                    
+                    star.addEventListener('mouseleave', () => {
+                        star.style.transform = '';
+                        star.style.boxShadow = `0 0 ${baseSize * 3}px rgba(255, 215, 0, 0.5), 0 0 ${baseSize * 6}px rgba(255, 215, 0, 0.2)`;
+                        starTooltip.style.opacity = '0';
+                    });
+                    
+                    star.addEventListener('mousemove', (e) => {
+                        starTooltip.style.left = e.clientX + 15 + 'px';
+                        starTooltip.style.top = e.clientY + 10 + 'px';
+                    });
+                }
+                
+                container.appendChild(star);
+            }
+            
+            // Add twinkle keyframes if not exists
+            if (!document.getElementById('twinkle-style')) {
+                const style = document.createElement('style');
+                style.id = 'twinkle-style';
+                style.textContent = `
+                    @keyframes twinkle {
+                        0%, 100% { opacity: 0.3; transform: scale(1); }
+                        50% { opacity: 1; transform: scale(1.2); }
+                    }
+                    .sky-star.real-star {
+                        z-index: 5;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            console.log('⭐ Created', count, 'stars,', stargazers.length, 'are real stargazers');
+        }
+        
+        // ═══════════════════════════════════════════════════════════════
+        // SOUL LIGHTS (Fireflies = Players)
+        // ═══════════════════════════════════════════════════════════════
+        
+        function createSoulLights(players = {}) {
+            const container = document.getElementById('soulsLayer');
+            container.innerHTML = '';
+            
+            const playerList = Object.entries(players);
+            const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+            
+            playerList.forEach(([name, data], i) => {
+                const light = document.createElement('div');
+                light.className = 'soul-light';
+                
+                const seed = name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) * 7919;
+                const x = 10 + ((seed * 13) % 80);
+                const y = 5 + ((seed * 17) % 55);
+                
+                light.style.left = x + '%';
+                light.style.bottom = y + '%';
+                light.style.animationDuration = (3 + (i % 5)) + 's';
+                light.style.animationDelay = ((i * 0.7) % 4) + 's';
+                
+                // Size based on karma
+                const karma = data.karma || 0;
+                const size = 2 + Math.min(5, Math.log10(Math.max(1, karma)) * 2);
+                light.style.width = size + 'px';
+                light.style.height = size + 'px';
+                
+                // Active if contributed recently
+                if (data.last_contribution) {
+                    const lastContrib = new Date(data.last_contribution).getTime();
+                    if (lastContrib > oneDayAgo) {
+                        light.classList.add('active');
+                    }
+                }
+                
+                light.title = `${name}: ${karma} karma`;
+                container.appendChild(light);
+            });
+        }
+        
+        // ═══════════════════════════════════════════════════════════════
+        // SHOOTING STARS
+        // ═══════════════════════════════════════════════════════════════
+        
+        function triggerShootingStar() {
+            if (currentPeriod === 'morning' || currentPeriod === 'noon' || currentPeriod === 'afternoon') return;
+            
+            const star = document.getElementById('shootingStar');
+            const x = 20 + Math.random() * 50;
+            const y = 5 + Math.random() * 25;
+            const angle = 25 + Math.random() * 20;
+            
+            star.style.left = x + '%';
+            star.style.top = y + '%';
+            star.style.transform = `rotate(${angle}deg)`;
+            star.classList.remove('active');
+            
+            requestAnimationFrame(() => {
+                star.classList.add('active');
+                setTimeout(() => star.classList.remove('active'), 1500);
+            });
+        }
+        
+        // Random shooting stars at night/dawn/sunset
+        setInterval(() => {
+            if (Math.random() < 0.15) triggerShootingStar();
+        }, 8000);
+        
+        // ═══════════════════════════════════════════════════════════════
+        // AURORA (Karma intensity)
+        // ═══════════════════════════════════════════════════════════════
+        
+        function updateAurora(karma) {
+            const aurora = document.getElementById('auroraLayer');
+            if (karma >= 50) {
+                aurora.classList.add('active');
+                const intensity = Math.min(0.6, Math.log10(karma) / 5);
+                aurora.style.setProperty('--aurora-opacity', intensity);
+            } else {
+                aurora.classList.remove('active');
+            }
+        }
+        
+        // ═══════════════════════════════════════════════════════════════
+        // AUDIO SYSTEM - Adaptive drone
+        // ═══════════════════════════════════════════════════════════════
+        
+        const AudioSystem = {
+            ctx: null, masterGain: null, isPlaying: false, nodes: [],
+            
+            init() {
+                if (this.ctx) return;
+                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                this.masterGain = this.ctx.createGain();
+                this.masterGain.gain.value = 0;
+                this.masterGain.connect(this.ctx.destination);
+                this.createDrone();
+            },
+            
+            createDrone() {
+                const ctx = this.ctx;
+                const baseFreqs = [55, 82.5, 110, 165, 220];
+                
+                baseFreqs.forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    osc.type = i < 2 ? 'sine' : 'triangle';
+                    osc.frequency.value = freq;
+                    osc.detune.value = Math.random() * 10 - 5;
+                    
+                    const gain = ctx.createGain();
+                    gain.gain.value = 0.12 / (i + 1);
+                    
+                    const filter = ctx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 400 + i * 100;
+                    
+                    osc.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(this.masterGain);
+                    osc.start();
+                    
+                    this.nodes.push({ osc, gain, filter, baseFreq: freq });
+                });
+                
+                // Noise layer
+                const bufferSize = 2 * ctx.sampleRate;
+                const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const data = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+                
+                const noise = ctx.createBufferSource();
+                noise.buffer = noiseBuffer;
+                noise.loop = true;
+                
+                const noiseFilter = ctx.createBiquadFilter();
+                noiseFilter.type = 'bandpass';
+                noiseFilter.frequency.value = 300;
+                noiseFilter.Q.value = 1;
+                
+                const noiseGain = ctx.createGain();
+                noiseGain.gain.value = 0.025;
+                
+                noise.connect(noiseFilter);
+                noiseFilter.connect(noiseGain);
+                noiseGain.connect(this.masterGain);
+                noise.start();
+                
+                this.noiseFilter = noiseFilter;
+                this.modulate();
+            },
+            
+            // Adapt sound to time of day
+            updateTone(period) {
+                if (!this.ctx) return;
+                const now = this.ctx.currentTime;
+                
+                const tones = {
+                    night:     { detune: 0,   filterBase: 350, noiseFreq: 250 },
+                    dawn:      { detune: 50,  filterBase: 450, noiseFreq: 350 },
+                    morning:   { detune: 100, filterBase: 600, noiseFreq: 400 },
+                    noon:      { detune: 150, filterBase: 700, noiseFreq: 450 },
+                    afternoon: { detune: 75,  filterBase: 550, noiseFreq: 380 },
+                    sunset:    { detune: 25,  filterBase: 400, noiseFreq: 300 }
+                };
+                
+                const t = tones[period] || tones.night;
+                
+                this.nodes.forEach((node, i) => {
+                    node.osc.detune.linearRampToValueAtTime(t.detune + Math.random() * 10, now + 3);
+                    node.filter.frequency.linearRampToValueAtTime(t.filterBase + i * 80, now + 3);
+                });
+                
+                if (this.noiseFilter) {
+                    this.noiseFilter.frequency.linearRampToValueAtTime(t.noiseFreq, now + 3);
+                }
+            },
+            
+            modulate() {
+                if (!this.isPlaying) return;
+                const time = this.ctx.currentTime;
+                
+                this.nodes.forEach((node, i) => {
+                    const mod = Math.sin(time * 0.08 + i) * 3;
+                    node.osc.frequency.setValueAtTime(node.baseFreq + mod, time);
+                });
+                
+                requestAnimationFrame(() => this.modulate());
+            },
+            
+            fadeIn(duration = 4) {
+                if (!this.ctx) this.init();
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+                this.isPlaying = true;
+                this.masterGain.gain.cancelScheduledValues(this.ctx.currentTime);
+                this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, this.ctx.currentTime);
+                this.masterGain.gain.linearRampToValueAtTime(0.5, this.ctx.currentTime + duration);
+                this.modulate();
+                this.updateTone(currentPeriod);
+            },
+            
+            fadeOut(duration = 2) {
+                if (!this.ctx) return;
+                this.masterGain.gain.cancelScheduledValues(this.ctx.currentTime);
+                this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, this.ctx.currentTime);
+                this.masterGain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + duration);
+                setTimeout(() => { this.isPlaying = false; }, duration * 1000);
+            },
+            
+            toggle() {
+                if (this.isPlaying) { this.fadeOut(); return false; }
+                else { this.fadeIn(); return true; }
+            },
+            
+            playAchievement() {
+                if (!this.ctx || !this.isPlaying) return;
+                const ctx = this.ctx, now = ctx.currentTime;
+                [523, 659, 784, 1047].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    osc.type = 'triangle';
+                    osc.frequency.value = freq;
+                    const gain = ctx.createGain();
+                    gain.gain.setValueAtTime(0, now + i * 0.1);
+                    gain.gain.linearRampToValueAtTime(0.12, now + i * 0.1 + 0.03);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.5);
+                    osc.connect(gain);
+                    gain.connect(this.masterGain);
+                    osc.start(now + i * 0.1);
+                    osc.stop(now + i * 0.1 + 0.5);
+                });
+            },
+            
+            playMystery() {
+                if (!this.ctx || !this.isPlaying) return;
+                const ctx = this.ctx, now = ctx.currentTime;
+                for (let i = 0; i < 10; i++) {
+                    const osc = ctx.createOscillator();
+                    osc.type = 'sine';
+                    osc.frequency.value = 800 + Math.random() * 1200;
+                    const gain = ctx.createGain(), delay = Math.random() * 0.5;
+                    gain.gain.setValueAtTime(0, now + delay);
+                    gain.gain.linearRampToValueAtTime(0.08, now + delay + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + delay + 0.15);
+                    osc.connect(gain);
+                    gain.connect(this.masterGain);
+                    osc.start(now + delay);
+                    osc.stop(now + delay + 0.15);
+                }
+            }
+        };
+        
+        const audioToggle = document.getElementById('audioToggle');
+        audioToggle.addEventListener('click', () => {
+            const isPlaying = AudioSystem.toggle();
+            audioToggle.classList.toggle('active', isPlaying);
+            localStorage.setItem('audioEnabled', isPlaying);
+        });
+        
+        document.addEventListener('click', function enableAudio() {
+            if (audioEnabled && !AudioSystem.isPlaying) {
+                AudioSystem.fadeIn();
+                audioToggle.classList.add('active');
+            }
+            document.removeEventListener('click', enableAudio);
+        }, { once: true });
+        
+        // ═══════════════════════════════════════════════════════════════
+        // DATA LOADING
+        // ═══════════════════════════════════════════════════════════════
+        
         async function loadState() {
             try {
                 const res = await fetch('https://raw.githubusercontent.com/fabriziosalmi/enjoy/main/state.json?' + Date.now());
                 const data = await res.json();
+                const prevState = state;
+                state = data;
                 
-                if (lastState) {
-                    if (data.score?.total !== lastState.score?.total) { logEvent('karma', `Score: ${lastState.score?.total || 0} → ${data.score?.total}`); AudioSystem.playKarma(); }
-                    if (data.levels?.current !== lastState.levels?.current) { logEvent('level', `LEVEL UP! Now level ${data.levels?.current}`); AudioSystem.playLevelUp(); }
-                    if (Object.keys(data.players || {}).length > Object.keys(lastState.players || {}).length) logEvent('karma', 'New soul joined the collective');
+                const karma = data.score?.total || 0;
+                const level = data.levels?.current || 1;
+                const players = data.players || {};
+                const playerCount = Object.keys(players).length;
+                const achievements = data.achievements?.unlocked || [];
+                
+                document.getElementById('statKarma').textContent = karma.toLocaleString();
+                document.getElementById('statSouls').textContent = playerCount;
+                document.getElementById('levelNumber').textContent = level;
+                
+                // Update achievements HUD
+                updateAchievementsHUD(achievements);
+                
+                // Check for new achievements
+                if (prevState) {
+                    const prevAch = prevState.achievements?.unlocked || [];
+                    const newAch = achievements.filter(a => !prevAch.includes(a));
+                    newAch.forEach(achId => {
+                        const ach = ACHIEVEMENTS.find(a => a.id === achId);
+                        if (ach) showAchievement(ach.emoji, ach.name, ach.desc);
+                    });
+                    
+                    // Check for level up
+                    const prevLevel = prevState.levels?.current || 1;
+                    if (level > prevLevel) {
+                        showAchievement('🎉', `Level ${level}!`, 'The organism evolves');
+                    }
                 }
                 
-                lastState = data; state = data;
-                
-                document.getElementById('statLevel').textContent = data.levels?.current || 1;
-                document.getElementById('statScore').textContent = (data.score?.total || 0).toLocaleString();
-                document.getElementById('statSouls').textContent = Object.keys(data.players || {}).length;
-                document.getElementById('levelNumber').textContent = data.levels?.current || 1;
-
+                // Level progress
                 const next = data.levels?.next_unlock;
                 if (next) {
-                    const pct = Math.min(100, Math.round(((next.progress?.score || 0) / next.requires_score * 50) + ((next.progress?.prs || 0) / next.requires_prs * 50)));
-                    // Level ring circumference = 2 * π * 20 ≈ 126
-                    document.getElementById('levelFill').style.strokeDashoffset = 126 - (126 * pct / 100);
+                    const pct = Math.min(100, Math.round(
+                        ((next.progress?.score || 0) / (next.requires_score || 1) * 50) +
+                        ((next.progress?.prs || 0) / (next.requires_prs || 1) * 50)
+                    ));
+                    document.getElementById('levelFill').style.strokeDashoffset = 145 - (145 * pct / 100);
                 }
                 
-                const maxStreak = Math.max(0, ...Object.values(data.players || {}).map(p => p.streak || 0));
-                const combo = document.getElementById('combo');
-                if (maxStreak >= 3) {
-                    combo.classList.add('active');
-                    document.getElementById('comboCount').textContent = maxStreak;
-                    const mult = maxStreak >= 30 ? 3 : maxStreak >= 14 ? 2.5 : maxStreak >= 7 ? 2 : 1.5;
-                    document.getElementById('comboMult').textContent = `x${mult}`;
-                } else combo.classList.remove('active');
+                // Update visuals
+                updateAurora(karma);
+                createSoulLights(players);
                 
-                const allAch = [];
-                Object.values(data.players || {}).forEach(p => (p.achievements || []).forEach(a => { if (!allAch.includes(a)) allAch.push(a); }));
-                updateAchievementsHUD(allAch);
-                syncPlayersToParticles(data.players);
-            } catch (e) { console.log('Loading...', e.message); }
+                // Celestial size based on level
+                const celestialBody = document.getElementById('celestialBody');
+                const scale = 1 + Math.log10(Math.max(1, level)) * 0.2;
+                celestialBody.style.transform = `scale(${Math.min(scale, 1.6)})`;
+                
+            } catch (e) {
+                console.log('Loading state...', e.message);
+            }
         }
-        loadState();
-        setInterval(loadState, 5000);
         
-        // Easter Eggs
+        async function loadRepoStats() {
+            try {
+                const res = await fetch('repo-stats.json?' + Date.now());
+                if (res.ok) {
+                    repoStats = await res.json();
+                    document.getElementById('starCount').textContent = repoStats.stars || 0;
+                    document.getElementById('forkCount').textContent = repoStats.forks || 0;
+                    
+                    // Stars in sky scale with repo stars
+                    const starCount = Math.min(150, 30 + (repoStats.stars || 0) * 2);
+                    createStars(starCount, repoStats.recent_stargazers || []);
+                }
+            } catch (e) {
+                createStars(40, []);
+            }
+        }
+        
+        // Initial load
+        loadState();
+        loadRepoStats();
+        createStars(40);
+        
+        // Refresh
+        setInterval(loadState, 10000);
+        setInterval(loadRepoStats, 120000);
+        
+        // ═══════════════════════════════════════════════════════════════
+        // ACHIEVEMENTS CONFIG
+        // ═══════════════════════════════════════════════════════════════
+        
+        const ACHIEVEMENTS = [
+            { id: 'first_blood', emoji: '🩸', name: 'First Blood', desc: 'Your first contribution' },
+            { id: 'getting_started', emoji: '🌱', name: 'Getting Started', desc: '5 PRs merged' },
+            { id: 'dedicated', emoji: '💪', name: 'Dedicated', desc: '25 PRs merged' },
+            { id: 'legend', emoji: '👑', name: 'Legend', desc: '100 PRs merged' },
+            { id: 'karma_hunter', emoji: '💎', name: 'Karma Hunter', desc: '100 karma earned' },
+            { id: 'karma_master', emoji: '💠', name: 'Karma Master', desc: '500 karma earned' },
+            { id: 'karma_god', emoji: '🌟', name: 'Karma God', desc: '1000+ karma' },
+            { id: 'streak_3', emoji: '🔥', name: 'On Fire', desc: '3 day streak' },
+            { id: 'streak_7', emoji: '⚡', name: 'Week Warrior', desc: '7 day streak' },
+            { id: 'streak_30', emoji: '🌪️', name: 'Unstoppable', desc: '30 day streak' },
+            { id: 'recruiter', emoji: '🔗', name: 'Recruiter', desc: 'Invited a friend' },
+            { id: 'influencer', emoji: '📣', name: 'Influencer', desc: '10 referrals' }
+        ];
+        
+        function initAchievementsHUD() {
+            const hud = document.getElementById('achievementsHud');
+            hud.innerHTML = ACHIEVEMENTS.map(ach =>
+                `<div class="ach-icon" data-ach="${ach.id}" title="${ach.name}: ${ach.desc}">${ach.emoji}</div>`
+            ).join('');
+        }
+        
+        function updateAchievementsHUD(unlockedIds = []) {
+            ACHIEVEMENTS.forEach(ach => {
+                const el = document.querySelector(`.ach-icon[data-ach="${ach.id}"]`);
+                if (el) {
+                    el.classList.toggle('unlocked', unlockedIds.includes(ach.id));
+                }
+            });
+        }
+        
+        initAchievementsHUD();
+        
+        // ═══════════════════════════════════════════════════════════════
+        // ACHIEVEMENTS
+        // ═══════════════════════════════════════════════════════════════
+        
+        function showAchievement(emoji, name, desc) {
+            const toast = document.getElementById('achievementToast');
+            document.getElementById('achEmoji').textContent = emoji;
+            document.getElementById('achName').textContent = name;
+            document.getElementById('achDesc').textContent = desc;
+            toast.classList.add('show');
+            AudioSystem.playAchievement();
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+        
+        function showMystery(emoji, title, reward) {
+            const popup = document.getElementById('mysteryPopup');
+            document.getElementById('mysteryEmoji').textContent = emoji || '🎁';
+            document.getElementById('mysteryTitle').textContent = title || 'Mystery Box!';
+            document.getElementById('mysteryReward').textContent = reward || '+?? karma';
+            popup.classList.add('show');
+            AudioSystem.playMystery && AudioSystem.playMystery();
+            setTimeout(() => popup.classList.remove('show'), 3000);
+        }
+        
+        // ═══════════════════════════════════════════════════════════════
+        // EASTER EGGS
+        // ═══════════════════════════════════════════════════════════════
+        
         const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
         let konamiIndex = 0;
+        
         document.addEventListener('keydown', (e) => {
             if (e.keyCode === konamiCode[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
                     konamiIndex = 0;
-                    showAchievement({ emoji: '🎮', name: 'KONAMI!', desc: 'You found the secret code' });
-                    for (let i = 0; i < 50; i++) particles.push(new Particle('konami', 100, true));
+                    showAchievement('🎮', 'KONAMI!', 'You found the secret code');
+                    for (let i = 0; i < 5; i++) setTimeout(() => triggerShootingStar(), i * 300);
                 }
-            } else konamiIndex = 0;
-        });
-        
-        document.getElementById('brandMark')?.addEventListener('click', () => { logEvent('system', 'The void stares back...'); });
-        
-        document.addEventListener('dblclick', (e) => {
-            for (let i = 0; i < 10; i++) {
-                const p = new Particle('burst', 50, false);
-                p.x = e.clientX; p.y = e.clientY;
-                p.angle = (Math.PI * 2 / 10) * i;
-                p.speed = 3 + Math.random() * 2;
-                particles.push(p);
+            } else {
+                konamiIndex = 0;
             }
         });
         
+        // Double-click burst
+        document.addEventListener('dblclick', () => {
+            for (let i = 0; i < 3; i++) setTimeout(() => triggerShootingStar(), i * 200);
+        });
+        
         console.log('%c🎮 ENJOY', 'font-size: 3rem; color: #6366f1; font-weight: bold');
-        console.log('%cThe void welcomes you. Type "secrets" for hints.', 'color: #888');
-        window.secrets = () => console.log('Try: Konami code, double-click, click the title');
+        console.log('%cThe void welcomes you. The repo breathes.', 'color: #888');
+        console.log('Type "secrets" for hints.');
+        window.secrets = () => console.log('Konami code • Double-click • Watch the aurora at high karma');
     </script>
 </body>
 </html>
