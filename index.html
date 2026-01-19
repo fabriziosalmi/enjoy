@@ -254,10 +254,10 @@
             transition: all 8s ease;
         }
 
-        /* Day mode: stargazers become small sparkles on the sea */
+        /* Day mode: stargazers become sparkles on the sea (50-75% from top) */
         .stargazers-layer.on-sea {
-            top: auto;
-            bottom: 0;
+            top: 50%;
+            bottom: auto;
             height: 25%;
         }
 
@@ -265,14 +265,17 @@
             pointer-events: auto;
         }
 
-        /* Smaller sparkles on sea during day */
+        /* Sparkles on sea during day - golden reflections */
         .stargazers-layer.on-sea .sky-star {
-            transform: scale(0.6);
-            filter: blur(0.5px);
+            animation: sea-sparkle 1.5s ease-in-out infinite;
         }
         .stargazers-layer.on-sea .sky-star:hover {
-            transform: scale(1.5) !important;
-            filter: blur(0);
+            transform: scale(2) !important;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 180, 0, 0.6) !important;
+        }
+        @keyframes sea-sparkle {
+            0%, 100% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
         
         /* ═══════════════════════════════════════════════════════════
@@ -1327,13 +1330,13 @@
             // Toggle stargazers position: sky at night, sea during day
             if (stargazersLayer) {
                 if (starsInfo.isStars) {
-                    // Night: stargazers in sky
+                    // Night: stargazers in sky (full brightness)
                     stargazersLayer.classList.remove('on-sea');
                     stargazersLayer.style.opacity = starsInfo.opacity;
                 } else {
-                    // Day: stargazers become sparkles on sea
+                    // Day: stargazers become golden sparkles on sea (always visible)
                     stargazersLayer.classList.add('on-sea');
-                    stargazersLayer.style.opacity = Math.min(0.8, starsInfo.opacity + 0.3);
+                    stargazersLayer.style.opacity = 1;
                 }
             }
 
@@ -1417,13 +1420,12 @@
                 const star = document.createElement('div');
                 const seed = i * 7919;
 
-                // Position spread across the area
-                const x = 5 + ((seed * 13 + i * 47) % 90);
-                const y = 10 + ((seed * 19 + i * 31) % 75);
-                const baseSize = 3 + (seed % 4);
-                const duration = 2 + (i % 5);
-                const delay = (i * 0.7) % 4;
-                const hue = 40 + (seed % 25);
+                // Position: X limited to sea area (10-50%), Y spread across layer
+                const x = 10 + ((seed * 13 + i * 47) % 40);
+                const y = 20 + ((seed * 19 + i * 31) % 60);
+                const baseSize = 6 + (seed % 4);
+                const duration = 2 + (i % 4);
+                const delay = (i * 0.5) % 3;
 
                 star.className = 'sky-star real-star';
                 star.dataset.login = gazer.login;
@@ -1434,13 +1436,13 @@
                     top: ${y}%;
                     width: ${baseSize}px;
                     height: ${baseSize}px;
-                    background: hsl(${hue}, 70%, 88%);
+                    background: radial-gradient(circle, #fff 0%, #ffd700 50%, #ffaa00 100%);
                     border-radius: 50%;
-                    box-shadow: 0 0 ${baseSize * 3}px rgba(255, 215, 0, 0.6), 0 0 ${baseSize * 6}px rgba(255, 215, 0, 0.25);
+                    box-shadow: 0 0 ${baseSize * 4}px rgba(255, 215, 0, 0.8), 0 0 ${baseSize * 8}px rgba(255, 180, 0, 0.4);
                     animation: twinkle ${duration}s ease-in-out infinite;
                     animation-delay: ${delay}s;
                     cursor: pointer;
-                    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
                 `;
 
                 // Click -> open GitHub profile
