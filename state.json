@@ -479,6 +479,12 @@
         "event": "watch.started",
         "karma": 1,
         "timestamp": "2026-01-20T00:15:34.917Z"
+      },
+      {
+        "actor": "bbberns",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-01-20T04:47:37.291Z"
       }
     ],
     "by_user": {
@@ -739,6 +745,16 @@
             "event": "watch.started",
             "karma": 1,
             "timestamp": "2026-01-20T00:15:34.917Z"
+          }
+        ]
+      },
+      "bbberns": {
+        "total": 2,
+        "history": [
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-01-20T04:47:37.291Z"
           }
         ]
       }
