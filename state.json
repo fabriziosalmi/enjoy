@@ -473,6 +473,12 @@
         "event": "discussion_comment.created",
         "karma": 2,
         "timestamp": "2026-01-19T17:51:15.750Z"
+      },
+      {
+        "actor": "ShoshinMaster",
+        "event": "watch.started",
+        "karma": 1,
+        "timestamp": "2026-01-20T00:15:34.917Z"
       }
     ],
     "by_user": {
@@ -723,6 +729,16 @@
             "event": "watch.started",
             "karma": 1,
             "timestamp": "2026-01-19T15:23:51.290Z"
+          }
+        ]
+      },
+      "ShoshinMaster": {
+        "total": 1,
+        "history": [
+          {
+            "event": "watch.started",
+            "karma": 1,
+            "timestamp": "2026-01-20T00:15:34.917Z"
           }
         ]
       }
