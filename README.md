@@ -266,7 +266,7 @@ Total:  [███████████████░░░░░] 73%
 | ⏰ **Time Portal** | See all 6 time skins | [time.html](https://fabriziosalmi.github.io/enjoy/time.html) |
 | 🐛 **Bug Hunt** | Report bugs = karma | [Issues](https://github.com/fabriziosalmi/enjoy/issues/new/choose) |
 | 💬 **Discuss** | Chat with players | [Discussions](https://github.com/fabriziosalmi/enjoy/discussions) |
-| 🏆 **Bounties** | Claim karma rewards | [Bounty Board](https://github.com/fabriziosalmi/enjoy/issues/8) |
+| 🏆 **Bounties** | Claim karma rewards | [Bounty Board](https://fabriziosalmi.github.io/enjoy/bounty.html) |
 | 📊 **Leaderboard** | See top players | [Live Rankings](https://github.com/fabriziosalmi/enjoy/issues/9) |
 
 ---

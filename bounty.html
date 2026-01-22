@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Bounty Board - Enjoy</title>
+    <meta name="description" content="Claim bounties, earn karma. The hunt is on.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #030305;
+            --bg-surface: #0a0a12;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --text: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --accent-gold: #f59e0b;
+            --accent-purple: #a855f7;
+            --accent-cyan: #22d3ee;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --accent-blue: #6366f1;
+            --glow-gold: rgba(245, 158, 11, 0.3);
+            --glow-purple: rgba(168, 85, 247, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Space Grotesk', -apple-system, system-ui, sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            background: var(--bg-deep);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(245, 158, 11, 0.04) 0%, transparent 40%),
+                linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-surface) 100%);
+            z-index: -1;
+            animation: bg-pulse 20s ease-in-out infinite;
+        }
+
+        @keyframes bg-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: -1;
+            animation: float 25s ease-in-out infinite;
+        }
+        .orb-1 {
+            width: 400px; height: 400px;
+            background: rgba(245, 158, 11, 0.08);
+            top: 10%; left: -10%;
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 350px; height: 350px;
+            background: rgba(168, 85, 247, 0.06);
+            bottom: 20%; right: -5%;
+            animation-delay: -8s;
+        }
+        .orb-3 {
+            width: 300px; height: 300px;
+            background: rgba(34, 211, 238, 0.05);
+            top: 50%; left: 50%;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(20px, 30px) scale(1.02); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .header-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Section titles */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--text);
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* How it works grid */
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Karma values table */
+        .karma-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .karma-card {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            position: relative;
+        }
+
+        .karma-card.easy { --card-accent: var(--accent-green); }
+        .karma-card.medium { --card-accent: var(--accent-cyan); }
+        .karma-card.hard { --card-accent: var(--accent-purple); }
+        .karma-card.epic { --card-accent: var(--accent-gold); }
+
+        .karma-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--card-accent);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .karma-difficulty {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--card-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .karma-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .karma-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Bounties list */
+        .bounties-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .bounty-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .bounty-item:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 30px var(--glow-gold);
+        }
+
+        .bounty-issue {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            min-width: 40px;
+        }
+
+        .bounty-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .bounty-title {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .bounty-labels {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .label-easy { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); }
+        .label-medium { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); }
+        .label-hard { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); }
+        .label-epic { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
+        .label-bounty { background: rgba(99, 102, 241, 0.15); color: var(--accent-blue); }
+
+        .bounty-karma {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            white-space: nowrap;
+        }
+
+        .bounty-status {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse-status 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-status {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* Claimed table */
+        .claimed-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .claimed-table th,
+        .claimed-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .claimed-table th {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .claimed-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .hunter-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .hunter-link:hover {
+            text-decoration: underline;
+        }
+
+        .status-claimed {
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 20px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+            color: var(--accent-gold);
+        }
+
+        .cta-section p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-gold), #d97706);
+            color: #000;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--glow-gold);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--glow-gold);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--accent-purple);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .bounty-item {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .bounty-issue { min-width: auto; }
+            .karma-table { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Back link */
+        .back-link {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            backdrop-filter: blur(12px);
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--accent-gold);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Back link -->
+    <a href="index.html" class="back-link">
+        <span>←</span>
+        <span>Back to Game</span>
+    </a>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-icon">🎯</div>
+            <h1>Bounty Board</h1>
+            <p>Claim your karma. The hunt is on.</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value" id="openCount">-</span>
+                <span class="stat-label">Open Bounties</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="claimedCount">-</span>
+                <span class="stat-label">Claimed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="totalKarma">-</span>
+                <span class="stat-label">Total Karma Available</span>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <h2 class="section-title">
+            <span>⚡</span>
+            <span>How Bounties Work</span>
+        </h2>
+
+        <div class="how-grid">
+            <div class="card step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">🔍</div>
+                <div class="step-title">Find a Bounty</div>
+                <div class="step-desc">Browse open bounties below or on GitHub Issues</div>
+            </div>
+            <div class="card step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">💬</div>
+                <div class="step-title">Claim It</div>
+                <div class="step-desc">Comment "Claiming this bounty" on the issue</div>
+            </div>
+            <div class="card step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">🔀</div>
+                <div class="step-title">Submit PR</div>
+                <div class="step-desc">Fix the issue and open a Pull Request</div>
+            </div>
+            <div class="card step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">💎</div>
+                <div class="step-title">Earn Karma</div>
+                <div class="step-desc">Get bonus karma when your PR is merged!</div>
+            </div>
+        </div>
+
+        <!-- Karma Values -->
+        <h2 class="section-title">
+            <span>💰</span>
+            <span>Bounty Values</span>
+        </h2>
+
+        <div class="karma-table">
+            <div class="card karma-card easy">
+                <div class="karma-difficulty">Easy</div>
+                <div class="karma-value">+10</div>
+                <div class="karma-label">karma bonus</div>
+            </div>
+            <div class="card karma-card medium">
+                <div class="karma-difficulty">Medium</div>
+                <div class="karma-value">+25</div>
+                <div class="karma-label">karma bonus</div>
+            </div>
+            <div class="card karma-card hard">
+                <div class="karma-difficulty">Hard</div>
+                <div class="karma-value">+50</div>
+                <div class="karma-label">karma bonus</div>
+            </div>
+            <div class="card karma-card epic">
+                <div class="karma-difficulty">Epic</div>
+                <div class="karma-value">+100</div>
+                <div class="karma-label">karma bonus</div>
+            </div>
+        </div>
+
+        <!-- Active Bounties -->
+        <h2 class="section-title">
+            <span>🏆</span>
+            <span>Active Bounties</span>
+        </h2>
+
+        <div class="bounties-list" id="bountiesList">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading bounties...</p>
+            </div>
+        </div>
+
+        <!-- Recently Claimed -->
+        <h2 class="section-title">
+            <span>✅</span>
+            <span>Recently Claimed</span>
+        </h2>
+
+        <div class="card" id="claimedSection">
+            <table class="claimed-table">
+                <thead>
+                    <tr>
+                        <th>Bounty</th>
+                        <th>Hunter</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="claimedList">
+                    <tr>
+                        <td colspan="3" class="empty-state">
+                            <div class="empty-state-icon">🏜️</div>
+                            <p>No bounties claimed yet. Be the first!</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>🌟 Create a Bounty</h3>
+            <p>Have a task that needs doing? Add the <code>bounty</code> label to an issue!</p>
+            <a href="https://github.com/fabriziosalmi/enjoy/issues/new?labels=bounty" class="cta-btn" target="_blank">
+                <span>➕</span>
+                <span>Open New Issue</span>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Last updated: <span id="lastUpdated">-</span></p>
+            <div class="footer-links">
+                <a href="https://github.com/fabriziosalmi/enjoy">GitHub</a>
+                <a href="https://github.com/fabriziosalmi/enjoy/blob/main/bounties.md">Bounty Guide</a>
+                <a href="index.html">Play Game</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Configuration
+        const REPO_OWNER = 'fabriziosalmi';
+        const REPO_NAME = 'enjoy';
+        const BOUNTY_LABEL = 'bounty';
+
+        // Karma values by difficulty
+        const KARMA_VALUES = {
+            easy: 10,
+            medium: 25,
+            hard: 50,
+            epic: 100
+        };
+
+        // Difficulty detection keywords
+        const DIFFICULTY_KEYWORDS = {
+            easy: ['easy', 'beginner', 'simple', 'quick', 'typo', 'documentation'],
+            medium: ['medium', 'moderate', 'feature', 'enhancement'],
+            hard: ['hard', 'complex', 'refactor', 'security'],
+            epic: ['epic', 'major', 'architecture', 'critical']
+        };
+
+        // Detect difficulty from labels or title
+        function detectDifficulty(labels, title) {
+            const labelNames = labels.map(l => l.name.toLowerCase());
+            const titleLower = title.toLowerCase();
+            
+            for (const [difficulty, keywords] of Object.entries(DIFFICULTY_KEYWORDS)) {
+                for (const keyword of keywords) {
+                    if (labelNames.some(l => l.includes(keyword)) || titleLower.includes(keyword)) {
+                        return difficulty;
+                    }
+                }
+            }
+            return 'medium'; // Default
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return 'Just now';
+            if (diff < 3600000) return Math.floor(diff / 60000) + 'm ago';
+            if (diff < 86400000) return Math.floor(diff / 3600000) + 'h ago';
+            if (diff < 604800000) return Math.floor(diff / 86400000) + 'd ago';
+            
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        // Render bounty item
+        function renderBountyItem(issue) {
+            const difficulty = detectDifficulty(issue.labels, issue.title);
+            const karma = KARMA_VALUES[difficulty];
+            
+            return `
+                <a href="${issue.html_url}" target="_blank" class="card bounty-item">
+                    <span class="bounty-issue">#${issue.number}</span>
+                    <div class="bounty-info">
+                        <span class="bounty-title">${issue.title}</span>
+                        <div class="bounty-labels">
+                            <span class="label label-${difficulty}">${difficulty}</span>
+                            ${issue.labels.filter(l => l.name !== BOUNTY_LABEL).slice(0, 2).map(l => 
+                                `<span class="label label-bounty">${l.name}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <span class="bounty-karma">+${karma}</span>
+                    <div class="bounty-status">
+                        <span class="status-dot"></span>
+                        <span>Open</span>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Render claimed bounty
+        function renderClaimedItem(issue, hunter) {
+            return `
+                <tr>
+                    <td>
+                        <a href="${issue.html_url}" target="_blank" class="hunter-link">#${issue.number} ${issue.title.slice(0, 40)}${issue.title.length > 40 ? '...' : ''}</a>
+                    </td>
+                    <td>
+                        <a href="https://github.com/${hunter}" target="_blank" class="hunter-link">@${hunter}</a>
+                    </td>
+                    <td>
+                        <span class="status-claimed">
+                            <span>✅</span>
+                            <span>Claimed</span>
+                        </span>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Fetch bounties from GitHub
+        async function fetchBounties() {
+            const bountiesList = document.getElementById('bountiesList');
+            const claimedList = document.getElementById('claimedList');
+            
+            try {
+                // Fetch open issues with bounty label
+                const openResponse = await fetch(
+                    `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues?labels=${BOUNTY_LABEL}&state=open&per_page=20`
+                );
+                
+                // Fetch closed issues with bounty label (recently claimed)
+                const closedResponse = await fetch(
+                    `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues?labels=${BOUNTY_LABEL}&state=closed&per_page=10`
+                );
+
+                const openIssues = await openResponse.json();
+                const closedIssues = await closedResponse.json();
+
+                // Handle API errors
+                if (!Array.isArray(openIssues)) {
+                    throw new Error('Failed to fetch issues');
+                }
+
+                // Calculate stats
+                let totalKarma = 0;
+                openIssues.forEach(issue => {
+                    const difficulty = detectDifficulty(issue.labels, issue.title);
+                    totalKarma += KARMA_VALUES[difficulty];
+                });
+
+                document.getElementById('openCount').textContent = openIssues.length;
+                document.getElementById('claimedCount').textContent = closedIssues.length || 0;
+                document.getElementById('totalKarma').textContent = `+${totalKarma}`;
+
+                // Render open bounties
+                if (openIssues.length === 0) {
+                    bountiesList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🎯</div>
+                            <p>No open bounties right now. Check back soon!</p>
+                        </div>
+                    `;
+                } else {
+                    bountiesList.innerHTML = openIssues.map(renderBountyItem).join('');
+                }
+
+                // Render claimed bounties
+                if (Array.isArray(closedIssues) && closedIssues.length > 0) {
+                    const claimedHtml = closedIssues.slice(0, 5).map(issue => {
+                        // Try to get the user who closed or was assigned
+                        const hunter = issue.assignee?.login || issue.user?.login || 'Unknown';
+                        return renderClaimedItem(issue, hunter);
+                    }).join('');
+                    claimedList.innerHTML = claimedHtml;
+                }
+
+                // Update timestamp
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZoneName: 'short'
+                });
+
+            } catch (error) {
+                console.error('Error fetching bounties:', error);
+                bountiesList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <p>Unable to load bounties. <a href="https://github.com/${REPO_OWNER}/${REPO_NAME}/issues?q=label%3A${BOUNTY_LABEL}" target="_blank" style="color: var(--accent-gold);">View on GitHub</a></p>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', fetchBounties);
+
+        // Refresh every 2 minutes
+        setInterval(fetchBounties, 120000);
+    </script>
+</body>
+</html>
