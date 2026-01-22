@@ -35,7 +35,7 @@ jobs:
           if [ "$TOTAL_PERIODS" -gt 0 ]; then
             # Calculate Shannon entropy of time distribution
             MAX_PERIOD=$(echo "$STATE" | jq '[.time_system.stats | to_entries[] | .value.total_prs] | max // 1')
-            ACTIVITY_SPREAD=$(echo "scale=2; $MAX_PERIOD * 100 / ($TOTAL_PERIODS + 1)" | bc)
+            ACTIVITY_SPREAD=$(echo "scale=0; $MAX_PERIOD * 100 / ($TOTAL_PERIODS + 1)" | bc)
           else
             ACTIVITY_SPREAD=0
           fi
@@ -46,7 +46,7 @@ jobs:
           if [ "$TOTAL_PLAYERS" -gt 0 ] && [ "$TOTAL_KARMA" -gt 0 ]; then
             MAX_PLAYER_KARMA=$(echo "$STATE" | jq '[.players[].karma] | max // 0')
             # Gini-like coefficient (0 = equal, 100 = one person has all)
-            KARMA_INEQUALITY=$(echo "scale=0; $MAX_PLAYER_KARMA * 100 / $TOTAL_KARMA" | bc)
+            KARMA_INEQUALITY=$(( MAX_PLAYER_KARMA * 100 / TOTAL_KARMA ))
           else
             KARMA_INEQUALITY=0
           fi
