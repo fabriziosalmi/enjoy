@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-01-22T12:09:02Z",
+  "order_score": 0,
+  "entropy_factors": {
+    "activity_spread": 33,
+    "karma_inequality": 71,
+    "bounty_ratio": 80,
+    "level_entropy": 97,
+    "streak_entropy": 90
+  },
+  "anti_entropy_factors": {
+    "achievement_order": 20,
+    "pr_order": 12,
+    "community_order": 20
+  },
+  "raw_entropy": 371,
+  "anti_entropy": 52,
+  "net_entropy": 100
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <defs>
+    <linearGradient id="orderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:hsl(0,70%,40%)"/>
+      <stop offset="100%" style="stop-color:hsl(0,70%,60%)"/>
+    </linearGradient>
+    <linearGradient id="entropyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b6b"/>
+      <stop offset="100%" style="stop-color:#ff8787"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="200" fill="#0d1117" rx="10"/>
+  
+  <!-- Title -->
+  <text x="200" y="30" text-anchor="middle" font-family="Arial Black" font-size="16" fill="hsl(0,70%,70%)">🧬 ENTROPY TRACKER 🧬</text>
+  <text x="200" y="50" text-anchor="middle" font-family="Arial" font-size="12" fill="#8b949e">❤️ Embracing Chaos</text>
+  
+  <!-- Order bar -->
+  <text x="50" y="80" font-family="Arial" font-size="10" fill="#8b949e">ORDER</text>
+  <rect x="50" y="85" width="300" height="20" rx="5" fill="#1a1a2e"/>
+  <rect x="50" y="85" width="0" height="20" rx="5" fill="url(#orderGrad)">
+    <animate attributeName="width" from="0" to="0" dur="1s" fill="freeze"/>
+  </rect>
+  <text x="360" y="100" font-family="Arial Black" font-size="12" fill="hsl(0,70%,70%)">0%</text>
+  
+  <!-- Entropy bar -->
+  <text x="50" y="130" font-family="Arial" font-size="10" fill="#8b949e">ENTROPY</text>
+  <rect x="50" y="135" width="300" height="20" rx="5" fill="#1a1a2e"/>
+  <rect x="50" y="135" width="300" height="20" rx="5" fill="url(#entropyGrad)">
+    <animate attributeName="width" from="0" to="300" dur="1s" fill="freeze"/>
+  </rect>
+  <text x="360" y="150" font-family="Arial Black" font-size="12" fill="#ff6b6b">100%</text>
+  
+  <!-- Philosophy -->
+  <text x="200" y="180" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#58a6ff" font-style="italic">
+    "Order emerges from collaboration. Entropy retreats from love."
+  </text>
+</svg>
