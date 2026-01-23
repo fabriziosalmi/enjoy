@@ -1,45 +1,50 @@
 {
-  "updated": "2026-01-22T12:17:31.251Z",
+  "updated": "2026-01-23T00:38:27.381Z",
   "stars": 6,
-  "forks": 2,
+  "forks": 3,
   "watchers": 0,
-  "open_issues": 7,
+  "open_issues": 8,
   "discussions": 11,
-  "size_kb": 9026,
+  "size_kb": 9055,
   "default_branch": "main",
   "recent_stargazers": [
     {
       "login": "testman42",
       "avatar": "https://avatars.githubusercontent.com/u/2620967?v=4",
-      "starred_at": "2026-01-22T12:17:31.251Z"
+      "starred_at": "2026-01-23T00:38:27.382Z"
     },
     {
       "login": "tentoumushii",
       "avatar": "https://avatars.githubusercontent.com/u/169354375?v=4",
-      "starred_at": "2026-01-22T12:17:31.251Z"
+      "starred_at": "2026-01-23T00:38:27.382Z"
     },
     {
       "login": "giordan83",
       "avatar": "https://avatars.githubusercontent.com/u/1755593?v=4",
-      "starred_at": "2026-01-22T12:17:31.251Z"
+      "starred_at": "2026-01-23T00:38:27.382Z"
     },
     {
       "login": "tkersey",
       "avatar": "https://avatars.githubusercontent.com/u/217?v=4",
-      "starred_at": "2026-01-22T12:17:31.251Z"
+      "starred_at": "2026-01-23T00:38:27.382Z"
     },
     {
       "login": "DoddiC",
       "avatar": "https://avatars.githubusercontent.com/u/45871604?v=4",
-      "starred_at": "2026-01-22T12:17:31.251Z"
+      "starred_at": "2026-01-23T00:38:27.382Z"
     },
     {
       "login": "ShoshinMaster",
       "avatar": "https://avatars.githubusercontent.com/u/236030009?v=4",
-      "starred_at": "2026-01-22T12:17:31.251Z"
+      "starred_at": "2026-01-23T00:38:27.382Z"
     }
   ],
   "recent_forks": [
+    {
+      "login": "aliraza556",
+      "avatar": "https://avatars.githubusercontent.com/u/87068339?v=4",
+      "forked_at": "2026-01-22T22:13:58Z"
+    },
     {
       "login": "tanu123421",
       "avatar": "https://avatars.githubusercontent.com/u/200974194?v=4",
@@ -70,8 +75,8 @@
   ],
   "energy": {
     "twinkle_intensity": 0.06,
-    "growth_rate": 0.04,
-    "activity": 0.9,
+    "growth_rate": 0.06,
+    "activity": 0.95,
     "community": 3
   }
 }
