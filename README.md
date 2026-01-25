@@ -225,7 +225,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | 🎮 Level | 💎 Total Karma | 👥 Players | 🔀 PRs Merged | ⏰ Current |
 |:--------:|:--------------:|:----------:|:-------------:|:----------:|
-| **3** | **278** | **2** | **6** | 🌙 Night ×1.4 |
+| **3** | **278** | **2** | **6** | 🌅 Dawn ×1.2 |
 
 </div>
 
