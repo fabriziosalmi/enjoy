@@ -515,6 +515,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-01-23T17:36:05.387Z"
+      },
+      {
+        "actor": "aliraza556",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-01-25T18:00:32.167Z"
       }
     ],
     "by_user": {
@@ -734,7 +740,7 @@
         ]
       },
       "aliraza556": {
-        "total": 9,
+        "total": 11,
         "history": [
           {
             "event": "issue_comment.created",
@@ -755,6 +761,11 @@
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-01-23T16:21:07.062Z"
+          },
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-01-25T18:00:32.167Z"
           }
         ]
       },
