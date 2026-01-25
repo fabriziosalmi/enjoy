@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
+  <defs>
+    <linearGradient id="storyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:hsl(280,70%,30%)"/>
+      <stop offset="100%" style="stop-color:hsl(280,70%,50%)"/>
+    </linearGradient>
+    <filter id="storyGlow">
+      <feGaussianBlur stdDeviation="2"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="500" height="150" fill="#0d1117" rx="10"/>
+  <rect x="5" y="5" width="490" height="140" rx="8" fill="none" stroke="url(#storyGrad)" stroke-width="2"/>
+  
+  <!-- Book icon -->
+  <g transform="translate(60, 75)" filter="url(#storyGlow)">
+    <path d="M-25,-30 L-25,30 L0,25 L25,30 L25,-30 L0,-25 Z" fill="url(#storyGrad)" opacity="0.8"/>
+    <line x1="0" y1="-25" x2="0" y2="25" stroke="hsl(280,50%,70%)" stroke-width="2"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="250" y="50" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="hsl(280,70%,70%)" filter="url(#storyGlow)">📜 The Eternal Chronicle</text>
+  <text x="250" y="80" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#fff" font-style="italic">"Every commit is a chapter. Every player, a hero."</text>
+  <text x="250" y="110" text-anchor="middle" font-family="monospace" font-size="12" fill="#8b949e">Level 3 | 278 karma | The story continues...</text>
+  <text x="250" y="135" text-anchor="middle" font-family="monospace" font-size="10" fill="#58a6ff">github.com/fabriziosalmi/enjoy/story</text>
+</svg>
