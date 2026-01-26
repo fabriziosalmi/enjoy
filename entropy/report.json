@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-26T00:21:27Z",
+  "timestamp": "2026-01-26T12:09:49Z",
   "order_score": 0,
   "entropy_factors": {
     "activity_spread": 33,
@@ -11,9 +11,9 @@
   "anti_entropy_factors": {
     "achievement_order": 20,
     "pr_order": 12,
-    "community_order": 20
+    "community_order": 70
   },
   "raw_entropy": 371,
-  "anti_entropy": 52,
+  "anti_entropy": 102,
   "net_entropy": 100
 }
