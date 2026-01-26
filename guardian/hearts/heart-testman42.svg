@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" width="200" height="180">
+  <defs>
+    <filter id="heartGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="180" fill="#0d1117" rx="10"/>
+  
+  <!-- Animated heart -->
+  <g transform="translate(100, 70)" filter="url(#heartGlow)">
+    <path d="M0,30 C-10,20 -30,0 -30,-15 C-30,-35 -10,-40 0,-25 C10,-40 30,-35 30,-15 C30,0 10,20 0,30Z" 
+          fill="#22c55e">
+      <animate attributeName="d" dur="1s" repeatCount="indefinite"
+        values="M0,30 C-10,20 -30,0 -30,-15 C-30,-35 -10,-40 0,-25 C10,-40 30,-35 30,-15 C30,0 10,20 0,30Z;
+                M0,28 C-8,18 -28,2 -28,-13 C-28,-33 -8,-38 0,-23 C8,-38 28,-33 28,-13 C28,2 8,18 0,28Z;
+                M0,30 C-10,20 -30,0 -30,-15 C-30,-35 -10,-40 0,-25 C10,-40 30,-35 30,-15 C30,0 10,20 0,30Z"/>
+    </path>
+  </g>
+  
+  <!-- Message -->
+  <text x="100" y="130" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">
+    testman42, your streak of 0 is waiting! Ready for more karma?
+  </text>
+  <text x="100" y="150" text-anchor="middle" font-family="Arial" font-size="8" fill="#8b949e">
+    💜 from the enjoy community
+  </text>
+  <text x="100" y="170" text-anchor="middle" font-family="monospace" font-size="6" fill="#4a5568">
+    karma:1 | days away:7
+  </text>
+</svg>
