@@ -1,65 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
   <defs>
-    <!-- Noon gradient: bright blue, white hot -->
-    <linearGradient id="noonSky" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#0096c7"/>
-      <stop offset="40%" style="stop-color:#48cae4"/>
-      <stop offset="100%" style="stop-color:#caf0f8"/>
+    <!-- Afternoon gradient: warm golden, soft orange -->
+    <linearGradient id="afternoonSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#74c0fc"/>
+      <stop offset="50%" style="stop-color:#ffd8a8"/>
+      <stop offset="100%" style="stop-color:#ffec99"/>
     </linearGradient>
-    <linearGradient id="hotGlow" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#fff;stop-opacity:0.9"/>
-      <stop offset="100%" style="stop-color:#ffd93d;stop-opacity:0"/>
+    <linearGradient id="warmGlow" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" style="stop-color:#ff922b;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#ff922b;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#ff922b;stop-opacity:0"/>
     </linearGradient>
-    <filter id="intense">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
+    <filter id="golden">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge>
-        <feMergeNode in="blur"/>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <filter id="heatShimmer">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2"/>
-      <feDisplacementMap in="SourceGraphic" scale="2"/>
-    </filter>
   </defs>
   
   <!-- Sky -->
-  <rect width="800" height="200" fill="url(#noonSky)"/>
+  <rect width="800" height="200" fill="url(#afternoonSky)"/>
   
-  <!-- Sun at peak -->
-  <ellipse cx="400" cy="-20" rx="200" ry="150" fill="url(#hotGlow)"/>
-  <circle cx="400" cy="30" r="40" fill="#fff" filter="url(#intense)"/>
+  <!-- Warm glow band -->
+  <rect x="0" y="80" width="800" height="60" fill="url(#warmGlow)"/>
   
-  <!-- Heat waves (subtle) -->
-  <rect x="0" y="170" width="800" height="30" fill="#caf0f8" opacity="0.3"/>
+  <!-- Sun descending -->
+  <circle cx="650" cy="80" r="38" fill="#ffd93d" filter="url(#golden)"/>
+  <circle cx="650" cy="80" r="30" fill="#ffec99"/>
   
-  <!-- Ground -->
-  <path d="M0,180 Q200,175 400,178 Q600,172 800,180 L800,200 L0,200 Z" fill="#ffd93d" opacity="0.3"/>
-  <path d="M0,185 Q200,180 400,183 Q600,178 800,185 L800,200 L0,200 Z" fill="#f4a261"/>
+  <!-- Clouds with golden edges -->
+  <g>
+    <ellipse cx="200" cy="60" rx="60" ry="25" fill="#fff"/>
+    <ellipse cx="230" cy="55" rx="45" ry="20" fill="#ffd8a8"/>
+    <ellipse cx="170" cy="65" rx="40" ry="18" fill="#fff"/>
+    
+    <ellipse cx="450" cy="45" rx="50" ry="20" fill="#fff"/>
+    <ellipse cx="480" cy="40" rx="40" ry="18" fill="#ffd8a8"/>
+  </g>
+  
+  <!-- Golden hills -->
+  <path d="M0,175 Q100,155 200,165 Q350,145 500,160 Q650,150 800,165 L800,200 L0,200 Z" fill="#e8590c" opacity="0.4"/>
+  <path d="M0,180 Q150,165 300,175 Q450,160 600,172 Q700,165 800,178 L800,200 L0,200 Z" fill="#f4a261"/>
   
   <!-- Title -->
-  <text x="400" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#023e8a" filter="url(#intense)">enjoy</text>
+  <text x="400" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#c2410c" filter="url(#golden)">enjoy</text>
   
   <!-- Subtitle -->
-  <text x="400" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#0077b6">🌞 peak activity • maximum karma</text>
+  <text x="400" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#e8590c">🌤️ golden hour • wisdom flows</text>
   
   <!-- Time indicator -->
-  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#023e8a" opacity="0.7">12:00-15:00 CET</text>
+  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#c2410c" opacity="0.7">15:00-18:00 CET</text>
   
-  <!-- Activity sparks -->
-  <g fill="#ffd93d" opacity="0.8">
-    <circle cx="100" cy="60" r="2">
-      <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="700" cy="80" r="2">
-      <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="300" cy="40" r="1.5">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="550" cy="55" r="1.5">
-      <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
-    </circle>
+  <!-- Lazy particles -->
+  <g fill="#ff922b" opacity="0.5">
+    <circle cx="120" cy="90" r="2"/>
+    <circle cx="350" cy="70" r="1.5"/>
+    <circle cx="580" cy="95" r="2"/>
   </g>
 </svg>
