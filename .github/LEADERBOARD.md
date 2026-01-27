@@ -9,10 +9,11 @@
 | 🥇 | fabriziosalmi | 200 | 1 | 4 |
 | 🥈 | JoKneeMo | 80 | 1 | 1 |
 | 🥉 | tanu123421 | 7 | 0 | 0 |
-| 4 | aliraza556 | 2 | 0 | 0 |
-| 5 | tkersey | 1 | 0 | 0 |
-| 6 | tentoumushii | 1 | 0 | 0 |
-| 7 | testman42 | 1 | 0 | 0 |
+| 4 | prashcod | 2 | 0 | 0 |
+| 5 | aliraza556 | 2 | 0 | 0 |
+| 6 | tkersey | 1 | 0 | 0 |
+| 7 | tentoumushii | 1 | 0 | 0 |
+| 8 | testman42 | 1 | 0 | 0 |
 
 ## 🏛️ Founders Hall of Fame
 
@@ -27,6 +28,7 @@
 | 5 | 🎮 aliraza556 | 2026-01-19 |
 | 6 | 🎮 tanu123421 | 2026-01-19 |
 | 7 | 🎮 tkersey | 2026-01-19 |
+| 8 | 🎮 prashcod | 2026-01-27 |
 
 ## Achievement Hunters
 
@@ -34,9 +36,9 @@
 |--------|-------------------|
 | fabriziosalmi | 4 |
 | JoKneeMo | 1 |
+| prashcod | 0 |
 | tkersey | 0 |
 | tanu123421 | 0 |
-| aliraza556 | 0 |
 
 ## Streak Champions
 
@@ -44,19 +46,19 @@
 |--------|----------------|
 | JoKneeMo | 1 day(s) |
 | fabriziosalmi | 1 day(s) |
+| prashcod | 0 day(s) |
 | tkersey | 0 day(s) |
 | tanu123421 | 0 day(s) |
-| aliraza556 | 0 day(s) |
 
 ---
 
 ## Game Stats
 
-- **Total Players**: 7
+- **Total Players**: 8
 - **Total Karma**: 278
 - **Current Level**: 3
 - **Total PRs**: 6
 
 ---
 
-*Last updated: 2026-01-27 11:08 UTC*
+*Last updated: 2026-01-27 11:38 UTC*
