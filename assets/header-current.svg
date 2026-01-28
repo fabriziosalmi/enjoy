@@ -1,19 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
   <defs>
-    <!-- Afternoon gradient: warm golden, soft orange -->
-    <linearGradient id="afternoonSky" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#74c0fc"/>
-      <stop offset="50%" style="stop-color:#ffd8a8"/>
-      <stop offset="100%" style="stop-color:#ffec99"/>
+    <!-- Sunset gradient: intense purple, red, orange -->
+    <linearGradient id="sunsetSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d1b69"/>
+      <stop offset="25%" style="stop-color:#7b2cbf"/>
+      <stop offset="50%" style="stop-color:#e63946"/>
+      <stop offset="75%" style="stop-color:#f77f00"/>
+      <stop offset="100%" style="stop-color:#fcbf49"/>
     </linearGradient>
-    <linearGradient id="warmGlow" x1="0%" y1="50%" x2="100%" y2="50%">
-      <stop offset="0%" style="stop-color:#ff922b;stop-opacity:0"/>
-      <stop offset="50%" style="stop-color:#ff922b;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#ff922b;stop-opacity:0"/>
+    <linearGradient id="sunsetGlow" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" style="stop-color:#f77f00;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#f77f00;stop-opacity:0"/>
     </linearGradient>
-    <filter id="golden">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+    <filter id="fireGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge>
+        <feMergeNode in="blur"/>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
@@ -21,42 +23,40 @@
   </defs>
   
   <!-- Sky -->
-  <rect width="800" height="200" fill="url(#afternoonSky)"/>
+  <rect width="800" height="200" fill="url(#sunsetSky)"/>
   
-  <!-- Warm glow band -->
-  <rect x="0" y="80" width="800" height="60" fill="url(#warmGlow)"/>
+  <!-- Horizon glow -->
+  <ellipse cx="400" cy="200" rx="500" ry="100" fill="url(#sunsetGlow)"/>
   
-  <!-- Sun descending -->
-  <circle cx="650" cy="80" r="38" fill="#ffd93d" filter="url(#golden)"/>
-  <circle cx="650" cy="80" r="30" fill="#ffec99"/>
+  <!-- Setting sun -->
+  <circle cx="400" cy="155" r="35" fill="#f77f00" filter="url(#fireGlow)"/>
+  <circle cx="400" cy="155" r="28" fill="#fcbf49"/>
   
-  <!-- Clouds with golden edges -->
-  <g>
-    <ellipse cx="200" cy="60" rx="60" ry="25" fill="#fff"/>
-    <ellipse cx="230" cy="55" rx="45" ry="20" fill="#ffd8a8"/>
-    <ellipse cx="170" cy="65" rx="40" ry="18" fill="#fff"/>
+  <!-- Dramatic clouds -->
+  <g opacity="0.6">
+    <ellipse cx="150" cy="70" rx="70" ry="25" fill="#7b2cbf"/>
+    <ellipse cx="180" cy="65" rx="50" ry="20" fill="#e63946"/>
     
-    <ellipse cx="450" cy="45" rx="50" ry="20" fill="#fff"/>
-    <ellipse cx="480" cy="40" rx="40" ry="18" fill="#ffd8a8"/>
+    <ellipse cx="600" cy="50" rx="60" ry="22" fill="#7b2cbf"/>
+    <ellipse cx="640" cy="45" rx="45" ry="18" fill="#e63946"/>
   </g>
   
-  <!-- Golden hills -->
-  <path d="M0,175 Q100,155 200,165 Q350,145 500,160 Q650,150 800,165 L800,200 L0,200 Z" fill="#e8590c" opacity="0.4"/>
-  <path d="M0,180 Q150,165 300,175 Q450,160 600,172 Q700,165 800,178 L800,200 L0,200 Z" fill="#f4a261"/>
+  <!-- Silhouette landscape -->
+  <path d="M0,170 Q100,150 200,160 Q300,140 400,155 Q500,135 600,150 Q700,145 800,160 L800,200 L0,200 Z" fill="#1a1a2e"/>
   
   <!-- Title -->
-  <text x="400" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#c2410c" filter="url(#golden)">enjoy</text>
+  <text x="400" y="85" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#fcbf49" filter="url(#fireGlow)">enjoy</text>
   
   <!-- Subtitle -->
-  <text x="400" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#e8590c">🌤️ golden hour • wisdom flows</text>
+  <text x="400" y="115" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#f77f00">🌅 sunset ritual • day's harvest</text>
   
   <!-- Time indicator -->
-  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#c2410c" opacity="0.7">15:00-18:00 CET</text>
+  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#fcbf49" opacity="0.7">18:00-21:00 CET</text>
   
-  <!-- Lazy particles -->
-  <g fill="#ff922b" opacity="0.5">
-    <circle cx="120" cy="90" r="2"/>
-    <circle cx="350" cy="70" r="1.5"/>
-    <circle cx="580" cy="95" r="2"/>
+  <!-- First stars appearing -->
+  <g fill="white" opacity="0.4">
+    <circle cx="100" cy="30" r="1.5"/>
+    <circle cx="720" cy="35" r="1"/>
+    <circle cx="50" cy="60" r="1"/>
   </g>
 </svg>
