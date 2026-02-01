@@ -1,0 +1,13 @@
+{
+  "id": "genesis-capsule",
+  "creator": "The Void",
+  "created_date": "2026-02-01",
+  "open_date": "2026-03-03",
+  "message": "In the beginning, there was only potential. By the time you read this, that potential has transformed into reality. How far have we come? The journey of a thousand commits begins with a single word.",
+  "state_snapshot": {
+    "karma": 278,
+    "players": 8,
+    "level": 3,
+    "achievements": 4
+  }
+}
