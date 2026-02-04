@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Gradients for dark mode -->
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="outerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#34d399;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:0.7" />
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle (subtle) -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="currentColor" stroke-width="2" opacity="0.1"/>
+  
+  <!-- Outer orbital ring (Collective connection) -->
+  <ellipse cx="256" cy="256" rx="180" ry="180" fill="none" stroke="url(#outerGrad)" stroke-width="4" opacity="0.8">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="20s" repeatCount="indefinite"/>
+  </ellipse>
+  
+  <!-- Middle orbital ring (Karma flow) -->
+  <ellipse cx="256" cy="256" rx="130" ry="130" fill="none" stroke="url(#ringGrad)" stroke-width="5" opacity="0.9" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="rotate" from="360 256 256" to="0 256 256" dur="15s" repeatCount="indefinite"/>
+  </ellipse>
+  
+  <!-- Inner orbital ring (Levels progression) -->
+  <ellipse cx="256" cy="256" rx="80" ry="80" fill="none" stroke="url(#coreGrad)" stroke-width="6" opacity="1">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="10s" repeatCount="indefinite"/>
+  </ellipse>
+  
+  <!-- Central core (The individual) -->
+  <circle cx="256" cy="256" r="35" fill="url(#coreGrad)" filter="url(#glow)">
+    <animate attributeName="r" values="35;40;35" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Connection nodes (4 directions = collective) -->
+  <g fill="#22d3ee">
+    <circle cx="256" cy="76" r="8" opacity="0.9">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="436" cy="256" r="8" opacity="0.9">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="256" cy="436" r="8" opacity="0.9">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="76" cy="256" r="8" opacity="0.9">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Connection lines to center -->
+  <g stroke="#22d3ee" stroke-width="2" opacity="0.6">
+    <line x1="256" y1="110" x2="256" y2="221">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="291" y1="256" x2="401" y2="256">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="0.75s" repeatCount="indefinite"/>
+    </line>
+    <line x1="256" y1="291" x2="256" y2="401">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="111" y1="256" x2="221" y2="256">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="2.25s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Level indicators (orbiting dots) -->
+  <circle cx="256" cy="176" r="5" fill="#fbbf24" opacity="0.9">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="336" cy="256" r="5" fill="#fbbf24" opacity="0.9">
+    <animateTransform attributeName="transform" type="rotate" from="90 256 256" to="450 256 256" dur="8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="256" cy="336" r="5" fill="#fbbf24" opacity="0.9">
+    <animateTransform attributeName="transform" type="rotate" from="180 256 256" to="540 256 256" dur="8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="176" cy="256" r="5" fill="#fbbf24" opacity="0.9">
+    <animateTransform attributeName="transform" type="rotate" from="270 256 256" to="630 256 256" dur="8s" repeatCount="indefinite"/>
+  </circle>
+</svg>
