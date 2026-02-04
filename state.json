@@ -163,6 +163,16 @@
       "contributions": [],
       "joined": "2026-01-27T11:19:43.513Z",
       "last_contribution": "2026-01-27T11:19:43.513Z"
+    },
+    "divol89": {
+      "name": "divol89",
+      "karma": 2,
+      "prs": 0,
+      "streak": 0,
+      "achievements": [],
+      "contributions": [],
+      "joined": "2026-02-04T07:00:14.290Z",
+      "last_contribution": "2026-02-04T07:00:14.290Z"
     }
   },
   "reputation": {
@@ -236,7 +246,7 @@
   "rules_triggered": {},
   "meta": {
     "total_prs": 6,
-    "total_players": 8,
+    "total_players": 9,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null,
@@ -605,6 +615,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-01-29T23:16:31.201Z"
+      },
+      {
+        "actor": "divol89",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-02-04T07:00:14.290Z"
       }
     ],
     "by_user": {
@@ -930,6 +946,16 @@
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-01-27T11:19:43.513Z"
+          }
+        ]
+      },
+      "divol89": {
+        "total": 2,
+        "history": [
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-02-04T07:00:14.290Z"
           }
         ]
       }
