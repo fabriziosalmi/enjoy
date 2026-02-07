@@ -232,7 +232,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | 🎮 Level | 💎 Total Karma | 👥 Players | 🔀 PRs Merged | ⏰ Current |
 |:--------:|:--------------:|:----------:|:-------------:|:----------:|
-| **3** | **278** | **9** | **6** | 🌅 Dawn ×1.2 |
+| **3** | **278** | **9** | **6** | 🌞 Noon ×1.5 |
 
 </div>
 
@@ -240,7 +240,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | Rank | Player | Karma | PRs | Streak | Achievements |
 |:----:|:-------|------:|:---:|:------:|:------------:|
-| 🥇 | [@fabriziosalmi](https://github.com/fabriziosalmi) | 205 | 4 | 1 | 4 |
+| 🥇 | [@fabriziosalmi](https://github.com/fabriziosalmi) | 207 | 4 | 1 | 4 |
 | 🥈 | [@JoKneeMo](https://github.com/JoKneeMo) | 80 | 2 | 1 | 1 |
 | 🥉 | [@tanu123421](https://github.com/tanu123421) | 7 | 0 | 0 | 0 |
 | 4 | [@aliraza556](https://github.com/aliraza556) | 2 | 0 | 0 | 0 |
