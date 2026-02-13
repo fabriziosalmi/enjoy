@@ -173,9 +173,9 @@ Bot validates → Auto-merges → You earn karma!
 <table>
 <tr>
 <td align="center"><a href="https://github.com/fabriziosalmi"><img src="https://github.com/fabriziosalmi.png" width="60px;" alt=""/><br /><sub><b>fabriziosalmi</b></sub></a><br />🏅 #1</td>
-<td align="center"><a href="https://github.com/JoKneeMo"><img src="https://github.com/JoKneeMo.png" width="60px;" alt=""/><br /><sub><b>JoKneeMo</b></sub></a><br />🏅 #2</td>
-<td align="center"><a href="https://github.com/tanu123421"><img src="https://github.com/tanu123421.png" width="60px;" alt=""/><br /><sub><b>tanu123421</b></sub></a><br />🏅 #3</td>
-<td align="center"><a href="https://github.com/aliraza556"><img src="https://github.com/aliraza556.png" width="60px;" alt=""/><br /><sub><b>aliraza556</b></sub></a><br />🏅 #4</td>
+<td align="center"><a href="https://github.com/aliraza556"><img src="https://github.com/aliraza556.png" width="60px;" alt=""/><br /><sub><b>aliraza556</b></sub></a><br />🏅 #2</td>
+<td align="center"><a href="https://github.com/JoKneeMo"><img src="https://github.com/JoKneeMo.png" width="60px;" alt=""/><br /><sub><b>JoKneeMo</b></sub></a><br />🏅 #3</td>
+<td align="center"><a href="https://github.com/tanu123421"><img src="https://github.com/tanu123421.png" width="60px;" alt=""/><br /><sub><b>tanu123421</b></sub></a><br />🏅 #4</td>
 <td align="center"><a href="https://github.com/prashcod"><img src="https://github.com/prashcod.png" width="60px;" alt=""/><br /><sub><b>prashcod</b></sub></a><br />🏅 #5</td>
 </tr>
 <tr>
@@ -232,7 +232,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | 🎮 Level | 💎 Total Karma | 👥 Players | 🔀 PRs Merged | ⏰ Current |
 |:--------:|:--------------:|:----------:|:-------------:|:----------:|
-| **3** | **278** | **9** | **6** | 🌆 Sunset ×1.15 |
+| **3** | **378** | **9** | **7** | 🌙 Night ×1.4 |
 
 </div>
 
@@ -240,10 +240,10 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | Rank | Player | Karma | PRs | Streak | Achievements |
 |:----:|:-------|------:|:---:|:------:|:------------:|
-| 🥇 | [@fabriziosalmi](https://github.com/fabriziosalmi) | 207 | 4 | 1 | 4 |
-| 🥈 | [@JoKneeMo](https://github.com/JoKneeMo) | 80 | 2 | 1 | 1 |
-| 🥉 | [@tanu123421](https://github.com/tanu123421) | 7 | 0 | 0 | 0 |
-| 4 | [@aliraza556](https://github.com/aliraza556) | 2 | 0 | 0 | 0 |
+| 🥇 | [@fabriziosalmi](https://github.com/fabriziosalmi) | 209 | 4 | 1 | 4 |
+| 🥈 | [@aliraza556](https://github.com/aliraza556) | 102 | 1 | 0 | 1 |
+| 🥉 | [@JoKneeMo](https://github.com/JoKneeMo) | 80 | 2 | 1 | 1 |
+| 4 | [@tanu123421](https://github.com/tanu123421) | 7 | 0 | 0 | 0 |
 | 5 | [@prashcod](https://github.com/prashcod) | 2 | 0 | 0 | 0 |
 | 6 | [@divol89](https://github.com/divol89) | 2 | 0 | 0 | 0 |
 | 7 | [@testman42](https://github.com/testman42) | 1 | 0 | 0 | 0 |
