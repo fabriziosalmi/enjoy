@@ -65,7 +65,7 @@
   },
   "players": {
     "fabriziosalmi": {
-      "karma": 207,
+      "karma": 209,
       "prs": 4,
       "streak": 1,
       "achievements": [
@@ -79,7 +79,7 @@
       "bugs_reported": 0,
       "bounties_completed": 0,
       "mystery_boxes": 0,
-      "last_contribution": "2026-02-07T06:33:27.853Z",
+      "last_contribution": "2026-02-13T22:55:47.119Z",
       "joined": "2026-01-18T02:43:18.817Z",
       "name": "fabriziosalmi",
       "time_stats": {
@@ -633,11 +633,17 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-02-07T06:33:27.853Z"
+      },
+      {
+        "actor": "fabriziosalmi",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-02-13T22:55:47.119Z"
       }
     ],
     "by_user": {
       "fabriziosalmi": {
-        "total": 186,
+        "total": 188,
         "history": [
           {
             "event": "issues.opened",
@@ -843,6 +849,11 @@
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-02-07T06:33:27.853Z"
+          },
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-02-13T22:55:47.118Z"
           }
         ]
       },
