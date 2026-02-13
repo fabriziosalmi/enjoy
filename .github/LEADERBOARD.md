@@ -6,12 +6,12 @@
 
 | Rank | Player | Karma | Streak | Achievements |
 |------|--------|-------|--------|--------------|
-| 🥇 | fabriziosalmi | 207 | 1 | 4 |
-| 🥈 | JoKneeMo | 80 | 1 | 1 |
-| 🥉 | tanu123421 | 7 | 0 | 0 |
-| 4 | divol89 | 2 | 0 | 0 |
-| 5 | prashcod | 2 | 0 | 0 |
-| 6 | aliraza556 | 2 | 0 | 0 |
+| 🥇 | fabriziosalmi | 209 | 1 | 4 |
+| 🥈 | aliraza556 | 104 | 0 | 1 |
+| 🥉 | JoKneeMo | 80 | 1 | 1 |
+| 4 | tanu123421 | 7 | 0 | 0 |
+| 5 | divol89 | 2 | 0 | 0 |
+| 6 | prashcod | 2 | 0 | 0 |
 | 7 | tkersey | 1 | 0 | 0 |
 | 8 | tentoumushii | 1 | 0 | 0 |
 | 9 | testman42 | 1 | 0 | 0 |
@@ -37,10 +37,10 @@
 | Player | Achievement Count |
 |--------|-------------------|
 | fabriziosalmi | 4 |
+| aliraza556 | 1 |
 | JoKneeMo | 1 |
 | divol89 | 0 |
 | prashcod | 0 |
-| tkersey | 0 |
 
 ## Streak Champions
 
@@ -57,10 +57,10 @@
 ## Game Stats
 
 - **Total Players**: 9
-- **Total Karma**: 278
+- **Total Karma**: 378
 - **Current Level**: 3
 - **Total PRs**: 6
 
 ---
 
-*Last updated: 2026-02-13 22:44 UTC*
+*Last updated: 2026-02-13 23:42 UTC*
