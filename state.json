@@ -126,7 +126,7 @@
     },
     "aliraza556": {
       "name": "aliraza556",
-      "karma": 102,
+      "karma": 104,
       "prs": 1,
       "streak": 0,
       "achievements": [
@@ -136,7 +136,7 @@
         "bounty_board"
       ],
       "joined": "2026-01-19T02:37:54.722Z",
-      "last_contribution": "2026-01-23T06:50:57Z"
+      "last_contribution": "2026-02-13T23:31:12.981Z"
     },
     "tanu123421": {
       "name": "tanu123421",
@@ -657,6 +657,12 @@
         "event": "bounty.completed",
         "karma": 100,
         "timestamp": "2026-01-23T06:50:57Z"
+      },
+      {
+        "actor": "aliraza556",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-02-13T23:31:12.981Z"
       }
     ],
     "by_user": {
@@ -906,7 +912,7 @@
         ]
       },
       "aliraza556": {
-        "total": 111,
+        "total": 113,
         "history": [
           {
             "event": "issue_comment.created",
@@ -927,6 +933,11 @@
             "event": "bounty.completed",
             "karma": 100,
             "timestamp": "2026-01-23T06:50:57Z"
+          },
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-02-13T23:31:12.981Z"
           }
         ]
       },
