@@ -3,7 +3,7 @@
   "last_updated": "2026-01-19T02:22:15.093Z",
   "last_pr": "#22",
   "score": {
-    "total": 278,
+    "total": 378,
     "today": 238,
     "streak_days": 1,
     "all_time_high": 0
@@ -15,8 +15,8 @@
       "last_reset": "2026-01-19T00:00:00Z"
     },
     "mystery_boxes_opened": 0,
-    "total_achievements_unlocked": 5,
-    "bounties_completed": 0
+    "total_achievements_unlocked": 6,
+    "bounties_completed": 1
   },
   "levels": {
     "current": 3,
@@ -126,13 +126,17 @@
     },
     "aliraza556": {
       "name": "aliraza556",
-      "karma": 2,
-      "prs": 0,
+      "karma": 102,
+      "prs": 1,
       "streak": 0,
-      "achievements": [],
-      "contributions": [],
+      "achievements": [
+        "bounty_hunter"
+      ],
+      "contributions": [
+        "bounty_board"
+      ],
       "joined": "2026-01-19T02:37:54.722Z",
-      "last_contribution": "2026-01-19T02:37:54.722Z"
+      "last_contribution": "2026-01-23T06:50:57Z"
     },
     "tanu123421": {
       "name": "tanu123421",
@@ -233,7 +237,15 @@
         "claimed_by": null
       }
     ],
-    "completed": []
+    "completed": [
+      {
+        "id": "bounty_board",
+        "title": "Bounty Board Upgrade",
+        "karma": 100,
+        "claimed_by": "aliraza556",
+        "completed_at": "2026-01-23T06:50:57Z"
+      }
+    ]
   },
   "rules": {
     "active": [
@@ -639,6 +651,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-02-13T22:55:47.119Z"
+      },
+      {
+        "actor": "aliraza556",
+        "event": "bounty.completed",
+        "karma": 100,
+        "timestamp": "2026-01-23T06:50:57Z"
       }
     ],
     "by_user": {
@@ -888,7 +906,7 @@
         ]
       },
       "aliraza556": {
-        "total": 11,
+        "total": 111,
         "history": [
           {
             "event": "issue_comment.created",
@@ -903,17 +921,12 @@
           {
             "event": "issue_comment.created",
             "karma": 2,
-            "timestamp": "2026-01-22T22:48:06.009Z"
+            "timestamp": "2026-01-22T22:47:57Z"
           },
           {
-            "event": "issue_comment.created",
-            "karma": 2,
-            "timestamp": "2026-01-23T16:21:07.062Z"
-          },
-          {
-            "event": "issue_comment.created",
-            "karma": 2,
-            "timestamp": "2026-01-25T18:00:32.167Z"
+            "event": "bounty.completed",
+            "karma": 100,
+            "timestamp": "2026-01-23T06:50:57Z"
           }
         ]
       },
