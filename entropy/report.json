@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-02-13T12:12:18Z",
+  "timestamp": "2026-02-14T00:24:36Z",
   "order_score": 0,
   "entropy_factors": {
     "activity_spread": 33,
-    "karma_inequality": 74,
-    "bounty_ratio": 80,
+    "karma_inequality": 55,
+    "bounty_ratio": 66,
     "level_entropy": 97,
     "streak_entropy": 90
   },
@@ -13,7 +13,7 @@
     "pr_order": 12,
     "community_order": 90
   },
-  "raw_entropy": 374,
+  "raw_entropy": 341,
   "anti_entropy": 122,
   "net_entropy": 100
 }
