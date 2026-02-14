@@ -1,7 +1,7 @@
 {
-  "period": "sunset",
-  "emoji": "🌅",
-  "hour_cet": "18",
-  "updated": "2026-02-14T17:12:59Z",
-  "message": "Sunset ritual. The day's contributions are harvested."
+  "period": "night",
+  "emoji": "🌙",
+  "hour_cet": "21",
+  "updated": "2026-02-14T20:11:21Z",
+  "message": "Night watch. Dreams compile into code."
 }
