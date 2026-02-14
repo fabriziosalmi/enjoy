@@ -241,7 +241,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 | Rank | Player | Karma | PRs | Streak | Achievements |
 |:----:|:-------|------:|:---:|:------:|:------------:|
 | 🥇 | [@fabriziosalmi](https://github.com/fabriziosalmi) | 209 | 4 | 1 | 4 |
-| 🥈 | [@aliraza556](https://github.com/aliraza556) | 102 | 1 | 0 | 1 |
+| 🥈 | [@aliraza556](https://github.com/aliraza556) | 104 | 1 | 0 | 1 |
 | 🥉 | [@JoKneeMo](https://github.com/JoKneeMo) | 80 | 2 | 1 | 1 |
 | 4 | [@tanu123421](https://github.com/tanu123421) | 7 | 0 | 0 | 0 |
 | 5 | [@prashcod](https://github.com/prashcod) | 2 | 0 | 0 | 0 |
@@ -266,7 +266,7 @@ Total:  [███████████████░░░░░] 73%
 - 💨 Speed Demon
 
 <p align="center">
-  <sub>📅 Last updated: 2026-02-13 | 🔄 Updates automatically</sub>
+  <sub>📅 Last updated: 2026-02-14 | 🔄 Updates automatically</sub>
 </p>
 <!-- STATS-END -->
 
