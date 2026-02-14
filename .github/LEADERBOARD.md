@@ -10,11 +10,12 @@
 | 🥈 | aliraza556 | 104 | 0 | 1 |
 | 🥉 | JoKneeMo | 80 | 1 | 1 |
 | 4 | tanu123421 | 7 | 0 | 0 |
-| 5 | divol89 | 2 | 0 | 0 |
-| 6 | prashcod | 2 | 0 | 0 |
-| 7 | tkersey | 1 | 0 | 0 |
-| 8 | tentoumushii | 1 | 0 | 0 |
-| 9 | testman42 | 1 | 0 | 0 |
+| 5 | Harmatta | 2 | 0 | 0 |
+| 6 | divol89 | 2 | 0 | 0 |
+| 7 | prashcod | 2 | 0 | 0 |
+| 8 | tkersey | 1 | 0 | 0 |
+| 9 | tentoumushii | 1 | 0 | 0 |
+| 10 | testman42 | 1 | 0 | 0 |
 
 ## 🏛️ Founders Hall of Fame
 
@@ -31,6 +32,7 @@
 | 7 | 🎮 tkersey | 2026-01-19 |
 | 8 | 🎮 prashcod | 2026-01-27 |
 | 9 | 🎮 divol89 | 2026-02-04 |
+| 10 | 🎮 Harmatta | 2026-02-14 |
 
 ## Achievement Hunters
 
@@ -39,8 +41,8 @@
 | fabriziosalmi | 4 |
 | aliraza556 | 1 |
 | JoKneeMo | 1 |
+| Harmatta | 0 |
 | divol89 | 0 |
-| prashcod | 0 |
 
 ## Streak Champions
 
@@ -48,19 +50,19 @@
 |--------|----------------|
 | JoKneeMo | 1 day(s) |
 | fabriziosalmi | 1 day(s) |
+| Harmatta | 0 day(s) |
 | divol89 | 0 day(s) |
 | prashcod | 0 day(s) |
-| tkersey | 0 day(s) |
 
 ---
 
 ## Game Stats
 
-- **Total Players**: 9
+- **Total Players**: 10
 - **Total Karma**: 378
 - **Current Level**: 3
 - **Total PRs**: 6
 
 ---
 
-*Last updated: 2026-02-14 23:07 UTC*
+*Last updated: 2026-02-14 23:39 UTC*
