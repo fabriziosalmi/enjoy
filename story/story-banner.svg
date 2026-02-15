@@ -22,6 +22,6 @@
   <!-- Text -->
   <text x="250" y="50" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="hsl(280,70%,70%)" filter="url(#storyGlow)">📜 The Eternal Chronicle</text>
   <text x="250" y="80" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#fff" font-style="italic">"Every commit is a chapter. Every player, a hero."</text>
-  <text x="250" y="110" text-anchor="middle" font-family="monospace" font-size="12" fill="#8b949e">Level 3 | 278 karma | The story continues...</text>
+  <text x="250" y="110" text-anchor="middle" font-family="monospace" font-size="12" fill="#8b949e">Level 3 | 378 karma | The story continues...</text>
   <text x="250" y="135" text-anchor="middle" font-family="monospace" font-size="10" fill="#58a6ff">github.com/fabriziosalmi/enjoy/story</text>
 </svg>
