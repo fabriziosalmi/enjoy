@@ -159,7 +159,7 @@ Bot validates → Auto-merges → You earn karma!
 ║   The first 50 humans to contribute get a           ║
 ║   permanent FOUNDER badge on the leaderboard.       ║
 ║                                                      ║
-║   Current Founders: 10/50                             ║
+║   Current Founders: 11/50                             ║
 ║                                                      ║
 ║   ▶ This badge will NEVER be available again        ║
 ║                                                      ║
@@ -181,9 +181,16 @@ Bot validates → Auto-merges → You earn karma!
 <tr>
 <td align="center"><a href="https://github.com/divol89"><img src="https://github.com/divol89.png" width="60px;" alt=""/><br /><sub><b>divol89</b></sub></a><br />🏅 #6</td>
 <td align="center"><a href="https://github.com/Harmatta"><img src="https://github.com/Harmatta.png" width="60px;" alt=""/><br /><sub><b>Harmatta</b></sub></a><br />🏅 #7</td>
-<td align="center"><a href="https://github.com/testman42"><img src="https://github.com/testman42.png" width="60px;" alt=""/><br /><sub><b>testman42</b></sub></a><br />🏅 #8</td>
-<td align="center"><a href="https://github.com/tentoumushii"><img src="https://github.com/tentoumushii.png" width="60px;" alt=""/><br /><sub><b>tentoumushii</b></sub></a><br />🏅 #9</td>
-<td align="center"><a href="https://github.com/tkersey"><img src="https://github.com/tkersey.png" width="60px;" alt=""/><br /><sub><b>tkersey</b></sub></a><br />🏅 #10</td>
+<td align="center"><a href="https://github.com/zhanglin2603"><img src="https://github.com/zhanglin2603.png" width="60px;" alt=""/><br /><sub><b>zhanglin2603</b></sub></a><br />🏅 #8</td>
+<td align="center"><a href="https://github.com/testman42"><img src="https://github.com/testman42.png" width="60px;" alt=""/><br /><sub><b>testman42</b></sub></a><br />🏅 #9</td>
+<td align="center"><a href="https://github.com/tentoumushii"><img src="https://github.com/tentoumushii.png" width="60px;" alt=""/><br /><sub><b>tentoumushii</b></sub></a><br />🏅 #10</td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/tkersey"><img src="https://github.com/tkersey.png" width="60px;" alt=""/><br /><sub><b>tkersey</b></sub></a><br />🏅 #11</td>
+<td align="center"><sub>Your spot<br/>awaits...</sub></td>
+<td align="center"><sub>Your spot<br/>awaits...</sub></td>
+<td align="center"><sub>Your spot<br/>awaits...</sub></td>
+<td align="center"><sub>Your spot<br/>awaits...</sub></td>
 </tr>
 <tr>
 <td align="center"><sub>Your spot<br/>awaits...</sub></td>
@@ -232,7 +239,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | 🎮 Level | 💎 Total Karma | 👥 Players | 🔀 PRs Merged | ⏰ Current |
 |:--------:|:--------------:|:----------:|:-------------:|:----------:|
-| **3** | **378** | **10** | **7** | 🌙 Night ×1.4 |
+| **3** | **378** | **11** | **7** | 🌅 Dawn ×1.2 |
 
 </div>
 
@@ -247,9 +254,9 @@ The repo changes appearance based on **CET time** and gives different karma mult
 | 5 | [@prashcod](https://github.com/prashcod) | 2 | 0 | 0 | 0 |
 | 6 | [@divol89](https://github.com/divol89) | 2 | 0 | 0 | 0 |
 | 7 | [@Harmatta](https://github.com/Harmatta) | 2 | 0 | 0 | 0 |
-| 8 | [@testman42](https://github.com/testman42) | 1 | 0 | 0 | 0 |
-| 9 | [@tentoumushii](https://github.com/tentoumushii) | 1 | 0 | 0 | 0 |
-| 10 | [@tkersey](https://github.com/tkersey) | 1 | 0 | 0 | 0 |
+| 8 | [@zhanglin2603](https://github.com/zhanglin2603) | 2 | 0 | 0 | 0 |
+| 9 | [@testman42](https://github.com/testman42) | 1 | 0 | 0 | 0 |
+| 10 | [@tentoumushii](https://github.com/tentoumushii) | 1 | 0 | 0 | 0 |
 
 ### 📈 Progress to Level 4
 
