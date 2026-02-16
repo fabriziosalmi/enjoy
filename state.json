@@ -187,6 +187,16 @@
       "contributions": [],
       "joined": "2026-02-14T23:14:34.107Z",
       "last_contribution": "2026-02-14T23:14:34.107Z"
+    },
+    "zhanglin2603": {
+      "name": "zhanglin2603",
+      "karma": 2,
+      "prs": 0,
+      "streak": 0,
+      "achievements": [],
+      "contributions": [],
+      "joined": "2026-02-16T03:02:57.809Z",
+      "last_contribution": "2026-02-16T03:02:57.809Z"
     }
   },
   "reputation": {
@@ -268,7 +278,7 @@
   "rules_triggered": {},
   "meta": {
     "total_prs": 6,
-    "total_players": 10,
+    "total_players": 11,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null,
@@ -679,6 +689,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-02-14T23:14:34.107Z"
+      },
+      {
+        "actor": "zhanglin2603",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-02-16T03:02:57.809Z"
       }
     ],
     "by_user": {
@@ -1039,6 +1055,16 @@
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-02-14T23:14:34.107Z"
+          }
+        ]
+      },
+      "zhanglin2603": {
+        "total": 2,
+        "history": [
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-02-16T03:02:57.809Z"
           }
         ]
       }
