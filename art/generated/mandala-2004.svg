@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -150 300 300" width="300" height="300">
+  <defs>
+    <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:hsl(204,70%,60%)"/>
+      <stop offset="100%" style="stop-color:hsl(348,70%,50%)"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="0" cy="0" r="145" fill="#0d1117"/>
+  
+  <!-- Mandala layers -->
+  <g opacity=".85" filter="url(#glow)">
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(36.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(72.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(108.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(144.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(180.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(216.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(252.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(288.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(324.0000)"/>
+<ellipse cx="0" cy="-100" rx="18" ry="35" fill="url(#mandalaGrad)" transform="rotate(360.0000)"/>
+</g>
+<g opacity=".70" filter="url(#glow)">
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(36.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(72.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(108.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(144.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(180.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(216.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(252.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(288.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(324.0000)"/>
+<ellipse cx="0" cy="-80" rx="21" ry="40" fill="url(#mandalaGrad)" transform="rotate(360.0000)"/>
+</g>
+<g opacity=".55" filter="url(#glow)">
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(36.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(72.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(108.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(144.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(180.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(216.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(252.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(288.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(324.0000)"/>
+<ellipse cx="0" cy="-60" rx="24" ry="45" fill="url(#mandalaGrad)" transform="rotate(360.0000)"/>
+</g>
+  
+  <!-- Center -->
+  <circle cx="0" cy="0" r="20" fill="url(#mandalaGrad)" filter="url(#glow)">
+    <animate attributeName="r" values="18;22;18" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Karma inscription -->
+  <text x="0" y="140" text-anchor="middle" font-family="monospace" font-size="8" fill="hsl(204,70%,70%)">
+    karma:378 | seed:2004
+  </text>
+</svg>
