@@ -1,47 +1,47 @@
 {
-  "updated": "2026-02-17T06:29:47.832Z",
+  "updated": "2026-02-17T12:23:13.723Z",
   "stars": 7,
   "forks": 6,
   "watchers": 0,
-  "open_issues": 8,
+  "open_issues": 7,
   "discussions": 11,
-  "size_kb": 10007,
+  "size_kb": 10079,
   "default_branch": "main",
   "recent_stargazers": [
     {
       "login": "testman42",
       "avatar": "https://avatars.githubusercontent.com/u/2620967?v=4",
-      "starred_at": "2026-02-17T06:29:47.832Z"
+      "starred_at": "2026-02-17T12:23:13.723Z"
     },
     {
       "login": "tentoumushii",
       "avatar": "https://avatars.githubusercontent.com/u/169354375?v=4",
-      "starred_at": "2026-02-17T06:29:47.832Z"
+      "starred_at": "2026-02-17T12:23:13.723Z"
     },
     {
       "login": "giordan83",
       "avatar": "https://avatars.githubusercontent.com/u/1755593?v=4",
-      "starred_at": "2026-02-17T06:29:47.832Z"
+      "starred_at": "2026-02-17T12:23:13.723Z"
     },
     {
       "login": "tkersey",
       "avatar": "https://avatars.githubusercontent.com/u/217?v=4",
-      "starred_at": "2026-02-17T06:29:47.832Z"
+      "starred_at": "2026-02-17T12:23:13.723Z"
     },
     {
       "login": "DoddiC",
       "avatar": "https://avatars.githubusercontent.com/u/45871604?v=4",
-      "starred_at": "2026-02-17T06:29:47.832Z"
+      "starred_at": "2026-02-17T12:23:13.723Z"
     },
     {
       "login": "ShoshinMaster",
       "avatar": "https://avatars.githubusercontent.com/u/236030009?v=4",
-      "starred_at": "2026-02-17T06:29:47.832Z"
+      "starred_at": "2026-02-17T12:23:13.723Z"
     },
     {
       "login": "alexanmtz",
       "avatar": "https://avatars.githubusercontent.com/u/88840?v=4",
-      "starred_at": "2026-02-17T06:29:47.832Z"
+      "starred_at": "2026-02-17T12:23:13.723Z"
     }
   ],
   "recent_forks": [
@@ -93,6 +93,11 @@
       "contributions": 2
     },
     {
+      "login": "Harmatta",
+      "avatar": "https://avatars.githubusercontent.com/u/136149988?v=4",
+      "contributions": 1
+    },
+    {
       "login": "aliraza556",
       "avatar": "https://avatars.githubusercontent.com/u/87068339?v=4",
       "contributions": 1
@@ -106,7 +111,7 @@
   "energy": {
     "twinkle_intensity": 0.07,
     "growth_rate": 0.12,
-    "activity": 0.95,
-    "community": 5
+    "activity": 0.9,
+    "community": 6
   }
 }
