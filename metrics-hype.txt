@@ -1293,3 +1293,4 @@ hype_message=🔥 Only 39 FOUNDER spots left! 11 souls have joined. Karma flowin
 hype_message=🔥 Only 39 FOUNDER spots left! 11 souls have joined. Karma flowing at 12.19/day 🚀
 hype_message=🔥 Only 39 FOUNDER spots left! 11 souls have joined. Karma flowing at 12.19/day 🚀
 hype_message=🔥 Only 39 FOUNDER spots left! 11 souls have joined. Karma flowing at 12.19/day 🚀
+hype_message=🔥 Only 39 FOUNDER spots left! 11 souls have joined. Karma flowing at 12.19/day 🚀
