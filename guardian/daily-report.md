@@ -1,6 +1,6 @@
 ## 💜 Guardian Angel Report
 
-**Date:** 2026-02-18
+**Date:** 2026-02-19
 
 - **fabriziosalmi**: 💜 Active & Loved
 - **JoKneeMo**: 💔 Missed (30+ days)
@@ -12,7 +12,7 @@
 - **aliraza556**: 💜 Active & Loved
 - **tanu123421**: 💔 Missed (30+ days)
   - Generated heart for tanu123421
-- **tkersey**: 💛 Thinking of you (14+ days)
+- **tkersey**: 💔 Missed (30+ days)
   - Generated heart for tkersey
 - **prashcod**: 💛 Thinking of you (14+ days)
   - Generated heart for prashcod
