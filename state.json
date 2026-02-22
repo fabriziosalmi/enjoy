@@ -197,6 +197,16 @@
       "contributions": [],
       "joined": "2026-02-16T03:02:57.809Z",
       "last_contribution": "2026-02-16T03:02:57.809Z"
+    },
+    "Fred-Zhang83": {
+      "name": "Fred-Zhang83",
+      "karma": 2,
+      "prs": 0,
+      "streak": 0,
+      "achievements": [],
+      "contributions": [],
+      "joined": "2026-02-22T18:30:21.832Z",
+      "last_contribution": "2026-02-22T18:30:21.832Z"
     }
   },
   "reputation": {
@@ -278,7 +288,7 @@
   "rules_triggered": {},
   "meta": {
     "total_prs": 6,
-    "total_players": 11,
+    "total_players": 12,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null,
@@ -695,6 +705,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-02-16T03:02:57.809Z"
+      },
+      {
+        "actor": "Fred-Zhang83",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-02-22T18:30:21.832Z"
       }
     ],
     "by_user": {
@@ -1065,6 +1081,16 @@
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-02-16T03:02:57.809Z"
+          }
+        ]
+      },
+      "Fred-Zhang83": {
+        "total": 2,
+        "history": [
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-02-22T18:30:21.832Z"
           }
         ]
       }
