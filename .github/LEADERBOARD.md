@@ -10,12 +10,12 @@
 | 🥈 | aliraza556 | 104 | 0 | 1 |
 | 🥉 | JoKneeMo | 80 | 1 | 1 |
 | 4 | tanu123421 | 7 | 0 | 0 |
-| 5 | Fred-Zhang83 | 2 | 0 | 0 |
-| 6 | zhanglin2603 | 2 | 0 | 0 |
-| 7 | Harmatta | 2 | 0 | 0 |
-| 8 | divol89 | 2 | 0 | 0 |
-| 9 | prashcod | 2 | 0 | 0 |
-| 10 | tkersey | 1 | 0 | 0 |
+| 5 | animalsina | 3 | 0 | 0 |
+| 6 | Fred-Zhang83 | 2 | 0 | 0 |
+| 7 | zhanglin2603 | 2 | 0 | 0 |
+| 8 | Harmatta | 2 | 0 | 0 |
+| 9 | divol89 | 2 | 0 | 0 |
+| 10 | prashcod | 2 | 0 | 0 |
 
 ## 🏛️ Founders Hall of Fame
 
@@ -35,6 +35,7 @@
 | 10 | 🎮 Harmatta | 2026-02-14 |
 | 11 | 🎮 zhanglin2603 | 2026-02-16 |
 | 12 | 🎮 Fred-Zhang83 | 2026-02-22 |
+| 13 | 🎮 animalsina | 2026-02-23 |
 
 ## Achievement Hunters
 
@@ -43,8 +44,8 @@
 | fabriziosalmi | 4 |
 | aliraza556 | 1 |
 | JoKneeMo | 1 |
+| animalsina | 0 |
 | Fred-Zhang83 | 0 |
-| zhanglin2603 | 0 |
 
 ## Streak Champions
 
@@ -52,19 +53,19 @@
 |--------|----------------|
 | JoKneeMo | 1 day(s) |
 | fabriziosalmi | 1 day(s) |
+| animalsina | 0 day(s) |
 | Fred-Zhang83 | 0 day(s) |
 | zhanglin2603 | 0 day(s) |
-| Harmatta | 0 day(s) |
 
 ---
 
 ## Game Stats
 
-- **Total Players**: 12
+- **Total Players**: 13
 - **Total Karma**: 378
 - **Current Level**: 3
 - **Total PRs**: 6
 
 ---
 
-*Last updated: 2026-02-23 21:18 UTC*
+*Last updated: 2026-02-23 21:47 UTC*
