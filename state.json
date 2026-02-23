@@ -207,6 +207,16 @@
       "contributions": [],
       "joined": "2026-02-22T18:30:21.832Z",
       "last_contribution": "2026-02-22T18:30:21.832Z"
+    },
+    "animalsina": {
+      "name": "animalsina",
+      "karma": 3,
+      "prs": 0,
+      "streak": 0,
+      "achievements": [],
+      "contributions": [],
+      "joined": "2026-02-23T21:21:28.598Z",
+      "last_contribution": "2026-02-23T21:21:28.598Z"
     }
   },
   "reputation": {
@@ -288,7 +298,7 @@
   "rules_triggered": {},
   "meta": {
     "total_prs": 6,
-    "total_players": 12,
+    "total_players": 13,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null,
@@ -711,6 +721,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-02-22T18:30:21.832Z"
+      },
+      {
+        "actor": "animalsina",
+        "event": "fork",
+        "karma": 3,
+        "timestamp": "2026-02-23T21:21:28.597Z"
       }
     ],
     "by_user": {
@@ -1091,6 +1107,16 @@
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-02-22T18:30:21.832Z"
+          }
+        ]
+      },
+      "animalsina": {
+        "total": 3,
+        "history": [
+          {
+            "event": "fork",
+            "karma": 3,
+            "timestamp": "2026-02-23T21:21:28.597Z"
           }
         ]
       }
