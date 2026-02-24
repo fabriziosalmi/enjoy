@@ -159,7 +159,7 @@ Bot validates → Auto-merges → You earn karma!
 ║   The first 50 humans to contribute get a           ║
 ║   permanent FOUNDER badge on the leaderboard.       ║
 ║                                                      ║
-║   Current Founders: 12/50                             ║
+║   Current Founders: 13/50                             ║
 ║                                                      ║
 ║   ▶ This badge will NEVER be available again        ║
 ║                                                      ║
@@ -176,19 +176,19 @@ Bot validates → Auto-merges → You earn karma!
 <td align="center"><a href="https://github.com/aliraza556"><img src="https://github.com/aliraza556.png" width="60px;" alt=""/><br /><sub><b>aliraza556</b></sub></a><br />🏅 #2</td>
 <td align="center"><a href="https://github.com/JoKneeMo"><img src="https://github.com/JoKneeMo.png" width="60px;" alt=""/><br /><sub><b>JoKneeMo</b></sub></a><br />🏅 #3</td>
 <td align="center"><a href="https://github.com/tanu123421"><img src="https://github.com/tanu123421.png" width="60px;" alt=""/><br /><sub><b>tanu123421</b></sub></a><br />🏅 #4</td>
-<td align="center"><a href="https://github.com/prashcod"><img src="https://github.com/prashcod.png" width="60px;" alt=""/><br /><sub><b>prashcod</b></sub></a><br />🏅 #5</td>
+<td align="center"><a href="https://github.com/animalsina"><img src="https://github.com/animalsina.png" width="60px;" alt=""/><br /><sub><b>animalsina</b></sub></a><br />🏅 #5</td>
 </tr>
 <tr>
-<td align="center"><a href="https://github.com/divol89"><img src="https://github.com/divol89.png" width="60px;" alt=""/><br /><sub><b>divol89</b></sub></a><br />🏅 #6</td>
-<td align="center"><a href="https://github.com/Harmatta"><img src="https://github.com/Harmatta.png" width="60px;" alt=""/><br /><sub><b>Harmatta</b></sub></a><br />🏅 #7</td>
-<td align="center"><a href="https://github.com/zhanglin2603"><img src="https://github.com/zhanglin2603.png" width="60px;" alt=""/><br /><sub><b>zhanglin2603</b></sub></a><br />🏅 #8</td>
-<td align="center"><a href="https://github.com/Fred-Zhang83"><img src="https://github.com/Fred-Zhang83.png" width="60px;" alt=""/><br /><sub><b>Fred-Zhang83</b></sub></a><br />🏅 #9</td>
-<td align="center"><a href="https://github.com/testman42"><img src="https://github.com/testman42.png" width="60px;" alt=""/><br /><sub><b>testman42</b></sub></a><br />🏅 #10</td>
+<td align="center"><a href="https://github.com/prashcod"><img src="https://github.com/prashcod.png" width="60px;" alt=""/><br /><sub><b>prashcod</b></sub></a><br />🏅 #6</td>
+<td align="center"><a href="https://github.com/divol89"><img src="https://github.com/divol89.png" width="60px;" alt=""/><br /><sub><b>divol89</b></sub></a><br />🏅 #7</td>
+<td align="center"><a href="https://github.com/Harmatta"><img src="https://github.com/Harmatta.png" width="60px;" alt=""/><br /><sub><b>Harmatta</b></sub></a><br />🏅 #8</td>
+<td align="center"><a href="https://github.com/zhanglin2603"><img src="https://github.com/zhanglin2603.png" width="60px;" alt=""/><br /><sub><b>zhanglin2603</b></sub></a><br />🏅 #9</td>
+<td align="center"><a href="https://github.com/Fred-Zhang83"><img src="https://github.com/Fred-Zhang83.png" width="60px;" alt=""/><br /><sub><b>Fred-Zhang83</b></sub></a><br />🏅 #10</td>
 </tr>
 <tr>
-<td align="center"><a href="https://github.com/tentoumushii"><img src="https://github.com/tentoumushii.png" width="60px;" alt=""/><br /><sub><b>tentoumushii</b></sub></a><br />🏅 #11</td>
-<td align="center"><a href="https://github.com/tkersey"><img src="https://github.com/tkersey.png" width="60px;" alt=""/><br /><sub><b>tkersey</b></sub></a><br />🏅 #12</td>
-<td align="center"><sub>Your spot<br/>awaits...</sub></td>
+<td align="center"><a href="https://github.com/testman42"><img src="https://github.com/testman42.png" width="60px;" alt=""/><br /><sub><b>testman42</b></sub></a><br />🏅 #11</td>
+<td align="center"><a href="https://github.com/tentoumushii"><img src="https://github.com/tentoumushii.png" width="60px;" alt=""/><br /><sub><b>tentoumushii</b></sub></a><br />🏅 #12</td>
+<td align="center"><a href="https://github.com/tkersey"><img src="https://github.com/tkersey.png" width="60px;" alt=""/><br /><sub><b>tkersey</b></sub></a><br />🏅 #13</td>
 <td align="center"><sub>Your spot<br/>awaits...</sub></td>
 <td align="center"><sub>Your spot<br/>awaits...</sub></td>
 </tr>
@@ -239,7 +239,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | 🎮 Level | 💎 Total Karma | 👥 Players | 🔀 PRs Merged | ⏰ Current |
 |:--------:|:--------------:|:----------:|:-------------:|:----------:|
-| **3** | **378** | **12** | **7** | 🌆 Sunset ×1.15 |
+| **3** | **378** | **13** | **7** | 🌙 Night ×1.4 |
 
 </div>
 
@@ -251,12 +251,12 @@ The repo changes appearance based on **CET time** and gives different karma mult
 | 🥈 | [@aliraza556](https://github.com/aliraza556) | 104 | 1 | 0 | 1 |
 | 🥉 | [@JoKneeMo](https://github.com/JoKneeMo) | 80 | 2 | 1 | 1 |
 | 4 | [@tanu123421](https://github.com/tanu123421) | 7 | 0 | 0 | 0 |
-| 5 | [@prashcod](https://github.com/prashcod) | 2 | 0 | 0 | 0 |
-| 6 | [@divol89](https://github.com/divol89) | 2 | 0 | 0 | 0 |
-| 7 | [@Harmatta](https://github.com/Harmatta) | 2 | 0 | 0 | 0 |
-| 8 | [@zhanglin2603](https://github.com/zhanglin2603) | 2 | 0 | 0 | 0 |
-| 9 | [@Fred-Zhang83](https://github.com/Fred-Zhang83) | 2 | 0 | 0 | 0 |
-| 10 | [@testman42](https://github.com/testman42) | 1 | 0 | 0 | 0 |
+| 5 | [@animalsina](https://github.com/animalsina) | 3 | 0 | 0 | 0 |
+| 6 | [@prashcod](https://github.com/prashcod) | 2 | 0 | 0 | 0 |
+| 7 | [@divol89](https://github.com/divol89) | 2 | 0 | 0 | 0 |
+| 8 | [@Harmatta](https://github.com/Harmatta) | 2 | 0 | 0 | 0 |
+| 9 | [@zhanglin2603](https://github.com/zhanglin2603) | 2 | 0 | 0 | 0 |
+| 10 | [@Fred-Zhang83](https://github.com/Fred-Zhang83) | 2 | 0 | 0 | 0 |
 
 ### 📈 Progress to Level 4
 
@@ -274,7 +274,7 @@ Total:  [███████████████░░░░░] 73%
 - 💨 Speed Demon
 
 <p align="center">
-  <sub>📅 Last updated: 2026-02-23 | 🔄 Updates automatically</sub>
+  <sub>📅 Last updated: 2026-02-24 | 🔄 Updates automatically</sub>
 </p>
 <!-- STATS-END -->
 
