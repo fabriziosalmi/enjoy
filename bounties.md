@@ -2,6 +2,10 @@
 
 *Special missions with extra rewards*
 
+> **⚠️ IMPORTANT DISCLAIMER:** This is an open-source game. Bounties reward **Karma points only**. There is **NO monetary compensation**, cryptocurrency, or financial reward of any kind. Please do not ask for payment details.
+
+> **⚠️ IMPORTANT DISCLAIMER:** This is an open-source game. Bounties reward **Karma points only**. There is **NO monetary compensation**, cryptocurrency, or financial reward of any kind. Please do not ask for payment details.
+
 Bounties are specific tasks that help the project and earn you bonus karma.
 
 ---

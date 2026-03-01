@@ -1,5 +1,7 @@
 # Contributing to enjoy
 
+> **⚠️ IMPORTANT NOTE ON BOUNTIES:** This is a purely collaborative open-source game. Any "bounties" or "rewards" mentioned in this repository (or related issues) refer exclusively to **in-game Karma points**. There is **NO monetary compensation**, cryptocurrency, or financial reward for any contributions.
+
 Thank you for your interest in contributing to **enjoy**! This document explains how you can participate in the game.
 
 ## As a Player
