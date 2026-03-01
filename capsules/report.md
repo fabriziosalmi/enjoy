@@ -1,7 +1,8 @@
-## ⏰ Time Capsule Report - 2026-02-01
+## ⏰ Time Capsule Report - 2026-03-01
 
 No capsules ready to open today.
 
 ---
 
-### 📦 Sealed Capsules Waiting: 0
+### 📦 Sealed Capsules Waiting: 1
+- Opens 2026-03-03 (from The Void)
