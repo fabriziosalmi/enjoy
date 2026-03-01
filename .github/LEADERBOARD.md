@@ -6,7 +6,7 @@
 
 | Rank | Player | Karma | Streak | Achievements |
 |------|--------|-------|--------|--------------|
-| 🥇 | fabriziosalmi | 209 | 1 | 4 |
+| 🥇 | fabriziosalmi | 211 | 1 | 4 |
 | 🥈 | aliraza556 | 106 | 0 | 1 |
 | 🥉 | JoKneeMo | 80 | 1 | 1 |
 | 4 | tanu123421 | 7 | 0 | 0 |
@@ -68,4 +68,4 @@
 
 ---
 
-*Last updated: 2026-03-01 22:41 UTC*
+*Last updated: 2026-03-01 23:07 UTC*
