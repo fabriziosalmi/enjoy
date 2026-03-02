@@ -239,7 +239,7 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | 🎮 Level | 💎 Total Karma | 👥 Players | 🔀 PRs Merged | ⏰ Current |
 |:--------:|:--------------:|:----------:|:-------------:|:----------:|
-| **3** | **378** | **13** | **7** | 🌆 Sunset ×1.15 |
+| **3** | **378** | **13** | **7** | 🌙 Night ×1.4 |
 
 </div>
 
@@ -247,8 +247,8 @@ The repo changes appearance based on **CET time** and gives different karma mult
 
 | Rank | Player | Karma | PRs | Streak | Achievements |
 |:----:|:-------|------:|:---:|:------:|:------------:|
-| 🥇 | [@fabriziosalmi](https://github.com/fabriziosalmi) | 209 | 4 | 1 | 4 |
-| 🥈 | [@aliraza556](https://github.com/aliraza556) | 104 | 1 | 0 | 1 |
+| 🥇 | [@fabriziosalmi](https://github.com/fabriziosalmi) | 211 | 4 | 1 | 4 |
+| 🥈 | [@aliraza556](https://github.com/aliraza556) | 106 | 1 | 0 | 1 |
 | 🥉 | [@JoKneeMo](https://github.com/JoKneeMo) | 80 | 2 | 1 | 1 |
 | 4 | [@tanu123421](https://github.com/tanu123421) | 7 | 0 | 0 | 0 |
 | 5 | [@animalsina](https://github.com/animalsina) | 3 | 0 | 0 | 0 |
@@ -274,7 +274,7 @@ Total:  [███████████████░░░░░] 73%
 - 💨 Speed Demon
 
 <p align="center">
-  <sub>📅 Last updated: 2026-03-01 | 🔄 Updates automatically</sub>
+  <sub>📅 Last updated: 2026-03-02 | 🔄 Updates automatically</sub>
 </p>
 <!-- STATS-END -->
 
