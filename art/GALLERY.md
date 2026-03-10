@@ -3,12 +3,15 @@
 > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
 
 ## 📊 Statistics
-- **Total Artworks:** 249
-- **Last Generated:** 2026-03-10T00:24:01Z
-- **Art Type:** mandala
-- **Seed:** 5107
+- **Total Artworks:** 250
+- **Last Generated:** 2026-03-10T04:34:47Z
+- **Art Type:** spiral
+- **Seed:** 153
 
 ## 🖼️ Latest Works
+
+### spiral-153
+![spiral-153](generated/spiral-153.svg)
 
 ### mandala-5107
 ![mandala-5107](generated/mandala-5107.svg)
@@ -66,9 +69,6 @@
 
 ### wave-2014
 ![wave-2014](generated/wave-2014.svg)
-
-### spiral-4572
-![spiral-4572](generated/spiral-4572.svg)
 
 
 ---
