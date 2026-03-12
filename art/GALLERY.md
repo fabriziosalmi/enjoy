@@ -4,11 +4,14 @@
 
 ## 📊 Statistics
 - **Total Artworks:** 262
-- **Last Generated:** 2026-03-12T16:25:21Z
-- **Art Type:** constellation
-- **Seed:** 5587
+- **Last Generated:** 2026-03-12T20:10:04Z
+- **Art Type:** mandala
+- **Seed:** 9069
 
 ## 🖼️ Latest Works
+
+### mandala-9069
+![mandala-9069](generated/mandala-9069.svg)
 
 ### constellation-5587
 ![constellation-5587](generated/constellation-5587.svg)
@@ -66,9 +69,6 @@
 
 ### mandala-8867
 ![mandala-8867](generated/mandala-8867.svg)
-
-### mandala-3243
-![mandala-3243](generated/mandala-3243.svg)
 
 
 ---
