@@ -1,50 +1,55 @@
 {
-  "updated": "2026-03-12T06:27:14.271Z",
+  "updated": "2026-03-12T13:48:18.361Z",
   "stars": 7,
-  "forks": 7,
+  "forks": 8,
   "watchers": 0,
-  "open_issues": 5,
+  "open_issues": 6,
   "discussions": 11,
-  "size_kb": 10795,
+  "size_kb": 10868,
   "default_branch": "main",
   "recent_stargazers": [
     {
       "login": "testman42",
       "avatar": "https://avatars.githubusercontent.com/u/2620967?v=4",
-      "starred_at": "2026-03-12T06:27:14.279Z"
+      "starred_at": "2026-03-12T13:48:18.362Z"
     },
     {
       "login": "tentoumushii",
       "avatar": "https://avatars.githubusercontent.com/u/169354375?v=4",
-      "starred_at": "2026-03-12T06:27:14.279Z"
+      "starred_at": "2026-03-12T13:48:18.362Z"
     },
     {
       "login": "giordan83",
       "avatar": "https://avatars.githubusercontent.com/u/1755593?v=4",
-      "starred_at": "2026-03-12T06:27:14.279Z"
+      "starred_at": "2026-03-12T13:48:18.362Z"
     },
     {
       "login": "tkersey",
       "avatar": "https://avatars.githubusercontent.com/u/217?v=4",
-      "starred_at": "2026-03-12T06:27:14.279Z"
+      "starred_at": "2026-03-12T13:48:18.362Z"
     },
     {
       "login": "DoddiC",
       "avatar": "https://avatars.githubusercontent.com/u/45871604?v=4",
-      "starred_at": "2026-03-12T06:27:14.279Z"
+      "starred_at": "2026-03-12T13:48:18.362Z"
     },
     {
       "login": "ShoshinMaster",
       "avatar": "https://avatars.githubusercontent.com/u/236030009?v=4",
-      "starred_at": "2026-03-12T06:27:14.279Z"
+      "starred_at": "2026-03-12T13:48:18.362Z"
     },
     {
       "login": "alexanmtz",
       "avatar": "https://avatars.githubusercontent.com/u/88840?v=4",
-      "starred_at": "2026-03-12T06:27:14.279Z"
+      "starred_at": "2026-03-12T13:48:18.362Z"
     }
   ],
   "recent_forks": [
+    {
+      "login": "yuzengbao2026",
+      "avatar": "https://avatars.githubusercontent.com/u/266521640?v=4",
+      "forked_at": "2026-03-12T13:48:02Z"
+    },
     {
       "login": "animalsina",
       "avatar": "https://avatars.githubusercontent.com/u/12851223?v=4",
@@ -115,8 +120,8 @@
   ],
   "energy": {
     "twinkle_intensity": 0.07,
-    "growth_rate": 0.14,
-    "activity": 0.8,
+    "growth_rate": 0.16,
+    "activity": 0.85,
     "community": 6
   }
 }
