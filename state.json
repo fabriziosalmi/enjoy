@@ -217,6 +217,16 @@
       "contributions": [],
       "joined": "2026-02-23T21:21:28.598Z",
       "last_contribution": "2026-02-23T21:21:28.598Z"
+    },
+    "qwldcl-del": {
+      "name": "qwldcl-del",
+      "karma": 2,
+      "prs": 0,
+      "streak": 0,
+      "achievements": [],
+      "contributions": [],
+      "joined": "2026-03-13T18:55:00.517Z",
+      "last_contribution": "2026-03-13T18:55:00.517Z"
     }
   },
   "reputation": {
@@ -298,7 +308,7 @@
   "rules_triggered": {},
   "meta": {
     "total_prs": 6,
-    "total_players": 13,
+    "total_players": 14,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null,
@@ -739,6 +749,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-03-01T22:46:01.059Z"
+      },
+      {
+        "actor": "qwldcl-del",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-03-13T18:55:00.517Z"
       }
     ],
     "by_user": {
@@ -1139,6 +1155,16 @@
             "event": "fork",
             "karma": 3,
             "timestamp": "2026-02-23T21:21:28.597Z"
+          }
+        ]
+      },
+      "qwldcl-del": {
+        "total": 2,
+        "history": [
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-03-13T18:55:00.517Z"
           }
         ]
       }
