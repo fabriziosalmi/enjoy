@@ -4,11 +4,14 @@
 
 ## 📊 Statistics
 - **Total Artworks:** 288
-- **Last Generated:** 2026-03-18T00:28:35Z
-- **Art Type:** mandala
-- **Seed:** 6594
+- **Last Generated:** 2026-03-18T04:41:45Z
+- **Art Type:** spiral
+- **Seed:** 1784
 
 ## 🖼️ Latest Works
+
+### spiral-1784
+![spiral-1784](generated/spiral-1784.svg)
 
 ### mandala-6594
 ![mandala-6594](generated/mandala-6594.svg)
@@ -66,9 +69,6 @@
 
 ### wave-3089
 ![wave-3089](generated/wave-3089.svg)
-
-### spiral-5780
-![spiral-5780](generated/spiral-5780.svg)
 
 
 ---
