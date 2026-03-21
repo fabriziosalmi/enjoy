@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-21T19:39:41Z",
+  "generated_at": "2026-03-21T20:09:55Z",
   "game_age_days": 62,
   
   "totals": {
     "karma": 378,
-    "players": 14,
+    "players": 15,
     "prs": 6,
     "level": 3,
     "achievements": 4,
@@ -14,7 +14,7 @@
   "growth": {
     "karma_per_day": 6.09,
     "prs_per_day": .09,
-    "players_per_day": .22,
+    "players_per_day": .24,
     "karma_per_pr": 63.00,
     "achievement_rate": .06,
     "growth_emoji": "🚀"
@@ -30,8 +30,8 @@
   },
   
   "community": {
-    "love_index": 27,
-    "avg_karma_per_player": 30,
+    "love_index": 25,
+    "avg_karma_per_player": 28,
     "max_streak": 1,
     "top_player": "fabriziosalmi",
     "top_karma": 211,
@@ -51,12 +51,12 @@
   
   "milestone": {
     "next": "50 players (FOUNDER badge ends!)",
-    "progress": 28
+    "progress": 30
   },
   
   "hype_stats": {
     "total_love_points": 378,
-    "founder_spots_remaining": 36,
+    "founder_spots_remaining": 35,
     "karma_until_amplification": 0,
     "days_alive": 62
   }
