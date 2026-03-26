@@ -1,6 +1,6 @@
 ## 💜 Guardian Angel Report
 
-**Date:** 2026-03-25
+**Date:** 2026-03-26
 
 - **fabriziosalmi**: 💛 Thinking of you (14+ days)
   - Generated heart for fabriziosalmi
@@ -26,7 +26,7 @@
   - Generated heart for zhanglin2603
 - **Fred-Zhang83**: 💔 Missed (30+ days)
   - Generated heart for Fred-Zhang83
-- **animalsina**: 💛 Thinking of you (14+ days)
+- **animalsina**: 💔 Missed (30+ days)
   - Generated heart for animalsina
 - **qwldcl-del**: 💚 See you soon (7+ days)
   - Generated heart for qwldcl-del
