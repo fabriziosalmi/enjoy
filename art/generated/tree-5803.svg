@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1117"/>
+  
+  <!-- Ground -->
+  <ellipse cx="100" cy="190" rx="80" ry="10" fill="#1a472a" opacity="0.5"/>
+  
+  <!-- Trunk -->
+  <path d="M95,190 Q90,150 85,120 Q100,100 115,120 Q110,150 105,190 Z" fill="hsl(30,40%,25%)"/>
+  
+  <!-- Branches -->
+  <g stroke="hsl(30,40%,30%)" stroke-width="3" fill="none">
+    <path d="M100,120 Q80,100 60,90"/>
+    <path d="M100,120 Q120,100 140,85"/>
+    <path d="M100,100 Q85,80 70,60"/>
+    <path d="M100,100 Q115,80 130,55"/>
+    <path d="M100,80 Q90,60 95,40"/>
+  </g>
+  
+  <!-- Leaves canopy -->
+  <circle cx="71" cy="103" r="6" fill="hsl(71,60%,50%)" opacity="0.8"/><circle cx="92" cy="96" r="4" fill="hsl(74,60%,50%)" opacity="0.8"/><circle cx="113" cy="89" r="7" fill="hsl(77,60%,50%)" opacity="0.8"/><circle cx="134" cy="82" r="5" fill="hsl(80,60%,50%)" opacity="0.8"/><circle cx="55" cy="75" r="3" fill="hsl(83,60%,50%)" opacity="0.8"/><circle cx="76" cy="68" r="6" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="97" cy="61" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="118" cy="54" r="7" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="139" cy="47" r="5" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="60" cy="40" r="3" fill="hsl(68,60%,50%)" opacity="0.8"/><circle cx="81" cy="33" r="6" fill="hsl(71,60%,50%)" opacity="0.8"/><circle cx="102" cy="106" r="4" fill="hsl(74,60%,50%)" opacity="0.8"/><circle cx="123" cy="99" r="7" fill="hsl(77,60%,50%)" opacity="0.8"/><circle cx="144" cy="92" r="5" fill="hsl(80,60%,50%)" opacity="0.8"/><circle cx="65" cy="85" r="3" fill="hsl(83,60%,50%)" opacity="0.8"/><circle cx="86" cy="78" r="6" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="107" cy="71" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="128" cy="64" r="7" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="149" cy="57" r="5" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="70" cy="50" r="3" fill="hsl(68,60%,50%)" opacity="0.8"/><circle cx="91" cy="43" r="6" fill="hsl(71,60%,50%)" opacity="0.8"/><circle cx="112" cy="36" r="4" fill="hsl(74,60%,50%)" opacity="0.8"/><circle cx="133" cy="109" r="7" fill="hsl(77,60%,50%)" opacity="0.8"/><circle cx="54" cy="102" r="5" fill="hsl(80,60%,50%)" opacity="0.8"/><circle cx="75" cy="95" r="3" fill="hsl(83,60%,50%)" opacity="0.8"/><circle cx="96" cy="88" r="6" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="117" cy="81" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="138" cy="74" r="7" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="59" cy="67" r="5" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="80" cy="60" r="3" fill="hsl(68,60%,50%)" opacity="0.8"/><circle cx="101" cy="53" r="6" fill="hsl(71,60%,50%)" opacity="0.8"/><circle cx="122" cy="46" r="4" fill="hsl(74,60%,50%)" opacity="0.8"/><circle cx="143" cy="39" r="7" fill="hsl(77,60%,50%)" opacity="0.8"/><circle cx="64" cy="32" r="5" fill="hsl(80,60%,50%)" opacity="0.8"/><circle cx="85" cy="105" r="3" fill="hsl(83,60%,50%)" opacity="0.8"/><circle cx="106" cy="98" r="6" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="127" cy="91" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="148" cy="84" r="7" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="69" cy="77" r="5" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="90" cy="70" r="3" fill="hsl(68,60%,50%)" opacity="0.8"/><circle cx="111" cy="63" r="6" fill="hsl(71,60%,50%)" opacity="0.8"/><circle cx="132" cy="56" r="4" fill="hsl(74,60%,50%)" opacity="0.8"/><circle cx="53" cy="49" r="7" fill="hsl(77,60%,50%)" opacity="0.8"/><circle cx="74" cy="42" r="5" fill="hsl(80,60%,50%)" opacity="0.8"/><circle cx="95" cy="35" r="3" fill="hsl(83,60%,50%)" opacity="0.8"/>
+  
+  <!-- Info -->
+  <text x="100" y="198" text-anchor="middle" font-family="monospace" font-size="5" fill="#4a5568">
+    🌳 45 leaves | 12 branches | karma:378
+  </text>
+</svg>
