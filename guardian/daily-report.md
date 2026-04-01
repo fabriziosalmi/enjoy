@@ -1,8 +1,8 @@
 ## 💜 Guardian Angel Report
 
-**Date:** 2026-03-31
+**Date:** 2026-04-01
 
-- **fabriziosalmi**: 💛 Thinking of you (14+ days)
+- **fabriziosalmi**: 💔 Missed (30+ days)
   - Generated heart for fabriziosalmi
 - **JoKneeMo**: 💔 Missed (30+ days)
   - Generated heart for JoKneeMo
@@ -10,7 +10,7 @@
   - Generated heart for testman42
 - **tentoumushii**: 💔 Missed (30+ days)
   - Generated heart for tentoumushii
-- **aliraza556**: 💛 Thinking of you (14+ days)
+- **aliraza556**: 💔 Missed (30+ days)
   - Generated heart for aliraza556
 - **tanu123421**: 💔 Missed (30+ days)
   - Generated heart for tanu123421
