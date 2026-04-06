@@ -1,47 +1,47 @@
 {
-  "updated": "2026-04-06T00:53:27.826Z",
+  "updated": "2026-04-06T06:49:53.018Z",
   "stars": 7,
-  "forks": 9,
+  "forks": 8,
   "watchers": 0,
   "open_issues": 6,
   "discussions": 11,
-  "size_kb": 11316,
+  "size_kb": 11192,
   "default_branch": "main",
   "recent_stargazers": [
     {
       "login": "testman42",
       "avatar": "https://avatars.githubusercontent.com/u/2620967?v=4",
-      "starred_at": "2026-04-06T00:53:27.826Z"
+      "starred_at": "2026-04-06T06:49:53.018Z"
     },
     {
       "login": "tentoumushii",
       "avatar": "https://avatars.githubusercontent.com/u/169354375?v=4",
-      "starred_at": "2026-04-06T00:53:27.826Z"
+      "starred_at": "2026-04-06T06:49:53.018Z"
     },
     {
       "login": "giordan83",
       "avatar": "https://avatars.githubusercontent.com/u/1755593?v=4",
-      "starred_at": "2026-04-06T00:53:27.826Z"
+      "starred_at": "2026-04-06T06:49:53.018Z"
     },
     {
       "login": "tkersey",
       "avatar": "https://avatars.githubusercontent.com/u/217?v=4",
-      "starred_at": "2026-04-06T00:53:27.826Z"
+      "starred_at": "2026-04-06T06:49:53.018Z"
     },
     {
       "login": "DoddiC",
       "avatar": "https://avatars.githubusercontent.com/u/45871604?v=4",
-      "starred_at": "2026-04-06T00:53:27.826Z"
+      "starred_at": "2026-04-06T06:49:53.018Z"
     },
     {
       "login": "ShoshinMaster",
       "avatar": "https://avatars.githubusercontent.com/u/236030009?v=4",
-      "starred_at": "2026-04-06T00:53:27.826Z"
+      "starred_at": "2026-04-06T06:49:53.018Z"
     },
     {
       "login": "alexanmtz",
       "avatar": "https://avatars.githubusercontent.com/u/88840?v=4",
-      "starred_at": "2026-04-06T00:53:27.826Z"
+      "starred_at": "2026-04-06T06:49:53.018Z"
     }
   ],
   "recent_forks": [
@@ -69,11 +69,6 @@
       "login": "divol89",
       "avatar": "https://avatars.githubusercontent.com/u/105322171?v=4",
       "forked_at": "2026-02-04T07:01:08Z"
-    },
-    {
-      "login": "idofi555-ux",
-      "avatar": "https://avatars.githubusercontent.com/u/253359575?v=4",
-      "forked_at": "2026-01-31T18:13:28Z"
     },
     {
       "login": "aliraza556",
@@ -125,7 +120,7 @@
   ],
   "energy": {
     "twinkle_intensity": 0.07,
-    "growth_rate": 0.18,
+    "growth_rate": 0.16,
     "activity": 0.85,
     "community": 6
   }
