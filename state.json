@@ -237,6 +237,16 @@
       "contributions": [],
       "joined": "2026-03-21T19:51:19.723Z",
       "last_contribution": "2026-03-21T19:51:19.723Z"
+    },
+    "lunchfang": {
+      "name": "lunchfang",
+      "karma": 2,
+      "prs": 0,
+      "streak": 0,
+      "achievements": [],
+      "contributions": [],
+      "joined": "2026-04-06T18:58:51.441Z",
+      "last_contribution": "2026-04-06T18:58:51.441Z"
     }
   },
   "reputation": {
@@ -318,7 +328,7 @@
   "rules_triggered": {},
   "meta": {
     "total_prs": 6,
-    "total_players": 15,
+    "total_players": 16,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null,
@@ -771,6 +781,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-03-21T19:51:19.723Z"
+      },
+      {
+        "actor": "lunchfang",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-04-06T18:58:51.441Z"
       }
     ],
     "by_user": {
@@ -1191,6 +1207,16 @@
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-03-21T19:51:19.722Z"
+          }
+        ]
+      },
+      "lunchfang": {
+        "total": 2,
+        "history": [
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-04-06T18:58:51.441Z"
           }
         ]
       }
