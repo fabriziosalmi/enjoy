@@ -9,14 +9,15 @@ Every change writes new chapters. Every player becomes legend.
 
 ## 📊 Chronicle Stats
 
-- **Total Chapters:** 12
+- **Total Chapters:** 13
 - **Karma Accumulated:** 378
-- **Souls in the Story:** 15
+- **Souls in the Story:** 16
 - **Current Level:** 3
 
 ## 📚 Chapters
 
 - [Chapter 9: The Growing Age](chapters/chapter-9-2026-01-26.md)
+- [Chapter 85: The Growing Age](chapters/chapter-85-2026-04-12.md)
 - [Chapter 8: The Growing Age](chapters/chapter-8-2026-01-25.md)
 - [Chapter 78: The Growing Age](chapters/chapter-78-2026-04-05.md)
 - [Chapter 71: The Growing Age](chapters/chapter-71-2026-03-29.md)
