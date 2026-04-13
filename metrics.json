@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-12T23:47:01Z",
-  "game_age_days": 84,
+  "generated_at": "2026-04-13T00:55:28Z",
+  "game_age_days": 85,
   
   "totals": {
     "karma": 378,
@@ -12,9 +12,9 @@
   },
   
   "growth": {
-    "karma_per_day": 4.50,
+    "karma_per_day": 4.44,
     "prs_per_day": .07,
-    "players_per_day": .19,
+    "players_per_day": .18,
     "karma_per_pr": 63.00,
     "achievement_rate": .04,
     "growth_emoji": "🚀"
@@ -58,6 +58,6 @@
     "total_love_points": 378,
     "founder_spots_remaining": 34,
     "karma_until_amplification": 0,
-    "days_alive": 84
+    "days_alive": 85
   }
 }
