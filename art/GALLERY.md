@@ -3,12 +3,15 @@
 > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
 
 ## 📊 Statistics
-- **Total Artworks:** 466
-- **Last Generated:** 2026-04-23T02:30:25Z
-- **Art Type:** wave
-- **Seed:** 4343
+- **Total Artworks:** 467
+- **Last Generated:** 2026-04-23T06:04:25Z
+- **Art Type:** constellation
+- **Seed:** 7183
 
 ## 🖼️ Latest Works
+
+### constellation-7183
+![constellation-7183](generated/constellation-7183.svg)
 
 ### wave-4343
 ![wave-4343](generated/wave-4343.svg)
@@ -66,9 +69,6 @@
 
 ### wave-6405
 ![wave-6405](generated/wave-6405.svg)
-
-### mandala-1136
-![mandala-1136](generated/mandala-1136.svg)
 
 
 ---
