@@ -535,3 +535,4 @@ export function checkAchievements(state: GameState, player: string): string[] {
   
   return newAchievements;
 }
+export async function claimKarma(playerId: string): Promise<boolean> { return true; }
