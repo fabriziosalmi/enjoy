@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d1117"/>
+  
+  <!-- Ground -->
+  <ellipse cx="100" cy="190" rx="80" ry="10" fill="#1a472a" opacity="0.5"/>
+  
+  <!-- Trunk -->
+  <path d="M95,190 Q90,150 85,120 Q100,100 115,120 Q110,150 105,190 Z" fill="hsl(30,40%,25%)"/>
+  
+  <!-- Branches -->
+  <g stroke="hsl(30,40%,30%)" stroke-width="3" fill="none">
+    <path d="M100,120 Q80,100 60,90"/>
+    <path d="M100,120 Q120,100 140,85"/>
+    <path d="M100,100 Q85,80 70,60"/>
+    <path d="M100,100 Q115,80 130,55"/>
+    <path d="M100,80 Q90,60 95,40"/>
+  </g>
+  
+  <!-- Leaves canopy -->
+  <circle cx="137" cy="61" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="124" cy="92" r="5" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="111" cy="43" r="6" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="98" cy="74" r="7" fill="hsl(98,60%,50%)" opacity="0.8"/><circle cx="85" cy="105" r="3" fill="hsl(101,60%,50%)" opacity="0.8"/><circle cx="72" cy="56" r="4" fill="hsl(104,60%,50%)" opacity="0.8"/><circle cx="59" cy="87" r="5" fill="hsl(107,60%,50%)" opacity="0.8"/><circle cx="146" cy="38" r="6" fill="hsl(110,60%,50%)" opacity="0.8"/><circle cx="133" cy="69" r="7" fill="hsl(113,60%,50%)" opacity="0.8"/><circle cx="120" cy="100" r="3" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="107" cy="51" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="94" cy="82" r="5" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="81" cy="33" r="6" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="68" cy="64" r="7" fill="hsl(98,60%,50%)" opacity="0.8"/><circle cx="55" cy="95" r="3" fill="hsl(101,60%,50%)" opacity="0.8"/><circle cx="142" cy="46" r="4" fill="hsl(104,60%,50%)" opacity="0.8"/><circle cx="129" cy="77" r="5" fill="hsl(107,60%,50%)" opacity="0.8"/><circle cx="116" cy="108" r="6" fill="hsl(110,60%,50%)" opacity="0.8"/><circle cx="103" cy="59" r="7" fill="hsl(113,60%,50%)" opacity="0.8"/><circle cx="90" cy="90" r="3" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="77" cy="41" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="64" cy="72" r="5" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="51" cy="103" r="6" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="138" cy="54" r="7" fill="hsl(98,60%,50%)" opacity="0.8"/><circle cx="125" cy="85" r="3" fill="hsl(101,60%,50%)" opacity="0.8"/><circle cx="112" cy="36" r="4" fill="hsl(104,60%,50%)" opacity="0.8"/><circle cx="99" cy="67" r="5" fill="hsl(107,60%,50%)" opacity="0.8"/><circle cx="86" cy="98" r="6" fill="hsl(110,60%,50%)" opacity="0.8"/><circle cx="73" cy="49" r="7" fill="hsl(113,60%,50%)" opacity="0.8"/><circle cx="60" cy="80" r="3" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="147" cy="31" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="134" cy="62" r="5" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="121" cy="93" r="6" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="108" cy="44" r="7" fill="hsl(98,60%,50%)" opacity="0.8"/><circle cx="95" cy="75" r="3" fill="hsl(101,60%,50%)" opacity="0.8"/><circle cx="82" cy="106" r="4" fill="hsl(104,60%,50%)" opacity="0.8"/><circle cx="69" cy="57" r="5" fill="hsl(107,60%,50%)" opacity="0.8"/><circle cx="56" cy="88" r="6" fill="hsl(110,60%,50%)" opacity="0.8"/><circle cx="143" cy="39" r="7" fill="hsl(113,60%,50%)" opacity="0.8"/><circle cx="130" cy="70" r="3" fill="hsl(86,60%,50%)" opacity="0.8"/><circle cx="117" cy="101" r="4" fill="hsl(89,60%,50%)" opacity="0.8"/><circle cx="104" cy="52" r="5" fill="hsl(92,60%,50%)" opacity="0.8"/><circle cx="91" cy="83" r="6" fill="hsl(95,60%,50%)" opacity="0.8"/><circle cx="78" cy="34" r="7" fill="hsl(98,60%,50%)" opacity="0.8"/><circle cx="65" cy="65" r="3" fill="hsl(101,60%,50%)" opacity="0.8"/><circle cx="52" cy="96" r="4" fill="hsl(104,60%,50%)" opacity="0.8"/><circle cx="139" cy="47" r="5" fill="hsl(107,60%,50%)" opacity="0.8"/><circle cx="126" cy="78" r="6" fill="hsl(110,60%,50%)" opacity="0.8"/><circle cx="113" cy="109" r="7" fill="hsl(113,60%,50%)" opacity="0.8"/><circle cx="100" cy="60" r="3" fill="hsl(86,60%,50%)" opacity="0.8"/>
+  
+  <!-- Info -->
+  <text x="100" y="198" text-anchor="middle" font-family="monospace" font-size="5" fill="#4a5568">
+    🌳 50 leaves | 12 branches | karma:378
+  </text>
+</svg>
