@@ -13,8 +13,20 @@ playwright-report/
 test-results/
 blob-report/
 playwright/.cache/
-playwright-report/
 
 # Playwright snapshots
 *-snapshots/
-test-results/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
