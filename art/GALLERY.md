@@ -4,11 +4,14 @@
 
 ## 📊 Statistics
 - **Total Artworks:** 491
-- **Last Generated:** 2026-04-27T21:00:04Z
-- **Art Type:** constellation
-- **Seed:** 6522
+- **Last Generated:** 2026-04-28T02:45:38Z
+- **Art Type:** wave
+- **Seed:** 7256
 
 ## 🖼️ Latest Works
+
+### wave-7256
+![wave-7256](generated/wave-7256.svg)
 
 ### constellation-6522
 ![constellation-6522](generated/constellation-6522.svg)
@@ -66,9 +69,6 @@
 
 ### tree-9741
 ![tree-9741](generated/tree-9741.svg)
-
-### constellation-3703
-![constellation-3703](generated/constellation-3703.svg)
 
 
 ---
