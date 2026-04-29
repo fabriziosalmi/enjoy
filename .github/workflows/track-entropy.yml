@@ -14,7 +14,7 @@ on:
 
 jobs:
   measure-entropy:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     permissions:
       contents: write
       

@@ -6,7 +6,7 @@ name: 📊 Generate Metrics
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Every 30 minutes for fresh data
+    - cron: '0 */6 * * *'  # Every 6 hours
   push:
     branches: [main]
     paths: [state.json]
@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   generate-metrics:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     permissions:
       contents: write
       

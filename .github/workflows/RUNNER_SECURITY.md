@@ -3,7 +3,7 @@
 ## Self-Hosted Runner Configuration
 
 ### Label Setup
-- **Label**: `proxmox-lxc` (or your custom label)
+- **Label**: `runner-02` (self-hosted runner)
 - **Only trusted workflows** should use this label
 
 ### ⚠️ CRITICAL: Never use self-hosted for external input!
@@ -46,10 +46,10 @@ These workflows only run on **schedule** or **internal triggers**:
 
 ### How to configure
 
-1. Add runner with label: `proxmox-lxc`
+1. Add runner with label: `runner-02`
 2. Update safe workflows to use:
    ```yaml
-   runs-on: [self-hosted, proxmox-lxc]
+   runs-on: [self-hosted, runner-02]
    ```
 3. **NEVER** change dangerous workflows from `ubuntu-latest`
 

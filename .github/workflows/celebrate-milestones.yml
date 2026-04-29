@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   check-milestones:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     permissions:
       contents: write
       
@@ -93,7 +93,7 @@ jobs:
   celebrate-level-up:
     needs: check-milestones
     if: needs.check-milestones.outputs.level_up == 'true'
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     permissions:
       contents: write
       
@@ -153,7 +153,7 @@ jobs:
   celebrate-achievement:
     needs: check-milestones
     if: needs.check-milestones.outputs.new_achievement == 'true'
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     permissions:
       contents: write
       
@@ -206,7 +206,7 @@ jobs:
   celebrate-players:
     needs: check-milestones
     if: needs.check-milestones.outputs.player_milestone != 'false'
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     permissions:
       contents: write
       
@@ -256,7 +256,7 @@ jobs:
 
   generate-hearts:
     needs: check-milestones
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     permissions:
       contents: write
       

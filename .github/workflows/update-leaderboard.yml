@@ -2,7 +2,7 @@ name: Update Leaderboard
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 */6 * * *'  # Every 6 hours
   workflow_dispatch:
   push:
     paths:
@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   update-leaderboard:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     steps:
       - uses: actions/checkout@v4
         with:

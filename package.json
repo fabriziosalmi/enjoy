@@ -1,4 +1,13 @@
 {
+  "name": "enjoy",
+  "version": "4.1.0",
+  "description": "A GitHub-based game where the repository IS the game",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabriziosalmi/enjoy.git"
+  },
+  "homepage": "https://fabriziosalmi.github.io/enjoy/",
   "scripts": {
     "test": "npx playwright test",
     "test:ui": "npx playwright test --ui",

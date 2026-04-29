@@ -14,7 +14,7 @@ on:
     types:
       - completed
   schedule:
-    - cron: '*/30 * * * *'  # Every 30 minutes
+    - cron: '0 */6 * * *'  # Every 6 hours
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   update-badges:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:

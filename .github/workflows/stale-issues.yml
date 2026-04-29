@@ -26,7 +26,7 @@ permissions:
 
 jobs:
   stale:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     steps:
       - name: 🧹 Mark and close stale issues
         uses: actions/stale@v9

@@ -43,7 +43,7 @@
   <img src="https://img.shields.io/badge/🤖_Built_with-Claude_&_Gemini-blueviolet?style=for-the-badge" alt="AI Crafted">
   <img src="https://img.shields.io/badge/🎮_100_Levels-To_Beat-orange?style=for-the-badge" alt="100 Levels">
   <img src="https://img.shields.io/badge/⏱️_Time--Aware-Repo-blue?style=for-the-badge" alt="Time Aware">
-  <img src="https://img.shields.io/badge/🔄_26_Workflows-Autonomous-purple?style=for-the-badge" alt="26 Workflows">
+  <img src="https://img.shields.io/badge/🔄_27_Workflows-Autonomous-purple?style=for-the-badge" alt="27 Workflows">
 </p>
 
 <p align="center">
@@ -134,7 +134,7 @@ Bot validates → Auto-merges → You earn karma!
 | ⏰ **Time Capsules** | Messages from past to future |
 | 📖 **Auto-Chronicles** | Weekly story written from game state |
 | 🧬 **Entropy Tracking** | Measures order vs chaos |
-| 🏆 **26 Autonomous Workflows** | The repo lives 24/7 |
+| 🏆 **27 Autonomous Workflows** | The repo lives 24/7 |
 
 ---
 
@@ -306,7 +306,7 @@ Total:  [███████████████░░░░░] 73%
 ```
 enjoy/
 ├── 📜 100 YAML levels (levels/*.yaml)
-├── 🤖 26 GitHub Actions workflows
+├── 🤖 27 GitHub Actions workflows
 ├── 🎨 Dynamic time-based header
 ├── 🌐 Interactive web UI (index.html)
 ├── 🎤 Voice mode (voice.html)
@@ -398,7 +398,7 @@ It's a real game. The karma is real. The leaderboard is real. The fun is real. �
 
 Maintained by [@fabriziosalmi](https://github.com/fabriziosalmi) | Powered by Claude & Gemini | Broken by you
 
-25 workflows • 100 levels • 1 existential crisis
+27 workflows • 100 levels • 1 existential crisis
 
 ♿ [Accessibility](ACCESSIBILITY.md) • 🌍 [Translations](TRANSLATIONS.md) • 💜 Nobody left behind
 

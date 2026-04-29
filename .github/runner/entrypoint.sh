@@ -5,7 +5,7 @@ set -e
 GITHUB_TOKEN=${GITHUB_TOKEN:?"GITHUB_TOKEN is required"}
 RUNNER_NAME=${RUNNER_NAME:-"enjoy-runner-$(hostname)"}
 RUNNER_WORKDIR=${RUNNER_WORKDIR:-"/runner/_work"}
-RUNNER_LABELS=${RUNNER_LABELS:-"self-hosted,enjoy"}
+RUNNER_LABELS=${RUNNER_LABELS:-"self-hosted,runner-02"}
 
 # Configure runner
 cd /runner

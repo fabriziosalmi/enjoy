@@ -3,7 +3,7 @@ name: 🌅 Dynamic Header Update
 on:
   schedule:
     # Run every hour at minute 5
-    - cron: '5 * * * *'
+    - cron: '5 */4 * * *'  # Every 4 hours
   workflow_dispatch:
   push:
     paths:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   update-header:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     
     steps:
       - name: Checkout

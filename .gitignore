@@ -3,30 +3,30 @@ dist/
 *.log
 .DS_Store
 .env
-validation-result.json
-engine/proposals/prop_*
-engine/karma-result.json
 *.tmp
+
+# Generated/ephemeral data
+validation-result.json
+engine/karma-result.json
+metrics-hype.txt
+health-report.json
+index.old.html
+
+# Engine build artifacts
+engine/dist/
+
+# Proposals (auto-generated)
+engine/proposals/prop_*
 
 # Playwright
 playwright-report/
 test-results/
 blob-report/
 playwright/.cache/
-
-# Playwright snapshots
 *-snapshots/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-.venv/
-venv/
-
-# IDEs
+# IDE/Editor
 .vscode/
 .idea/
-
-# OS
-Thumbs.db
+*.swp
+*.swo

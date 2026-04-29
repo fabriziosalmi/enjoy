@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   track-karma:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

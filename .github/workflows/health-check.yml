@@ -22,7 +22,7 @@ on:
 
 jobs:
   health-check:
-    runs-on: [self-hosted, enjoy-trusted]
+    runs-on: [self-hosted, runner-02]
     # Only run if workflow_run was successful (or other triggers)
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     permissions:
