@@ -3,7 +3,7 @@
  * Provides time-based bonuses, events, and atmosphere throughout the game
  */
 
-// Time periods configuration (CET/GMT+1)
+// Time periods configuration (CET/CEST — Europe/Rome)
 export const TIME_PERIODS = {
   dawn: {
     hours: [5, 6, 7],

@@ -64,7 +64,7 @@ jobs:
             const totalPRs = playerList.reduce((sum, p) => sum + (p.prs || 0), 0);
             const lastUpdated = new Date().toISOString().split('T')[0];
             
-            // Time period detection (CET)
+            // Time period detection (CET/CEST via Europe/Rome)
             const now = new Date();
             const cetTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Rome" }));
             const hour = cetTime.getHours();

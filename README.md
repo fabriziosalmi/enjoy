@@ -217,9 +217,9 @@ Bot validates → Auto-merges → You earn karma!
 
 ## 🕐 Time-Based Karma (The Repo Breathes!)
 
-The repo changes appearance based on **CET time** and gives different karma multipliers:
+The repo changes appearance based on **CET/CEST time** (Europe/Rome) and gives different karma multipliers:
 
-| Time (CET) | Period | Multiplier | Mood |
+| Time (CET/CEST) | Period | Multiplier | Mood |
 |------------|--------|------------|------|
 | 05:00-07:59 | 🌅 Dawn | **×1.2** | Early birds catch karma |
 | 08:00-11:59 | ☀️ Morning | **×1.3** | Fresh minds, fresh code |

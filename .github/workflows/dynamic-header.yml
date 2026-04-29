@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Get current time in CET (GMT+1)
+      - name: Get current time in CET/CEST (Europe/Rome)
         id: time
         run: |
           # Get hour in CET timezone
@@ -110,7 +110,7 @@ jobs:
           
           git commit -m "$EMOJI time shift: $PERIOD mode activated [skip ci]" \
             -m "The repository breathes with the rhythm of time." \
-            -m "Current time zone: CET (GMT+1)"
+            -m "Current time zone: CET/CEST (Europe/Rome)"
             
           git push
           

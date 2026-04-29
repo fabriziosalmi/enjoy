@@ -379,7 +379,7 @@
   </div>
   
   <div class="timezone-note">
-    Time Zone: CET (GMT+1) | <span id="local-time"></span>
+    Time Zone: CET/CEST (Europe/Rome) | <span id="local-time"></span>
   </div>
 
   <script>
@@ -436,9 +436,8 @@
     
     function getCETHour() {
       const now = new Date();
-      const cetOffset = 1; // CET is UTC+1
-      const utcHour = now.getUTCHours();
-      return (utcHour + cetOffset) % 24;
+      const cetTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Rome" }));
+      return cetTime.getHours();
     }
     
     function getCurrentPeriod() {
@@ -494,15 +493,20 @@
     
     function updateTime() {
       const now = new Date();
-      const cetOffset = 1;
-      const cetTime = new Date(now.getTime() + (cetOffset * 60 + now.getTimezoneOffset()) * 60000);
+      const cetTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Rome" }));
       
       const hours = cetTime.getHours().toString().padStart(2, '0');
       const minutes = cetTime.getMinutes().toString().padStart(2, '0');
       const seconds = cetTime.getSeconds().toString().padStart(2, '0');
       
+      // Detect CET vs CEST: compare UTC offset
+      const utcHour = now.getUTCHours();
+      const localHour = cetTime.getHours();
+      const offset = ((localHour - utcHour) + 24) % 24;
+      const tzLabel = offset === 2 ? 'CEST' : 'CET';
+      
       document.getElementById('time').textContent = `${hours}:${minutes}`;
-      document.getElementById('local-time').textContent = `${hours}:${minutes}:${seconds} CET`;
+      document.getElementById('local-time').textContent = `${hours}:${minutes}:${seconds} ${tzLabel}`;
     }
     
     function createStars() {

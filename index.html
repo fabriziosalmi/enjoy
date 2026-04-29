@@ -1649,14 +1649,14 @@
         // ═══════════════════════════════════════════════════════════════
 
         const TIME_PERIODS = {
-            // Sun Cycle: 5:00 - 20:00
+            // Sun Cycle: 5:00 - 21:00
             dawn: { start: 5, end: 8, emoji: '🌅', name: 'Dawn', mult: 1.2 },
             morning: { start: 8, end: 12, emoji: '☀️', name: 'Morning', mult: 1.3 },
             noon: { start: 12, end: 15, emoji: '🌞', name: 'Solar Peak', mult: 1.5 },
             afternoon: { start: 15, end: 18, emoji: '🌤️', name: 'Afternoon', mult: 1.25 },
-            sunset: { start: 18, end: 20, emoji: '🌆', name: 'Sunset', mult: 1.15 },
-            // Moon Cycle: 20:00 - 5:00
-            night: { start: 20, end: 5, emoji: '🌙', name: 'Night', mult: 1.4 }
+            sunset: { start: 18, end: 21, emoji: '🌆', name: 'Sunset', mult: 1.15 },
+            // Moon Cycle: 21:00 - 5:00
+            night: { start: 21, end: 5, emoji: '🌙', name: 'Night', mult: 1.4 }
         };
 
         function getCETTime() {
@@ -1670,20 +1670,20 @@
             const minute = now.getMinutes();
             const timeDecimal = hour + minute / 60;
 
-            // Determine if sun (5:00-20:00) or moon (20:00-5:00)
-            const isSun = timeDecimal >= 5 && timeDecimal < 20;
+            // Determine if sun (5:00-21:00) or moon (21:00-5:00)
+            const isSun = timeDecimal >= 5 && timeDecimal < 21;
 
             let progress; // 0 = rising (left), 0.5 = zenith (center), 1 = setting (right)
 
             if (isSun) {
-                // Sun: 5:00 to 20:00 (15 hours)
-                progress = (timeDecimal - 5) / 15;
+                // Sun: 5:00 to 21:00 (16 hours)
+                progress = (timeDecimal - 5) / 16;
             } else {
-                // Moon: 20:00 to 5:00 (9 hours, wraps around midnight)
-                if (timeDecimal >= 20) {
-                    progress = (timeDecimal - 20) / 9;
+                // Moon: 21:00 to 5:00 (8 hours, wraps around midnight)
+                if (timeDecimal >= 21) {
+                    progress = (timeDecimal - 21) / 8;
                 } else {
-                    progress = (timeDecimal + 4) / 9; // 4 = 24 - 20
+                    progress = (timeDecimal + 3) / 8; // 3 = 24 - 21
                 }
             }
 
@@ -1768,7 +1768,7 @@
             const hour = getCETTime().getHours();
             for (const [key, period] of Object.entries(TIME_PERIODS)) {
                 if (key === 'night') {
-                    if (hour >= 20 || hour < 5) return { key, ...period };
+                    if (hour >= 21 || hour < 5) return { key, ...period };
                 } else if (hour >= period.start && hour < period.end) {
                     return { key, ...period };
                 }
