@@ -13,10 +13,10 @@
   
   "growth": {
     "karma_per_day": 3.74,
-    "prs_per_day": .05,
-    "players_per_day": .16,
+    "prs_per_day": 0.05,
+    "players_per_day": 0.16,
     "karma_per_pr": 63.00,
-    "achievement_rate": .03,
+    "achievement_rate": 0.03,
     "growth_emoji": "🚀"
   },
   
