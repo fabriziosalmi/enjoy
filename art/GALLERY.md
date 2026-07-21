@@ -3,72 +3,72 @@
 > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
 
 ## 📊 Statistics
-- **Total Artworks:** 497
-- **Last Generated:** 2026-04-29T05:07:55Z
-- **Art Type:** mandala
-- **Seed:** 2192
+- **Total Artworks:** 498
+- **Last Generated:** 2026-07-21T12:33:55Z
+- **Art Type:** wave
+- **Seed:** 153
 
 ## 🖼️ Latest Works
 
-### mandala-2192
-![mandala-2192](generated/mandala-2192.svg)
+### wave-153
+![wave-153](generated/wave-153.svg)
 
-### mandala-6218
-![mandala-6218](generated/mandala-6218.svg)
+### wave-875
+![wave-875](generated/wave-875.svg)
 
-### mandala-1173
-![mandala-1173](generated/mandala-1173.svg)
+### wave-8779
+![wave-8779](generated/wave-8779.svg)
 
-### constellation-7206
-![constellation-7206](generated/constellation-7206.svg)
+### wave-8861
+![wave-8861](generated/wave-8861.svg)
 
-### wave-2873
-![wave-2873](generated/wave-2873.svg)
+### wave-890
+![wave-890](generated/wave-890.svg)
 
-### mandala-5907
-![mandala-5907](generated/mandala-5907.svg)
+### wave-8957
+![wave-8957](generated/wave-8957.svg)
 
-### wave-7256
-![wave-7256](generated/wave-7256.svg)
+### wave-9252
+![wave-9252](generated/wave-9252.svg)
 
-### constellation-6522
-![constellation-6522](generated/constellation-6522.svg)
+### wave-9259
+![wave-9259](generated/wave-9259.svg)
 
-### wave-3321
-![wave-3321](generated/wave-3321.svg)
+### wave-9307
+![wave-9307](generated/wave-9307.svg)
 
-### tree-663
-![tree-663](generated/tree-663.svg)
+### wave-9404
+![wave-9404](generated/wave-9404.svg)
 
-### mandala-7689
-![mandala-7689](generated/mandala-7689.svg)
+### wave-950
+![wave-950](generated/wave-950.svg)
 
-### constellation-4095
-![constellation-4095](generated/constellation-4095.svg)
+### wave-9591
+![wave-9591](generated/wave-9591.svg)
 
-### wave-384
-![wave-384](generated/wave-384.svg)
+### wave-9744
+![wave-9744](generated/wave-9744.svg)
 
-### mandala-8696
-![mandala-8696](generated/mandala-8696.svg)
+### wave-9855
+![wave-9855](generated/wave-9855.svg)
 
-### constellation-4539
-![constellation-4539](generated/constellation-4539.svg)
+### wave-9889
+![wave-9889](generated/wave-9889.svg)
 
-### tree-1486
-![tree-1486](generated/tree-1486.svg)
+### wave-6217
+![wave-6217](generated/wave-6217.svg)
 
-### constellation-6435
-![constellation-6435](generated/constellation-6435.svg)
+### wave-6228
+![wave-6228](generated/wave-6228.svg)
 
-### wave-3868
-![wave-3868](generated/wave-3868.svg)
+### wave-6405
+![wave-6405](generated/wave-6405.svg)
 
-### mandala-2311
-![mandala-2311](generated/mandala-2311.svg)
+### wave-6465
+![wave-6465](generated/wave-6465.svg)
 
-### constellation-8056
-![constellation-8056](generated/constellation-8056.svg)
+### wave-6472
+![wave-6472](generated/wave-6472.svg)
 
 
 ---
