@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   track-karma:
-    runs-on: [self-hosted, runner-02]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -11,7 +11,7 @@ on:
 
 jobs:
   check-inactive-players:
-    runs-on: [self-hosted, runner-02]
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write

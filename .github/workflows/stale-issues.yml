@@ -26,7 +26,7 @@ permissions:
 
 jobs:
   stale:
-    runs-on: [self-hosted, runner-02]
+    runs-on: ubuntu-latest
     steps:
       - name: 🧹 Mark and close stale issues
         uses: actions/stale@v9

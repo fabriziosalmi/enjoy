@@ -15,7 +15,7 @@ on:
 
 jobs:
   translate:
-    runs-on: [self-hosted, runner-02]
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       

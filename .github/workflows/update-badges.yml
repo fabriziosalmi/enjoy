@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   update-badges:
-    runs-on: [self-hosted, runner-02]
+    runs-on: ubuntu-latest
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
