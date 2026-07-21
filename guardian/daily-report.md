@@ -1,6 +1,6 @@
 ## 💜 Guardian Angel Report
 
-**Date:** 2026-04-28
+**Date:** 2026-07-21
 
 - **fabriziosalmi**: 💔 Missed (30+ days)
   - Generated heart for fabriziosalmi
@@ -32,9 +32,9 @@
   - Generated heart for qwldcl-del
 - **zhaog100**: 💔 Missed (30+ days)
   - Generated heart for zhaog100
-- **lunchfang**: 💛 Thinking of you (14+ days)
+- **lunchfang**: 💔 Missed (30+ days)
   - Generated heart for lunchfang
-- **atguuuia**: 💚 See you soon (7+ days)
+- **atguuuia**: 💔 Missed (30+ days)
   - Generated heart for atguuuia
 
 ---
