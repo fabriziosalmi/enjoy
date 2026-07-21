@@ -1,5 +1,16 @@
 # 🛡️ Runner Security Policy
 
+> **Status (July 2026): this repository no longer uses a self-hosted runner.**
+> Every workflow now runs on `ubuntu-latest`. The `runner-02` host stopped
+> answering and every run queued against it was cancelled, which silently froze
+> the site and all automation from March until July 2026 — nothing deployed and
+> no scheduled job ran, without any failure notification.
+>
+> The policy below is kept because its reasoning still holds: **if a self-hosted
+> runner is ever reintroduced, workflows that process untrusted external input
+> must stay on `ubuntu-latest`.** Treat the table as the rule to re-apply, not as
+> a description of the current setup.
+
 ## Self-Hosted Runner Configuration
 
 ### Label Setup

@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   update-header:
-    runs-on: [self-hosted, runner-02]
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout

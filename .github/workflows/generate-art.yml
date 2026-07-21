@@ -27,7 +27,7 @@ on:
 
 jobs:
   generate-art:
-    runs-on: [self-hosted, runner-02]
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       
