@@ -3,15 +3,51 @@
 > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
 
 ## 📊 Statistics
-- **Total Artworks:** 506
-- **Last Generated:** 2026-07-23T00:34:54Z
+- **Total Artworks:** 507
+- **Last Generated:** 2026-07-23T05:05:40Z
 - **Art Type:** mandala
-- **Seed:** 9812
+- **Seed:** 6058
 
 ## 🖼️ Latest Works
 
-### mandala-9812
-![mandala-9812](generated/mandala-9812.svg)
+### mandala-6058
+![mandala-6058](generated/mandala-6058.svg)
+
+### wave-8271
+![wave-8271](generated/wave-8271.svg)
+
+### wave-8284
+![wave-8284](generated/wave-8284.svg)
+
+### wave-8595
+![wave-8595](generated/wave-8595.svg)
+
+### wave-875
+![wave-875](generated/wave-875.svg)
+
+### wave-8779
+![wave-8779](generated/wave-8779.svg)
+
+### wave-8861
+![wave-8861](generated/wave-8861.svg)
+
+### wave-890
+![wave-890](generated/wave-890.svg)
+
+### wave-8957
+![wave-8957](generated/wave-8957.svg)
+
+### wave-9252
+![wave-9252](generated/wave-9252.svg)
+
+### wave-9259
+![wave-9259](generated/wave-9259.svg)
+
+### wave-9307
+![wave-9307](generated/wave-9307.svg)
+
+### wave-9404
+![wave-9404](generated/wave-9404.svg)
 
 ### wave-950
 ![wave-950](generated/wave-950.svg)
@@ -28,47 +64,11 @@
 ### wave-9889
 ![wave-9889](generated/wave-9889.svg)
 
-### wave-6964
-![wave-6964](generated/wave-6964.svg)
+### wave-6085
+![wave-6085](generated/wave-6085.svg)
 
-### wave-718
-![wave-718](generated/wave-718.svg)
-
-### wave-7256
-![wave-7256](generated/wave-7256.svg)
-
-### wave-7361
-![wave-7361](generated/wave-7361.svg)
-
-### wave-7437
-![wave-7437](generated/wave-7437.svg)
-
-### wave-7448
-![wave-7448](generated/wave-7448.svg)
-
-### wave-7611
-![wave-7611](generated/wave-7611.svg)
-
-### wave-7653
-![wave-7653](generated/wave-7653.svg)
-
-### wave-7657
-![wave-7657](generated/wave-7657.svg)
-
-### wave-7683
-![wave-7683](generated/wave-7683.svg)
-
-### wave-7732
-![wave-7732](generated/wave-7732.svg)
-
-### wave-776
-![wave-776](generated/wave-776.svg)
-
-### wave-7860
-![wave-7860](generated/wave-7860.svg)
-
-### wave-7894
-![wave-7894](generated/wave-7894.svg)
+### wave-6090
+![wave-6090](generated/wave-6090.svg)
 
 
 ---
