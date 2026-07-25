@@ -4,14 +4,20 @@
 
 ## 📊 Statistics
 - **Total Artworks:** 517
-- **Last Generated:** 2026-07-25T05:04:06Z
-- **Art Type:** mandala
-- **Seed:** 8764
+- **Last Generated:** 2026-07-25T08:58:38Z
+- **Art Type:** 
+- **Seed:** 2836
 
 ## 🖼️ Latest Works
 
-### mandala-8764
-![mandala-8764](generated/mandala-8764.svg)
+### wave-8779
+![wave-8779](generated/wave-8779.svg)
+
+### wave-8861
+![wave-8861](generated/wave-8861.svg)
+
+### wave-890
+![wave-890](generated/wave-890.svg)
 
 ### wave-8957
 ![wave-8957](generated/wave-8957.svg)
@@ -46,6 +52,12 @@
 ### wave-9889
 ![wave-9889](generated/wave-9889.svg)
 
+### wave-6405
+![wave-6405](generated/wave-6405.svg)
+
+### wave-6465
+![wave-6465](generated/wave-6465.svg)
+
 ### wave-6472
 ![wave-6472](generated/wave-6472.svg)
 
@@ -57,18 +69,6 @@
 
 ### wave-6601
 ![wave-6601](generated/wave-6601.svg)
-
-### wave-6870
-![wave-6870](generated/wave-6870.svg)
-
-### wave-6873
-![wave-6873](generated/wave-6873.svg)
-
-### wave-6964
-![wave-6964](generated/wave-6964.svg)
-
-### wave-718
-![wave-718](generated/wave-718.svg)
 
 
 ---
