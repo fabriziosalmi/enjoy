@@ -260,13 +260,13 @@
     },
     "jamiedcphillips": {
       "name": "jamiedcphillips",
-      "karma": 3,
+      "karma": 5,
       "prs": 0,
       "streak": 0,
       "achievements": [],
       "contributions": [],
       "joined": "2026-07-26T07:31:30.562Z",
-      "last_contribution": "2026-07-26T07:31:30.562Z"
+      "last_contribution": "2026-07-26T12:32:31.455Z"
     }
   },
   "reputation": {
@@ -819,6 +819,12 @@
         "event": "fork",
         "karma": 3,
         "timestamp": "2026-07-26T07:31:30.562Z"
+      },
+      {
+        "actor": "jamiedcphillips",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-07-26T12:32:31.455Z"
       }
     ],
     "by_user": {
@@ -1263,12 +1269,17 @@
         ]
       },
       "jamiedcphillips": {
-        "total": 3,
+        "total": 5,
         "history": [
           {
             "event": "fork",
             "karma": 3,
             "timestamp": "2026-07-26T07:31:30.562Z"
+          },
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-07-26T12:32:31.455Z"
           }
         ]
       }
