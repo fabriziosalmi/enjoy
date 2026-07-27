@@ -1,17 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
   <defs>
-    <!-- Morning gradient: fresh blue, soft yellow -->
-    <linearGradient id="morningSky" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#87ceeb"/>
-      <stop offset="50%" style="stop-color:#b4e7f8"/>
-      <stop offset="100%" style="stop-color:#fff9e6"/>
+    <!-- Afternoon gradient: warm golden, soft orange -->
+    <linearGradient id="afternoonSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#74c0fc"/>
+      <stop offset="50%" style="stop-color:#ffd8a8"/>
+      <stop offset="100%" style="stop-color:#ffec99"/>
     </linearGradient>
-    <linearGradient id="sunGlow" x1="50%" y1="100%" x2="50%" y2="0%">
-      <stop offset="0%" style="stop-color:#ffd93d;stop-opacity:0.4"/>
-      <stop offset="100%" style="stop-color:#ffd93d;stop-opacity:0"/>
+    <linearGradient id="warmGlow" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" style="stop-color:#ff922b;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#ff922b;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#ff922b;stop-opacity:0"/>
     </linearGradient>
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
+    <filter id="golden">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -20,42 +21,42 @@
   </defs>
   
   <!-- Sky -->
-  <rect width="800" height="200" fill="url(#morningSky)"/>
+  <rect width="800" height="200" fill="url(#afternoonSky)"/>
   
-  <!-- Sun glow -->
-  <ellipse cx="650" cy="60" rx="150" ry="100" fill="url(#sunGlow)"/>
+  <!-- Warm glow band -->
+  <rect x="0" y="80" width="800" height="60" fill="url(#warmGlow)"/>
   
-  <!-- Sun -->
-  <circle cx="650" cy="60" r="35" fill="#ffd93d" filter="url(#softGlow)"/>
-  <circle cx="650" cy="60" r="28" fill="#fff5cc"/>
+  <!-- Sun descending -->
+  <circle cx="650" cy="80" r="38" fill="#ffd93d" filter="url(#golden)"/>
+  <circle cx="650" cy="80" r="30" fill="#ffec99"/>
   
-  <!-- Light clouds -->
-  <g fill="white" opacity="0.7">
-    <ellipse cx="150" cy="50" rx="50" ry="20"/>
-    <ellipse cx="180" cy="45" rx="40" ry="18"/>
-    <ellipse cx="120" cy="55" rx="35" ry="15"/>
+  <!-- Clouds with golden edges -->
+  <g>
+    <ellipse cx="200" cy="60" rx="60" ry="25" fill="#fff"/>
+    <ellipse cx="230" cy="55" rx="45" ry="20" fill="#ffd8a8"/>
+    <ellipse cx="170" cy="65" rx="40" ry="18" fill="#fff"/>
     
-    <ellipse cx="500" cy="80" rx="45" ry="18"/>
-    <ellipse cx="530" cy="75" rx="35" ry="15"/>
+    <ellipse cx="450" cy="45" rx="50" ry="20" fill="#fff"/>
+    <ellipse cx="480" cy="40" rx="40" ry="18" fill="#ffd8a8"/>
   </g>
   
-  <!-- Green hills -->
-  <path d="M0,180 Q100,155 200,165 Q300,145 400,160 Q500,140 600,155 Q700,150 800,160 L800,200 L0,200 Z" fill="#90be6d"/>
-  <path d="M0,185 Q150,165 300,175 Q450,155 600,170 Q700,160 800,175 L800,200 L0,200 Z" fill="#76c043"/>
+  <!-- Golden hills -->
+  <path d="M0,175 Q100,155 200,165 Q350,145 500,160 Q650,150 800,165 L800,200 L0,200 Z" fill="#e8590c" opacity="0.4"/>
+  <path d="M0,180 Q150,165 300,175 Q450,160 600,172 Q700,165 800,178 L800,200 L0,200 Z" fill="#f4a261"/>
   
   <!-- Title -->
-  <text x="400" y="85" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#2d6a4f" filter="url(#softGlow)">enjoy</text>
+  <text x="400" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#c2410c" filter="url(#golden)">enjoy</text>
   
   <!-- Subtitle -->
-  <text x="400" y="115" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#40916c">☀️ morning energy • fresh contributions</text>
+  <text x="400" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#e8590c">🌤️ golden hour • wisdom flows</text>
   
   <!-- Time indicator -->
-  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#40916c" opacity="0.7">08:00-12:00 CET</text>
+  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#c2410c" opacity="0.7">15:00-18:00 CET</text>
   
-  <!-- Birds -->
-  <g fill="none" stroke="#2d6a4f" stroke-width="1.5" opacity="0.6">
-    <path d="M100,100 Q105,95 110,100 Q115,95 120,100"/>
-    <path d="M130,90 Q135,85 140,90 Q145,85 150,90"/>
-    <path d="M80,110 Q85,105 90,110 Q95,105 100,110"/>
+  <!-- Lazy particles -->
+  <g fill="#ff922b" opacity="0.5">
+    <circle cx="120" cy="90" r="2"/>
+    <circle cx="350" cy="70" r="1.5"/>
+    <circle cx="580" cy="95" r="2"/>
   </g>
 </svg>
