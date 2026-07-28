@@ -3,18 +3,15 @@
 > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
 
 ## 📊 Statistics
-- **Total Artworks:** 532
-- **Last Generated:** 2026-07-28T16:33:32Z
-- **Art Type:** constellation
-- **Seed:** 9343
+- **Total Artworks:** 533
+- **Last Generated:** 2026-07-28T20:27:19Z
+- **Art Type:** mandala
+- **Seed:** 3370
 
 ## 🖼️ Latest Works
 
-### constellation-9343
-![constellation-9343](generated/constellation-9343.svg)
-
-### wave-9259
-![wave-9259](generated/wave-9259.svg)
+### mandala-3370
+![mandala-3370](generated/mandala-3370.svg)
 
 ### wave-9280
 ![wave-9280](generated/wave-9280.svg)
@@ -40,6 +37,24 @@
 ### wave-9889
 ![wave-9889](generated/wave-9889.svg)
 
+### wave-6964
+![wave-6964](generated/wave-6964.svg)
+
+### wave-718
+![wave-718](generated/wave-718.svg)
+
+### wave-7256
+![wave-7256](generated/wave-7256.svg)
+
+### wave-7361
+![wave-7361](generated/wave-7361.svg)
+
+### wave-7437
+![wave-7437](generated/wave-7437.svg)
+
+### wave-7448
+![wave-7448](generated/wave-7448.svg)
+
 ### wave-7611
 ![wave-7611](generated/wave-7611.svg)
 
@@ -54,21 +69,6 @@
 
 ### wave-7732
 ![wave-7732](generated/wave-7732.svg)
-
-### wave-776
-![wave-776](generated/wave-776.svg)
-
-### wave-7860
-![wave-7860](generated/wave-7860.svg)
-
-### wave-7894
-![wave-7894](generated/wave-7894.svg)
-
-### wave-8140
-![wave-8140](generated/wave-8140.svg)
-
-### wave-8223
-![wave-8223](generated/wave-8223.svg)
 
 
 ---
