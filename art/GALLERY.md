@@ -4,53 +4,11 @@
 
 ## 📊 Statistics
 - **Total Artworks:** 530
-- **Last Generated:** 2026-07-28T05:04:16Z
-- **Art Type:** mandala
-- **Seed:** 7987
+- **Last Generated:** 2026-07-28T08:57:20Z
+- **Art Type:** 
+- **Seed:** 1970
 
 ## 🖼️ Latest Works
-
-### mandala-7987
-![mandala-7987](generated/mandala-7987.svg)
-
-### wave-9591
-![wave-9591](generated/wave-9591.svg)
-
-### wave-9744
-![wave-9744](generated/wave-9744.svg)
-
-### wave-9855
-![wave-9855](generated/wave-9855.svg)
-
-### wave-9889
-![wave-9889](generated/wave-9889.svg)
-
-### wave-8140
-![wave-8140](generated/wave-8140.svg)
-
-### wave-8223
-![wave-8223](generated/wave-8223.svg)
-
-### wave-8271
-![wave-8271](generated/wave-8271.svg)
-
-### wave-8284
-![wave-8284](generated/wave-8284.svg)
-
-### wave-8595
-![wave-8595](generated/wave-8595.svg)
-
-### wave-875
-![wave-875](generated/wave-875.svg)
-
-### wave-8779
-![wave-8779](generated/wave-8779.svg)
-
-### wave-8861
-![wave-8861](generated/wave-8861.svg)
-
-### wave-890
-![wave-890](generated/wave-890.svg)
 
 ### wave-8957
 ![wave-8957](generated/wave-8957.svg)
@@ -69,6 +27,48 @@
 
 ### wave-9404
 ![wave-9404](generated/wave-9404.svg)
+
+### wave-950
+![wave-950](generated/wave-950.svg)
+
+### wave-9591
+![wave-9591](generated/wave-9591.svg)
+
+### wave-9744
+![wave-9744](generated/wave-9744.svg)
+
+### wave-9855
+![wave-9855](generated/wave-9855.svg)
+
+### wave-9889
+![wave-9889](generated/wave-9889.svg)
+
+### wave-6508
+![wave-6508](generated/wave-6508.svg)
+
+### wave-6601
+![wave-6601](generated/wave-6601.svg)
+
+### wave-6870
+![wave-6870](generated/wave-6870.svg)
+
+### wave-6873
+![wave-6873](generated/wave-6873.svg)
+
+### wave-6964
+![wave-6964](generated/wave-6964.svg)
+
+### wave-718
+![wave-718](generated/wave-718.svg)
+
+### wave-7256
+![wave-7256](generated/wave-7256.svg)
+
+### wave-7361
+![wave-7361](generated/wave-7361.svg)
+
+### wave-7437
+![wave-7437](generated/wave-7437.svg)
 
 
 ---
