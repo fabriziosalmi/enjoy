@@ -26,16 +26,16 @@
   
   <!-- From -->
   <text x="200" y="110" text-anchor="middle" font-family="Arial" font-size="10" fill="#8b949e">
-    From: The Void | Created: 2026-02-01
+    From: The Void | Created: 2026-04-01
   </text>
   
   <!-- Comparison -->
   <text x="200" y="145" text-anchor="middle" font-family="Arial Black" font-size="12" fill="#58a6ff">THEN → NOW</text>
   <text x="200" y="170" text-anchor="middle" font-family="monospace" font-size="11" fill="#22c55e">
-    Karma: 278 → 378 (+100)
+    Karma: 378 → 378 (+0)
   </text>
   <text x="200" y="190" text-anchor="middle" font-family="monospace" font-size="11" fill="#22c55e">
-    Players: 8 → 15 (+7)
+    Players: 15 → 18 (+3)
   </text>
   <text x="200" y="210" text-anchor="middle" font-family="monospace" font-size="11" fill="#22c55e">
     Level: 3 → 3 (+0)
