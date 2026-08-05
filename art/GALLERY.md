@@ -4,14 +4,56 @@
 
 ## 📊 Statistics
 - **Total Artworks:** 570
-- **Last Generated:** 2026-08-05T05:04:13Z
-- **Art Type:** mandala
-- **Seed:** 9183
+- **Last Generated:** 2026-08-05T08:57:23Z
+- **Art Type:** 
+- **Seed:** 3174
 
 ## 🖼️ Latest Works
 
-### mandala-9183
-![mandala-9183](generated/mandala-9183.svg)
+### wave-8284
+![wave-8284](generated/wave-8284.svg)
+
+### wave-8595
+![wave-8595](generated/wave-8595.svg)
+
+### wave-875
+![wave-875](generated/wave-875.svg)
+
+### wave-8779
+![wave-8779](generated/wave-8779.svg)
+
+### wave-8861
+![wave-8861](generated/wave-8861.svg)
+
+### wave-890
+![wave-890](generated/wave-890.svg)
+
+### wave-8957
+![wave-8957](generated/wave-8957.svg)
+
+### wave-9252
+![wave-9252](generated/wave-9252.svg)
+
+### wave-9259
+![wave-9259](generated/wave-9259.svg)
+
+### wave-9280
+![wave-9280](generated/wave-9280.svg)
+
+### wave-9307
+![wave-9307](generated/wave-9307.svg)
+
+### wave-9404
+![wave-9404](generated/wave-9404.svg)
+
+### wave-950
+![wave-950](generated/wave-950.svg)
+
+### wave-9591
+![wave-9591](generated/wave-9591.svg)
+
+### wave-9744
+![wave-9744](generated/wave-9744.svg)
 
 ### wave-9855
 ![wave-9855](generated/wave-9855.svg)
@@ -22,53 +64,11 @@
 ### wave-9920
 ![wave-9920](generated/wave-9920.svg)
 
-### wave-4950
-![wave-4950](generated/wave-4950.svg)
-
-### wave-4996
-![wave-4996](generated/wave-4996.svg)
-
-### wave-5230
-![wave-5230](generated/wave-5230.svg)
-
-### wave-5231
-![wave-5231](generated/wave-5231.svg)
-
-### wave-5267
-![wave-5267](generated/wave-5267.svg)
-
-### wave-5314
-![wave-5314](generated/wave-5314.svg)
-
-### wave-5354
-![wave-5354](generated/wave-5354.svg)
-
-### wave-5376
-![wave-5376](generated/wave-5376.svg)
-
-### wave-5726
-![wave-5726](generated/wave-5726.svg)
-
-### wave-5763
-![wave-5763](generated/wave-5763.svg)
-
-### wave-5815
-![wave-5815](generated/wave-5815.svg)
-
-### wave-5965
-![wave-5965](generated/wave-5965.svg)
-
-### wave-6085
-![wave-6085](generated/wave-6085.svg)
-
-### wave-6090
-![wave-6090](generated/wave-6090.svg)
-
-### wave-6217
-![wave-6217](generated/wave-6217.svg)
-
 ### wave-6228
 ![wave-6228](generated/wave-6228.svg)
+
+### wave-6395
+![wave-6395](generated/wave-6395.svg)
 
 
 ---
