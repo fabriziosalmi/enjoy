@@ -1,65 +1,94 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
   <defs>
-    <!-- Noon gradient: bright blue, white hot -->
-    <linearGradient id="noonSky" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#0096c7"/>
-      <stop offset="40%" style="stop-color:#48cae4"/>
-      <stop offset="100%" style="stop-color:#caf0f8"/>
+    <!-- Night gradient: deep space -->
+    <linearGradient id="nightSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1b2a"/>
+      <stop offset="50%" style="stop-color:#1b263b"/>
+      <stop offset="100%" style="stop-color:#415a77"/>
     </linearGradient>
-    <linearGradient id="hotGlow" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#fff;stop-opacity:0.9"/>
-      <stop offset="100%" style="stop-color:#ffd93d;stop-opacity:0"/>
+    <linearGradient id="moonGlow" x1="50%" y1="50%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0e1dd"/>
+      <stop offset="100%" style="stop-color:#778da9"/>
     </linearGradient>
-    <filter id="intense">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
       <feMerge>
-        <feMergeNode in="blur"/>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <filter id="heatShimmer">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2"/>
-      <feDisplacementMap in="SourceGraphic" scale="2"/>
+    <filter id="moonLight">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
   
   <!-- Sky -->
-  <rect width="800" height="200" fill="url(#noonSky)"/>
+  <rect width="800" height="200" fill="url(#nightSky)"/>
   
-  <!-- Sun at peak -->
-  <ellipse cx="400" cy="-20" rx="200" ry="150" fill="url(#hotGlow)"/>
-  <circle cx="400" cy="30" r="40" fill="#fff" filter="url(#intense)"/>
+  <!-- Stars -->
+  <g fill="white">
+    <!-- Bright stars -->
+    <circle cx="100" cy="40" r="2" filter="url(#starGlow)">
+      <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="250" cy="25" r="1.5" filter="url(#starGlow)">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="35" r="2" filter="url(#starGlow)">
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="20" r="1.5" filter="url(#starGlow)">
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="700" cy="45" r="2" filter="url(#starGlow)">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Small stars -->
+    <circle cx="50" cy="70" r="1" opacity="0.7"/>
+    <circle cx="150" cy="90" r="1" opacity="0.6"/>
+    <circle cx="180" cy="55" r="0.8" opacity="0.5"/>
+    <circle cx="320" cy="70" r="1" opacity="0.7"/>
+    <circle cx="380" cy="55" r="0.8" opacity="0.6"/>
+    <circle cx="450" cy="75" r="1" opacity="0.5"/>
+    <circle cx="520" cy="50" r="0.8" opacity="0.7"/>
+    <circle cx="600" cy="65" r="1" opacity="0.6"/>
+    <circle cx="650" cy="30" r="0.8" opacity="0.7"/>
+    <circle cx="750" cy="70" r="1" opacity="0.5"/>
+    <circle cx="80" cy="120" r="0.8" opacity="0.4"/>
+    <circle cx="280" cy="100" r="0.8" opacity="0.5"/>
+    <circle cx="480" cy="95" r="0.8" opacity="0.4"/>
+    <circle cx="680" cy="105" r="0.8" opacity="0.5"/>
+  </g>
   
-  <!-- Heat waves (subtle) -->
-  <rect x="0" y="170" width="800" height="30" fill="#caf0f8" opacity="0.3"/>
+  <!-- Moon -->
+  <circle cx="650" cy="60" r="30" fill="url(#moonGlow)" filter="url(#moonLight)"/>
+  <circle cx="640" cy="55" r="5" fill="#778da9" opacity="0.3"/>
+  <circle cx="660" cy="70" r="3" fill="#778da9" opacity="0.2"/>
+  <circle cx="655" cy="50" r="2" fill="#778da9" opacity="0.25"/>
   
-  <!-- Ground -->
-  <path d="M0,180 Q200,175 400,178 Q600,172 800,180 L800,200 L0,200 Z" fill="#ffd93d" opacity="0.3"/>
-  <path d="M0,185 Q200,180 400,183 Q600,178 800,185 L800,200 L0,200 Z" fill="#f4a261"/>
+  <!-- Silhouette -->
+  <path d="M0,175 Q100,165 200,170 Q300,160 400,168 Q500,158 600,165 Q700,160 800,170 L800,200 L0,200 Z" fill="#0d1b2a"/>
   
   <!-- Title -->
-  <text x="400" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#023e8a" filter="url(#intense)">enjoy</text>
+  <text x="400" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" font-weight="bold" fill="#e0e1dd" filter="url(#moonLight)">enjoy</text>
   
   <!-- Subtitle -->
-  <text x="400" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#0077b6">🌞 peak activity • maximum karma</text>
+  <text x="400" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#778da9">🌙 night watch • dreams compile</text>
   
   <!-- Time indicator -->
-  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#023e8a" opacity="0.7">12:00-15:00 CET</text>
+  <text x="750" y="25" text-anchor="end" font-family="'Courier New', monospace" font-size="10" fill="#778da9" opacity="0.7">21:00-05:00 CET</text>
   
-  <!-- Activity sparks -->
-  <g fill="#ffd93d" opacity="0.8">
-    <circle cx="100" cy="60" r="2">
-      <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="700" cy="80" r="2">
-      <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="300" cy="40" r="1.5">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="550" cy="55" r="1.5">
-      <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
-    </circle>
-  </g>
+  <!-- Shooting star (animated) -->
+  <line x1="200" y1="30" x2="180" y2="50" stroke="white" stroke-width="1" opacity="0">
+    <animate attributeName="opacity" values="0;1;0" dur="5s" repeatCount="indefinite" begin="2s"/>
+    <animate attributeName="x1" values="200;150;100" dur="5s" repeatCount="indefinite" begin="2s"/>
+    <animate attributeName="y1" values="30;60;90" dur="5s" repeatCount="indefinite" begin="2s"/>
+    <animate attributeName="x2" values="180;130;80" dur="5s" repeatCount="indefinite" begin="2s"/>
+    <animate attributeName="y2" values="50;80;110" dur="5s" repeatCount="indefinite" begin="2s"/>
+  </line>
 </svg>
