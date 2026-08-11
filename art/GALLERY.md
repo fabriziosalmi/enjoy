@@ -3,72 +3,72 @@
 > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
 
 ## 📊 Statistics
-- **Total Artworks:** 597
-- **Last Generated:** 2026-08-11T00:18:41Z
-- **Art Type:** mandala
-- **Seed:** 452
+- **Total Artworks:** 598
+- **Last Generated:** 2026-08-11T04:30:16Z
+- **Art Type:** spiral
+- **Seed:** 5547
 
 ## 🖼️ Latest Works
 
-### mandala-452
-![mandala-452](generated/mandala-452.svg)
+### spiral-5547
+![spiral-5547](generated/spiral-5547.svg)
 
-### wave-8957
-![wave-8957](generated/wave-8957.svg)
+### wave-4996
+![wave-4996](generated/wave-4996.svg)
 
-### wave-9252
-![wave-9252](generated/wave-9252.svg)
+### wave-5230
+![wave-5230](generated/wave-5230.svg)
 
-### wave-9259
-![wave-9259](generated/wave-9259.svg)
+### wave-5231
+![wave-5231](generated/wave-5231.svg)
 
-### wave-9280
-![wave-9280](generated/wave-9280.svg)
+### wave-5267
+![wave-5267](generated/wave-5267.svg)
 
-### wave-9307
-![wave-9307](generated/wave-9307.svg)
+### wave-5314
+![wave-5314](generated/wave-5314.svg)
 
-### wave-9404
-![wave-9404](generated/wave-9404.svg)
+### wave-5354
+![wave-5354](generated/wave-5354.svg)
 
-### wave-950
-![wave-950](generated/wave-950.svg)
+### wave-5376
+![wave-5376](generated/wave-5376.svg)
 
-### wave-9591
-![wave-9591](generated/wave-9591.svg)
+### wave-5726
+![wave-5726](generated/wave-5726.svg)
 
-### wave-9744
-![wave-9744](generated/wave-9744.svg)
+### wave-5763
+![wave-5763](generated/wave-5763.svg)
 
-### wave-9855
-![wave-9855](generated/wave-9855.svg)
+### wave-5815
+![wave-5815](generated/wave-5815.svg)
 
-### wave-9889
-![wave-9889](generated/wave-9889.svg)
+### wave-5965
+![wave-5965](generated/wave-5965.svg)
 
-### wave-9920
-![wave-9920](generated/wave-9920.svg)
+### wave-6085
+![wave-6085](generated/wave-6085.svg)
 
-### wave-6870
-![wave-6870](generated/wave-6870.svg)
+### wave-6090
+![wave-6090](generated/wave-6090.svg)
 
-### wave-6873
-![wave-6873](generated/wave-6873.svg)
+### wave-6217
+![wave-6217](generated/wave-6217.svg)
 
-### wave-6964
-![wave-6964](generated/wave-6964.svg)
+### wave-6228
+![wave-6228](generated/wave-6228.svg)
 
-### wave-718
-![wave-718](generated/wave-718.svg)
+### wave-6395
+![wave-6395](generated/wave-6395.svg)
 
-### wave-7189
-![wave-7189](generated/wave-7189.svg)
+### wave-6405
+![wave-6405](generated/wave-6405.svg)
 
-### wave-7256
-![wave-7256](generated/wave-7256.svg)
+### wave-6465
+![wave-6465](generated/wave-6465.svg)
 
-### wave-7361
-![wave-7361](generated/wave-7361.svg)
+### wave-6472
+![wave-6472](generated/wave-6472.svg)
 
 
 ---
