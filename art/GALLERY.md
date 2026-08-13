@@ -4,17 +4,11 @@
 
 ## 📊 Statistics
 - **Total Artworks:** 608
-- **Last Generated:** 2026-08-13T04:36:32Z
-- **Art Type:** spiral
-- **Seed:** 8723
+- **Last Generated:** 2026-08-13T08:31:36Z
+- **Art Type:** 
+- **Seed:** 2826
 
 ## 🖼️ Latest Works
-
-### spiral-8723
-![spiral-8723](generated/spiral-8723.svg)
-
-### wave-9744
-![wave-9744](generated/wave-9744.svg)
 
 ### wave-9855
 ![wave-9855](generated/wave-9855.svg)
@@ -24,9 +18,6 @@
 
 ### wave-9920
 ![wave-9920](generated/wave-9920.svg)
-
-### wave-7653
-![wave-7653](generated/wave-7653.svg)
 
 ### wave-7657
 ![wave-7657](generated/wave-7657.svg)
@@ -69,6 +60,15 @@
 
 ### wave-875
 ![wave-875](generated/wave-875.svg)
+
+### wave-8779
+![wave-8779](generated/wave-8779.svg)
+
+### wave-8861
+![wave-8861](generated/wave-8861.svg)
+
+### wave-890
+![wave-890](generated/wave-890.svg)
 
 
 ---
