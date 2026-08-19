@@ -3,12 +3,27 @@
 > *"Ogni opera è unica. Ogni seed irripetibile. Ogni karma immortale."*
 
 ## 📊 Statistics
-- **Total Artworks:** 636
-- **Last Generated:** 2026-08-19T08:10:41Z
-- **Art Type:** 
-- **Seed:** 9985
+- **Total Artworks:** 637
+- **Last Generated:** 2026-08-19T12:08:09Z
+- **Art Type:** wave
+- **Seed:** 4233
 
 ## 🖼️ Latest Works
+
+### wave-4233
+![wave-4233](generated/wave-4233.svg)
+
+### wave-890
+![wave-890](generated/wave-890.svg)
+
+### wave-8957
+![wave-8957](generated/wave-8957.svg)
+
+### wave-9252
+![wave-9252](generated/wave-9252.svg)
+
+### wave-9259
+![wave-9259](generated/wave-9259.svg)
 
 ### wave-9280
 ![wave-9280](generated/wave-9280.svg)
@@ -37,38 +52,23 @@
 ### wave-9920
 ![wave-9920](generated/wave-9920.svg)
 
+### wave-6873
+![wave-6873](generated/wave-6873.svg)
+
+### wave-6964
+![wave-6964](generated/wave-6964.svg)
+
+### wave-718
+![wave-718](generated/wave-718.svg)
+
+### wave-7189
+![wave-7189](generated/wave-7189.svg)
+
+### wave-7256
+![wave-7256](generated/wave-7256.svg)
+
 ### wave-7361
 ![wave-7361](generated/wave-7361.svg)
-
-### wave-7437
-![wave-7437](generated/wave-7437.svg)
-
-### wave-7448
-![wave-7448](generated/wave-7448.svg)
-
-### wave-7611
-![wave-7611](generated/wave-7611.svg)
-
-### wave-7653
-![wave-7653](generated/wave-7653.svg)
-
-### wave-7657
-![wave-7657](generated/wave-7657.svg)
-
-### wave-7683
-![wave-7683](generated/wave-7683.svg)
-
-### wave-7732
-![wave-7732](generated/wave-7732.svg)
-
-### wave-776
-![wave-776](generated/wave-776.svg)
-
-### wave-7860
-![wave-7860](generated/wave-7860.svg)
-
-### wave-7894
-![wave-7894](generated/wave-7894.svg)
 
 
 ---
