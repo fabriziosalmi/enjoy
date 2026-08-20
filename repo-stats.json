@@ -1,65 +1,70 @@
 {
-  "updated": "2026-08-20T12:12:56.388Z",
+  "updated": "2026-08-20T16:27:05.349Z",
   "stars": 10,
-  "forks": 14,
+  "forks": 15,
   "watchers": 0,
-  "open_issues": 6,
+  "open_issues": 7,
   "discussions": 11,
-  "size_kb": 11935,
+  "size_kb": 11943,
   "default_branch": "main",
   "recent_stargazers": [
     {
       "login": "testman42",
       "avatar": "https://avatars.githubusercontent.com/u/2620967?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "tentoumushii",
       "avatar": "https://avatars.githubusercontent.com/u/169354375?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "giordan83",
       "avatar": "https://avatars.githubusercontent.com/u/1755593?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "tkersey",
       "avatar": "https://avatars.githubusercontent.com/u/217?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "DoddiC",
       "avatar": "https://avatars.githubusercontent.com/u/45871604?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "ShoshinMaster",
       "avatar": "https://avatars.githubusercontent.com/u/236030009?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "alexanmtz",
       "avatar": "https://avatars.githubusercontent.com/u/88840?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "Adraca",
       "avatar": "https://avatars.githubusercontent.com/u/256321285?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "diptikhaparde-coder",
       "avatar": "https://avatars.githubusercontent.com/u/270610204?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     },
     {
       "login": "alienvisitor8675-bit",
       "avatar": "https://avatars.githubusercontent.com/u/316895819?v=4",
-      "starred_at": "2026-08-20T12:12:56.389Z"
+      "starred_at": "2026-08-20T16:27:05.349Z"
     }
   ],
   "recent_forks": [
+    {
+      "login": "1snob",
+      "avatar": "https://avatars.githubusercontent.com/u/161824358?v=4",
+      "forked_at": "2026-08-20T16:26:55Z"
+    },
     {
       "login": "alienvisitor8675-bit",
       "avatar": "https://avatars.githubusercontent.com/u/316895819?v=4",
@@ -104,11 +109,6 @@
       "login": "animalsina",
       "avatar": "https://avatars.githubusercontent.com/u/12851223?v=4",
       "forked_at": "2026-02-23T21:21:16Z"
-    },
-    {
-      "login": "Harmatta",
-      "avatar": "https://avatars.githubusercontent.com/u/136149988?v=4",
-      "forked_at": "2026-02-05T06:50:06Z"
     }
   ],
   "contributors": [
@@ -145,8 +145,8 @@
   ],
   "energy": {
     "twinkle_intensity": 0.1,
-    "growth_rate": 0.28,
-    "activity": 0.85,
+    "growth_rate": 0.3,
+    "activity": 0.9,
     "community": 6
   }
 }
