@@ -277,6 +277,16 @@
       "contributions": [],
       "joined": "2026-08-14T12:23:36.553Z",
       "last_contribution": "2026-08-14T12:23:36.553Z"
+    },
+    "1snob": {
+      "name": "1snob",
+      "karma": 2,
+      "prs": 0,
+      "streak": 0,
+      "achievements": [],
+      "contributions": [],
+      "joined": "2026-08-21T22:03:11.280Z",
+      "last_contribution": "2026-08-21T22:03:11.280Z"
     }
   },
   "reputation": {
@@ -358,7 +368,7 @@
   "rules_triggered": {},
   "meta": {
     "total_prs": 6,
-    "total_players": 19,
+    "total_players": 20,
     "game_started": "2026-01-18T00:00:00Z",
     "pages_enabled": false,
     "last_build": null,
@@ -841,6 +851,12 @@
         "event": "fork",
         "karma": 3,
         "timestamp": "2026-08-14T12:23:36.553Z"
+      },
+      {
+        "actor": "1snob",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-08-21T22:03:11.280Z"
       }
     ],
     "by_user": {
@@ -1306,6 +1322,16 @@
             "event": "fork",
             "karma": 3,
             "timestamp": "2026-08-14T12:23:36.552Z"
+          }
+        ]
+      },
+      "1snob": {
+        "total": 2,
+        "history": [
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-08-21T22:03:11.280Z"
           }
         ]
       }
