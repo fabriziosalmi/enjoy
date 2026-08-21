@@ -280,13 +280,13 @@
     },
     "1snob": {
       "name": "1snob",
-      "karma": 2,
+      "karma": 4,
       "prs": 0,
       "streak": 0,
       "achievements": [],
       "contributions": [],
       "joined": "2026-08-21T22:03:11.280Z",
-      "last_contribution": "2026-08-21T22:03:11.280Z"
+      "last_contribution": "2026-08-21T23:31:33.399Z"
     }
   },
   "reputation": {
@@ -857,6 +857,12 @@
         "event": "issue_comment.created",
         "karma": 2,
         "timestamp": "2026-08-21T22:03:11.280Z"
+      },
+      {
+        "actor": "1snob",
+        "event": "issue_comment.created",
+        "karma": 2,
+        "timestamp": "2026-08-21T23:31:33.399Z"
       }
     ],
     "by_user": {
@@ -1326,12 +1332,17 @@
         ]
       },
       "1snob": {
-        "total": 2,
+        "total": 4,
         "history": [
           {
             "event": "issue_comment.created",
             "karma": 2,
             "timestamp": "2026-08-21T22:03:11.280Z"
+          },
+          {
+            "event": "issue_comment.created",
+            "karma": 2,
+            "timestamp": "2026-08-21T23:31:33.399Z"
           }
         ]
       }
