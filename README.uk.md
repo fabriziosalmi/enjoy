@@ -54,3 +54,8 @@
 ---
 
 *"Всі допомагають всім. Ніхто не виключений. Ніхто не зазнає невдачі."*
+# bounty-fix-ref: https://github.com/fabriziosalmi/enjoy/issues/8
+# bounty-fix-ref: https://github.com/fabriziosalmi/enjoy/issues/8
+# bounty-fix-ref: https://github.com/fabriziosalmi/enjoy/issues/8
+# bounty-fix-ref: https://github.com/fabriziosalmi/enjoy/issues/8
+# bounty-fix-ref: https://github.com/fabriziosalmi/enjoy/issues/8
